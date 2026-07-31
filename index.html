@@ -1,28 +1,15 @@
 <!DOCTYPE html>
-<html lang="bn" data-theme="light">
+<html lang="bn" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pintu Joydhar - Portfolio</title>
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         /* 🎨 Theme Color Variables */
         :root {
-            --bg-color: #f8fafc;
-            --header-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-sub: #475569;
-            --accent-color: #0284c7;
-            --nav-link: #334155;
-            --input-bg: #ffffff;
-            --input-text: #0f172a;
-            --card-bg: #ffffff;
-            --section-bg: #f1f5f9;
-        }
-
-        [data-theme="dark"] {
             --bg-color: #0f172a;
             --header-bg: #1e293b;
             --text-main: #f8fafc;
@@ -32,7 +19,19 @@
             --input-bg: #334155;
             --input-text: #ffffff;
             --card-bg: #1e293b;
-            --section-bg: #1e293b;
+        }
+
+        /* ☀️ Light Theme Styles */
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --header-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --accent-color: #0284c7;
+            --nav-link: #334155;
+            --input-bg: #ffffff;
+            --input-text: #0f172a;
+            --card-bg: #ffffff;
         }
 
         * {
@@ -53,7 +52,7 @@
             line-height: 1.6;
         }
 
-        /* Navbar */
+        /* Header / Navbar */
         header {
             position: sticky;
             top: 0;
@@ -61,9 +60,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 8%;
+            padding: 20px 8%;
             background: var(--header-bg);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             flex-wrap: wrap;
             gap: 15px;
         }
@@ -81,7 +80,7 @@
         nav {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
         }
 
@@ -111,6 +110,54 @@
             font-weight: bold;
         }
 
+        /* 🔍 Search Box Styling */
+        .search-container {
+            display: flex;
+            align-items: center;
+            background-color: var(--input-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 20px;
+            padding: 4px 10px;
+        }
+
+        .search-container input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--input-text);
+            padding: 5px 8px;
+            font-size: 14px;
+            width: 120px;
+        }
+
+        .search-container button {
+            background: transparent;
+            border: none;
+            color: var(--accent-color);
+            cursor: pointer;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        /* Theme Toggle Button Style */
+        .theme-toggle-btn {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--text-main);
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--accent-color);
+            color: #fff;
+        }
+
         /* Hero Section */
         .hero {
             display: flex;
@@ -118,22 +165,23 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 60px 20px;
+            min-height: 75vh;
+            padding: 40px 20px;
         }
 
         .profile-img {
-            width: 170px;
-            height: 170px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--accent-color);
-            box-shadow: 0 0 20px rgba(2, 132, 199, 0.2);
-            margin-bottom: 20px;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+            margin-bottom: 25px;
         }
 
         .hero h1 {
             font-size: 38px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .hero h1 span {
@@ -143,8 +191,8 @@
         .hero p {
             max-width: 600px;
             color: var(--text-sub);
-            font-size: 16px;
-            margin-bottom: 25px;
+            font-size: 17px;
+            margin-bottom: 30px;
         }
 
         .btn-container {
@@ -155,7 +203,7 @@
         .btn-primary {
             background: var(--accent-color);
             color: #ffffff;
-            padding: 10px 22px;
+            padding: 12px 25px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
@@ -164,101 +212,81 @@
         .btn-secondary {
             border: 2px solid var(--accent-color);
             color: var(--accent-color);
-            padding: 10px 22px;
+            padding: 12px 25px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
         }
 
-        /* 🛠️ Services Section */
+        /* 🛠️ Services Section (3 Cards) */
         .services-section {
             padding: 60px 8%;
             text-align: center;
-            background-color: var(--section-bg);
-        }
-
-        .section-title {
-            font-size: 30px;
-            margin-bottom: 8px;
-        }
-
-        .section-title span {
-            color: var(--accent-color);
-        }
-
-        .section-desc {
-            color: var(--text-sub);
-            margin-bottom: 35px;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            max-width: 1100px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
 
         .service-card {
             background: var(--card-bg);
-            padding: 30px 20px;
+            padding: 35px 25px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .service-card i {
-            font-size: 36px;
+            font-size: 38px;
             color: var(--accent-color);
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .service-card h3 {
-            margin-bottom: 10px;
             font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--text-main);
         }
 
         .service-card p {
             color: var(--text-sub);
-            font-size: 14px;
+            font-size: 15px;
         }
 
-        /* 📖 About Section (My Line) */
-        .about-section {
-            padding: 60px 8%;
-            text-align: center;
-        }
-
-        .about-box {
-            max-width: 750px;
-            margin: 0 auto;
-        }
-
-        .about-quote {
-            font-style: italic;
-            color: var(--accent-color);
-            font-size: 17px;
-            margin-bottom: 15px;
-        }
-
-        /* ✉️ Contact Section */
+        /* ✉️ Contract / Contact Section */
         .contact-section {
-            padding: 60px 8%;
+            padding: 80px 8%;
+            background-color: var(--header-bg);
             text-align: center;
-            background-color: var(--section-bg);
+        }
+
+        .contact-section h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .contact-section h2 span {
+            color: var(--accent-color);
+        }
+
+        .contact-section p {
+            color: var(--text-sub);
+            margin-bottom: 40px;
         }
 
         .contact-container {
-            max-width: 500px;
+            max-width: 550px;
             margin: 0 auto;
-            background: var(--card-bg);
+            background: var(--bg-color);
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
         .contact-form {
@@ -270,70 +298,87 @@
         .contact-form input, 
         .contact-form textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
+            padding: 12px 15px;
+            background: var(--input-bg);
+            border: 1px solid var(--text-sub);
+            color: var(--input-text);
             border-radius: 6px;
             outline: none;
-            background: var(--input-bg);
-            color: var(--input-text);
+            font-size: 15px;
         }
 
         .contact-form button {
             background: var(--accent-color);
-            color: white;
+            color: #fff;
             padding: 12px;
             border: none;
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header / Navbar -->
     <header>
         <div class="logo">Pintu <span>Joydhar</span></div>
+        
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Service</a></li>
-                <li><a href="#about">My Line</a></li>
                 <li><a href="#contact" class="btn-nav">Contract</a></li>
             </ul>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search...">
+                <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <!-- Theme Switcher Button -->
+            <button id="theme-toggle" class="theme-toggle-btn">
+                <i id="theme-icon" class="fa-solid fa-sun"></i>
+                <span id="theme-text">Light</span>
+            </button>
         </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <img src="profile.jpg" alt="Pintu Joydhar" class="profile-img">
+        
         <h1>HI, I am <span>Pintu Joydhar</span></h1>
         <p>I am preparing for a Junior Accountant role, and writing poetry is a personal passion of mine</p>
+        
         <div class="btn-container">
             <a href="#services" class="btn-primary">আমার সার্ভিসসমূহ</a>
             <a href="#contact" class="btn-secondary">যোগাযোগ করুন</a>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services Section (৩টি সার্ভিস) -->
     <section class="services-section" id="services">
-        <h2 class="section-title">My <span>Services</span></h2>
-        <p class="section-desc">আমি যে সকল সেবা প্রদান করে থাকি</p>
-
+        <h2>My <span>Services</span></h2>
+        <br>
         <div class="services-grid">
-            <!-- 📰 Personal Blog Card -->
+            <!-- 📰 Personal Blog -->
             <div class="service-card">
                 <i class="fa-solid fa-newspaper"></i>
                 <h3>Personal Blog</h3>
                 <p>আমার ব্যক্তিগত চিন্তাভাবনা, অভিজ্ঞতা এবং লেখার নিয়মিত ব্লগ।</p>
             </div>
-            <!-- 🧮 Accounting & Finance Card -->
+
+            <!-- 🧮 Accounting & Finance -->
             <div class="service-card">
                 <i class="fa-solid fa-calculator"></i>
                 <h3>Accounting & Finance</h3>
                 <p>বুককিপিং, হিসাব-নিকাশ এবং জুনিয়র একাউন্ট্যান্ট সংক্রান্ত সার্বিক সহায়তা।</p>
             </div>
-            <!-- ✍️ Content Writing Card -->
+
+            <!-- ✍️ Content Writing -->
             <div class="service-card">
                 <i class="fa-solid fa-pen-nib"></i>
                 <h3>Content Writing</h3>
@@ -342,29 +387,65 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <div class="about-box">
-            <h2 class="section-title">My <span>Line</span></h2>
-            <p class="about-quote">"জীবন ও হিসাবের সমীকরণ মিলিয়ে চলার পথেই সাহিত্যের সৃষ্টি।"</p>
-            <p>আমি জুনিয়র একাউন্ট্যান্ট হিসেবে নিজেকে গড়ে তুলছি। পাশাপাশি কবিতা লেখা ও ব্লগিং করা আমার ব্যক্তিগত প্যাশন। সৃজনশীলতার মাধ্যমে নতুন কিছু শেয়ার করাই আমার লক্ষ্য।</p>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
+    <!-- Contract / Contact Section -->
     <section class="contact-section" id="contact">
-        <h2 class="section-title">Contact <span>Me</span></h2>
-        <p class="section-desc">যেকোনো প্রয়োজন বা পরামর্শের জন্য মেসেজ পাঠান</p>
+        <h2>Contact <span>Me</span></h2>
+        <p>আমার সাথে যোগাযোগ করতে নিচের ফর্মে মেসেজ পাঠান</p>
 
         <div class="contact-container">
             <form class="contact-form" onsubmit="event.preventDefault(); alert('Message Sent!');">
                 <input type="text" placeholder="আপনার নাম" required>
                 <input type="email" placeholder="আপনার ইমেইল" required>
-                <textarea rows="4" placeholder="আপনার বার্তা..." required></textarea>
+                <textarea rows="5" placeholder="আপনার বার্তা লিখুন..." required></textarea>
                 <button type="submit">মেসেজ পাঠান</button>
             </form>
         </div>
     </section>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateUI(savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateUI(newTheme);
+        });
+
+        function updateUI(theme) {
+            if (theme === 'light') {
+                themeIcon.className = 'fa-solid fa-moon';
+                themeText.textContent = 'Dark';
+            } else {
+                themeIcon.className = 'fa-solid fa-sun';
+                themeText.textContent = 'Light';
+            }
+        }
+
+        // Search Logic
+        const searchBtn = document.getElementById('search-btn');
+        const searchInput = document.getElementById('search-input');
+
+        searchBtn.addEventListener('click', handleSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSearch();
+        });
+
+        function handleSearch() {
+            const query = searchInput.value.trim();
+            if (query !== "") alert('Searching for: ' + query);
+        }
+    </script>
 
 </body>
 </html>
