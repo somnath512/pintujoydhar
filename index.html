@@ -1,22 +1,48 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="bn" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>Pintu Joydhar - Web Developer</title>
-                        <!-- Font Awesome Icons -->
+    <title>Pintu Joydhar - Web Developer</title>
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* 🎨 Theme Color Variables */
+        :root {
+            --bg-color: #0f172a;
+            --header-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent-color: #38bdf8;
+            --nav-link: #cbd5e1;
+            --input-bg: #334155;
+            --input-text: #ffffff;
+        }
+
+        /* ☀️ Light Theme Styles */
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --header-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --accent-color: #0284c7;
+            --nav-link: #334155;
+            --input-bg: #f1f5f9;
+            --input-text: #0f172a;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
@@ -26,42 +52,112 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background: #1e293b;
+            background: var(--header-bg);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #fff;
+            color: var(--text-main);
         }
 
         .logo span {
-            color: #38bdf8;
+            color: var(--accent-color);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         nav ul {
             display: flex;
             list-style: none;
             gap: 20px;
+            align-items: center;
         }
 
         nav ul li a {
-            color: #cbd5e1;
+            color: var(--nav-link);
             text-decoration: none;
             font-weight: 500;
             transition: 0.3s;
         }
 
         nav ul li a:hover {
-            color: #38bdf8;
+            color: var(--accent-color);
         }
 
         .btn-nav {
-            background: #38bdf8;
-            color: #0f172a !important;
+            background: var(--accent-color);
+            color: #ffffff !important;
             padding: 8px 18px;
             border-radius: 20px;
             font-weight: bold;
+        }
+
+        /* 🔍 Search Box Styling */
+        .search-container {
+            display: flex;
+            align-items: center;
+            background-color: var(--input-bg);
+            border: 1px solid var(--accent-color);
+            border-radius: 20px;
+            padding: 4px 10px;
+            transition: 0.3s ease;
+        }
+
+        .search-container input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--input-text);
+            padding: 5px 8px;
+            font-size: 14px;
+            width: 130px;
+            transition: width 0.3s ease;
+        }
+
+        .search-container input:focus {
+            width: 170px;
+        }
+
+        .search-container button {
+            background: transparent;
+            border: none;
+            color: var(--accent-color);
+            cursor: pointer;
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        .search-container button:hover {
+            opacity: 0.8;
+        }
+
+        /* Theme Toggle Button Style */
+        .theme-toggle-btn {
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--text-main);
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s ease;
+        }
+
+        .theme-toggle-btn:hover {
+            background: var(--accent-color);
+            color: #fff;
         }
 
         /* Hero Section */
@@ -81,8 +177,8 @@
             height: 180px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #38bdf8;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
             margin-bottom: 25px;
             transition: transform 0.3s ease;
         }
@@ -97,12 +193,12 @@
         }
 
         .hero h1 span {
-            color: #38bdf8;
+            color: var(--accent-color);
         }
 
         .hero p {
             max-width: 600px;
-            color: #94a3b8;
+            color: var(--text-sub);
             font-size: 18px;
             margin-bottom: 30px;
         }
@@ -113,8 +209,8 @@
         }
 
         .btn-primary {
-            background: #38bdf8;
-            color: #0f172a;
+            background: var(--accent-color);
+            color: #ffffff;
             padding: 12px 25px;
             border-radius: 8px;
             text-decoration: none;
@@ -123,8 +219,8 @@
         }
 
         .btn-secondary {
-            border: 2px solid #38bdf8;
-            color: #38bdf8;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
             padding: 12px 25px;
             border-radius: 8px;
             text-decoration: none;
@@ -133,13 +229,12 @@
         }
 
         .btn-primary:hover {
-            background: #0284c7;
-            color: #fff;
+            opacity: 0.9;
         }
 
         .btn-secondary:hover {
-            background: #38bdf8;
-            color: #0f172a;
+            background: var(--accent-color);
+            color: #fff;
         }
     </style>
 </head>
@@ -147,7 +242,7 @@
 
     <!-- Header / Navbar -->
     <header>
-                        <div class="logo">Pintu <span>Joydhar</span></div>
+        <div class="logo">Pintu <span>Joydhar</span></div>
         
         <nav>
             <ul>
@@ -156,6 +251,18 @@
                 <li><a href="#about">My Line</a></li>
                 <li><a href="#contact" class="btn-nav">Contract</a></li>
             </ul>
+
+            <!-- 🔍 Search Bar -->
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search...">
+                <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <!-- 🔘 Theme Switcher Button -->
+            <button id="theme-toggle" class="theme-toggle-btn">
+                <i id="theme-icon" class="fa-solid fa-sun"></i>
+                <span id="theme-text">Light</span>
+            </button>
         </nav>
     </header>
 
@@ -172,6 +279,56 @@
             <a href="#contact" class="btn-secondary">যোগাযোগ করুন</a>
         </div>
     </section>
+
+    <!-- ⚡ JavaScript Logic -->
+    <script>
+        // 1. Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const themeText = document.getElementById('theme-text');
+
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateUI(savedTheme);
+
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateUI(newTheme);
+        });
+
+        function updateUI(theme) {
+            if (theme === 'light') {
+                themeIcon.className = 'fa-solid fa-moon';
+                themeText.textContent = 'Dark';
+            } else {
+                themeIcon.className = 'fa-solid fa-sun';
+                themeText.textContent = 'Light';
+            }
+        }
+
+        // 2. Search Button Action
+        const searchBtn = document.getElementById('search-btn');
+        const searchInput = document.getElementById('search-input');
+
+        searchBtn.addEventListener('click', handleSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+
+        function handleSearch() {
+            const query = searchInput.value.trim();
+            if (query !== "") {
+                alert('Searching for: ' + query);
+                // ভবিষ্যতে কোনো নির্দিষ্ট সার্চ রেজাল্ট পেজে নিয়ে যেতে চাইলে নিচে কোড বসানো যাবে
+            }
+        }
+    </script>
 
 </body>
 </html>
