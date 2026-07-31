@@ -16,12 +16,16 @@
             --accent-color: #38bdf8;
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 30px 15px;
+            padding: 20px 10px;
             text-align: center;
         }
 
@@ -48,7 +52,7 @@
         }
 
         h1 {
-            font-size: 30px;
+            font-size: 26px;
             margin-bottom: 8px;
         }
 
@@ -58,15 +62,16 @@
 
         p.subtitle {
             color: var(--text-sub);
-            margin-bottom: 25px;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
 
-        /* 📱 Mobile & Desktop Friendly PDF Frame */
+        /* 📱 Mobile Optimized PDF Box */
         .pdf-viewer-container {
             width: 100%;
-            height: 80vh;
+            height: 75vh; /* মোবাইলের স্ক্রিনের ৭৫% জায়গা নিয়ে সুন্দরভাবে ফিট হবে */
             background: var(--card-bg);
-            border: 2px solid var(--accent-color);
+            border: 1px solid var(--accent-color);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
@@ -77,6 +82,16 @@
             height: 100%;
             border: none;
         }
+
+        /* মোবাইল ডিভাইসের জন্য স্পেশাল এডজাস্টমেন্ট */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 8px;
+            }
+            .pdf-viewer-container {
+                height: 80vh; /* মোবাইলে স্ক্রিনের আরও বেশি জায়গা নিবে */
+            }
+        }
     </style>
 </head>
 <body>
@@ -86,12 +101,12 @@
         <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> হোম পেজে ফিরে যান</a>
 
         <h1>My <span>Poetry & Content</span></h1>
-        <p class="subtitle">নিচে কবিতাটি সরাসরি পড়তে পারবেন</p>
+        <p class="subtitle">নিচে কবিতাটি অনলাইনে সরাসরি পড়তে পারবেন</p>
 
-        <!-- 📄 PDF Viewer (শুধুমাত্র দেখা যাবে) -->
+        <!-- 📄 Mobile Responsive PDF Viewer -->
         <div class="pdf-viewer-container">
-            <!-- 📌 আপনার ফাইলের নাম 'tumi-elei.pdf' দেওয়া হয়েছে -->
-            <iframe src="tumi-elei.pdf#toolbar=0"></iframe>
+            <!-- Google PDF Viewer Engine: যা মোবাইলে খুব স্মুথলি ফাইল দেখায় -->
+            <iframe src="https://docs.google.com/viewer?url=https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/tumi-elei.pdf&embedded=true"></iframe>
         </div>
     </div>
 
