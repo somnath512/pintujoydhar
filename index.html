@@ -218,7 +218,7 @@
             font-weight: bold;
         }
 
-        /* 🛠️ Services Section (3 Cards) */
+        /* 🛠️ Services Section Fix */
         .services-section {
             padding: 60px 8%;
             text-align: center;
@@ -231,6 +231,7 @@
             margin-top: 30px;
         }
 
+        /* 🔗 Card clickable link styles */
         .service-card {
             background: var(--card-bg);
             padding: 35px 25px;
@@ -240,6 +241,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-decoration: none !important;
+            color: inherit !important;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
         }
 
         .service-card i {
@@ -259,7 +270,7 @@
             font-size: 15px;
         }
 
-        /* ✉️ Contract / Contact Section */
+        /* ✉️ Contact Section */
         .contact-section {
             padding: 80px 8%;
             background-color: var(--header-bg);
@@ -359,48 +370,34 @@
         </div>
     </section>
 
-    <!-- Services Section (৩টি সার্ভিস) -->
+    <!-- Services Section (৩টি আলাদা পেজের লিংকসহ সম্পূর্ণ সঠিক লেআউট) -->
     <section class="services-section" id="services">
         <h2>My <span>Services</span></h2>
         <br>
         <div class="services-grid">
-            <!-- 📰 Personal Blog -->
-            <div class="service-card">
+
+            <!-- 📰 1. Personal Blog Page Link -->
+            <a href="blog.html" class="service-card">
                 <i class="fa-solid fa-newspaper"></i>
                 <h3>Personal Blog</h3>
-                <p><!-- 📰 Personal Blog Section -->
-            <div class="service-card">
-                <!-- blog.jpg-->
-                <img src="blog.jpg" alt="Blog Image" style="width: 100%; max-height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 15px;">
-                
-                <h3>Personal Blog</h3>
-                
-                <!-- ২. ব্লগের বিস্তারিত টেক্সট -->
-                <p>বলছিলাম—তোমার কাছে আসলে
-আমার হার্টবিট যায় বেড়ে,
-তুমি বললে, "মজা পেলাম কথা শুনে,"
-হাসিটি দিলে ছেড়ে।
-সত্যিই হার্টবিট উঠছিল বেড়ে,
-নার্ভাস হয়ে যাই গেলে তোমার কাছে,
-এটা কি ভালোবাসা নাকি শুধুই মায়া—
-তা তো জানা নেই আমার কাছে!
-</p>
-            </div></p>
-            </div>
+                <img src="blog.jpg" alt="Blog Image" style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+                <p>বলছিলাম—তোমার কাছে আসলে আমার হার্টবিট যায় বেড়ে, তুমি বললে, "মজা পেলাম কথা শুনে"...</p>
+            </a>
 
-            <!-- 🧮 Accounting & Finance -->
-            <div class="service-card">
+            <!-- 🧮 2. Accounting & Finance Page Link -->
+            <a href="accounting.html" class="service-card">
                 <i class="fa-solid fa-calculator"></i>
                 <h3>Accounting & Finance</h3>
-                <p>বুককিপিং, হিসাব-নিকাশ এবং জুনিয়র একাউন্ট্যান্ট সংক্রান্ত সার্বিক সহায়তা।</p>
-            </div>
+                <p style="margin-top: 10px;">বুককিপিং, হিসাব-নিকাশ এবং জুনিয়র একাউন্ট্যান্ট সংক্রান্ত সার্বিক সহায়তা।</p>
+            </a>
 
-            <!-- ✍️ Content Writing -->
-            <div class="service-card">
+            <!-- ✍️ 3. Content Writing Page Link -->
+            <a href="writing.html" class="service-card">
                 <i class="fa-solid fa-pen-nib"></i>
                 <h3>Content Writing</h3>
-                <p>কবিতা, সাহিত্যিক কাজ এবং ক্রিয়েটিভ কনটেন্ট রাইটিং সার্ভিস।</p>
-            </div>
+                <p style="margin-top: 10px;">কবিতা, সাহিত্যিক কাজ এবং ক্রিয়েটিভ কনটেন্ট রাইটিং সার্ভিস।</p>
+            </a>
+
         </div>
     </section>
 
