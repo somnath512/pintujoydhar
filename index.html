@@ -110,7 +110,7 @@
         .service-card:hover { transform: translateY(-5px); border-color: var(--accent-color); box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2); }
         .service-card i { font-size: 38px; color: var(--accent-color); margin-bottom: 18px; }
 
-        /* Direct Contact Section */
+        /* Direct Contact Section & Social Icons */
         .contact-section { padding: 80px 8% 60px 8%; background-color: var(--header-bg); text-align: center; }
         .contact-section h2 { font-size: 32px; margin-bottom: 10px; }
         .contact-section h2 span { color: var(--accent-color); }
@@ -122,6 +122,36 @@
         .contact-card-info { text-align: left; }
         .contact-card-info h4 { font-size: 14px; color: var(--text-sub); }
         .contact-card-info span { font-size: 16px; font-weight: bold; word-break: break-all; }
+
+        /* Social Icons Styling */
+        .social-container {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--bg-color);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 20px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--accent-color);
+            color: #ffffff;
+            transform: translateY(-4px);
+            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+        }
 
         footer { text-align: center; padding: 25px; background-color: var(--header-bg); border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 14px; color: var(--text-sub); }
         footer span { color: var(--accent-color); font-weight: bold; }
@@ -210,24 +240,40 @@
         </div>
     </section>
 
-    <!-- Contact Details Section -->
+    <!-- Contact Details & Social Media Section -->
     <section class="contact-section" id="contact">
         <h2>Contact <span>Me</span></h2>
-        <p>সরাসরি যোগাযোগ করতে নিচের তথ্য ব্যবহার করুন</p>
+        <p>সরাসরি যোগাযোগ করতে বা সোশ্যাল মিডিয়ায় যুক্ত হতে নিচের লিংকগুলো ব্যবহার করুন</p>
+        
         <div class="contact-cards-container">
-            <a href="pintujoydhar442@gmail.com" class="contact-card">
+            <!-- Updated Gmail -->
+            <a href="mailto:pintujoydhar442@gmail.com" class="contact-card">
                 <i class="fa-solid fa-envelope"></i>
                 <div class="contact-card-info">
-                    <h4>Contract Me</h4>
+                    <h4>Email Me</h4>
                     <span>pintujoydhar442@gmail.com</span>
                 </div>
             </a>
+            <!-- Phone -->
             <a href="tel:+8801XXXXXXXXX" class="contact-card">
                 <i class="fa-solid fa-phone"></i>
                 <div class="contact-card-info">
                     <h4>Call Me</h4>
                     <span>+8801XXXXXXXXX</span>
                 </div>
+            </a>
+        </div>
+
+        <!-- 🌐 Social Media Icons -->
+        <div class="social-container">
+            <a href="https://web.facebook.com/pintu.joydhar.896565" target="_blank" class="social-icon" title="Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/pintu_joydhar/?hl=en" target="_blank" class="social-icon" title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/pintu-gaain-848587384/" target="_blank" class="social-icon" title="LinkedIn">
+                <i class="fa-brands fa-linkedin-in"></i>
             </a>
         </div>
     </section>
