@@ -165,7 +165,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            min-height: 75vh;
+            min-height: 60vh;
             padding: 40px 20px;
         }
 
@@ -218,62 +218,10 @@
             font-weight: bold;
         }
 
-        /* 🛠️ Services Section */
-        .services-section {
-            padding: 60px 8%;
-            text-align: center;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            padding: 35px 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none !important;
-            color: inherit !important;
-            cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
-            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
-        }
-
-        .service-card i {
-            font-size: 38px;
-            color: var(--accent-color);
-            margin-bottom: 18px;
-        }
-
-        .service-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: var(--text-main);
-        }
-
-        .service-card p {
-            color: var(--text-sub);
-            font-size: 15px;
-        }
-
         /* 📢 Trading & Recent Posts Section */
         .posts-section {
-            padding: 60px 8%;
+            padding: 40px 8% 60px 8%;
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.01);
         }
 
         .posts-grid {
@@ -334,6 +282,58 @@
 
         .post-link:hover {
             text-decoration: underline;
+        }
+
+        /* 🛠️ Services Section */
+        .services-section {
+            padding: 60px 8%;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.01);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 35px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none !important;
+            color: inherit !important;
+            cursor: pointer;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
+        }
+
+        .service-card i {
+            font-size: 38px;
+            color: var(--accent-color);
+            margin-bottom: 18px;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .service-card p {
+            color: var(--text-sub);
+            font-size: 15px;
         }
 
         /* ✉️ Contact Section */
@@ -405,8 +405,8 @@
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#services">Service</a></li>
                 <li><a href="#trading-posts">Trading Posts</a></li>
+                <li><a href="#services">Service</a></li>
                 <li><a href="#contact" class="btn-nav">Contact</a></li>
             </ul>
 
@@ -432,43 +432,12 @@
         <p>I am preparing for a Junior Accountant role, and writing poetry is a personal passion of mine</p>
         
         <div class="btn-container">
-            <a href="#services" class="btn-primary">আমার সার্ভিসসমূহ</a>
+            <a href="#trading-posts" class="btn-primary">আমার ট্রেডিং পোস্টসমূহ</a>
             <a href="#contact" class="btn-secondary">যোগাযোগ করুন</a>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services-section" id="services">
-        <h2>My <span>Services</span></h2>
-        <br>
-        <div class="services-grid">
-
-            <!-- 📰 1. Personal Blog Page Link -->
-            <a href="blog.html" class="service-card">
-                <i class="fa-solid fa-newspaper"></i>
-                <h3>Personal Blog</h3>
-                <img src="blog.jpg" alt="Blog Image" style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
-                <p>বলছিলাম—তোমার কাছে আসলে আমার হার্টবিট যায় বেড়ে, তুমি বললে, "মজা পেলাম কথা শুনে"...</p>
-            </a>
-
-            <!-- 🧮 2. Accounting & Finance Page Link -->
-            <a href="accounting.html" class="service-card">
-                <i class="fa-solid fa-calculator"></i>
-                <h3>Accounting & Finance</h3>
-                <p style="margin-top: 10px;">বুককিপিং, হিসাব-নিকাশ এবং জুনিয়র একাউন্ট্যান্ট সংক্রান্ত সার্বিক সহায়তা।</p>
-            </a>
-
-            <!-- ✍️ 3. Content Writing Page Link -->
-            <a href="writing.html" class="service-card">
-                <i class="fa-solid fa-pen-nib"></i>
-                <h3>Content Writing</h3>
-                <p style="margin-top: 10px;">কবিতা, সাহিত্যিক কাজ এবং ক্রিয়েটিভ কনটেন্ট রাইটিং সার্ভিস।</p>
-            </a>
-
-        </div>
-    </section>
-
-    <!-- 📢 Trading & Recent Posts Section -->
+    <!-- 📢 1. Trading & Recent Posts Section (এখন উপরে চলে এসেছে) -->
     <section class="posts-section" id="trading-posts">
         <h2>Latest <span>Trading Posts & Updates</span></h2>
         <p style="color: var(--text-sub); margin-top: 5px;">আমার নতুন সকল ট্রেডিং পোস্ট ও আপডেট এখানে দেখতে পাবেন</p>
@@ -502,7 +471,38 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- 🛠️ 2. Services Section -->
+    <section class="services-section" id="services">
+        <h2>My <span>Services</span></h2>
+        <br>
+        <div class="services-grid">
+
+            <!-- 📰 1. Personal Blog Page Link -->
+            <a href="blog.html" class="service-card">
+                <i class="fa-solid fa-newspaper"></i>
+                <h3>Personal Blog</h3>
+                <img src="blog.jpg" alt="Blog Image" style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
+                <p>বলছিলাম—তোমার কাছে আসলে আমার হার্টবিট যায় বেড়ে, তুমি বললে, "মজা পেলাম কথা শুনে"...</p>
+            </a>
+
+            <!-- 🧮 2. Accounting & Finance Page Link -->
+            <a href="accounting.html" class="service-card">
+                <i class="fa-solid fa-calculator"></i>
+                <h3>Accounting & Finance</h3>
+                <p style="margin-top: 10px;">বুককিপিং, হিসাব-নিকাশ এবং জুনিয়র একাউন্ট্যান্ট সংক্রান্ত সার্বিক সহায়তা।</p>
+            </a>
+
+            <!-- ✍️ 3. Content Writing Page Link -->
+            <a href="writing.html" class="service-card">
+                <i class="fa-solid fa-pen-nib"></i>
+                <h3>Content Writing</h3>
+                <p style="margin-top: 10px;">কবিতা, সাহিত্যিক কাজ এবং ক্রিয়েটিভ কনটেন্ট রাইটিং সার্ভিস।</p>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- ✉️ 3. Contact Section -->
     <section class="contact-section" id="contact">
         <h2>Contact <span>Me</span></h2>
         <p>আমার সাথে যোগাযোগ করতে নিচের ফর্মে মেসেজ পাঠান</p>
