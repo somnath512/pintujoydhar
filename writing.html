@@ -67,7 +67,7 @@
             margin-bottom: 30px;
         }
 
-        /* 📜 Poetry Container Styles */
+        /* 📜 Poetry Card Styles */
         .poetry-card {
             background: var(--card-bg);
             border: 1px solid rgba(56, 189, 248, 0.2);
@@ -79,17 +79,24 @@
         }
 
         .poem-title {
-            font-size: 24px;
+            font-size: 26px;
             color: var(--accent-color);
-            margin-bottom: 20px;
-            font-weight: 600;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .poem-author {
+            font-size: 15px;
+            color: var(--text-sub);
+            margin-bottom: 25px;
+            font-weight: 500;
         }
 
         .poem-content {
             font-size: 18px;
-            line-height: 2.2;
+            line-height: 2;
             color: var(--text-main);
-            white-space: pre-line; /* লাইন ব্রেক ঠিক রাখার জন্য */
+            white-space: pre-line; /* লাইন ব্রেক ও স্পেস ঠিক রাখার জন্য */
             font-style: italic;
         }
 
@@ -103,7 +110,7 @@
             }
             .poem-content {
                 font-size: 16px;
-                line-height: 2;
+                line-height: 1.9;
             }
         }
     </style>
@@ -117,29 +124,33 @@
         <h1>My <span>Poetry & Content</span></h1>
         <p class="subtitle">আমার লেখা কিছু নির্বাচিত কবিতা</p>
 
-        <!-- ✍️ কবিতা বক্স ১ -->
+        <!-- ✍️ কবিতা কার্ড -->
         <div class="poetry-card">
-            <h2 class="poem-title">তুমি এলেই</h2>
+            <h2 class="poem-title">তুমি এলেই...</h2>
+            <p class="poem-author">কবি: সোমনাথ জয়ধর</p>
+            
             <p class="poem-content">
-                বলছিলাম—তোমার কাছে আসলে আমার হার্টবিট যায় বেড়ে,
-                তুমি বললে, "মজা পেলাম কথা শুনে"...
-                
-                মেঘ জমেছিল রাতের আকাশে,
-                এক ফোঁটা বৃষ্টি ঝরে পড়ে তোমার ছোঁয়ায়।
-                নীরব রাতের শেষ প্রহরে,
-                তুমি এলেই নতুন কোনো স্বপ্ন জাগায়।
+                বলছিলাম—তোমার কাছে আসলে
+                আমার হার্টবিট যায় বেড়ে,
+                তুমি বললে, "মজা পেলাম কথা শুনে,"
+                হাসিটি দিলে ছেড়ে।
+
+                সত্যিই হার্টবিট উঠছিল বেড়ে,
+                নার্ভাস হয়ে যাই গেলে তোমার কাছে,
+                এটা কি ভালোবাসা নাকি শুধুই মায়া—
+                তা তো জানা নেই আমার কাছে!
+
+                যখন তোমার ওই মিষ্টি হাসি দেখি,
+                আমার বুকের ভেতরটাতে,
+                মনে হয় যেন এক মাতাল ঝড়
+                বয়ে যাচ্ছে শুধু তোমাতেই।
+
+                তোমার ওই চায়ের কাপের
+                আলতো চুমুকে মুগ্ধ হই আমি,
+                আহ! যদি পারতাম
+                ওই চায়ের কাপটা হতে প্রতিদিন নিয়মিত অনুরাগে।
             </p>
         </div>
-
-        <!-- ✍️ প্রয়োজন হলে নতুন কবিতা যোগ করার জন্য আরেকটা কার্ড -->
-        <!-- 
-        <div class="poetry-card">
-            <h2 class="poem-title">দ্বিতীয় কবিতার শিরোনাম</h2>
-            <p class="poem-content">
-                এখানে পরবর্তী কবিতার লাইনগুলো লিখবে...
-            </p>
-        </div> 
-        -->
 
     </div>
 
