@@ -7,6 +7,19 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Crisp Live Chat Script -->
+    <script type="text/javascript">
+        window.$crisp = [];
+        window.CRISP_WEBSITE_ID = "5b8466eb-694c-43d4-94a8-906063773d34";
+        (function(){
+            d = document;
+            s = d.createElement("script");
+            s.src = "https://client.crisp.chat/l.js";
+            s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
+    
     <style>
         /* Theme Color Variables */
         :root {
@@ -322,19 +335,6 @@
             const query = searchInput.value.trim();
             if (query !== "") alert('Searching for: ' + query);
         }
-    </script>
-
-    <!-- Live Chat Script -->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6a6d87c08b05d11d458f2f4b/default';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
     </script>
 </body>
 </html>
