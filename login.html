@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Sign Up</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #111827;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-card {
+      background: #1f2937;
+      padding: 30px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 350px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      color: #ffffff;
+    }
+
+    .login-card h2 {
+      margin-bottom: 20px;
+      color: #38bdf8;
+    }
+
+    .login-card input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #374151;
+      border-radius: 6px;
+      background: #111827;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .login-card input:focus {
+      border-color: #38bdf8;
+    }
+
+    .login-card button {
+      width: 100%;
+      padding: 12px;
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .login-card button:hover {
+      background: #0369a1;
+    }
+
+    .login-card p {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    .login-card a {
+      color: #38bdf8;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <h2 id="formTitle">Create Account</h2>
+    
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    
+    <button id="authBtn" onclick="handleAuth()">Sign Up</button>
+    
+    <p>
+      <span id="toggleMsg">Already have an account?</span> 
+      <a href="#" onclick="toggleMode()" id="toggleLink">Login</a>
+    </p>
+  </div>
+
+  <script>
+    let isSignUpMode = true;
+
+    // চেক করবে ইউজার যদি আগে থেকেই লগইন থাকে তবে তাকে সরাসরি index.html-এ নিয়ে যাবে
+    if (localStorage.getItem('isLoggedIn') === 'true') {
+      window.location.href = 'index.html';
+    }
+
+    function toggleMode() {
+      isSignUpMode = !isSignUpMode;
+      const title = document.getElementById('formTitle');
+      const btn = document.getElementById('authBtn');
+      const msg = document.getElementById('toggleMsg');
+      const link = document.getElementById('toggleLink');
+
+      if (isSignUpMode) {
+        title.innerText = 'Create Account';
+        btn.innerText = 'Sign Up';
+        msg.innerText = 'Already have an account?';
+        link.innerText = 'Login';
+      } else {
+        title.innerText = 'Login';
+        btn.innerText = 'Login';
+        msg.innerText = "Don't have an account?";
+        link.innerText = 'Sign Up';
+      }
+    }
+
+    function handleAuth() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+
+      if (!user || !pass) {
+        alert('Please enter both Username and Password!');
+        return;
+      }
+
+      if (isSignUpMode) {
+        // সাইন-আপ করার লজিক
+        localStorage.setItem('savedUser', user);
+        localStorage.setItem('savedPass', pass);
+        localStorage.setItem('isLoggedIn', 'true');
+        alert('Account created successfully!');
+        window.location.href = 'index.html'; // মূল ওয়েবসাইটে রিডাইরেক্ট করবে
+      } else {
+        // লগইন করার লজিক
+        const savedUser = localStorage.getItem('savedUser');
+        const savedPass = localStorage.getItem('savedPass');
+
+        if (user === savedUser && pass === savedPass) {
+          localStorage.setItem('isLoggedIn', 'true');
+          alert('Logged in successfully!');
+          window.location.href = 'index.html'; // মূল ওয়েবসাইটে রিডাইরেক্ট করবে
+        } else {
+          alert('Invalid Username or Password!');
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
