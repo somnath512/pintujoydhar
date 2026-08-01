@@ -18,19 +18,20 @@
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px 10px;
+            padding: 30px 15px;
             text-align: center;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
@@ -39,9 +40,9 @@
             color: var(--accent-color);
             text-decoration: none;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             border: 1px solid var(--accent-color);
-            padding: 8px 18px;
+            padding: 8px 20px;
             border-radius: 20px;
             transition: 0.3s;
         }
@@ -52,7 +53,7 @@
         }
 
         h1 {
-            font-size: 26px;
+            font-size: 28px;
             margin-bottom: 8px;
         }
 
@@ -62,34 +63,47 @@
 
         p.subtitle {
             color: var(--text-sub);
-            font-size: 14px;
-            margin-bottom: 20px;
+            font-size: 15px;
+            margin-bottom: 30px;
         }
 
-        /* 📱 Mobile Optimized PDF Box */
-        .pdf-viewer-container {
-            width: 100%;
-            height: 75vh; /* মোবাইলের স্ক্রিনের ৭৫% জায়গা নিয়ে সুন্দরভাবে ফিট হবে */
+        /* 📜 Poetry Container Styles */
+        .poetry-card {
             background: var(--card-bg);
-            border: 1px solid var(--accent-color);
+            border: 1px solid rgba(56, 189, 248, 0.2);
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
+            padding: 40px 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .poem-title {
+            font-size: 24px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-weight: 600;
         }
 
-        /* মোবাইল ডিভাইসের জন্য স্পেশাল এডজাস্টমেন্ট */
+        .poem-content {
+            font-size: 18px;
+            line-height: 2.2;
+            color: var(--text-main);
+            white-space: pre-line; /* লাইন ব্রেক ঠিক রাখার জন্য */
+            font-style: italic;
+        }
+
+        /* Responsive Design */
         @media (max-width: 600px) {
             body {
-                padding: 15px 8px;
+                padding: 20px 10px;
             }
-            .pdf-viewer-container {
-                height: 80vh; /* মোবাইলে স্ক্রিনের আরও বেশি জায়গা নিবে */
+            .poetry-card {
+                padding: 25px 15px;
+            }
+            .poem-content {
+                font-size: 16px;
+                line-height: 2;
             }
         }
     </style>
@@ -101,13 +115,32 @@
         <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> হোম পেজে ফিরে যান</a>
 
         <h1>My <span>Poetry & Content</span></h1>
-        <p class="subtitle">নিচে কবিতাটি অনলাইনে সরাসরি পড়তে পারবেন</p>
+        <p class="subtitle">আমার লেখা কিছু নির্বাচিত কবিতা</p>
 
-        <!-- 📄 Mobile Responsive PDF Viewer -->
-        <div class="pdf-viewer-container">
-            <!-- Google PDF Viewer Engine: যা মোবাইলে খুব স্মুথলি ফাইল দেখায় -->
-            <iframe src="https://docs.google.com/viewer?url=https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/tumi-elei.pdf&embedded=true"></iframe>
+        <!-- ✍️ কবিতা বক্স ১ -->
+        <div class="poetry-card">
+            <h2 class="poem-title">তুমি এলেই</h2>
+            <p class="poem-content">
+                বলছিলাম—তোমার কাছে আসলে আমার হার্টবিট যায় বেড়ে,
+                তুমি বললে, "মজা পেলাম কথা শুনে"...
+                
+                মেঘ জমেছিল রাতের আকাশে,
+                এক ফোঁটা বৃষ্টি ঝরে পড়ে তোমার ছোঁয়ায়।
+                নীরব রাতের শেষ প্রহরে,
+                তুমি এলেই নতুন কোনো স্বপ্ন জাগায়।
+            </p>
         </div>
+
+        <!-- ✍️ প্রয়োজন হলে নতুন কবিতা যোগ করার জন্য আরেকটা কার্ড -->
+        <!-- 
+        <div class="poetry-card">
+            <h2 class="poem-title">দ্বিতীয় কবিতার শিরোনাম</h2>
+            <p class="poem-content">
+                এখানে পরবর্তী কবিতার লাইনগুলো লিখবে...
+            </p>
+        </div> 
+        -->
+
     </div>
 
 </body>
