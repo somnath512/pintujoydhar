@@ -67,37 +67,81 @@
             margin-bottom: 30px;
         }
 
-        /* 📜 Poetry Card Styles */
+        /* 📜 Interactive Poetry Accordion Styles */
         .poetry-card {
             background: var(--card-bg);
             border: 1px solid rgba(56, 189, 248, 0.2);
             border-radius: 12px;
-            padding: 40px 25px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: border-color 0.3s ease;
+        }
+
+        .poetry-card:hover {
+            border-color: var(--accent-color);
+        }
+
+        /* ক্লিক করার হেডার অংশ */
+        .poem-header {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .poem-info {
+            text-align: left;
         }
 
         .poem-title {
-            font-size: 26px;
+            font-size: 22px;
             color: var(--accent-color);
-            margin-bottom: 6px;
             font-weight: 700;
+            margin-bottom: 4px;
         }
 
         .poem-author {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-sub);
-            margin-bottom: 25px;
-            font-weight: 500;
+        }
+
+        .toggle-icon {
+            color: var(--accent-color);
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        /* কবিতা দেখানোর গোপন অংশ */
+        .poem-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 20px;
+            background: rgba(0, 0, 0, 0.1);
         }
 
         .poem-content {
-            font-size: 18px;
+            font-size: 17px;
             line-height: 2;
             color: var(--text-main);
-            white-space: pre-line; /* লাইন ব্রেক ও স্পেস ঠিক রাখার জন্য */
+            white-space: pre-line;
             font-style: italic;
+            text-align: center;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+        }
+
+        /* সক্রিয় (Active) কবিতা কার্ডের স্টাইল */
+        .poetry-card.active .poem-body {
+            max-height: 1000px; /* কবিতার জন্য পর্যাপ্ত স্পেস */
+        }
+
+        .poetry-card.active .toggle-icon {
+            transform: rotate(180deg);
         }
 
         /* Responsive Design */
@@ -105,11 +149,11 @@
             body {
                 padding: 20px 10px;
             }
-            .poetry-card {
-                padding: 25px 15px;
+            .poem-title {
+                font-size: 18px;
             }
             .poem-content {
-                font-size: 16px;
+                font-size: 15px;
                 line-height: 1.9;
             }
         }
@@ -122,37 +166,70 @@
         <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> হোম পেজে ফিরে যান</a>
 
         <h1>My <span>Poetry & Content</span></h1>
-        <p class="subtitle">আমার লেখা কিছু নির্বাচিত কবিতা</p>
+        <p class="subtitle">কবিতাটি পড়তে নামের ওপর ক্লিক করুন</p>
 
-        <!-- ✍️ কবিতা কার্ড -->
+        <!-- ✍️ কবিতা ১ -->
         <div class="poetry-card">
-            <h2 class="poem-title">তুমি এলেই...</h2>
-            <p class="poem-author">কবি: সোমনাথ জয়ধর</p>
+            <div class="poem-header" onclick="togglePoem(this)">
+                <div class="poem-info">
+                    <h2 class="poem-title">তুমি এলেই...</h2>
+                    <p class="poem-author"><i class="fa-solid fa-pen-nib"></i> কবি: সোমনাথ জয়ধর</p>
+                </div>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
             
-            <p class="poem-content">
-                বলছিলাম—তোমার কাছে আসলে
-                আমার হার্টবিট যায় বেড়ে,
-                তুমি বললে, "মজা পেলাম কথা শুনে,"
-                হাসিটি দিলে ছেড়ে।
+            <div class="poem-body">
+                <p class="poem-content">
+                    বলছিলাম—তোমার কাছে আসলে
+                    আমার হার্টবিট যায় বেড়ে,
+                    তুমি বললে, "মজা পেলাম কথা শুনে,"
+                    হাসিটি দিলে ছেড়ে।
 
-                সত্যিই হার্টবিট উঠছিল বেড়ে,
-                নার্ভাস হয়ে যাই গেলে তোমার কাছে,
-                এটা কি ভালোবাসা নাকি শুধুই মায়া—
-                তা তো জানা নেই আমার কাছে!
+                    সত্যিই হার্টবিট উঠছিল বেড়ে,
+                    নার্ভাস হয়ে যাই গেলে তোমার কাছে,
+                    এটা কি ভালোবাসা নাকি শুধুই মায়া—
+                    তা তো জানা নেই আমার কাছে!
 
-                যখন তোমার ওই মিষ্টি হাসি দেখি,
-                আমার বুকের ভেতরটাতে,
-                মনে হয় যেন এক মাতাল ঝড়
-                বয়ে যাচ্ছে শুধু তোমাতেই।
+                    যখন তোমার ওই মিষ্টি হাসি দেখি,
+                    আমার বুকের ভেতরটাতে,
+                    মনে হয় যেন এক মাতাল ঝড়
+                    বয়ে যাচ্ছে শুধু তোমাতেই।
 
-                তোমার ওই চায়ের কাপের
-                আলতো চুমুকে মুগ্ধ হই আমি,
-                আহ! যদি পারতাম
-                ওই চায়ের কাপটা হতে প্রতিদিন নিয়মিত অনুরাগে।
-            </p>
+                    তোমার ওই চায়ের কাপের
+                    আলতো চুমুকে মুগ্ধ হই আমি,
+                    আহ! যদি পারতাম
+                    ওই চায়ের কাপটা হতে প্রতিদিন নিয়মিত অনুরাগে।
+                </p>
+            </div>
+        </div>
+
+        <!-- ✍️ নতুন কবিতা যোগ করার টেমপ্লেট (উদাহরণ) -->
+        <div class="poetry-card">
+            <div class="poem-header" onclick="togglePoem(this)">
+                <div class="poem-info">
+                    <h2 class="poem-title">দ্বিতীয় কবিতার শিরোনাম</h2>
+                    <p class="poem-author"><i class="fa-solid fa-pen-nib"></i> কবি: সোমনাথ জয়ধর</p>
+                </div>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+            </div>
+            
+            <div class="poem-body">
+                <p class="poem-content">
+                    এখানে আপনার দ্বিতীয় কবিতার
+                    লাইনগুলো বসিয়ে দেবেন।
+                </p>
+            </div>
         </div>
 
     </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        function togglePoem(header) {
+            const card = header.parentElement;
+            card.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
