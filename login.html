@@ -38,7 +38,6 @@
       font-size: 24px;
     }
 
-    /* মোট মেম্বার কাউন্টার স্টাইল */
     .user-count-badge {
       background: rgba(56, 189, 248, 0.1);
       color: #38bdf8;
@@ -104,9 +103,8 @@
   <div class="login-card">
     <h2 id="formTitle">Login</h2>
     
-    <!-- মোট সাইন-আপ করা ইউজারের সংখ্যা -->
     <div class="user-count-badge">
-      👥 Total Members: <span id="totalUsersCount">0</span>
+      👥 Total Members: <span id="totalUsersCount">15</span>
     </div>
 
     <input type="text" id="username" placeholder="Username" required>
@@ -121,18 +119,15 @@
   </div>
 
   <script>
-    // ১. ইউজার আগে থেকে লগইন থাকলে সরাসরি index.html-এ নিয়ে যাবে
     if (localStorage.getItem('isLoggedIn') === 'true') {
       window.location.href = 'index.html';
     }
 
-    // ২. চেক করবে একাউন্ট আছে কিনা
     const hasAccount = localStorage.getItem('savedUser') !== null;
     let isSignUpMode = !hasAccount;
 
     window.onload = function() {
       updateFormUI();
-      fetchTotalUsers();
     };
 
     function toggleMode() {
@@ -159,12 +154,6 @@
       }
     }
 
-    // মোট ইউজারের সংখ্যা দেখানো
-    function fetchTotalUsers() {
-      let count = localStorage.getItem('globalUserCount') || 1;
-      document.getElementById('totalUsersCount').innerText = count;
-    }
-
     function handleAuth() {
       const user = document.getElementById('username').value.trim();
       const pass = document.getElementById('password').value.trim();
@@ -175,15 +164,9 @@
       }
 
       if (isSignUpMode) {
-        // নতুন সাইন আপ হলে কাউন্ট ১ বাড়বে
-        let currentCount = parseInt(localStorage.getItem('globalUserCount') || 1);
-        currentCount += 1;
-        localStorage.setItem('globalUserCount', currentCount);
-
         localStorage.setItem('savedUser', user);
         localStorage.setItem('savedPass', pass);
         localStorage.setItem('isLoggedIn', 'true');
-        
         alert('Account created successfully!');
         window.location.href = 'index.html';
       } else {
