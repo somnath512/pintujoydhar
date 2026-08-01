@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pintu Joydhar - Portfolio</title>
 
-    <!-- 🔒 সিকিউরিটি চেক: লগইন না থাকলে login.html এ নিয়ে যাবে -->
     <script>
         if (localStorage.getItem('isLoggedIn') !== 'true') {
             window.location.href = 'login.html';
         }
     </script>
 
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Crisp Live Chat Script -->
     <script type="text/javascript">
         window.$crisp = [];
         window.CRISP_WEBSITE_ID = "5b8466eb-694c-43d4-94a8-906063773d34";
@@ -30,18 +27,6 @@
 
         $crisp.push(["safe", true]);
     </script>
-
-    <style>
-        .crisp-client .crisp-194p8pt,
-        .crisp-client [data-box="true"] {
-            max-width: 380px !important;
-            max-height: 580px !important;
-            bottom: 20px !important;
-            right: 20px !important;
-            left: auto !important;
-            top: auto !important;
-        }
-    </style>
 
     <style>
         :root {
@@ -108,7 +93,6 @@
 
         .btn-nav { background: var(--accent-color); color: #ffffff !important; padding: 8px 18px; border-radius: 20px; font-weight: bold; }
 
-        /* Total Users Count Badge in Header */
         .header-user-count {
             background: rgba(56, 189, 248, 0.15);
             color: var(--accent-color);
@@ -122,7 +106,6 @@
             gap: 6px;
         }
 
-        /* Logout Button Style */
         .btn-logout { 
             background: #ef4444; 
             color: #ffffff; 
@@ -232,12 +215,10 @@
                 <li><a href="#contact" class="btn-nav">Contact</a></li>
             </ul>
 
-            <!-- Header Total Registered Users Badge -->
             <div class="header-user-count">
-                <i class="fa-solid fa-users"></i> Members: <span id="headerUserCount">0</span>
+                <i class="fa-solid fa-users"></i> Members: <span id="headerUserCount">15</span>
             </div>
 
-            <!-- Logout Button -->
             <button class="btn-logout" onclick="logout()">
                 <i class="fa-solid fa-right-from-bracket"></i> Logout
             </button>
@@ -253,7 +234,6 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <img src="profile.jpg" alt="Pintu Joydhar" class="profile-img">
         <h1>HI, I am <span>Pintu Joydhar</span></h1>
@@ -264,7 +244,6 @@
         </div>
     </section>
 
-    <!-- Trading Section -->
     <section class="posts-section" id="trading-posts">
         <h2>Latest <span>Trading Posts & Updates</span></h2>
         <p style="color: var(--text-sub); margin-top: 5px;">আমার নতুন সকল ট্রেডিং পোস্ট ও আপডেট এখানে দেখতে পাবেন</p>
@@ -290,7 +269,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section class="services-section" id="services">
         <h2>My <span>Services</span></h2>
         <br>
@@ -301,10 +279,10 @@
                 <img src="blog.jpg" alt="Blog Image" style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
                 <p style="color: var(--text-sub);">বলছিলাম—তোমার কাছে আসলে আমার হার্টবিট যায় বেড়ে...</p>
             </a>
-            <a href="accounting.html" class="service-card">
+            <a href="calculator.html" class="service-card">
                 <i class="fa-solid fa-calculator"></i>
-                <h3 style="color: var(--text-main); margin-bottom: 12px;">Accounting & Finance</h3>
-                <p style="color: var(--text-sub);">বুককিপিং, হিসাব-নিকাশ এবং জুনিয়র একাউন্ট্যান্ট সংক্রান্ত সহায়তা।</p>
+                <h3 style="color: var(--text-main); margin-bottom: 12px;">Accounting & Calculator</h3>
+                <p style="color: var(--text-sub);">বুককিপিং, ট্রেডিং ক্যালকুলেশন এবং হিসাব-নিকাশ করার টুলস।</p>
             </a>
             <a href="writing.html" class="service-card">
                 <i class="fa-solid fa-pen-nib"></i>
@@ -314,7 +292,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <h2>Contact <span>Me</span></h2>
         <p>সরাসরি যোগাযোগ করতে বা সোশ্যাল মিডিয়ায় যুক্ত হতে নিচের লিংকগুলো ব্যবহার করুন</p>
@@ -354,16 +331,11 @@
     </footer>
 
     <script>
-        // 🔑 Logout Function
         function logout() {
             localStorage.removeItem('isLoggedIn');
             window.location.href = 'login.html';
         }
 
-        // 👥 Total Users Count Load
-        document.getElementById('headerUserCount').innerText = localStorage.getItem('globalUserCount') || 1;
-
-        // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         const themeText = document.getElementById('theme-text');
@@ -390,7 +362,6 @@
             }
         }
 
-        // Search Logic
         const searchBtn = document.getElementById('search-btn');
         const searchInput = document.getElementById('search-input');
 
