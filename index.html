@@ -13,6 +13,149 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDpZPB6T_aXRD1LtIoEhW_vfPtdxYXX9P0",
+            authDomain: "pintu-joydhar.firebaseapp.com",
+            projectId: "pintu-joydhar",
+            storageBucket: "pintu-joydhar.firebasestorage.app",
+            messagingSenderId: "119458106001",
+            appId: "1:119458106001:web:024bd1961ec3fc019b0d30",
+            measurementId: "G-BG1TBM8DEE"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let selectedImageBase64 = "";
+
+        window.previewImage = function() {
+            const fileInput = document.getElementById('imageInput');
+            const nameDisplay = document.getElementById('imageNameDisplay');
+            
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    selectedImageBase64 = e.target.result;
+                    nameDisplay.innerText = "✓ ছবি সিলেক্ট করা হয়েছে: " + fileInput.files[0].name;
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        };
+
+        window.createPost = async function() {
+            const text = document.getElementById('postText').value.trim();
+            if (!text && !selectedImageBase64) {
+                alert('দয়া করে কিছু লিখুন অথবা একটি ছবি যুক্ত করুন!');
+                return;
+            }
+
+            const username = localStorage.getItem('savedUser') || 'Pintu Joydhar';
+            
+            try {
+                await addDoc(collection(db, "posts"), {
+                    author: username,
+                    content: text,
+                    image: selectedImageBase64,
+                    likes: 0,
+                    time: new Date().toLocaleString()
+                });
+
+                document.getElementById('postText').value = '';
+                document.getElementById('imageInput').value = '';
+                document.getElementById('imageNameDisplay').innerText = '';
+                selectedImageBase64 = "";
+            } catch (e) {
+                console.error("Error adding document: ", e);
+                alert('পোস্ট করতে সমস্যা হয়েছে!');
+            }
+        };
+
+        // রিয়েল-টাইম ডাটা লোড করার জন্য onSnapshot ব্যবহার করা হয়েছে
+        function loadPostsRealtime() {
+            const container = document.getElementById('postsContainer');
+            const q = query(collection(db, "posts"));
+
+            onSnapshot(q, (snapshot) => {
+                container.innerHTML = '';
+                if (snapshot.empty) {
+                    container.innerHTML = '<p style="color: var(--text-sub); text-align:center;">কোনো পোস্ট নেই।</p>';
+                    return;
+                }
+
+                snapshot.forEach((docSnap) => {
+                    let post = docSnap.data();
+                    let postId = docSnap.id;
+                    let imageTag = post.image ? `<img src="${post.image}" class="post-img" alt="Post Image">` : '';
+                    
+                    container.innerHTML += `
+                        <div class="post-box">
+                            <div class="post-header">
+                                <div class="post-author"><i class="fa-solid fa-user-circle"></i> ${post.author}</div>
+                                <div class="post-menu">
+                                    <button class="menu-btn edit" onclick="editPost('${postId}', '${encodeURIComponent(post.content)}')"><i class="fa-solid fa-pen"></i> Edit</button>
+                                    <button class="menu-btn delete" onclick="deletePost('${postId}')"><i class="fa-solid fa-trash"></i> Delete</button>
+                                </div>
+                            </div>
+                            <div class="post-content">${post.content}</div>
+                            ${imageTag}
+                            <div class="post-actions">
+                                <button class="action-btn" onclick="toggleLike('${postId}', ${post.likes})">
+                                    <i class="fa-solid fa-thumbs-up"></i> Like (${post.likes || 0})
+                                </button>
+                                <button class="action-btn" onclick="alert('কমেন্ট অপশনটি চালু আছে!')">
+                                    <i class="fa-solid fa-comment"></i> Comment
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+        }
+
+        window.deletePost = async function(postId) {
+            if (confirm('আপনি কি নিশ্চিতভাবে এই পোস্টটি ডিলিট করতে চান?')) {
+                try {
+                    await deleteDoc(doc(db, "posts", postId));
+                } catch (e) {
+                    console.error("Error deleting document: ", e);
+                }
+            }
+        };
+
+        window.editPost = async function(postId, oldContent) {
+            let decodedContent = decodeURIComponent(oldContent);
+            let newText = prompt("আপনার পোস্টটি এডিট করুন:", decodedContent);
+            if (newText !== null && newText.trim() !== "") {
+                try {
+                    await updateDoc(doc(db, "posts", postId), {
+                        content: newText.trim()
+                    });
+                } catch (e) {
+                    console.error("Error updating document: ", e);
+                }
+            }
+        };
+
+        window.toggleLike = async function(postId, currentLikes) {
+            try {
+                await updateDoc(doc(db, "posts", postId), {
+                    likes: (currentLikes || 0) + 1
+                });
+            } catch (e) {
+                console.error("Error updating likes: ", e);
+            }
+        };
+
+        window.onload = function() {
+            loadPostsRealtime();
+        };
+    </script>
+
     <script type="text/javascript">
         window.$crisp = [];
         window.CRISP_WEBSITE_ID = "5b8466eb-694c-43d4-94a8-906063773d34";
@@ -140,7 +283,6 @@
         .hero h1 span { color: var(--accent-color); }
         .hero p { max-width: 600px; color: var(--text-sub); font-size: 16px; }
         
-        /* News Feed CSS */
         .feed-container {
             max-width: 600px;
             margin: 0 auto;
@@ -281,7 +423,7 @@
             gap: 6px;
             transition: color 0.2s;
         }
-        .action-btn:hover, .action-btn.liked {
+        .action-btn:hover {
             color: var(--accent-color);
         }
 
@@ -376,10 +518,9 @@
     <!-- News Feed Section -->
     <section class="posts-section" id="news-feed">
         <h2>News <span>Feed</span></h2>
-        <p style="color: var(--text-sub); margin-top: 5px;">ছবি বা লেখা দিয়ে আপনার মতামত শেয়ার করুন</p>
+        <p style="color: var(--text-sub); margin-top: 5px;">ছবি বা লেখা দিয়ে সবার সাথে মতামত শেয়ার করুন</p>
         
         <div class="feed-container">
-            <!-- পোস্ট লেখার বক্স -->
             <div class="create-post-card">
                 <textarea id="postText" placeholder="আজ মনে কি চলছে লিখুন..."></textarea>
                 
@@ -393,8 +534,9 @@
                 <div id="imageNameDisplay" style="font-size: 12px; color: var(--accent-color); margin-top: 8px;"></div>
             </div>
 
-            <!-- পোস্টগুলো যেখানে দেখাবে -->
-            <div id="postsContainer"></div>
+            <div id="postsContainer">
+                <p style="color: var(--text-sub); text-align:center;">লোড হচ্ছে...</p>
+            </div>
         </div>
     </section>
 
@@ -463,134 +605,6 @@
         function logout() {
             localStorage.removeItem('isLoggedIn');
             window.location.href = 'login.html';
-        }
-
-        let selectedImageBase64 = "";
-
-        function previewImage() {
-            const fileInput = document.getElementById('imageInput');
-            const nameDisplay = document.getElementById('imageNameDisplay');
-            
-            if (fileInput.files && fileInput.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    selectedImageBase64 = e.target.result;
-                    nameDisplay.innerText = "✓ ছবি সিলেক্ট করা হয়েছে: " + fileInput.files[0].name;
-                };
-                reader.readAsDataURL(fileInput.files[0]);
-            }
-        }
-
-        window.onload = function() {
-            loadPosts();
-        };
-
-        function createPost() {
-            const text = document.getElementById('postText').value.trim();
-            if (!text && !selectedImageBase64) {
-                alert('দয়া করে কিছু লিখুন অথবা একটি ছবি যুক্ত করুন!');
-                return;
-            }
-
-            const username = localStorage.getItem('savedUser') || 'Pintu Joydhar';
-            
-            const newPost = {
-                author: username,
-                content: text,
-                image: selectedImageBase64,
-                likes: 0,
-                liked: false,
-                time: new Date().toLocaleString()
-            };
-
-            let posts = JSON.parse(localStorage.getItem('feedPosts')) || [];
-            posts.unshift(newPost);
-            localStorage.setItem('feedPosts', JSON.stringify(posts));
-
-            document.getElementById('postText').value = '';
-            document.getElementById('imageInput').value = '';
-            document.getElementById('imageNameDisplay').innerText = '';
-            selectedImageBase64 = "";
-            
-            loadPosts();
-        }
-
-        function loadPosts() {
-            const container = document.getElementById('postsContainer');
-            let posts = JSON.parse(localStorage.getItem('feedPosts')) || [
-                {
-                    author: 'Pintu Joydhar',
-                    content: 'স্বাগতম আমার নতুন ওয়েবসাইটে! এখান থেকে পোস্ট এডিট বা ডিলিট করা যাবে।',
-                    image: '',
-                    likes: 2,
-                    liked: false,
-                    time: 'Just now'
-                }
-            ];
-
-            container.innerHTML = '';
-
-            posts.forEach((post, index) => {
-                let imageTag = post.image ? `<img src="${post.image}" class="post-img" alt="Post Image">` : '';
-                
-                container.innerHTML += `
-                    <div class="post-box">
-                        <div class="post-header">
-                            <div class="post-author"><i class="fa-solid fa-user-circle"></i> ${post.author}</div>
-                            <div class="post-menu">
-                                <button class="menu-btn edit" onclick="editPost(${index})"><i class="fa-solid fa-pen"></i> Edit</button>
-                                <button class="menu-btn delete" onclick="deletePost(${index})"><i class="fa-solid fa-trash"></i> Delete</button>
-                            </div>
-                        </div>
-                        <div class="post-content">${post.content}</div>
-                        ${imageTag}
-                        <div class="post-actions">
-                            <button class="action-btn ${post.liked ? 'liked' : ''}" onclick="toggleLike(${index})">
-                                <i class="fa-solid fa-thumbs-up"></i> Like (${post.likes})
-                            </button>
-                            <button class="action-btn" onclick="alert('কমেন্ট অপশনটি চালু আছে!')">
-                                <i class="fa-solid fa-comment"></i> Comment
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        // পোস্ট ডিলিট করার ফাংশন
-        function deletePost(index) {
-            if (confirm('আপনি কি নিশ্চিতভাবে এই পোস্টটি ডিলিট করতে চান?')) {
-                let posts = JSON.parse(localStorage.getItem('feedPosts')) || [];
-                posts.splice(index, 1);
-                localStorage.setItem('feedPosts', JSON.stringify(posts));
-                loadPosts();
-            }
-        }
-
-        // পোস্ট এডিট করার ফাংশন
-        function editPost(index) {
-            let posts = JSON.parse(localStorage.getItem('feedPosts')) || [];
-            let currentText = posts[index].content;
-            
-            let newText = prompt("আপনার পোস্টটি এডিট করুন:", currentText);
-            if (newText !== null) {
-                posts[index].content = newText.trim();
-                localStorage.setItem('feedPosts', JSON.stringify(posts));
-                loadPosts();
-            }
-        }
-
-        function toggleLike(index) {
-            let posts = JSON.parse(localStorage.getItem('feedPosts')) || [];
-            if (!posts[index].liked) {
-                posts[index].likes += 1;
-                posts[index].liked = true;
-            } else {
-                posts[index].likes -= 1;
-                posts[index].liked = false;
-            }
-            localStorage.setItem('feedPosts', JSON.stringify(posts));
-            loadPosts();
         }
 
         // Theme Toggle Logic
