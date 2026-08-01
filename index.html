@@ -218,7 +218,7 @@
             font-weight: bold;
         }
 
-        /* 🛠️ Services Section Fix */
+        /* 🛠️ Services Section */
         .services-section {
             padding: 60px 8%;
             text-align: center;
@@ -231,7 +231,6 @@
             margin-top: 30px;
         }
 
-        /* 🔗 Card clickable link styles */
         .service-card {
             background: var(--card-bg);
             padding: 35px 25px;
@@ -268,6 +267,73 @@
         .service-card p {
             color: var(--text-sub);
             font-size: 15px;
+        }
+
+        /* 📢 Trading & Recent Posts Section */
+        .posts-section {
+            padding: 60px 8%;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.01);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .post-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .post-badge {
+            background: var(--accent-color);
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .post-title {
+            font-size: 20px;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .post-desc {
+            color: var(--text-sub);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .post-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .post-link:hover {
+            text-decoration: underline;
         }
 
         /* ✉️ Contact Section */
@@ -340,7 +406,8 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Service</a></li>
-                <li><a href="#contact" class="btn-nav">Contract</a></li>
+                <li><a href="#trading-posts">Trading Posts</a></li>
+                <li><a href="#contact" class="btn-nav">Contact</a></li>
             </ul>
 
             <!-- Search Bar -->
@@ -370,7 +437,7 @@
         </div>
     </section>
 
-    <!-- Services Section (৩টি আলাদা পেজের লিংকসহ সম্পূর্ণ সঠিক লেআউট) -->
+    <!-- Services Section -->
     <section class="services-section" id="services">
         <h2>My <span>Services</span></h2>
         <br>
@@ -401,7 +468,41 @@
         </div>
     </section>
 
-    <!-- Contract / Contact Section -->
+    <!-- 📢 Trading & Recent Posts Section -->
+    <section class="posts-section" id="trading-posts">
+        <h2>Latest <span>Trading Posts & Updates</span></h2>
+        <p style="color: var(--text-sub); margin-top: 5px;">আমার নতুন সকল ট্রেডিং পোস্ট ও আপডেট এখানে দেখতে পাবেন</p>
+
+        <div class="posts-grid">
+
+            <!-- 📈 পোস্ট ১: ট্রেডিং গাইড -->
+            <div class="post-card">
+                <span class="post-badge">Trading</span>
+                <h3 class="post-title">Basic Trading Strategy for Beginners</h3>
+                <p class="post-desc">নতুনদের জন্য ট্রেডিং শুরু করার সহজ নিয়ম এবং মার্কেট এনালাইসিস করার প্রাথমিক ধারণা...</p>
+                <a href="#" class="post-link">বিস্তারিত পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- 📊 পোস্ট ২: অ্যাকাউন্টস বা ফাইন্যান্স সংক্রান্ত -->
+            <div class="post-card">
+                <span class="post-badge">Finance</span>
+                <h3 class="post-title">Accounting Principles for Traders</h3>
+                <p class="post-desc">ট্রেডিং প্রফিট ও লস কীভাবে সঠিকভাবে বুককিপিংয়ে ধরে রাখতে হয় তার গাইডলাইন...</p>
+                <a href="#" class="post-link">বিস্তারিত পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <!-- ✍️ পোস্ট ৩: নতুন কবিতা বা ব্লগ -->
+            <div class="post-card">
+                <span class="post-badge">Poetry</span>
+                <h3 class="post-title">তুমি এলেই...</h3>
+                <p class="post-desc">বলছিলাম—তোমার কাছে আসলে আমার হার্টবিট যায় বেড়ে, তুমি বললে, "মজা পেলাম কথা শুনে"...</p>
+                <a href="writing.html" class="post-link">কবিতাটি পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <h2>Contact <span>Me</span></h2>
         <p>আমার সাথে যোগাযোগ করতে নিচের ফর্মে মেসেজ পাঠান</p>
