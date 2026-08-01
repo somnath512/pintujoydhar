@@ -540,23 +540,34 @@
         const form = document.getElementById('sheet-form');
         const btn = document.getElementById('submit-btn');
 
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby4n4tVozpi6BDwWvQIYkQLJGXwu2yWr0vc1KKYLr0Qxuu_e1rtlCx2kzkHta_RDVmUuw/exec';
+        
+        const form = document.getElementById('sheet-form');
+        const btn = document.getElementById('submit-btn');
+
         form.addEventListener('submit', e => {
             e.preventDefault();
             btn.disabled = true;
             btn.innerHTML = "পাঠানো হচ্ছে...";
 
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    alert('ধন্যবাদ! আপনার মেসেজটি সফলভাবে গুগল শিটে জমা হয়েছে।');
-                    btn.disabled = false;
-                    btn.innerHTML = "মেসেজ পাঠান";
-                    form.reset();
-                })
-                .catch(error => {
-                    alert('সমস্যা হয়েছে! আবার চেষ্টা করুন।');
-                    btn.disabled = false;
-                    btn.innerHTML = "মেসেজ পাঠান";
-                });
+            // mode: 'no-cors' যুক্ত করা হয়েছে যেন ব্রাউজার রিকোয়েস্ট না আটকায়
+            fetch(scriptURL, { 
+                method: 'POST', 
+                mode: 'no-cors',
+                body: new FormData(form)
+            })
+            .then(() => {
+                alert('ধন্যবাদ! আপনার মেসেজটি সফলভাবে জমা হয়েছে।');
+                btn.disabled = false;
+                btn.innerHTML = "মেসেজ পাঠান";
+                form.reset();
+            })
+            .catch(error => {
+                alert('সমস্যা হয়েছে! আবার চেষ্টা করুন।');
+                btn.disabled = false;
+                btn.innerHTML = "মেসেজ পাঠান";
+            });
+        });
         });
 
         // Theme Toggle Logic
