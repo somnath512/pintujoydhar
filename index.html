@@ -134,13 +134,13 @@
         }
         .theme-toggle-btn:hover { background: var(--accent-color); color: #fff; }
 
-        .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 50vh; padding: 40px 20px; }
-        .profile-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent-color); box-shadow: 0 0 25px rgba(56, 189, 248, 0.3); margin-bottom: 20px; }
-        .hero h1 { font-size: 36px; margin-bottom: 10px; }
+        .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 40vh; padding: 30px 20px; }
+        .profile-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent-color); box-shadow: 0 0 25px rgba(56, 189, 248, 0.3); margin-bottom: 20px; }
+        .hero h1 { font-size: 34px; margin-bottom: 10px; }
         .hero h1 span { color: var(--accent-color); }
-        .hero p { max-width: 600px; color: var(--text-sub); font-size: 16px; margin-bottom: 25px; }
+        .hero p { max-width: 600px; color: var(--text-sub); font-size: 16px; }
         
-        /* 🌐 Facebook Style News Feed CSS */
+        /* 🌐 Facebook Style News Feed CSS with Photo Upload */
         .feed-container {
             max-width: 600px;
             margin: 0 auto;
@@ -174,10 +174,25 @@
             border-color: var(--accent-color);
         }
 
-        .post-btn-container {
+        .post-tools {
             display: flex;
-            justify-content: flex-end;
-            margin-top: 10px;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+        }
+
+        .upload-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent-color);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .upload-label input {
+            display: none;
         }
 
         .btn-post {
@@ -211,8 +226,16 @@
         .post-content {
             color: var(--text-main);
             font-size: 15px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             word-break: break-all;
+        }
+
+        .post-img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
         }
 
         .post-actions {
@@ -326,23 +349,29 @@
         <p>I am preparing for a Junior Accountant role, and writing poetry is a personal passion of mine</p>
     </section>
 
-    <!-- 🌐 Facebook Style News Feed Section -->
+    <!-- 🌐 News Feed with Image Upload -->
     <section class="posts-section" id="news-feed">
         <h2>News <span>Feed</span></h2>
-        <p style="color: var(--text-sub); margin-top: 5px;">আপনার মনে যা আসছে তা এখানে শেয়ার করুন</p>
+        <p style="color: var(--text-sub); margin-top: 5px;">ছবি বা লেখা দিয়ে আপনার মতামত শেয়ার করুন</p>
         
         <div class="feed-container">
-            <!-- পোস্ট লেখার বক্স -->
+            <!-- পোস্ট লেখার এবং ছবি যুক্ত করার বক্স -->
             <div class="create-post-card">
                 <textarea id="postText" placeholder="আজ মনে কি চলছে লিখুন..."></textarea>
-                <div class="post-btn-container">
+                
+                <div class="post-tools">
+                    <label class="upload-label">
+                        <i class="fa-solid fa-image"></i> ফটো যুক্ত করুন
+                        <input type="file" id="imageInput" accept="image/*" onchange="previewImage()">
+                    </label>
                     <button class="btn-post" onclick="createPost()">Post</button>
                 </div>
+                <div id="imageNameDisplay" style="font-size: 12px; color: var(--accent-color); margin-top: 8px;"></div>
             </div>
 
             <!-- পোস্টগুলো যেখানে দেখাবে -->
             <div id="postsContainer">
-                <!-- ডায়নামিক পোস্ট এখানে আসবে -->
+                <!-- ডায়নামিক পোস্ট এখানে লোড হবে -->
             </div>
         </div>
     </section>
@@ -414,15 +443,31 @@
             window.location.href = 'login.html';
         }
 
-        // 🌐 News Feed Logic (Facebook style)
+        let selectedImageBase64 = "";
+
+        // ছবি সিলেক্ট করলে প্রিভিউ দেখানোর জন্য
+        function previewImage() {
+            const fileInput = document.getElementById('imageInput');
+            const nameDisplay = document.getElementById('imageNameDisplay');
+            
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    selectedImageBase64 = e.target.result; // ছবিকে কোডে রূপান্তর করা
+                    nameDisplay.innerText = "✓ ছবি সিলেক্ট করা হয়েছে: " + fileInput.files[0].name;
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+
         window.onload = function() {
             loadPosts();
         };
 
         function createPost() {
             const text = document.getElementById('postText').value.trim();
-            if (!text) {
-                alert('দয়া করে কিছু লিখে পোস্ট করুন!');
+            if (!text && !selectedImageBase64) {
+                alert('দয়া করে কিছু লিখুন অথবা একটি ছবি যুক্ত করুন!');
                 return;
             }
 
@@ -431,6 +476,7 @@
             const newPost = {
                 author: username,
                 content: text,
+                image: selectedImageBase64,
                 likes: 0,
                 liked: false,
                 time: new Date().toLocaleString()
@@ -440,7 +486,12 @@
             posts.unshift(newPost); // নতুন পোস্ট সবার উপরে দেখাবে
             localStorage.setItem('feedPosts', JSON.stringify(posts));
 
+            // ইনপুট রিসেট করা
             document.getElementById('postText').value = '';
+            document.getElementById('imageInput').value = '';
+            document.getElementById('imageNameDisplay').innerText = '';
+            selectedImageBase64 = "";
+            
             loadPosts();
         }
 
@@ -449,7 +500,8 @@
             let posts = JSON.parse(localStorage.getItem('feedPosts')) || [
                 {
                     author: 'Pintu Joydhar',
-                    content: 'স্বাগতম আমার নতুন ওয়েবসাইটে! এখানে আপনারা আপনাদের মতামত শেয়ার করতে পারবেন।',
+                    content: 'স্বাগতম আমার নতুন ওয়েবসাইটে! এখানে আপনারা ছবি ও লেখা শেয়ার করতে পারবেন।',
+                    image: '',
                     likes: 2,
                     liked: false,
                     time: 'Just now'
@@ -459,10 +511,13 @@
             container.innerHTML = '';
 
             posts.forEach((post, index) => {
+                let imageTag = post.image ? `<img src="${post.image}" class="post-img" alt="Post Image">` : '';
+                
                 container.innerHTML += `
                     <div class="post-box">
                         <div class="post-author"><i class="fa-solid fa-user-circle"></i> ${post.author}</div>
                         <div class="post-content">${post.content}</div>
+                        ${imageTag}
                         <div class="post-actions">
                             <button class="action-btn ${post.liked ? 'liked' : ''}" onclick="toggleLike(${index})">
                                 <i class="fa-solid fa-thumbs-up"></i> Like (${post.likes})
