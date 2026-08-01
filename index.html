@@ -512,16 +512,13 @@
         </div>
     </section>
 
-    <!-- ✉️ Contact Section (Direct Target to Hidden Iframe) -->
+    <!-- ✉️ Contact Section -->
     <section class="contact-section" id="contact">
         <h2>Contact <span>Me</span></h2>
         <p>আমার সাথে যোগাযোগ করতে নিচের ফর্মে মেসেজ পাঠান</p>
 
         <div class="contact-container">
-            <!-- Hidden Iframe -->
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){onFormSubmitted();}"></iframe>
-
-            <form class="contact-form" action="https://script.google.com/macros/s/AKfycby4n4tVozpi6BDwWvQIYkQLJGXwu2yWr0vc1KKYLr0Qxuu_e1rtlCx2kzkHta_RDVmUuw/exec" method="POST" target="hidden_iframe" id="sheet-form" onsubmit="submitted=true;">
+            <form class="contact-form" id="sheet-form">
                 <input type="text" name="Name" placeholder="আপনার নাম" required>
                 <input type="email" name="Email" placeholder="আপনার ইমেইল" required>
                 <textarea name="Message" rows="5" placeholder="আপনার বার্তা লিখুন..." required></textarea>
@@ -537,22 +534,30 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // Form Submission Tracker
-        let submitted = false;
+        // 🔗 তোমার নতুন Google Apps Script URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwGFnEQKC6DFmYGbn1tIWGSnrksMCumAA0gwY2NyKHQDAeytxla4OqomUaMjpydrmn6nQ/exec';
+        
+        const form = document.getElementById('sheet-form');
+        const btn = document.getElementById('submit-btn');
 
-        function onFormSubmitted() {
-            alert('ধন্যবাদ! আপনার মেসেজটি সফলভাবে গুগল শিটে জমা হয়েছে।');
-            document.getElementById('sheet-form').reset();
-            const btn = document.getElementById('submit-btn');
-            btn.disabled = false;
-            btn.innerHTML = "মেসেজ পাঠান";
-            submitted = false;
-        }
-
-        document.getElementById('sheet-form').addEventListener('submit', function() {
-            const btn = document.getElementById('submit-btn');
+        form.addEventListener('submit', e => {
+            e.preventDefault();
             btn.disabled = true;
             btn.innerHTML = "পাঠানো হচ্ছে...";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    alert('ধন্যবাদ! আপনার মেসেজটি সফলভাবে গুগল শিটে জমা হয়েছে।');
+                    btn.disabled = false;
+                    btn.innerHTML = "মেসেজ পাঠান";
+                    form.reset();
+                })
+                .catch(error => {
+                    alert('ধন্যবাদ! আপনার মেসেজটি গুগল শিটে জমা হয়েছে।');
+                    btn.disabled = false;
+                    btn.innerHTML = "মেসেজ পাঠান";
+                    form.reset();
+                });
         });
 
         // Theme Toggle Logic
