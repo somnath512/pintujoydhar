@@ -395,6 +395,28 @@
             font-size: 16px;
         }
 
+        /* 💬 Messages Display Section */
+        .messages-section {
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .messages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .msg-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
         /* 🔻 Footer Section */
         footer {
             text-align: center;
@@ -527,6 +549,16 @@
         </div>
     </section>
 
+    <!-- 📩 Public Messages Section -->
+    <section class="messages-section">
+        <h2>Received <span>Messages</span></h2>
+        <p style="color: var(--text-sub);">গুগল শিটে আসা সকল মেসেজ এখানে লাইভ দেখাচ্ছে</p>
+        
+        <div class="messages-grid" id="messages-container">
+            <p style="color: var(--text-sub); text-align: center; grid-column: 1/-1;">মেসেজ লোড হচ্ছে...</p>
+        </div>
+    </section>
+
     <!-- 🔻 Footer Section -->
     <footer>
         <p>Created by <span>PINTU JOYDHAR</span></p>
@@ -534,12 +566,13 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // 🔗 তোমার নতুন Google Apps Script URL
-        const scriptURL = https://script.google.com/macros/s/AKfycbzfaJwUU3GTpdqshFRjFKWKFk6neXGC54mOZSY3CkjFU6cz0L5UZrMNxMMryHkeaXqEgA/execjpydrmn6nQ/exec';
+        // 🔗 নতুন Google Apps Script URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyojvPnwHDaYgHS42OvqjOJoVt_jFLawMuj3U5enLwruR_27ebA9l6Lnzietenzvn-40g/exec';
         
         const form = document.getElementById('sheet-form');
         const btn = document.getElementById('submit-btn');
 
+        // Form Submit Event
         form.addEventListener('submit', e => {
             e.preventDefault();
             btn.disabled = true;
@@ -547,18 +580,55 @@
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
-                    alert('ধন্যবাদ! আপনার মেসেজটি সফলভাবে গুগল শিটে জমা হয়েছে।');
+                    alert('ধন্যবাদ! আপনার মেসেজটি সফলভাবে জমা হয়েছে।');
                     btn.disabled = false;
                     btn.innerHTML = "মেসেজ পাঠান";
                     form.reset();
+                    loadMessages(); // নতুন মেসেজ সঙ্গে সঙ্গে স্ক্রিনে আপডেট করবে
                 })
                 .catch(error => {
-                    alert('ধন্যবাদ! আপনার মেসেজটি গুগল শিটে জমা হয়েছে।');
+                    alert('ধন্যবাদ! আপনার মেসেজটি জমা হয়েছে।');
                     btn.disabled = false;
                     btn.innerHTML = "মেসেজ পাঠান";
                     form.reset();
+                    loadMessages();
                 });
         });
+
+        // Fetch & Show Messages from Google Sheets
+        function loadMessages() {
+            fetch(scriptURL)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('messages-container');
+                    container.innerHTML = '';
+
+                    if (!data || data.length === 0) {
+                        container.innerHTML = '<p style="color: var(--text-sub); text-align: center; grid-column: 1/-1;">এখনো কোনো মেসেজ জমা পড়েনি।</p>';
+                        return;
+                    }
+
+                    // মেসেজগুলো উল্টো করে (নতুন মেসেজ আগে) দেখানো হচ্ছে
+                    data.reverse().forEach(msg => {
+                        const card = document.createElement('div');
+                        card.className = 'msg-card';
+
+                        card.innerHTML = `
+                            <h4 style="color: var(--accent-color); font-size: 18px; margin-bottom: 5px;">${msg.name}</h4>
+                            <p style="color: var(--text-sub); font-size: 13px; margin-bottom: 10px;">${msg.email}</p>
+                            <p style="color: var(--text-main); font-size: 15px;">"${msg.message}"</p>
+                        `;
+
+                        container.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching messages:', error);
+                });
+        }
+
+        // পেজ লোড হলেই গুগল শিটের মেসেজগুলো চলে আসবে
+        window.addEventListener('DOMContentLoaded', loadMessages);
 
         // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
