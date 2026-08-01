@@ -140,7 +140,7 @@
         .hero h1 span { color: var(--accent-color); }
         .hero p { max-width: 600px; color: var(--text-sub); font-size: 16px; }
         
-        /* 🌐 Facebook Style News Feed CSS with Photo Upload */
+        /* News Feed CSS */
         .feed-container {
             max-width: 600px;
             margin: 0 auto;
@@ -214,14 +214,38 @@
             border: 1px solid rgba(56, 189, 248, 0.2);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            position: relative;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
         }
 
         .post-author {
             font-weight: bold;
             color: var(--accent-color);
-            margin-bottom: 8px;
             font-size: 16px;
         }
+
+        .post-menu {
+            display: flex;
+            gap: 10px;
+        }
+
+        .menu-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-sub);
+            cursor: pointer;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .menu-btn.edit:hover { color: var(--accent-color); }
+        .menu-btn.delete:hover { color: #ef4444; }
 
         .post-content {
             color: var(--text-main);
@@ -349,13 +373,13 @@
         <p>I am preparing for a Junior Accountant role, and writing poetry is a personal passion of mine</p>
     </section>
 
-    <!-- 🌐 News Feed with Image Upload -->
+    <!-- News Feed Section -->
     <section class="posts-section" id="news-feed">
         <h2>News <span>Feed</span></h2>
         <p style="color: var(--text-sub); margin-top: 5px;">ছবি বা লেখা দিয়ে আপনার মতামত শেয়ার করুন</p>
         
         <div class="feed-container">
-            <!-- পোস্ট লেখার এবং ছবি যুক্ত করার বক্স -->
+            <!-- পোস্ট লেখার বক্স -->
             <div class="create-post-card">
                 <textarea id="postText" placeholder="আজ মনে কি চলছে লিখুন..."></textarea>
                 
@@ -370,9 +394,7 @@
             </div>
 
             <!-- পোস্টগুলো যেখানে দেখাবে -->
-            <div id="postsContainer">
-                <!-- ডায়নামিক পোস্ট এখানে লোড হবে -->
-            </div>
+            <div id="postsContainer"></div>
         </div>
     </section>
 
@@ -445,7 +467,6 @@
 
         let selectedImageBase64 = "";
 
-        // ছবি সিলেক্ট করলে প্রিভিউ দেখানোর জন্য
         function previewImage() {
             const fileInput = document.getElementById('imageInput');
             const nameDisplay = document.getElementById('imageNameDisplay');
@@ -453,7 +474,7 @@
             if (fileInput.files && fileInput.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    selectedImageBase64 = e.target.result; // ছবিকে কোডে রূপান্তর করা
+                    selectedImageBase64 = e.target.result;
                     nameDisplay.innerText = "✓ ছবি সিলেক্ট করা হয়েছে: " + fileInput.files[0].name;
                 };
                 reader.readAsDataURL(fileInput.files[0]);
@@ -483,10 +504,9 @@
             };
 
             let posts = JSON.parse(localStorage.getItem('feedPosts')) || [];
-            posts.unshift(newPost); // নতুন পোস্ট সবার উপরে দেখাবে
+            posts.unshift(newPost);
             localStorage.setItem('feedPosts', JSON.stringify(posts));
 
-            // ইনপুট রিসেট করা
             document.getElementById('postText').value = '';
             document.getElementById('imageInput').value = '';
             document.getElementById('imageNameDisplay').innerText = '';
@@ -500,7 +520,7 @@
             let posts = JSON.parse(localStorage.getItem('feedPosts')) || [
                 {
                     author: 'Pintu Joydhar',
-                    content: 'স্বাগতম আমার নতুন ওয়েবসাইটে! এখানে আপনারা ছবি ও লেখা শেয়ার করতে পারবেন।',
+                    content: 'স্বাগতম আমার নতুন ওয়েবসাইটে! এখান থেকে পোস্ট এডিট বা ডিলিট করা যাবে।',
                     image: '',
                     likes: 2,
                     liked: false,
@@ -515,7 +535,13 @@
                 
                 container.innerHTML += `
                     <div class="post-box">
-                        <div class="post-author"><i class="fa-solid fa-user-circle"></i> ${post.author}</div>
+                        <div class="post-header">
+                            <div class="post-author"><i class="fa-solid fa-user-circle"></i> ${post.author}</div>
+                            <div class="post-menu">
+                                <button class="menu-btn edit" onclick="editPost(${index})"><i class="fa-solid fa-pen"></i> Edit</button>
+                                <button class="menu-btn delete" onclick="deletePost(${index})"><i class="fa-solid fa-trash"></i> Delete</button>
+                            </div>
+                        </div>
                         <div class="post-content">${post.content}</div>
                         ${imageTag}
                         <div class="post-actions">
@@ -529,6 +555,29 @@
                     </div>
                 `;
             });
+        }
+
+        // পোস্ট ডিলিট করার ফাংশন
+        function deletePost(index) {
+            if (confirm('আপনি কি নিশ্চিতভাবে এই পোস্টটি ডিলিট করতে চান?')) {
+                let posts = JSON.parse(localStorage.getItem('feedPosts')) || [];
+                posts.splice(index, 1);
+                localStorage.setItem('feedPosts', JSON.stringify(posts));
+                loadPosts();
+            }
+        }
+
+        // পোস্ট এডিট করার ফাংশন
+        function editPost(index) {
+            let posts = JSON.parse(localStorage.getItem('feedPosts')) || [];
+            let currentText = posts[index].content;
+            
+            let newText = prompt("আপনার পোস্টটি এডিট করুন:", currentText);
+            if (newText !== null) {
+                posts[index].content = newText.trim();
+                localStorage.setItem('feedPosts', JSON.stringify(posts));
+                loadPosts();
+            }
         }
 
         function toggleLike(index) {
