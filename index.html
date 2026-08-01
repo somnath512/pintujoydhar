@@ -512,21 +512,17 @@
         </div>
     </section>
 
-    <!-- ✉️ Contact Section (Direct Mail Updated) -->
+    <!-- ✉️ Contact Section -->
     <section class="contact-section" id="contact">
         <h2>Contact <span>Me</span></h2>
         <p>আমার সাথে যোগাযোগ করতে নিচের ফর্মে মেসেজ পাঠান</p>
 
         <div class="contact-container">
-            <form class="contact-form" action="https://formsubmit.co/pintujoydhar442@gmail.com" method="POST">
-                <!-- Captcha বন্ধ রাখার জন্য (Optional) -->
-                <input type="hidden" name="_captcha" value="false">
-                
+            <form class="contact-form" id="sheet-form">
                 <input type="text" name="Name" placeholder="আপনার নাম" required>
                 <input type="email" name="Email" placeholder="আপনার ইমেইল" required>
                 <textarea name="Message" rows="5" placeholder="আপনার বার্তা লিখুন..." required></textarea>
-                
-                <button type="submit">মেসেজ পাঠান</button>
+                <button type="submit" id="submit-btn">মেসেজ পাঠান</button>
             </form>
         </div>
     </section>
@@ -538,6 +534,31 @@
 
     <!-- JavaScript Logic -->
     <script>
+        // 🔗 Google Apps Script URL
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby4n4tVozpi6BDwWvQIYkQLJGXwu2yWr0vc1KKYLr0Qxuu_e1rtlCx2kzkHta_RDVmUuw/exec';
+        
+        const form = document.getElementById('sheet-form');
+        const btn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.innerHTML = "পাঠানো হচ্ছে...";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    alert('ধন্যবাদ! আপনার মেসেজটি সফলভাবে গুগল শিটে জমা হয়েছে।');
+                    btn.disabled = false;
+                    btn.innerHTML = "মেসেজ পাঠান";
+                    form.reset();
+                })
+                .catch(error => {
+                    alert('সমস্যা হয়েছে! আবার চেষ্টা করুন।');
+                    btn.disabled = false;
+                    btn.innerHTML = "মেসেজ পাঠান";
+                });
+        });
+
         // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
