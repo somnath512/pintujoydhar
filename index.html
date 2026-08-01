@@ -453,14 +453,13 @@
         </div>
     </section>
 
-    <!-- 📢 1. Trading & Recent Posts Section -->
+    <!-- 📢 Trading & Recent Posts Section -->
     <section class="posts-section" id="trading-posts">
         <h2>Latest <span>Trading Posts & Updates</span></h2>
         <p style="color: var(--text-sub); margin-top: 5px;">আমার নতুন সকল ট্রেডিং পোস্ট ও আপডেট এখানে দেখতে পাবেন</p>
 
         <div class="posts-grid">
 
-            <!-- 📈 পোস্ট ১: ট্রেডিং গাইড -->
             <div class="post-card">
                 <span class="post-badge">Trading</span>
                 <h3 class="post-title">Basic Trading Strategy for Beginners</h3>
@@ -468,7 +467,6 @@
                 <a href="#" class="post-link">বিস্তারিত পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
-            <!-- 📊 পোস্ট ২: অ্যাকাউন্টস বা ফাইন্যান্স সংক্রান্ত -->
             <div class="post-card">
                 <span class="post-badge">Finance</span>
                 <h3 class="post-title">Accounting Principles for Traders</h3>
@@ -476,7 +474,6 @@
                 <a href="#" class="post-link">বিস্তারিত পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
-            <!-- ✍️ পোস্ট ৩: নতুন কবিতা বা ব্লগ -->
             <div class="post-card">
                 <span class="post-badge">Poetry</span>
                 <h3 class="post-title">তুমি এলেই...</h3>
@@ -487,13 +484,12 @@
         </div>
     </section>
 
-    <!-- 🛠️ 2. Services Section -->
+    <!-- 🛠️ Services Section -->
     <section class="services-section" id="services">
         <h2>My <span>Services</span></h2>
         <br>
         <div class="services-grid">
 
-            <!-- 📰 1. Personal Blog Page Link -->
             <a href="blog.html" class="service-card">
                 <i class="fa-solid fa-newspaper"></i>
                 <h3>Personal Blog</h3>
@@ -501,14 +497,12 @@
                 <p>বলছিলাম—তোমার কাছে আসলে আমার হার্টবিট যায় বেড়ে, তুমি বললে, "মজা পেলাম কথা শুনে"...</p>
             </a>
 
-            <!-- 🧮 2. Accounting & Finance Page Link -->
             <a href="accounting.html" class="service-card">
                 <i class="fa-solid fa-calculator"></i>
                 <h3>Accounting & Finance</h3>
                 <p style="margin-top: 10px;">বুককিপিং, হিসাব-নিকাশ এবং জুনিয়র একাউন্ট্যান্ট সংক্রান্ত সার্বিক সহায়তা।</p>
             </a>
 
-            <!-- ✍️ 3. Content Writing Page Link -->
             <a href="writing.html" class="service-card">
                 <i class="fa-solid fa-pen-nib"></i>
                 <h3>Content Writing</h3>
@@ -518,22 +512,26 @@
         </div>
     </section>
 
-    <!-- ✉️ 3. Contact Section -->
+    <!-- ✉️ Contact Section (Direct Mail Updated) -->
     <section class="contact-section" id="contact">
         <h2>Contact <span>Me</span></h2>
         <p>আমার সাথে যোগাযোগ করতে নিচের ফর্মে মেসেজ পাঠান</p>
 
         <div class="contact-container">
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Message Sent!');">
-                <input type="text" placeholder="আপনার নাম" required>
-                <input type="email" placeholder="আপনার ইমেইল" required>
-                <textarea rows="5" placeholder="আপনার বার্তা লিখুন..." required></textarea>
+            <form class="contact-form" action="https://formsubmit.co/pintujoydhar442@gmail.com" method="POST">
+                <!-- Captcha বন্ধ রাখার জন্য (Optional) -->
+                <input type="hidden" name="_captcha" value="false">
+                
+                <input type="text" name="Name" placeholder="আপনার নাম" required>
+                <input type="email" name="Email" placeholder="আপনার ইমেইল" required>
+                <textarea name="Message" rows="5" placeholder="আপনার বার্তা লিখুন..." required></textarea>
+                
                 <button type="submit">মেসেজ পাঠান</button>
             </form>
         </div>
     </section>
 
-    <!-- 🔻 Footer Section (Created by) -->
+    <!-- 🔻 Footer Section -->
     <footer>
         <p>Created by <span>PINTU JOYDHAR</span></p>
     </footer>
