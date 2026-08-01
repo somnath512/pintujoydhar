@@ -19,8 +19,6 @@
             --input-bg: #334155;
             --input-text: #ffffff;
             --card-bg: #1e293b;
-            --chat-user-bg: #0284c7;
-            --chat-bot-bg: #334155;
         }
 
         /* ☀️ Light Theme Styles */
@@ -34,8 +32,6 @@
             --input-bg: #ffffff;
             --input-text: #0f172a;
             --card-bg: #ffffff;
-            --chat-user-bg: #0284c7;
-            --chat-bot-bg: #e2e8f0;
         }
 
         * {
@@ -342,7 +338,7 @@
 
         /* ✉️ Contact Section */
         .contact-section {
-            padding: 80px 8% 60px 8%;
+            padding: 80px 8% 40px 8%;
             background-color: var(--header-bg);
             text-align: center;
         }
@@ -399,157 +395,26 @@
             font-size: 16px;
         }
 
-        /* 🔒 Private Messenger Style Chat Widget */
-        .chat-widget-toggle {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #0084ff, #00c6ff);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(0, 132, 255, 0.4);
-            z-index: 9999;
-            transition: transform 0.3s ease;
+        /* 💬 Messages Display Section */
+        .messages-section {
+            padding: 60px 8%;
+            text-align: center;
         }
 
-        .chat-widget-toggle:hover {
-            transform: scale(1.1);
+        .messages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            text-align: left;
         }
 
-        .chat-box-container {
-            position: fixed;
-            bottom: 95px;
-            right: 25px;
-            width: 340px;
-            height: 460px;
+        .msg-card {
             background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
             border: 1px solid rgba(56, 189, 248, 0.2);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 9999;
-            animation: popUp 0.3s ease;
-        }
-
-        @keyframes popUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .chat-header {
-            background: linear-gradient(135deg, #0084ff, #00c6ff);
-            color: #fff;
-            padding: 14px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .chat-header-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .chat-header-info img {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #fff;
-        }
-
-        .chat-header-info div h4 {
-            font-size: 15px;
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        .chat-header-info div span {
-            font-size: 11px;
-            opacity: 0.85;
-        }
-
-        .chat-close-btn {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .chat-bubble {
-            max-width: 80%;
-            padding: 10px 14px;
-            border-radius: 16px;
-            font-size: 14px;
-            line-height: 1.4;
-            word-wrap: break-word;
-        }
-
-        .chat-bubble.bot {
-            align-self: flex-start;
-            background: var(--chat-bot-bg);
-            color: var(--text-main);
-            border-bottom-left-radius: 4px;
-        }
-
-        .chat-bubble.user {
-            align-self: flex-end;
-            background: var(--chat-user-bg);
-            color: #ffffff;
-            border-bottom-right-radius: 4px;
-        }
-
-        .chat-input-area {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            background: var(--header-bg);
-            gap: 8px;
-        }
-
-        .chat-input-area input {
-            flex: 1;
-            padding: 10px 14px;
-            border-radius: 20px;
-            border: 1px solid var(--text-sub);
-            background: var(--input-bg);
-            color: var(--input-text);
-            font-size: 14px;
-            outline: none;
-        }
-
-        .chat-input-area button {
-            background: #0084ff;
-            color: #fff;
-            border: none;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         /* 🔻 Footer Section */
@@ -684,32 +549,15 @@
         </div>
     </section>
 
-    <!-- 🔒 Facebook Floating Private Chat Widget -->
-    <div class="chat-widget-toggle" id="chat-toggle">
-        <i class="fa-brands fa-facebook-messenger"></i>
-    </div>
-
-    <div class="chat-box-container" id="chat-box">
-        <div class="chat-header">
-            <div class="chat-header-info">
-                <img src="profile.jpg" alt="Pintu Joydhar">
-                <div>
-                    <h4>Pintu Joydhar</h4>
-                    <span><i class="fa-solid fa-circle" style="color: #22c55e; font-size: 9px;"></i> Active Now</span>
-                </div>
-            </div>
-            <button class="chat-close-btn" id="chat-close"><i class="fa-solid fa-xmark"></i></button>
+    <!-- 📩 Public Messages Section -->
+    <section class="messages-section">
+        <h2>Received <span>Messages</span></h2>
+        <p style="color: var(--text-sub);">গুগল শিটে আসা সকল মেসেজ এখানে লাইভ দেখাচ্ছে</p>
+        
+        <div class="messages-grid" id="messages-container">
+            <p style="color: var(--text-sub); text-align: center; grid-column: 1/-1;">মেসেজ লোড হচ্ছে...</p>
         </div>
-        <div class="chat-messages" id="chat-messages">
-            <div class="chat-bubble bot">
-                হ্যালো! আমি পিন্টু জোয়ার্দার। এটি সম্পূর্ণ প্রাইভেট চ্যাট—আপনার মেসেজ কেবল আমিই দেখতে পাব। 😊
-            </div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="মেসেজ লিখুন...">
-            <button id="chat-send-btn"><i class="fa-solid fa-paper-plane"></i></button>
-        </div>
-    </div>
+    </section>
 
     <!-- 🔻 Footer Section -->
     <footer>
@@ -732,18 +580,53 @@
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
-                    alert('ধন্যবাদ! আপনার মেসেজটি প্রাইভেটভাবে পেয়েছি।');
+                    alert('ধন্যবাদ! আপনার মেসেজটি সফলভাবে জমা হয়েছে।');
                     btn.disabled = false;
                     btn.innerHTML = "মেসেজ পাঠান";
                     form.reset();
+                    loadMessages();
                 })
                 .catch(error => {
-                    alert('ধন্যবাদ! আপনার মেসেজটি প্রাইভেটভাবে জমা হয়েছে।');
+                    alert('ধন্যবাদ! আপনার মেসেজটি জমা হয়েছে।');
                     btn.disabled = false;
                     btn.innerHTML = "মেসেজ পাঠান";
                     form.reset();
+                    loadMessages();
                 });
         });
+
+        // Fetch & Show Messages from Google Sheets
+        function loadMessages() {
+            fetch(scriptURL)
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('messages-container');
+                    container.innerHTML = '';
+
+                    if (!data || data.length === 0) {
+                        container.innerHTML = '<p style="color: var(--text-sub); text-align: center; grid-column: 1/-1;">এখনো কোনো মেসেজ জমা পড়েনি।</p>';
+                        return;
+                    }
+
+                    data.reverse().forEach(msg => {
+                        const card = document.createElement('div');
+                        card.className = 'msg-card';
+
+                        card.innerHTML = `
+                            <h4 style="color: var(--accent-color); font-size: 18px; margin-bottom: 5px;">${msg.name}</h4>
+                            <p style="color: var(--text-sub); font-size: 13px; margin-bottom: 10px;">${msg.email}</p>
+                            <p style="color: var(--text-main); font-size: 15px;">"${msg.message}"</p>
+                        `;
+
+                        container.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching messages:', error);
+                });
+        }
+
+        window.addEventListener('DOMContentLoaded', loadMessages);
 
         // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
@@ -786,62 +669,21 @@
             const query = searchInput.value.trim();
             if (query !== "") alert('Searching for: ' + query);
         }
-
-        // 🔒 Private Chat Widget JavaScript Logic
-        const chatToggle = document.getElementById('chat-toggle');
-        const chatBox = document.getElementById('chat-box');
-        const chatClose = document.getElementById('chat-close');
-        const chatInput = document.getElementById('chat-input');
-        const chatSendBtn = document.getElementById('chat-send-btn');
-        const chatMessages = document.getElementById('chat-messages');
-
-        // Toggle Chat Box Window
-        chatToggle.addEventListener('click', () => {
-            chatBox.style.display = chatBox.style.display === 'flex' ? 'none' : 'flex';
-        });
-
-        chatClose.addEventListener('click', () => {
-            chatBox.style.display = 'none';
-        });
-
-        // Send Private Chat Message
-        function sendChatMessage() {
-            const text = chatInput.value.trim();
-            if (text === '') return;
-
-            // Display User Message Bubble on user's own screen only
-            const userMsg = document.createElement('div');
-            userMsg.className = 'chat-bubble user';
-            userMsg.textContent = text;
-            chatMessages.appendChild(userMsg);
-
-            chatInput.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            // Send privately to your Google Sheet only
-            const formData = new FormData();
-            formData.append('Name', 'Private Chat User');
-            formData.append('Email', 'Messenger Chat');
-            formData.append('Message', text);
-
-            fetch(scriptURL, { method: 'POST', body: formData })
-                .catch(err => console.log(err));
-
-            // Instant Auto Reply Simulation
-            setTimeout(() => {
-                const botMsg = document.createElement('div');
-                botMsg.className = 'chat-bubble bot';
-                botMsg.textContent = 'মেসেজ দেওয়ার জন্য ধন্যবাদ! এটি পিন্টুর কাছে গোপনে পৌঁছে গেছে।';
-                chatMessages.appendChild(botMsg);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 800);
-        }
-
-        chatSendBtn.addEventListener('click', sendChatMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendChatMessage();
-        });
     </script>
+
+    <!-- 💬 Start of Tawk.to Live Chat Script -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6a6d87c08b05d11d458f2f4b/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!-- 💬 End of Tawk.to Live Chat Script -->
 
 </body>
 </html>
