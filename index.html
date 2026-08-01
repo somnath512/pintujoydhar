@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* 🎨 Theme Color Variables */
+        /* Theme Color Variables */
         :root {
             --bg-color: #0f172a;
             --header-bg: #1e293b;
@@ -21,7 +21,6 @@
             --card-bg: #1e293b;
         }
 
-        /* ☀️ Light Theme Styles */
         [data-theme="light"] {
             --bg-color: #f8fafc;
             --header-bg: #ffffff;
@@ -42,9 +41,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             background-color: var(--bg-color);
@@ -52,7 +49,6 @@
             line-height: 1.6;
         }
 
-        /* Header / Navbar */
         header {
             position: sticky;
             top: 0;
@@ -67,379 +63,74 @@
             gap: 15px;
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--text-main);
-        }
+        .logo { font-size: 24px; font-weight: bold; color: var(--text-main); }
+        .logo span { color: var(--accent-color); }
 
-        .logo span {
-            color: var(--accent-color);
-        }
+        nav { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
+        nav ul li a { color: var(--nav-link); text-decoration: none; font-weight: 500; transition: 0.3s; }
+        nav ul li a:hover { color: var(--accent-color); }
 
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
+        .btn-nav { background: var(--accent-color); color: #ffffff !important; padding: 8px 18px; border-radius: 20px; font-weight: bold; }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-            align-items: center;
-        }
-
-        nav ul li a {
-            color: var(--nav-link);
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent-color);
-        }
-
-        .btn-nav {
-            background: var(--accent-color);
-            color: #ffffff !important;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-weight: bold;
-        }
-
-        /* 🔍 Search Box Styling */
         .search-container {
-            display: flex;
-            align-items: center;
-            background-color: var(--input-bg);
-            border: 1px solid var(--accent-color);
-            border-radius: 20px;
-            padding: 4px 10px;
+            display: flex; align-items: center; background-color: var(--input-bg);
+            border: 1px solid var(--accent-color); border-radius: 20px; padding: 4px 10px;
         }
+        .search-container input { background: transparent; border: none; outline: none; color: var(--input-text); padding: 5px 8px; font-size: 14px; width: 120px; }
+        .search-container button { background: transparent; border: none; color: var(--accent-color); cursor: pointer; padding: 5px; font-size: 14px; }
 
-        .search-container input {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: var(--input-text);
-            padding: 5px 8px;
-            font-size: 14px;
-            width: 120px;
-        }
-
-        .search-container button {
-            background: transparent;
-            border: none;
-            color: var(--accent-color);
-            cursor: pointer;
-            padding: 5px;
-            font-size: 14px;
-        }
-
-        /* Theme Toggle Button Style */
         .theme-toggle-btn {
-            background: transparent;
-            border: 2px solid var(--accent-color);
-            color: var(--text-main);
-            padding: 6px 14px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            background: transparent; border: 2px solid var(--accent-color); color: var(--text-main);
+            padding: 6px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px;
         }
+        .theme-toggle-btn:hover { background: var(--accent-color); color: #fff; }
 
-        .theme-toggle-btn:hover {
-            background: var(--accent-color);
-            color: #fff;
-        }
+        .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 60vh; padding: 40px 20px; }
+        .profile-img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent-color); box-shadow: 0 0 25px rgba(56, 189, 248, 0.3); margin-bottom: 25px; }
+        .hero h1 { font-size: 38px; margin-bottom: 15px; }
+        .hero h1 span { color: var(--accent-color); }
+        .hero p { max-width: 600px; color: var(--text-sub); font-size: 17px; margin-bottom: 30px; }
+        .btn-container { display: flex; gap: 15px; }
+        .btn-primary { background: var(--accent-color); color: #ffffff; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+        .btn-secondary { border: 2px solid var(--accent-color); color: var(--accent-color); padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; }
 
-        /* Hero Section */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            min-height: 60vh;
-            padding: 40px 20px;
-        }
+        .posts-section { padding: 40px 8% 60px 8%; text-align: center; }
+        .posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .post-card { background: var(--card-bg); border-radius: 12px; padding: 25px; border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: left; transition: transform 0.3s ease, border-color 0.3s ease; }
+        .post-card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+        .post-badge { background: var(--accent-color); color: #fff; font-size: 12px; font-weight: bold; padding: 4px 10px; border-radius: 12px; display: inline-block; margin-bottom: 12px; }
+        .post-title { font-size: 20px; color: var(--text-main); margin-bottom: 10px; }
+        .post-desc { color: var(--text-sub); font-size: 14px; line-height: 1.6; margin-bottom: 15px; }
+        .post-link { color: var(--accent-color); text-decoration: none; font-weight: bold; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; }
 
-        .profile-img {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--accent-color);
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
-            margin-bottom: 25px;
-        }
+        .services-section { padding: 60px 8%; text-align: center; background-color: rgba(255, 255, 255, 0.01); }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .service-card { background: var(--card-bg); padding: 35px 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.05); display: flex; flex-direction: column; align-items: center; text-decoration: none !important; color: inherit !important; cursor: pointer; transition: transform 0.3s ease, border-color 0.3s ease; }
+        .service-card:hover { transform: translateY(-5px); border-color: var(--accent-color); box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2); }
+        .service-card i { font-size: 38px; color: var(--accent-color); margin-bottom: 18px; }
 
-        .hero h1 {
-            font-size: 38px;
-            margin-bottom: 15px;
-        }
+        /* Direct Contact Section */
+        .contact-section { padding: 80px 8% 60px 8%; background-color: var(--header-bg); text-align: center; }
+        .contact-section h2 { font-size: 32px; margin-bottom: 10px; }
+        .contact-section h2 span { color: var(--accent-color); }
+        .contact-section p { color: var(--text-sub); margin-bottom: 40px; }
+        .contact-cards-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; max-width: 800px; margin: 0 auto; }
+        .contact-card { background: var(--bg-color); padding: 25px 30px; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.2); display: flex; align-items: center; gap: 15px; text-decoration: none; color: var(--text-main); flex: 1; min-width: 260px; transition: transform 0.3s ease, border-color 0.3s ease; }
+        .contact-card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+        .contact-card i { font-size: 28px; color: var(--accent-color); }
+        .contact-card-info { text-align: left; }
+        .contact-card-info h4 { font-size: 14px; color: var(--text-sub); }
+        .contact-card-info span { font-size: 16px; font-weight: bold; word-break: break-all; }
 
-        .hero h1 span {
-            color: var(--accent-color);
-        }
-
-        .hero p {
-            max-width: 600px;
-            color: var(--text-sub);
-            font-size: 17px;
-            margin-bottom: 30px;
-        }
-
-        .btn-container {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn-primary {
-            background: var(--accent-color);
-            color: #ffffff;
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .btn-secondary {
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* 📢 Trading & Recent Posts Section */
-        .posts-section {
-            padding: 40px 8% 60px 8%;
-            text-align: center;
-        }
-
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .post-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: left;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .post-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
-        }
-
-        .post-badge {
-            background: var(--accent-color);
-            color: #fff;
-            font-size: 12px;
-            font-weight: bold;
-            padding: 4px 10px;
-            border-radius: 12px;
-            display: inline-block;
-            margin-bottom: 12px;
-        }
-
-        .post-title {
-            font-size: 20px;
-            color: var(--text-main);
-            margin-bottom: 10px;
-        }
-
-        .post-desc {
-            color: var(--text-sub);
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .post-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .post-link:hover {
-            text-decoration: underline;
-        }
-
-        /* 🛠️ Services Section */
-        .services-section {
-            padding: 60px 8%;
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.01);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            padding: 35px 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none !important;
-            color: inherit !important;
-            cursor: pointer;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
-            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
-        }
-
-        .service-card i {
-            font-size: 38px;
-            color: var(--accent-color);
-            margin-bottom: 18px;
-        }
-
-        .service-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: var(--text-main);
-        }
-
-        .service-card p {
-            color: var(--text-sub);
-            font-size: 15px;
-        }
-
-        /* ✉️ Contact Section */
-        .contact-section {
-            padding: 80px 8% 40px 8%;
-            background-color: var(--header-bg);
-            text-align: center;
-        }
-
-        .contact-section h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-
-        .contact-section h2 span {
-            color: var(--accent-color);
-        }
-
-        .contact-section p {
-            color: var(--text-sub);
-            margin-bottom: 40px;
-        }
-
-        .contact-container {
-            max-width: 550px;
-            margin: 0 auto;
-            background: var(--bg-color);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid rgba(56, 189, 248, 0.2);
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .contact-form input, 
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px 15px;
-            background: var(--input-bg);
-            border: 1px solid var(--text-sub);
-            color: var(--input-text);
-            border-radius: 6px;
-            outline: none;
-            font-size: 15px;
-        }
-
-        .contact-form button {
-            background: var(--accent-color);
-            color: #fff;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        /* 💬 Messages Display Section */
-        .messages-section {
-            padding: 60px 8%;
-            text-align: center;
-        }
-
-        .messages-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-            text-align: left;
-        }
-
-        .msg-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        /* 🔻 Footer Section */
-        footer {
-            text-align: center;
-            padding: 25px;
-            background-color: var(--header-bg);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 14px;
-            color: var(--text-sub);
-        }
-
-        footer span {
-            color: var(--accent-color);
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
+        footer { text-align: center; padding: 25px; background-color: var(--header-bg); border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 14px; color: var(--text-sub); }
+        footer span { color: var(--accent-color); font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <!-- Header / Navbar -->
     <header>
         <div class="logo">Pintu <span>Joydhar</span></div>
-        
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -447,14 +138,10 @@
                 <li><a href="#services">Service</a></li>
                 <li><a href="#contact" class="btn-nav">Contact</a></li>
             </ul>
-
-            <!-- Search Bar -->
             <div class="search-container">
                 <input type="text" id="search-input" placeholder="Search...">
                 <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
-
-            <!-- Theme Switcher Button -->
             <button id="theme-toggle" class="theme-toggle-btn">
                 <i id="theme-icon" class="fa-solid fa-sun"></i>
                 <span id="theme-text">Light</span>
@@ -465,170 +152,92 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <img src="profile.jpg" alt="Pintu Joydhar" class="profile-img">
-        
         <h1>HI, I am <span>Pintu Joydhar</span></h1>
         <p>I am preparing for a Junior Accountant role, and writing poetry is a personal passion of mine</p>
-        
         <div class="btn-container">
             <a href="#trading-posts" class="btn-primary">আমার ট্রেডিং পোস্টসমূহ</a>
             <a href="#contact" class="btn-secondary">যোগাযোগ করুন</a>
         </div>
     </section>
 
-    <!-- 📢 Trading & Recent Posts Section -->
+    <!-- Trading Section -->
     <section class="posts-section" id="trading-posts">
         <h2>Latest <span>Trading Posts & Updates</span></h2>
         <p style="color: var(--text-sub); margin-top: 5px;">আমার নতুন সকল ট্রেডিং পোস্ট ও আপডেট এখানে দেখতে পাবেন</p>
-
         <div class="posts-grid">
-
             <div class="post-card">
                 <span class="post-badge">Trading</span>
                 <h3 class="post-title">Basic Trading Strategy for Beginners</h3>
-                <p class="post-desc">নতুনদের জন্য ট্রেডিং শুরু করার সহজ নিয়ম এবং মার্কেট এনালাইসিস করার প্রাথমিক ধারণা...</p>
-                <a href="#" class="post-link">বিস্তারিত পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
+                <p class="post-desc">নতুনদের জন্য ট্রেডিং শুরু করার সহজ নিয়ম এবং মার্কেট এনালাইসিস করার প্রাথমিক ধারণা...</p>
+                <a href="#" class="post-link">বিস্তারিত পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-
             <div class="post-card">
                 <span class="post-badge">Finance</span>
                 <h3 class="post-title">Accounting Principles for Traders</h3>
-                <p class="post-desc">ট্রেডিং প্রফিট ও লস কীভাবে সঠিকভাবে বুককিপিংয়ে ধরে রাখতে হয় তার গাইডলাইন...</p>
-                <a href="#" class="post-link">বিস্তারিত পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
+                <p class="post-desc">ট্রেডিং প্রফিট ও লস কীভাবে সঠিকভাবে বুককিপিংয়ে ধরে রাখতে হয় তার গাইডলাইন...</p>
+                <a href="#" class="post-link">বিস্তারিত পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-
             <div class="post-card">
                 <span class="post-badge">Poetry</span>
                 <h3 class="post-title">তুমি এলেই...</h3>
                 <p class="post-desc">বলছিলাম—তোমার কাছে আসলে আমার হার্টবিট যায় বেড়ে, তুমি বললে, "মজা পেলাম কথা শুনে"...</p>
-                <a href="writing.html" class="post-link">কবিতাটি পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="writing.html" class="post-link">কবিতাটি পড়ুন <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-
         </div>
     </section>
 
-    <!-- 🛠️ Services Section -->
+    <!-- Services Section -->
     <section class="services-section" id="services">
         <h2>My <span>Services</span></h2>
         <br>
         <div class="services-grid">
-
             <a href="blog.html" class="service-card">
                 <i class="fa-solid fa-newspaper"></i>
-                <h3>Personal Blog</h3>
+                <h3 style="color: var(--text-main); margin-bottom: 12px;">Personal Blog</h3>
                 <img src="blog.jpg" alt="Blog Image" style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
-                <p>বলছিলাম—তোমার কাছে আসলে আমার হার্টবিট যায় বেড়ে, তুমি বললে, "মজা পেলাম কথা শুনে"...</p>
+                <p style="color: var(--text-sub);">বলছিলাম—তোমার কাছে আসলে আমার হার্টবিট যায় বেড়ে...</p>
             </a>
-
             <a href="accounting.html" class="service-card">
                 <i class="fa-solid fa-calculator"></i>
-                <h3>Accounting & Finance</h3>
-                <p style="margin-top: 10px;">বুককিপিং, হিসাব-নিকাশ এবং জুনিয়র একাউন্ট্যান্ট সংক্রান্ত সার্বিক সহায়তা।</p>
+                <h3 style="color: var(--text-main); margin-bottom: 12px;">Accounting & Finance</h3>
+                <p style="color: var(--text-sub);">বুককিপিং, হিসাব-নিকাশ এবং জুনিয়র একাউন্ট্যান্ট সংক্রান্ত সহায়তা।</p>
             </a>
-
             <a href="writing.html" class="service-card">
                 <i class="fa-solid fa-pen-nib"></i>
-                <h3>Content Writing</h3>
-                <p style="margin-top: 10px;">কবিতা, সাহিত্যিক কাজ এবং ক্রিয়েটিভ কনটেন্ট রাইটিং সার্ভিস।</p>
+                <h3 style="color: var(--text-main); margin-bottom: 12px;">Content Writing</h3>
+                <p style="color: var(--text-sub);">কবিতা, সাহিত্যিক কাজ এবং ক্রিয়েটিভ কনটেন্ট রাইটিং সার্ভিস।</p>
             </a>
-
         </div>
     </section>
 
-    <!-- ✉️ Contact Section -->
+    <!-- Contact Details Section -->
     <section class="contact-section" id="contact">
         <h2>Contact <span>Me</span></h2>
-        <p>আমার সাথে যোগাযোগ করতে নিচের ফর্মে মেসেজ পাঠান</p>
-
-        <div class="contact-container">
-            <form class="contact-form" id="sheet-form">
-                <input type="text" name="Name" placeholder="আপনার নাম" required>
-                <input type="email" name="Email" placeholder="আপনার ইমেইল" required>
-                <textarea name="Message" rows="5" placeholder="আপনার বার্তা লিখুন..." required></textarea>
-                <button type="submit" id="submit-btn">মেসেজ পাঠান</button>
-            </form>
+        <p>সরাসরি যোগাযোগ করতে নিচের তথ্য ব্যবহার করুন</p>
+        <div class="contact-cards-container">
+            <a href="pintujoydhar442@gmail.com" class="contact-card">
+                <i class="fa-solid fa-envelope"></i>
+                <div class="contact-card-info">
+                    <h4>Contract Me</h4>
+                    <span>pintujoydhar442@gmail.com</span>
+                </div>
+            </a>
+            <a href="tel:+8801XXXXXXXXX" class="contact-card">
+                <i class="fa-solid fa-phone"></i>
+                <div class="contact-card-info">
+                    <h4>Call Me</h4>
+                    <span>+8801XXXXXXXXX</span>
+                </div>
+            </a>
         </div>
     </section>
 
-    <!-- 📩 Public Messages Section -->
-    <section class="messages-section">
-        <h2>Received <span>Messages</span></h2>
-        <p style="color: var(--text-sub);">গুগল শিটে আসা সকল মেসেজ এখানে লাইভ দেখাচ্ছে</p>
-        
-        <div class="messages-grid" id="messages-container">
-            <p style="color: var(--text-sub); text-align: center; grid-column: 1/-1;">মেসেজ লোড হচ্ছে...</p>
-        </div>
-    </section>
-
-    <!-- 🔻 Footer Section -->
     <footer>
         <p>Created by <span>PINTU JOYDHAR</span></p>
     </footer>
 
     <!-- JavaScript Logic -->
     <script>
-        // 🔗 Google Apps Script URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbyojvPnwHDaYgHS42OvqjOJoVt_jFLawMuj3U5enLwruR_27ebA9l6Lnzietenzvn-40g/exec';
-        
-        const form = document.getElementById('sheet-form');
-        const btn = document.getElementById('submit-btn');
-
-        // Form Submit Event
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            btn.disabled = true;
-            btn.innerHTML = "পাঠানো হচ্ছে...";
-
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    alert('ধন্যবাদ! আপনার মেসেজটি সফলভাবে জমা হয়েছে।');
-                    btn.disabled = false;
-                    btn.innerHTML = "মেসেজ পাঠান";
-                    form.reset();
-                    loadMessages();
-                })
-                .catch(error => {
-                    alert('ধন্যবাদ! আপনার মেসেজটি জমা হয়েছে।');
-                    btn.disabled = false;
-                    btn.innerHTML = "মেসেজ পাঠান";
-                    form.reset();
-                    loadMessages();
-                });
-        });
-
-        // Fetch & Show Messages from Google Sheets
-        function loadMessages() {
-            fetch(scriptURL)
-                .then(response => response.json())
-                .then(data => {
-                    const container = document.getElementById('messages-container');
-                    container.innerHTML = '';
-
-                    if (!data || data.length === 0) {
-                        container.innerHTML = '<p style="color: var(--text-sub); text-align: center; grid-column: 1/-1;">এখনো কোনো মেসেজ জমা পড়েনি।</p>';
-                        return;
-                    }
-
-                    data.reverse().forEach(msg => {
-                        const card = document.createElement('div');
-                        card.className = 'msg-card';
-
-                        card.innerHTML = `
-                            <h4 style="color: var(--accent-color); font-size: 18px; margin-bottom: 5px;">${msg.name}</h4>
-                            <p style="color: var(--text-sub); font-size: 13px; margin-bottom: 10px;">${msg.email}</p>
-                            <p style="color: var(--text-main); font-size: 15px;">"${msg.message}"</p>
-                        `;
-
-                        container.appendChild(card);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching messages:', error);
-                });
-        }
-
-        window.addEventListener('DOMContentLoaded', loadMessages);
-
-        // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         const themeText = document.getElementById('theme-text');
@@ -640,7 +249,6 @@
         themeToggleBtn.addEventListener('click', () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             updateUI(newTheme);
@@ -656,7 +264,6 @@
             }
         }
 
-        // Search Logic
         const searchBtn = document.getElementById('search-btn');
         const searchInput = document.getElementById('search-input');
 
@@ -671,7 +278,7 @@
         }
     </script>
 
-    <!-- 💬 Start of Tawk.to Live Chat Script -->
+    <!-- Live Chat Script -->
     <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
@@ -683,7 +290,5 @@
     s0.parentNode.insertBefore(s1,s0);
     })();
     </script>
-    <!-- 💬 End of Tawk.to Live Chat Script -->
-
 </body>
 </html>
