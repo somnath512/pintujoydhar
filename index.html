@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bn" data-theme="dark">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +16,7 @@
     <!-- Firebase SDKs -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, onSnapshot, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDpZPB6T_aXRD1LtIoEhW_vfPtdxYXX9P0",
@@ -41,7 +41,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     selectedImageBase64 = e.target.result;
-                    nameDisplay.innerText = "✓ ছবি সিলেক্ট করা হয়েছে: " + fileInput.files[0].name;
+                    nameDisplay.innerText = "✓ Image selected: " + fileInput.files[0].name;
                 };
                 reader.readAsDataURL(fileInput.files[0]);
             }
@@ -50,7 +50,7 @@
         window.createPost = async function() {
             const text = document.getElementById('postText').value.trim();
             if (!text && !selectedImageBase64) {
-                alert('দয়া করে কিছু লিখুন অথবা একটি ছবি যুক্ত করুন!');
+                alert('Please write something or attach an image!');
                 return;
             }
 
@@ -71,11 +71,10 @@
                 selectedImageBase64 = "";
             } catch (e) {
                 console.error("Error adding document: ", e);
-                alert('পোস্ট করতে সমস্যা হয়েছে!');
+                alert('Failed to create post!');
             }
         };
 
-        // রিয়েল-টাইম ডাটা লোড করার জন্য onSnapshot ব্যবহার করা হয়েছে
         function loadPostsRealtime() {
             const container = document.getElementById('postsContainer');
             const q = query(collection(db, "posts"));
@@ -83,7 +82,7 @@
             onSnapshot(q, (snapshot) => {
                 container.innerHTML = '';
                 if (snapshot.empty) {
-                    container.innerHTML = '<p style="color: var(--text-sub); text-align:center;">কোনো পোস্ট নেই।</p>';
+                    container.innerHTML = '<p style="color: var(--text-sub); text-align:center;">No posts available.</p>';
                     return;
                 }
 
@@ -107,7 +106,7 @@
                                 <button class="action-btn" onclick="toggleLike('${postId}', ${post.likes})">
                                     <i class="fa-solid fa-thumbs-up"></i> Like (${post.likes || 0})
                                 </button>
-                                <button class="action-btn" onclick="alert('কমেন্ট অপশনটি চালু আছে!')">
+                                <button class="action-btn" onclick="alert('Comment section is active!')">
                                     <i class="fa-solid fa-comment"></i> Comment
                                 </button>
                             </div>
@@ -118,7 +117,7 @@
         }
 
         window.deletePost = async function(postId) {
-            if (confirm('আপনি কি নিশ্চিতভাবে এই পোস্টটি ডিলিট করতে চান?')) {
+            if (confirm('Are you sure you want to delete this post?')) {
                 try {
                     await deleteDoc(doc(db, "posts", postId));
                 } catch (e) {
@@ -129,7 +128,7 @@
 
         window.editPost = async function(postId, oldContent) {
             let decodedContent = decodeURIComponent(oldContent);
-            let newText = prompt("আপনার পোস্টটি এডিট করুন:", decodedContent);
+            let newText = prompt("Edit your post:", decodedContent);
             if (newText !== null && newText.trim() !== "") {
                 try {
                     await updateDoc(doc(db, "posts", postId), {
@@ -486,7 +485,7 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#news-feed">News Feed</a></li>
-                <li><a href="#services">Service</a></li>
+                <li><a href="#services">Services</a></li>
                 <li><a href="#contact" class="btn-nav">Contact</a></li>
             </ul>
 
@@ -518,15 +517,15 @@
     <!-- News Feed Section -->
     <section class="posts-section" id="news-feed">
         <h2>News <span>Feed</span></h2>
-        <p style="color: var(--text-sub); margin-top: 5px;">ছবি বা লেখা দিয়ে সবার সাথে মতামত শেয়ার করুন</p>
+        <p style="color: var(--text-sub); margin-top: 5px;">Share your thoughts and photos with everyone</p>
         
         <div class="feed-container">
             <div class="create-post-card">
-                <textarea id="postText" placeholder="আজ মনে কি চলছে লিখুন..."></textarea>
+                <textarea id="postText" placeholder="What's on your mind today..."></textarea>
                 
                 <div class="post-tools">
                     <label class="upload-label">
-                        <i class="fa-solid fa-image"></i> ফটো যুক্ত করুন
+                        <i class="fa-solid fa-image"></i> Add Photo
                         <input type="file" id="imageInput" accept="image/*" onchange="previewImage()">
                     </label>
                     <button class="btn-post" onclick="createPost()">Post</button>
@@ -535,7 +534,7 @@
             </div>
 
             <div id="postsContainer">
-                <p style="color: var(--text-sub); text-align:center;">লোড হচ্ছে...</p>
+                <p style="color: var(--text-sub); text-align:center;">Loading...</p>
             </div>
         </div>
     </section>
@@ -548,24 +547,24 @@
                 <i class="fa-solid fa-newspaper"></i>
                 <h3 style="color: var(--text-main); margin-bottom: 12px;">Personal Blog</h3>
                 <img src="blog.jpg" alt="Blog Image" style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 12px;">
-                <p style="color: var(--text-sub);">বলছিলাম—তোমার কাছে আসলে আমার হার্টবিট যায় বেড়ে...</p>
+                <p style="color: var(--text-sub);">As I said—coming near you makes my heartbeat race higher...</p>
             </a>
             <a href="calculator.html" class="service-card">
                 <i class="fa-solid fa-calculator"></i>
                 <h3 style="color: var(--text-main); margin-bottom: 12px;">Accounting & Calculator</h3>
-                <p style="color: var(--text-sub);">বুককিপিং, ট্রেডিং ক্যালকুলেশন এবং হিসাব-নিকাশ করার টুলস।</p>
+                <p style="color: var(--text-sub);">Tools for bookkeeping, trading calculations, and financial management.</p>
             </a>
             <a href="writing.html" class="service-card">
                 <i class="fa-solid fa-pen-nib"></i>
                 <h3 style="color: var(--text-main); margin-bottom: 12px;">Content Writing</h3>
-                <p style="color: var(--text-sub);">কবিতা, সাহিত্যিক কাজ এবং ক্রিয়েটিভ কনটেন্ট রাইটিং সার্ভিস।</p>
+                <p style="color: var(--text-sub);">Poetry, literary works, and creative content writing services.</p>
             </a>
         </div>
     </section>
 
     <section class="contact-section" id="contact">
         <h2>Contact <span>Me</span></h2>
-        <p>সরাসরি যোগাযোগ করতে বা সোশ্যাল মিডিয়ায় যুক্ত হতে নিচের লিংকগুলো ব্যবহার করুন</p>
+        <p>Use the links below to get in touch directly or connect via social media</p>
         
         <div class="contact-cards-container">
             <a href="mailto:pintujoydhar442@gmail.com" class="contact-card">
@@ -607,7 +606,6 @@
             window.location.href = 'login.html';
         }
 
-        // Theme Toggle Logic
         const themeToggleBtn = document.getElementById('theme-toggle');
         const themeIcon = document.getElementById('theme-icon');
         const themeText = document.getElementById('theme-text');
