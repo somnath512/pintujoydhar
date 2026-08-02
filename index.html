@@ -79,6 +79,7 @@
         function loadPostsRealtime() {
             const container = document.getElementById('postsContainer');
             const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+            const currentUser = localStorage.getItem('savedUser') || 'Pintu Joydhar';
 
             onSnapshot(q, (snapshot) => {
                 container.innerHTML = '';
@@ -92,14 +93,22 @@
                     let postId = docSnap.id;
                     let imageTag = post.image ? `<img src="${post.image}" class="post-img" alt="Post Image">` : '';
                     
+                    // শুধুমাত্র আসল লেখক বা অ্যাডমিন হলে তবেই এডিট/ডিলিট বাটন দেখাবে
+                    let menuButtons = '';
+                    if (post.author === currentUser || currentUser === 'Pintu Joydhar') {
+                        menuButtons = `
+                            <div class="post-menu">
+                                <button class="menu-btn edit" onclick="editPost('${postId}', '${encodeURIComponent(post.content)}')"><i class="fa-solid fa-pen"></i> Edit</button>
+                                <button class="menu-btn delete" onclick="deletePost('${postId}')"><i class="fa-solid fa-trash"></i> Delete</button>
+                            </div>
+                        `;
+                    }
+
                     container.innerHTML += `
                         <div class="post-box">
                             <div class="post-header">
                                 <div class="post-author"><i class="fa-solid fa-user-circle"></i> ${post.author}</div>
-                                <div class="post-menu">
-                                    <button class="menu-btn edit" onclick="editPost('${postId}', '${encodeURIComponent(post.content)}')"><i class="fa-solid fa-pen"></i> Edit</button>
-                                    <button class="menu-btn delete" onclick="deletePost('${postId}')"><i class="fa-solid fa-trash"></i> Delete</button>
-                                </div>
+                                ${menuButtons}
                             </div>
                             <div class="post-content">${post.content}</div>
                             ${imageTag}
@@ -642,7 +651,7 @@
         });
 
         function handleSearch() {
-            const query = searchInput.value.txtTrim = searchInput.value.trim();
+            const query = searchInput.value.trim();
             if (query !== "") alert('Searching for: ' + query);
         }
     </script>
