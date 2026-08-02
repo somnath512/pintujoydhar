@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login / Sign Up - Pintu Joydhar</title>
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      // আপনার EmailJS Public Key এখানে বসাবেন
+      emailjs.init("YOUR_PUBLIC_KEY");
+    })();
+  </script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     body { background: #0f172a; display: flex; justify-content: center; align-items: center; height: 100vh; color: #f8fafc; }
@@ -31,13 +39,13 @@
     <!-- Main Form Inputs -->
     <div id="mainInputs">
       <input type="text" id="username" placeholder="Username" required>
-      <input type="text" id="identifier" placeholder="Email Address or Mobile Number" required>
+      <input type="email" id="identifier" placeholder="Gmail Address" required>
       <input type="password" id="password" placeholder="Password" required>
     </div>
 
     <!-- OTP Verification Section (Hidden initially) -->
     <div id="otpSection" class="hidden">
-      <p style="color: #38bdf8; margin-bottom: 10px;">Security Verification: Enter the 4-digit code (e.g., 1234)</p>
+      <p style="color: #38bdf8; margin-bottom: 10px;">Verification code sent to your Gmail! Enter it below:</p>
       <input type="text" id="otpInput" placeholder="Enter 4-digit OTP" maxlength="4">
       <button onclick="verifyOTP()">Verify & Complete</button>
     </div>
@@ -51,8 +59,8 @@
   </div>
 
   <script>
-    // আপনার প্রোভাইড করা গুগল অ্যাপস স্ক্রিপ্ট ইউআরএল এখানে সেট করা আছে
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbw4AIjSfR-n-Rb4k7VK5txEd84uuOYx55lRv7apGcIE5eYDgm5zb5w1iH0ywlqu3dRGOA/exec';
+    // আপনার Google Apps Script ওয়েব অ্যাপ ইউআরএল
+    const sheetScriptURL = 'https://script.google.com/macros/s/AKfycbw4AIjSfR-n-Rb4k7VK5txEd84uuOYx55lRv7apGcIE5eYDgm5zb5w1iH0ywlqu3dRGOA/exec';
 
     if (localStorage.getItem('isLoggedIn') === 'true') {
       window.location.href = 'index.html';
@@ -93,18 +101,28 @@
       }
 
       if (isSignUpMode) {
-        // সিকিউরিটি ভেরিফিকেশনের জন্য 4 ডিজিটের ওটিপি কোড জেনারেট করা
         generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
-        alert('Security Verification Code (OTP): ' + generatedOTP);
-        
         tempUserData = { username: user, identifier: identifier, password: pass };
 
-        // ইউজার ইন্টারফেস পরিবর্তন করে ওটিপি ফিল্ড দেখানো
-        document.getElementById('mainInputs').classList.add('hidden');
-        document.getElementById('otpSection').classList.remove('hidden');
-        document.getElementById('authBtn').classList.add('hidden');
-        document.getElementById('toggleContainer').classList.add('hidden');
-        document.getElementById('formTitle').innerText = 'Verify Security OTP';
+        // EmailJS এর মাধ্যমে সরাসরি জিমেইলে ওটিপি পাঠানো
+        const templateParams = {
+          to_email: identifier,
+          otp: generatedOTP
+        };
+
+        // আপনার EmailJS Service ID এবং Template ID এখানে বসাবেন
+        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+          .then(function(response) {
+             alert('OTP sent successfully to your Gmail: ' + identifier);
+             document.getElementById('mainInputs').classList.add('hidden');
+             document.getElementById('otpSection').classList.remove('hidden');
+             document.getElementById('authBtn').classList.add('hidden');
+             document.getElementById('toggleContainer').classList.add('hidden');
+             document.getElementById('formTitle').innerText = 'Verify Security OTP';
+          }, function(error) {
+             console.error('FAILED...', error);
+             alert('Failed to send email. Please check your Gmail address or EmailJS settings.');
+          });
 
       } else {
         // সাধারণ লগইন চেক
@@ -124,8 +142,8 @@
     function verifyOTP() {
       const enteredOTP = document.getElementById('otpInput').value.trim();
       if (enteredOTP === generatedOTP) {
-        // ওটিপি সঠিক হলে সরাসরি গুগল শিটে ডাটা চলে যাবে
-        fetch(scriptURL, {
+        // ওটিপি সঠিক হলে গুগল শিটে ডাটা সেভ হয়ে যাবে
+        fetch(sheetScriptURL, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
@@ -139,7 +157,6 @@
           window.location.href = 'index.html';
         })
         .catch(error => {
-          console.error('Error!', error.message);
           localStorage.setItem('savedUser', tempUserData.username);
           localStorage.setItem('savedPass', tempUserData.password);
           localStorage.setItem('isLoggedIn', 'true');
