@@ -6,6 +6,44 @@
     <title>Login - Pintu Joydhar Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Firebase SDKs -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDpZPB6T_aXRD1LtIoEhW_vfPtdxYXX9P0",
+            authDomain: "pintu-joydhar.firebaseapp.com",
+            projectId: "pintu-joydhar",
+            storageBucket: "pintu-joydhar.firebasestorage.app",
+            messagingSenderId: "119458106001",
+            appId: "1:119458106001:web:024bd1961ec3fc019b0d30",
+            measurementId: "G-BG1TBM8DEE"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        window.loginWithGoogle = async function() {
+            try {
+                const result = await signInWithPopup(auth, provider);
+                const user = result.user;
+                
+                // লোকাল স্টোরেজে জিমেইলের নাম এবং ইমেইল সেভ করা
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('savedUser', user.displayName || user.email);
+
+                // মূল পেজে রিডাইরেক্ট করা
+                window.location.replace('index.html');
+            } catch (error) {
+                console.error("Google Login Error: ", error);
+                document.getElementById('errorMsg').innerText = "Google Login Failed! Try again.";
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        };
+    </script>
+
     <style>
         :root {
             --bg-color: #0f172a;
@@ -69,51 +107,30 @@
             margin-bottom: 30px;
         }
 
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .input-group input {
+        .btn-google {
             width: 100%;
-            background: var(--input-bg);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            border-radius: 8px;
-            padding: 12px 15px;
-            color: var(--input-text);
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .input-group input:focus {
-            border-color: var(--accent-color);
-        }
-
-        .btn-login {
-            width: 100%;
-            background: var(--accent-color);
-            color: #ffffff;
-            border: none;
+            background: #ffffff;
+            color: #0f172a;
+            border: 1px solid #cbd5e1;
             padding: 12px;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer;
-            transition: opacity 0.2s;
-            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-color 0.2s;
         }
 
-        .btn-login:hover {
-            opacity: 0.9;
+        .btn-google:hover {
+            background: #f1f5f9;
+        }
+
+        .btn-google i {
+            color: #ea4335;
+            font-size: 18px;
         }
 
         .error-msg {
@@ -128,15 +145,13 @@
 
     <div class="login-card">
         <h2>Welcome <span>Back</span></h2>
-        <p>Please enter your name to access the dashboard</p>
+        <p>Sign in quickly using your Google Account</p>
         
-        <div class="input-group">
-            <label for="username">Your Name</label>
-            <input type="text" id="username" placeholder="Enter your name...">
-        </div>
+        <button class="btn-google" onclick="loginWithGoogle()">
+            <i class="fa-brands fa-google"></i> Continue with Google
+        </button>
 
-        <button class="btn-login" onclick="handleLogin()">Login</button>
-        <div id="errorMsg" class="error-msg">Please enter your name to continue!</div>
+        <div id="errorMsg" class="error-msg"></div>
     </div>
 
     <script>
@@ -144,32 +159,6 @@
         if (localStorage.getItem('isLoggedIn') === 'true') {
             window.location.replace('index.html');
         }
-
-        function handleLogin() {
-            const usernameInput = document.getElementById('username').value.trim();
-            const errorMsg = document.getElementById('errorMsg');
-
-            if (usernameInput === "") {
-                errorMsg.style.display = 'block';
-                return;
-            }
-
-            errorMsg.style.display = 'none';
-
-            // লোকাল স্টোরেজে লগইন স্টেট সেভ করা
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('savedUser', usernameInput);
-
-            // মূল পেজে রিডাইরেক্ট করা
-            window.location.replace('index.html');
-        }
-
-        // এন্টার প্রেস করলে যেন লগইন হয়ে যায়
-        document.getElementById('username').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                handleLogin();
-            }
-        });
     </script>
 </body>
 </html>
