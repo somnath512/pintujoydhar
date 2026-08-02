@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Register - Portfolio & News Feed</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-900 text-white flex items-center justify-center min-h-screen">
@@ -13,7 +12,6 @@
         <h2 id="form-title" class="text-2xl font-bold mb-6 text-center text-indigo-400">Login</h2>
 
         <form id="auth-form" onsubmit="handleAuth(event)">
-            <!-- Extra fields for Registration -->
             <div id="register-fields" class="hidden space-y-4">
                 <div>
                     <label class="block text-sm font-medium mb-1">Full Name</label>
@@ -39,7 +37,6 @@
                 </div>
             </div>
 
-            <!-- Common Fields -->
             <div class="mt-4">
                 <label class="block text-sm font-medium mb-1">Gmail Address</label>
                 <input type="email" id="email" required class="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:border-indigo-500">
@@ -50,7 +47,6 @@
                 <input type="password" id="password" required class="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:border-indigo-500">
             </div>
 
-            <!-- OTP Section (Hidden initially) -->
             <div id="otp-section" class="hidden mt-4">
                 <label class="block text-sm font-medium mb-1">Enter OTP Code Sent to Email</label>
                 <input type="text" id="otp-input" class="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:border-indigo-500 tracking-widest text-center text-lg font-bold">
@@ -59,7 +55,6 @@
             <button type="submit" id="submit-btn" class="w-full mt-6 bg-indigo-600 hover:bg-indigo-500 transition py-2.5 rounded-lg font-semibold shadow-lg">Login</button>
         </form>
 
-        <!-- Toggle between Login and Register -->
         <p class="mt-6 text-center text-sm text-slate-400">
             <span id="toggle-text">Don't have an account?</span> 
             <button onclick="toggleMode()" class="text-indigo-400 font-medium hover:underline ml-1">Register</button>
@@ -102,8 +97,13 @@
             const submitBtn = document.getElementById('submit-btn');
 
             if (isLogin) {
-                alert('Login Successful!');
-                window.location.href = 'index.html';
+                const savedUser = JSON.parse(localStorage.getItem('userProfile'));
+                if (savedUser && savedUser.email === email && savedUser.password === password) {
+                    alert('Login Successful!');
+                    window.location.href = 'index.html';
+                } else {
+                    alert('Invalid Email or Password!');
+                }
             } else {
                 if (otpSection.classList.contains('hidden')) {
                     generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
@@ -120,32 +120,25 @@
                     submitBtn.innerText = 'Sending OTP...';
                     submitBtn.disabled = true;
 
-                    // Web3Forms API দিয়ে জিমেইলে ওটিপি পাঠানোর রিকোয়েস্ট
-                    fetch('https://api.web3forms.com/submit', {
+                    // আপনার দেওয়া Google Apps Script URL এখানে বসানো হয়েছে
+                    const scriptURL = 'https://script.google.com/macros/s/AKfycbx_n_QSjyND_SG1kQe5ZDozIV92XCoxSbnPUvKd2kNrPyowjQmXMMSPCpcm0F4ukpSD/exec';
+
+                    fetch(scriptURL, {
                         method: 'POST',
+                        mode: 'no-cors',
                         headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
+                            'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            access_key: '929d4e5e-ce51-4950-828f-756eda9028b6',
-                            subject: 'Your Website Verification OTP',
                             email: email,
-                            message: 'Your One Time Password (OTP) is: ' + generatedOtp
+                            otp: generatedOtp
                         })
                     })
-                    .then(async (response) => {
-                        let json = await response.json();
-                        if (response.status === 200) {
-                            alert('OTP sent successfully to your Gmail!');
-                            otpSection.classList.remove('hidden');
-                            submitBtn.innerText = 'Verify & Complete Signup';
-                            submitBtn.disabled = false;
-                        } else {
-                            alert('Failed to send OTP: ' + json.message);
-                            submitBtn.innerText = 'Send OTP & Register';
-                            submitBtn.disabled = false;
-                        }
+                    .then(() => {
+                        alert('OTP sent successfully to your Gmail from your account!');
+                        otpSection.classList.remove('hidden');
+                        submitBtn.innerText = 'Verify & Complete Signup';
+                        submitBtn.disabled = false;
                     })
                     .catch(error => {
                         console.log(error);
