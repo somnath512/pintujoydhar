@@ -1,95 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Register - Portfolio & News Feed</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Login - Pintu Joydhar Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent-color: #38bdf8;
+            --input-bg: #334155;
+            --input-text: #ffffff;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #475569;
+            --accent-color: #0284c7;
+            --input-bg: #f1f5f9;
+            --input-text: #0f172a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-card h2 {
+            margin-bottom: 10px;
+            font-size: 26px;
+        }
+
+        .login-card h2 span {
+            color: var(--accent-color);
+        }
+
+        .login-card p {
+            color: var(--text-sub);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: var(--input-text);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .btn-login {
+            width: 100%;
+            background: var(--accent-color);
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            opacity: 0.9;
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 13px;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
 </head>
-<body class="bg-slate-900 text-white flex items-center justify-center min-h-screen">
+<body>
 
-    <div class="bg-slate-800 p-8 rounded-2xl shadow-2xl w-96 border border-slate-700">
-        <h2 id="form-title" class="text-2xl font-bold mb-6 text-center text-indigo-400">Login</h2>
+    <div class="login-card">
+        <h2>Welcome <span>Back</span></h2>
+        <p>Please enter your name to access the dashboard</p>
+        
+        <div class="input-group">
+            <label for="username">Your Name</label>
+            <input type="text" id="username" placeholder="Enter your name...">
+        </div>
 
-        <form id="auth-form" onsubmit="handleAuth(event)">
-            <!-- Register Extra Fields -->
-            <div id="register-fields" class="hidden space-y-4">
-                <div>
-                    <label class="block text-sm font-medium mb-1">Full Name</label>
-                    <input type="text" id="name" class="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:border-indigo-500">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium mb-1">Title / Profession</label>
-                    <input type="text" id="title" class="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:border-indigo-500" placeholder="e.g. Web Developer">
-                </div>
-            </div>
-
-            <!-- Email / Username Field -->
-            <div class="mt-4">
-                <label class="block text-sm font-medium mb-1">Email / Username</label>
-                <input type="text" id="email" required class="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:border-indigo-500" placeholder="Enter your email">
-            </div>
-
-            <button type="submit" id="submit-btn" class="w-full mt-6 bg-indigo-600 hover:bg-indigo-500 transition py-2.5 rounded-lg font-semibold shadow-lg">Login</button>
-        </form>
-
-        <!-- Toggle between Login and Register -->
-        <p class="mt-6 text-center text-sm text-slate-400">
-            <span id="toggle-text">Don't have an account?</span> 
-            <button onclick="toggleMode()" class="text-indigo-400 font-medium hover:underline ml-1">Register</button>
-        </p>
+        <button class="btn-login" onclick="handleLogin()">Login</button>
+        <div id="errorMsg" class="error-msg">Please enter your name to continue!</div>
     </div>
 
     <script>
-        let isLogin = true;
-
-        function toggleMode() {
-            isLogin = !isLogin;
-            const title = document.getElementById('form-title');
-            const regFields = document.getElementById('register-fields');
-            const submitBtn = document.getElementById('submit-btn');
-            const toggleText = document.getElementById('toggle-text');
-            const toggleBtn = document.querySelector('p button');
-
-            if (isLogin) {
-                title.innerText = 'Login';
-                regFields.classList.add('hidden');
-                submitBtn.innerText = 'Login';
-                toggleText.innerText = "Don't have an account?";
-                toggleBtn.innerText = 'Register';
-            } else {
-                title.innerText = 'Register';
-                regFields.classList.remove('hidden');
-                submitBtn.innerText = 'Register Now';
-                toggleText.innerText = "Already have an account?";
-                toggleBtn.innerText = 'Login';
-            }
+        // যদি ইউজার ইতিমধ্যেই লগইন করা থাকে, তবে সরাসরি ইনডেক্স পেজে পাঠিয়ে দিবে
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            window.location.replace('index.html');
         }
 
-        function handleAuth(event) {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
+        function handleLogin() {
+            const usernameInput = document.getElementById('username').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
 
-            if (isLogin) {
-                // সরাসরি লগইন করে ইনডেক্স পেজে পাঠিয়ে দিবে
-                const userData = { email: email, name: email.split('@')[0] };
-                localStorage.setItem('userProfile', JSON.stringify(userData));
-                alert('Login Successful!');
-                window.location.href = 'index.html';
-            } else {
-                // রেজিস্টার করে লোকাল স্টোরেজে সেভ করে ইনডেক্স পেজে পাঠিয়ে দিবে
-                const userData = {
-                    name: document.getElementById('name').value,
-                    title: document.getElementById('title').value,
-                    email: email
-                };
-
-                localStorage.setItem('userProfile', JSON.stringify(userData));
-                alert('Account Created Successfully!');
-                window.location.href = 'index.html';
+            if (usernameInput === "") {
+                errorMsg.style.display = 'block';
+                return;
             }
+
+            errorMsg.style.display = 'none';
+
+            // লোকাল স্টোরেজে লগইন স্টেট সেভ করা
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('savedUser', usernameInput);
+
+            // মূল পেজে রিডাইরেক্ট করা
+            window.location.replace('index.html');
         }
+
+        // এন্টার প্রেস করলে যেন লগইন হয়ে যায়
+        document.getElementById('username').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleLogin();
+            }
+        });
     </script>
 </body>
 </html>
