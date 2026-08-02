@@ -1,49 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Pintu Joydhar Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Firebase SDKs -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDpZPB6T_aXRD1LtIoEhW_vfPtdxYXX9P0",
-            authDomain: "pintu-joydhar.firebaseapp.com",
-            projectId: "pintu-joydhar",
-            storageBucket: "pintu-joydhar.firebasestorage.app",
-            messagingSenderId: "119458106001",
-            appId: "1:119458106001:web:024bd1961ec3fc019b0d30",
-            measurementId: "G-BG1TBM8DEE"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const provider = new GoogleAuthProvider();
-
-        window.loginWithGoogle = async function() {
-            try {
-                const result = await signInWithPopup(auth, provider);
-                const user = result.user;
-                
-                // লোকাল স্টোরেজে জিমেইলের নাম এবং ইমেইল সেভ করা
-                localStorage.setItem('isLoggedIn', 'true');
-                localStorage.setItem('savedUser', user.displayName || user.email);
-
-                // মূল পেজে রিডাইরেক্ট করা
-                window.location.replace('index.html');
-            } catch (error) {
-                console.error("Google Login Error: ", error);
-                document.getElementById('errorMsg').innerText = "Google Login Failed! Try again.";
-                document.getElementById('errorMsg').style.display = 'block';
-            }
-        };
-    </script>
-
+    <title>Login - Portfolio</title>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -53,16 +13,6 @@
             --accent-color: #38bdf8;
             --input-bg: #334155;
             --input-text: #ffffff;
-        }
-
-        [data-theme="light"] {
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-sub: #475569;
-            --accent-color: #0284c7;
-            --input-bg: #f1f5f9;
-            --input-text: #0f172a;
         }
 
         * {
@@ -107,30 +57,49 @@
             margin-bottom: 30px;
         }
 
-        .btn-google {
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+        }
+
+        .input-group input {
             width: 100%;
-            background: #ffffff;
+            padding: 12px 15px;
+            background: var(--input-bg);
+            border: 1px solid #475569;
+            border-radius: 8px;
+            color: var(--input-text);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--accent-color);
             color: #0f172a;
-            border: 1px solid #cbd5e1;
+            border: none;
             padding: 12px;
             border-radius: 8px;
             font-weight: bold;
             font-size: 15px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: background-color 0.2s;
+            transition: opacity 0.2s;
         }
 
-        .btn-google:hover {
-            background: #f1f5f9;
-        }
-
-        .btn-google i {
-            color: #ea4335;
-            font-size: 18px;
+        .btn-submit:hover {
+            opacity: 0.9;
         }
 
         .error-msg {
@@ -145,19 +114,36 @@
 
     <div class="login-card">
         <h2>Welcome <span>Back</span></h2>
-        <p>Sign in quickly using your Google Account</p>
+        <p>Please enter your name to continue</p>
         
-        <button class="btn-google" onclick="loginWithGoogle()">
-            <i class="fa-brands fa-google"></i> Continue with Google
-        </button>
+        <div class="input-group">
+            <label for="username">Your Name</label>
+            <input type="text" id="username" placeholder="Enter your name">
+        </div>
 
-        <div id="errorMsg" class="error-msg"></div>
+        <button class="btn-submit" onclick="handleLogin()">Login</button>
+
+        <div id="errorMsg" class="error-msg">Please enter a valid name.</div>
     </div>
 
     <script>
-        // যদি ইউজার ইতিমধ্যেই লগইন করা থাকে, তবে সরাসরি ইনডেক্স পেজে পাঠিয়ে দিবে
+        // যদি ইউজার ইতিমধ্যেই লগইন করা থাকে, সরাসরি ইনডেক্স পেজে পাঠাবে
         if (localStorage.getItem('isLoggedIn') === 'true') {
             window.location.replace('index.html');
+        }
+
+        function handleLogin() {
+            const nameInput = document.getElementById('username').value.trim();
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (nameInput === "") {
+                errorMsg.style.display = 'block';
+            } else {
+                errorMsg.style.display = 'none';
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('savedUser', nameInput);
+                window.location.replace('index.html');
+            }
         }
     </script>
 </body>
