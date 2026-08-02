@@ -16,7 +16,7 @@
     <!-- Firebase SDKs -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, onSnapshot, query } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDpZPB6T_aXRD1LtIoEhW_vfPtdxYXX9P0",
@@ -62,7 +62,8 @@
                     content: text,
                     image: selectedImageBase64,
                     likes: 0,
-                    time: new Date().toLocaleString()
+                    time: new Date().toLocaleString(),
+                    createdAt: Date.now()
                 });
 
                 document.getElementById('postText').value = '';
@@ -77,7 +78,7 @@
 
         function loadPostsRealtime() {
             const container = document.getElementById('postsContainer');
-            const q = query(collection(db, "posts"));
+            const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
 
             onSnapshot(q, (snapshot) => {
                 container.innerHTML = '';
@@ -515,7 +516,7 @@
     </section>
 
     <!-- News Feed Section -->
-    <section class="posts-section" id="news-feed">
+    <section class="posts-section" id="news-feed" style="text-align: center; padding: 40px 20px;">
         <h2>News <span>Feed</span></h2>
         <p style="color: var(--text-sub); margin-top: 5px;">Share your thoughts and photos with everyone</p>
         
@@ -641,7 +642,7 @@
         });
 
         function handleSearch() {
-            const query = searchInput.value.trim();
+            const query = searchInput.value.txtTrim = searchInput.value.trim();
             if (query !== "") alert('Searching for: ' + query);
         }
     </script>
