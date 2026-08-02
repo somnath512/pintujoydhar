@@ -1,101 +1,22 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login / Sign Up - Pintu Joydhar</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background: #0f172a;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #f8fafc;
-    }
-
-    .login-card {
-      background: #1e293b;
-      padding: 35px 30px;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 360px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(56, 189, 248, 0.2);
-    }
-
-    .login-card h2 {
-      margin-bottom: 10px;
-      color: #38bdf8;
-      font-size: 24px;
-    }
-
-    .user-count-badge {
-      background: rgba(56, 189, 248, 0.1);
-      color: #38bdf8;
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 20px;
-      border: 1px solid rgba(56, 189, 248, 0.3);
-    }
-
-    .login-card input {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: 1px solid #334155;
-      border-radius: 8px;
-      background: #0f172a;
-      color: #fff;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-
-    .login-card input:focus {
-      border-color: #38bdf8;
-    }
-
-    .login-card button {
-      width: 100%;
-      padding: 12px;
-      background: #38bdf8;
-      color: #0f172a;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .login-card button:hover {
-      background: #0284c7;
-      color: #ffffff;
-    }
-
-    .login-card p {
-      margin-top: 18px;
-      font-size: 14px;
-      color: #94a3b8;
-    }
-
-    .login-card a {
-      color: #38bdf8;
-      font-weight: bold;
-      text-decoration: none;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background: #0f172a; display: flex; justify-content: center; align-items: center; height: 100vh; color: #f8fafc; }
+    .login-card { background: #1e293b; padding: 35px 30px; border-radius: 12px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); border: 1px solid rgba(56, 189, 248, 0.2); }
+    .login-card h2 { margin-bottom: 10px; color: #38bdf8; font-size: 24px; }
+    .user-count-badge { background: rgba(56, 189, 248, 0.1); color: #38bdf8; display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 20px; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .login-card input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #334155; border-radius: 8px; background: #0f172a; color: #fff; font-size: 14px; outline: none; transition: border-color 0.3s; }
+    .login-card input:focus { border-color: #38bdf8; }
+    .login-card button { width: 100%; padding: 12px; background: #38bdf8; color: #0f172a; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; transition: background 0.3s ease; }
+    .login-card button:hover { background: #0284c7; color: #ffffff; }
+    .login-card p { margin-top: 18px; font-size: 14px; color: #94a3b8; }
+    .login-card a { color: #38bdf8; font-weight: bold; text-decoration: none; cursor: pointer; }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
@@ -107,35 +28,42 @@
       👥 Total Members: <span id="totalUsersCount">15</span>
     </div>
 
-    <input type="text" id="username" placeholder="Username" required>
-    <input type="password" id="password" placeholder="Password" required>
-    
+    <!-- Main Form Inputs -->
+    <div id="mainInputs">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="text" id="identifier" placeholder="Email Address or Mobile Number" required>
+      <input type="password" id="password" placeholder="Password" required>
+    </div>
+
+    <!-- OTP Verification Section (Hidden initially) -->
+    <div id="otpSection" class="hidden">
+      <p style="color: #38bdf8; margin-bottom: 10px;">Security Verification: Enter the 4-digit code (e.g., 1234)</p>
+      <input type="text" id="otpInput" placeholder="Enter 4-digit OTP" maxlength="4">
+      <button onclick="verifyOTP()">Verify & Complete</button>
+    </div>
+
     <button id="authBtn" onclick="handleAuth()">Login</button>
     
-    <p>
+    <p id="toggleContainer">
       <span id="toggleMsg">Don't have an account?</span> 
-      <a href="#" onclick="toggleMode()" id="toggleLink">Sign Up</a>
+      <a onclick="toggleMode()" id="toggleLink">Sign Up</a>
     </p>
   </div>
 
   <script>
+    // আপনার প্রোভাইড করা গুগল অ্যাপস স্ক্রিপ্ট ইউআরএল এখানে সেট করা আছে
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbw4AIjSfR-n-Rb4k7VK5txEd84uuOYx55lRv7apGcIE5eYDgm5zb5w1iH0ywlqu3dRGOA/exec';
+
     if (localStorage.getItem('isLoggedIn') === 'true') {
       window.location.href = 'index.html';
     }
 
-    const hasAccount = localStorage.getItem('savedUser') !== null;
-    let isSignUpMode = !hasAccount;
-
-    window.onload = function() {
-      updateFormUI();
-    };
+    let isSignUpMode = false;
+    let generatedOTP = '';
+    let tempUserData = {};
 
     function toggleMode() {
       isSignUpMode = !isSignUpMode;
-      updateFormUI();
-    }
-
-    function updateFormUI() {
       const title = document.getElementById('formTitle');
       const btn = document.getElementById('authBtn');
       const msg = document.getElementById('toggleMsg');
@@ -143,7 +71,7 @@
 
       if (isSignUpMode) {
         title.innerText = 'Create Account';
-        btn.innerText = 'Sign Up';
+        btn.innerText = 'Send OTP & Register';
         msg.innerText = 'Already have an account?';
         link.innerText = 'Login';
       } else {
@@ -156,20 +84,30 @@
 
     function handleAuth() {
       const user = document.getElementById('username').value.trim();
+      const identifier = document.getElementById('identifier').value.trim();
       const pass = document.getElementById('password').value.trim();
 
-      if (!user || !pass) {
-        alert('Please enter both Username and Password!');
+      if (!user || !identifier || !pass) {
+        alert('Please fill in all fields!');
         return;
       }
 
       if (isSignUpMode) {
-        localStorage.setItem('savedUser', user);
-        localStorage.setItem('savedPass', pass);
-        localStorage.setItem('isLoggedIn', 'true');
-        alert('Account created successfully!');
-        window.location.href = 'index.html';
+        // সিকিউরিটি ভেরিফিকেশনের জন্য 4 ডিজিটের ওটিপি কোড জেনারেট করা
+        generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
+        alert('Security Verification Code (OTP): ' + generatedOTP);
+        
+        tempUserData = { username: user, identifier: identifier, password: pass };
+
+        // ইউজার ইন্টারফেস পরিবর্তন করে ওটিপি ফিল্ড দেখানো
+        document.getElementById('mainInputs').classList.add('hidden');
+        document.getElementById('otpSection').classList.remove('hidden');
+        document.getElementById('authBtn').classList.add('hidden');
+        document.getElementById('toggleContainer').classList.add('hidden');
+        document.getElementById('formTitle').innerText = 'Verify Security OTP';
+
       } else {
+        // সাধারণ লগইন চেক
         const savedUser = localStorage.getItem('savedUser');
         const savedPass = localStorage.getItem('savedPass');
 
@@ -180,6 +118,36 @@
         } else {
           alert('Invalid Username or Password!');
         }
+      }
+    }
+
+    function verifyOTP() {
+      const enteredOTP = document.getElementById('otpInput').value.trim();
+      if (enteredOTP === generatedOTP) {
+        // ওটিপি সঠিক হলে সরাসরি গুগল শিটে ডাটা চলে যাবে
+        fetch(scriptURL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(tempUserData)
+        })
+        .then(() => {
+          localStorage.setItem('savedUser', tempUserData.username);
+          localStorage.setItem('savedPass', tempUserData.password);
+          localStorage.setItem('isLoggedIn', 'true');
+          alert('Account verified and created successfully!');
+          window.location.href = 'index.html';
+        })
+        .catch(error => {
+          console.error('Error!', error.message);
+          localStorage.setItem('savedUser', tempUserData.username);
+          localStorage.setItem('savedPass', tempUserData.password);
+          localStorage.setItem('isLoggedIn', 'true');
+          window.location.href = 'index.html';
+        });
+
+      } else {
+        alert('Invalid OTP Code! Please try again.');
       }
     }
   </script>
