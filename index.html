@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pintu Joydhar - Portfolio & News Feed</title>
 
+    <!-- লগইন চেক স্ক্রিপ্ট (সরাসরি হেড ট্যাগের প্রথমে) -->
     <script>
         if (localStorage.getItem('isLoggedIn') !== 'true') {
-            window.location.href = 'login.html';
+            window.location.replace('login.html');
         }
     </script>
 
@@ -84,8 +85,6 @@
 
             onSnapshot(q, (snapshot) => {
                 container.innerHTML = '';
-                
-                // মেম্বার কাউন্ট আপডেট করার জন্য ফায়ারবেস পোস্ট থেকে ইউজারের সংখ্যা ক্যালকুলেট করা যেতে পারে
                 document.getElementById('headerUserCount').innerText = snapshot.size + 10;
 
                 if (snapshot.empty) {
@@ -216,11 +215,10 @@
 
         window.onload = function() {
             loadPostsRealtime();
-            // লোকাল স্টোরেজ থেকে ইউজারের নাম থাকলে তা প্রোফাইল সেকশনে বা লোগোতে শো করার জন্য
             const loggedUser = localStorage.getItem('savedUser');
             if(loggedUser) {
                 const welcomeTitle = document.getElementById('welcome-user-title');
-                if(welcomeTitle) welcomeTitle.innerText = "HI, I am " + loggedUser;
+                if(welcomeTitle) welcomeTitle.innerHTML = `HI, I am <span>${loggedUser}</span>`;
             }
         };
     </script>
@@ -668,7 +666,7 @@
         function logout() {
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('savedUser');
-            window.location.href = 'login.html';
+            window.location.replace('login.html');
         }
 
         const themeToggleBtn = document.getElementById('theme-toggle');
