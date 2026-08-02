@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pintu Joydhar - Portfolio</title>
+    <title>Pintu Joydhar - Portfolio & News Feed</title>
 
     <script>
         if (localStorage.getItem('isLoggedIn') !== 'true') {
@@ -62,6 +62,7 @@
                     content: text,
                     image: selectedImageBase64,
                     likes: 0,
+                    comments: [],
                     time: new Date().toLocaleString(),
                     createdAt: Date.now()
                 });
@@ -104,6 +105,14 @@
                         `;
                     }
 
+                    // কমেন্ট লিস্ট রেন্ডার করা
+                    let commentsHTML = '';
+                    if (post.comments && post.comments.length > 0) {
+                        post.comments.forEach(c => {
+                            commentsHTML += `<div class="comment-item"><strong>${c.user}:</strong> ${c.text}</div>`;
+                        });
+                    }
+
                     container.innerHTML += `
                         <div class="post-box">
                             <div class="post-header">
@@ -113,12 +122,23 @@
                             <div class="post-content">${post.content}</div>
                             ${imageTag}
                             <div class="post-actions">
-                                <button class="action-btn" onclick="toggleLike('${postId}', ${post.likes})">
+                                <button class="action-btn" onclick="toggleLike('${postId}', ${post.likes || 0})">
                                     <i class="fa-solid fa-thumbs-up"></i> Like (${post.likes || 0})
                                 </button>
-                                <button class="action-btn" onclick="alert('Comment section is active!')">
-                                    <i class="fa-solid fa-comment"></i> Comment
+                                <button class="action-btn" onclick="toggleCommentBox('${postId}')">
+                                    <i class="fa-solid fa-comment"></i> Comment (${post.comments ? post.comments.length : 0})
                                 </button>
+                            </div>
+                            
+                            <!-- Comment Section -->
+                            <div class="comment-section" id="comment-section-${postId}" style="display: none; margin-top: 12px; border-top: 1px solid var(--input-bg); padding-top: 10px;">
+                                <div class="comments-list" id="comments-list-${postId}" style="margin-bottom: 8px; font-size: 13px; max-height: 150px; overflow-y: auto;">
+                                    ${commentsHTML}
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <input type="text" id="comment-input-${postId}" placeholder="Write a comment..." style="flex: 1; background: var(--bg-color); border: 1px solid var(--input-bg); border-radius: 6px; padding: 6px 10px; color: var(--text-main); font-size: 13px; outline: none;">
+                                    <button onclick="addComment('${postId}')" style="background: var(--accent-color); color: #fff; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px;">Send</button>
+                                </div>
                             </div>
                         </div>
                     `;
@@ -153,31 +173,53 @@
         window.toggleLike = async function(postId, currentLikes) {
             try {
                 await updateDoc(doc(db, "posts", postId), {
-                    likes: (currentLikes || 0) + 1
+                    likes: currentLikes + 1
                 });
             } catch (e) {
                 console.error("Error updating likes: ", e);
             }
         };
 
+        window.toggleCommentBox = function(postId) {
+            const box = document.getElementById(`comment-section-${postId}`);
+            box.style.display = box.style.display === 'none' ? 'block' : 'none';
+        };
+
+        window.addComment = async function(postId) {
+            const input = document.getElementById(`comment-input-${postId}`);
+            const commentText = input.value.trim();
+            if (!commentText) return;
+
+            const currentUser = localStorage.getItem('savedUser') || 'Pintu Joydhar';
+
+            try {
+                const postRef = doc(db, "posts", postId);
+                // বর্তমান পোস্টের কমেন্টগুলো ফেচ করে নতুন কমেন্ট যুক্ত করা
+                // سادهভাবে আপডেট করার জন্য ফায়ারবেস অ্যারে యూనియన్ বা গেট করতে হবে
+                // এখানে অলরেডি অনস্ন্যাপশট ডাটা আছে, সহজে ডাটাবেস থেকে আপডেট করতে নিচের লজিক:
+                // সরাসরি ডক্যুমেন্ট গেট করে অ্যারে আপডেট করছি
+                const docSnap = await getDocs(query(collection(db, "posts")));
+                let targetPost = null;
+                docSnap.forEach(d => {
+                    if (d.id === postId) targetPost = d.data();
+                });
+
+                let existingComments = targetPost && targetPost.comments ? targetPost.comments : [];
+                existingComments.push({ user: currentUser, text: commentText });
+
+                await updateDoc(postRef, {
+                    comments: existingComments
+                });
+
+                input.value = '';
+            } catch (e) {
+                console.error("Error adding comment: ", e);
+            }
+        };
+
         window.onload = function() {
             loadPostsRealtime();
         };
-    </script>
-
-    <script type="text/javascript">
-        window.$crisp = [];
-        window.CRISP_WEBSITE_ID = "5b8466eb-694c-43d4-94a8-906063773d34";
-        
-        (function(){
-            d = document;
-            s = d.createElement("script");
-            s.src = "https://client.crisp.chat/l.js";
-            s.async = 1;
-            d.getElementsByTagName("head")[0].appendChild(s);
-        })();
-
-        $crisp.push(["safe", true]);
     </script>
 
     <style>
@@ -436,6 +478,14 @@
             color: var(--accent-color);
         }
 
+        .comment-item {
+            background: var(--bg-color);
+            padding: 6px 10px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
         .services-section { padding: 60px 8%; text-align: center; background-color: rgba(255, 255, 255, 0.01); }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
         .service-card { background: var(--card-bg); padding: 35px 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); border: 1px solid rgba(255, 255, 255, 0.05); display: flex; flex-direction: column; align-items: center; text-decoration: none !important; color: inherit !important; cursor: pointer; transition: transform 0.3s ease, border-color 0.3s ease; }
@@ -496,6 +546,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#news-feed">News Feed</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="profile.html" class="btn-nav" style="background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color) !important;"><i class="fa-solid fa-user-shield"></i> Profile</a></li>
                 <li><a href="#contact" class="btn-nav">Contact</a></li>
             </ul>
 
