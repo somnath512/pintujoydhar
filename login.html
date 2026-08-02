@@ -6,14 +6,6 @@
     <title>Login & Register - Portfolio & News Feed</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        // EmailJS Initialization with your Public Key
-        (function() {
-            emailjs.init("39mK4CLaJ_lePbm9C");
-        })();
-    </script>
 </head>
 <body class="bg-slate-900 text-white flex items-center justify-center min-h-screen">
 
@@ -110,11 +102,9 @@
             const submitBtn = document.getElementById('submit-btn');
 
             if (isLogin) {
-                // Direct Login Check (Can connect with Firebase or Local storage)
                 alert('Login Successful!');
                 window.location.href = 'index.html';
             } else {
-                // Registration Flow with EmailJS OTP
                 if (otpSection.classList.contains('hidden')) {
                     generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
                     
@@ -127,28 +117,44 @@
                         password: password
                     };
 
-                    submitBtn.innerText = 'Verifying OTP...';
+                    submitBtn.innerText = 'Sending OTP...';
                     submitBtn.disabled = true;
 
-                    // EmailJS Send OTP
-                    emailjs.send('service_pintu', 'template_tt70uit', {
-                        email: email,
-                        OTP: generatedOtp
+                    // Web3Forms API দিয়ে জিমেইলে ওটিপি পাঠানোর রিকোয়েস্ট
+                    fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            access_key: '929d4e5e-ce51-4950-828f-756eda9028b6',
+                            subject: 'Your Website Verification OTP',
+                            email: email,
+                            message: 'Your One Time Password (OTP) is: ' + generatedOtp
+                        })
                     })
-                    .then(function() {
-                        alert('OTP sent successfully to your Gmail!');
-                        otpSection.classList.remove('hidden');
-                        submitBtn.innerText = 'Verify & Complete Signup';
-                        submitBtn.disabled = false;
-                    }, function(error) {
-                        alert('Failed to send OTP. Please check console.');
-                        console.log('FAILED...', error);
+                    .then(async (response) => {
+                        let json = await response.json();
+                        if (response.status === 200) {
+                            alert('OTP sent successfully to your Gmail!');
+                            otpSection.classList.remove('hidden');
+                            submitBtn.innerText = 'Verify & Complete Signup';
+                            submitBtn.disabled = false;
+                        } else {
+                            alert('Failed to send OTP: ' + json.message);
+                            submitBtn.innerText = 'Send OTP & Register';
+                            submitBtn.disabled = false;
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        alert('Something went wrong!');
                         submitBtn.innerText = 'Send OTP & Register';
                         submitBtn.disabled = false;
                     });
 
                 } else {
-                    // Verify OTP
                     const enteredOtp = document.getElementById('otp-input').value;
                     if (enteredOtp === generatedOtp) {
                         localStorage.setItem('userProfile', JSON.stringify(pendingUserData));
