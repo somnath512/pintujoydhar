@@ -3,45 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome - Portfolio & News Feed</title>
+    <title>Login & Register - Portfolio & News Feed</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-900 text-white flex items-center justify-center min-h-screen">
 
     <div class="bg-slate-800 p-8 rounded-2xl shadow-2xl w-96 border border-slate-700">
-        <h2 class="text-2xl font-bold mb-2 text-center text-indigo-400">Welcome</h2>
-        <p class="text-xs text-slate-400 text-center mb-6">Enter your details to enter the platform</p>
+        <h2 id="form-title" class="text-2xl font-bold mb-6 text-center text-indigo-400">Login</h2>
 
-        <form onsubmit="enterSite(event)" class="space-y-4">
-            <div>
-                <label class="block text-sm font-medium mb-1">Your Name</label>
-                <input type="text" id="username" required class="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:border-indigo-500" placeholder="e.g. John Doe">
-            </div>
-            
-            <div>
-                <label class="block text-sm font-medium mb-1">Profession / Title</label>
-                <input type="text" id="usertitle" class="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:border-indigo-500" placeholder="e.g. Web Developer">
+        <form id="auth-form" onsubmit="handleAuth(event)">
+            <!-- Register Extra Fields -->
+            <div id="register-fields" class="hidden space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1">Full Name</label>
+                    <input type="text" id="name" class="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1">Title / Profession</label>
+                    <input type="text" id="title" class="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:border-indigo-500" placeholder="e.g. Web Developer">
+                </div>
             </div>
 
-            <button type="submit" class="w-full mt-2 bg-indigo-600 hover:bg-indigo-500 transition py-2.5 rounded-lg font-semibold shadow-lg">Enter Website</button>
+            <!-- Email / Username Field -->
+            <div class="mt-4">
+                <label class="block text-sm font-medium mb-1">Email / Username</label>
+                <input type="text" id="email" required class="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg focus:outline-none focus:border-indigo-500" placeholder="Enter your email">
+            </div>
+
+            <button type="submit" id="submit-btn" class="w-full mt-6 bg-indigo-600 hover:bg-indigo-500 transition py-2.5 rounded-lg font-semibold shadow-lg">Login</button>
         </form>
+
+        <!-- Toggle between Login and Register -->
+        <p class="mt-6 text-center text-sm text-slate-400">
+            <span id="toggle-text">Don't have an account?</span> 
+            <button onclick="toggleMode()" class="text-indigo-400 font-medium hover:underline ml-1">Register</button>
+        </p>
     </div>
 
     <script>
-        function enterSite(event) {
-            event.preventDefault();
-            
-            // ইউজারের নাম ও প্রফেশন সেভ করে রাখা যাতে সাইটে শো করানো যায়
-            const userData = {
-                name: document.getElementById('username').value,
-                title: document.getElementById('usertitle').value
-            };
+        let isLogin = true;
 
-            localStorage.setItem('userProfile', JSON.stringify(userData));
-            
-            // সরাসরি মূল পেজে নিয়ে যাবে
-            window.location.href = 'index.html';
+        function toggleMode() {
+            isLogin = !isLogin;
+            const title = document.getElementById('form-title');
+            const regFields = document.getElementById('register-fields');
+            const submitBtn = document.getElementById('submit-btn');
+            const toggleText = document.getElementById('toggle-text');
+            const toggleBtn = document.querySelector('p button');
+
+            if (isLogin) {
+                title.innerText = 'Login';
+                regFields.classList.add('hidden');
+                submitBtn.innerText = 'Login';
+                toggleText.innerText = "Don't have an account?";
+                toggleBtn.innerText = 'Register';
+            } else {
+                title.innerText = 'Register';
+                regFields.classList.remove('hidden');
+                submitBtn.innerText = 'Register Now';
+                toggleText.innerText = "Already have an account?";
+                toggleBtn.innerText = 'Login';
+            }
+        }
+
+        function handleAuth(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+
+            if (isLogin) {
+                // সরাসরি লগইন করে ইনডেক্স পেজে পাঠিয়ে দিবে
+                const userData = { email: email, name: email.split('@')[0] };
+                localStorage.setItem('userProfile', JSON.stringify(userData));
+                alert('Login Successful!');
+                window.location.href = 'index.html';
+            } else {
+                // রেজিস্টার করে লোকাল স্টোরেজে সেভ করে ইনডেক্স পেজে পাঠিয়ে দিবে
+                const userData = {
+                    name: document.getElementById('name').value,
+                    title: document.getElementById('title').value,
+                    email: email
+                };
+
+                localStorage.setItem('userProfile', JSON.stringify(userData));
+                alert('Account Created Successfully!');
+                window.location.href = 'index.html';
+            }
         }
     </script>
 </body>
