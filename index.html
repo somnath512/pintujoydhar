@@ -137,12 +137,16 @@
             padding: 8px 15px;
             font-weight: bold;
             font-size: 16px;
-            margin-bottom: 20px;
+            margin: 25px 0 15px 0;
             text-align: center;
             border: 1px solid #9fb970;
         }
 
-        /* পেজ সেকশনগুলোর জন্য (Home Page ডিফল্টভাবে দৃশ্যমান থাকবে) */
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        /* পেজ সেকশনগুলোর জন্য */
         .page-content {
             display: none;
         }
@@ -179,6 +183,54 @@
         .post-snippet {
             font-size: 14px;
             color: #334155;
+        }
+
+        /* কন্টাক্ট ফর্ম স্টাইল */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .contact-form button {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .contact-form button:hover {
+            background-color: #1a252f;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 14px;
         }
 
         /* ফুটার */
@@ -226,33 +278,61 @@
     <!-- মূল কনটেইনার -->
     <div class="main-container">
 
-        <!-- HOME PAGE -->
+        <!-- HOME PAGE (হোম পেজে কন্টাক্ট ও অ্যাবাউট বাদে বাকি সব একসাথে দেখাবে) -->
         <div id="home" class="page-content active">
+            
+            <!-- Recent Posts -->
             <div class="section-title">Recent Posts (সাম্প্রতিক পোস্টসমূহ)</div>
-
             <div class="post-card">
                 <h3 class="post-title"><a href="#">ওয়েব ডেভেলপমেন্ট ও প্রযুক্তির নতুন ধারা</a></h3>
                 <div class="post-meta">Posted by PINTU JOYDHAR, August 4, 2026</div>
                 <p class="post-snippet">বর্তমান প্রযুক্তির যুগে কীভাবে নিজের ওয়েবসাইট তৈরি এবং আধুনিক ফিচার যুক্ত করা যায়...</p>
             </div>
 
+            <!-- Gallery -->
+            <div class="section-title">Gallery (গ্যালারি)</div>
             <div class="post-card">
-                <h3 class="post-title"><a href="#">ডিজিটাল গ্যালারি ও প্রজেক্ট শোকেস</a></h3>
-                <div class="post-meta">Posted by PINTU JOYDHAR, August 3, 2026</div>
-                <p class="post-snippet">আমার করা বিভিন্ন ডিজাইন এবং ক্রিয়েটিভ প্রজেক্টগুলোর চমৎকার একটি সংগ্রহ...</p>
+                <h3 class="post-title"><a href="#">ডিজিটাল প্রজেক্ট ও ডিজাইন কালেকশন</a></h3>
+                <div class="post-meta">Posted by PINTU JOYDHAR</div>
+                <p class="post-snippet">এখানে বিভিন্ন ছবি ও ডিজাইন প্রজেক্টের কালেকশন দেখতে পাবেন...</p>
             </div>
+
+            <!-- Services -->
+            <div class="section-title">Services (সেবাসমূহ)</div>
+            <div class="post-card">
+                <h3 class="post-title"><a href="#">ওয়েব ডিজাইন ও ডেভেলপমেন্ট সার্ভিস</a></h3>
+                <div class="post-meta">Posted by PINTU JOYDHAR</div>
+                <p class="post-snippet">আপনার পছন্দমতো ওয়েবসাইট তৈরি এবং আধুনিক ফিচার সেটআপের সেবা...</p>
+            </div>
+
+            <!-- Poetry -->
+            <div class="section-title">Poetry (কবিতা ও সৃষ্টিশীল লেখা)</div>
+            <div class="post-card">
+                <h3 class="post-title"><a href="#">নীরবতার ভাষা</a></h3>
+                <div class="post-meta">লিখেছেন PINTU JOYDHAR</div>
+                <p class="post-snippet">হৃদয়ের গহীনে জমে থাকা কিছু অব্যক্ত কথা, যা কেবল কবিতার ছন্দে প্রকাশ পায়...</p>
+            </div>
+
         </div>
 
         <!-- GALLERY PAGE -->
         <div id="gallery" class="page-content">
             <div class="section-title">Gallery (গ্যালারি)</div>
-            <p style="text-align: center; color: #555; padding: 20px;">এখানে আপনার ছবি ও প্রজেক্টের গ্যালারি প্রদর্শিত হবে।</p>
+            <div class="post-card">
+                <h3 class="post-title"><a href="#">ডিজিটাল প্রজেক্ট ও ডিজাইন কালেকশন</a></h3>
+                <div class="post-meta">Posted by PINTU JOYDHAR</div>
+                <p class="post-snippet">এখানে বিভিন্ন ছবি ও ডিজাইন প্রজেক্টের কালেকশন দেখতে পাবেন...</p>
+            </div>
         </div>
 
         <!-- SERVICES PAGE -->
         <div id="services" class="page-content">
             <div class="section-title">Services (সেবাসমূহ)</div>
-            <p style="text-align: center; color: #555; padding: 20px;">এখানে আপনার সেবাসমূহের বিবরণ থাকবে।</p>
+            <div class="post-card">
+                <h3 class="post-title"><a href="#">ওয়েব ডিজাইন ও ডেভেলপমেন্ট সার্ভিস</a></h3>
+                <div class="post-meta">Posted by PINTU JOYDHAR</div>
+                <p class="post-snippet">আপনার পছন্দমতো ওয়েবসাইট তৈরি এবং আধুনিক ফিচার সেটআপের সেবা...</p>
+            </div>
         </div>
 
         <!-- POETRY PAGE -->
@@ -261,20 +341,32 @@
             <div class="post-card">
                 <h3 class="post-title"><a href="#">নীরবতার ভাষা</a></h3>
                 <div class="post-meta">লিখেছেন PINTU JOYDHAR</div>
-                <p class="post-snippet">হৃদয়ের গহীনে জমে থাকা কিছু অব্যক্ত কথা...</p>
+                <p class="post-snippet">হৃদয়ের গহীনে জমে থাকা কিছু অব্যক্ত কথা, যা কেবল কবিতার ছন্দে প্রকাশ পায়...</p>
             </div>
         </div>
 
         <!-- CONTACT PAGE -->
         <div id="contact" class="page-content">
-            <div class="section-title">Contact Us (যোগাযোগ)</div>
-            <p style="text-align: center; color: #555; padding: 20px;">যোগাযোগের তথ্য এবং ফর্ম এখানে থাকবে।</p>
+            <div class="section-title">Contact Us (যোগাযোগ করুন)</div>
+            <div class="contact-info">
+                <p><i class="fa-solid fa-envelope"></i> Email: contact@pintujoydhar.com</p>
+                <p><i class="fa-solid fa-phone"></i> Phone: +880 1234 567890</p>
+                <p style="margin-top: 5px;">অথবা নিচের ফর্মটি পূরণ করে সরাসরি বার্তা পাঠান:</p>
+            </div>
+            
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে!');">
+                <input type="text" placeholder="আপনার নাম (Your Name)" required>
+                <input type="email" placeholder="আপনার ইমেইল (Your Email)" required>
+                <input type="text" placeholder="বিষয় (Subject)">
+                <textarea placeholder="আপনার বার্তা লিখুন (Your Message)" required></textarea>
+                <button type="submit"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+            </form>
         </div>
 
         <!-- ABOUT PAGE -->
         <div id="about" class="page-content">
             <div class="section-title">About Me (আমার সম্পর্কে)</div>
-            <p style="text-align: center; color: #555; padding: 20px;">PINTU JOYDHAR সম্পর্কে বিস্তারিত তথ্য এখানে থাকবে।</p>
+            <p style="text-align: center; color: #555; padding: 20px;">PINTU JOYDHAR সম্পর্কে বিস্তারিত তথ্য এবং আপনার প্রফেশনাল বায়ো এখানে থাকবে।</p>
         </div>
 
     </div>
