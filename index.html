@@ -20,23 +20,26 @@
             line-height: 1.6;
         }
 
-        /* ওপরের টপ হেডার বার - শুধুমাত্র স্টাইলিশ নাম (ইংরেজি) */
+        /* ওপরের টপ হেডার বার - আরও বেশি স্টাইলিশ ও গ্লোয়িং ইফেক্ট */
         .top-bar {
-            background-color: #3d5a73;
+            background: linear-gradient(135deg, #2c3e50, #3d5a73);
             color: #ffffff;
-            padding: 15px 30px;
+            padding: 20px 30px;
             text-align: center;
+            border-bottom: 3px solid #ffaa00;
         }
 
         .top-bar h1 {
-            font-size: 32px;
+            font-size: 38px;
             font-weight: bold;
             color: #ffcc00;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* নেভিগেশন বার (Contact আগে, About পরে - ইংরেজি) */
+        /* নেভিগেশন বার (Contact আগে, About পরে) */
         .nav-bar {
             background-color: #f1f3f5;
             border-bottom: 1px solid #cbd5e1;
@@ -173,12 +176,12 @@
 </head>
 <body>
 
-    <!-- ওপরের টপ বার (শুধুমাত্র স্টাইলিশ নাম - ইংরেজি) -->
+    <!-- ওপরের টপ বার (স্টাইলিশ বড় নাম) -->
     <div class="top-bar">
         <h1>PINTU JOYDHAR</h1>
     </div>
 
-    <!-- মেনুবার (Home, Gallery, Contact আগে, About পরে - ইংরেজি) -->
+    <!-- মেনুবার (Home, Gallery, Contact আগে, About পরে) -->
     <div class="nav-bar">
         <a href="#"><i class="fa-solid fa-house"></i> Home</a>
         <a href="#"><i class="fa-solid fa-images"></i> Gallery</a>
