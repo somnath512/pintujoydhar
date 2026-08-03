@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PINTU JOYDHAR - Portfolio & Blog</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- গুগল ফন্ট থেকে আরও চমৎকার কার্সিভ ফন্ট যুক্ত করা হয়েছে -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- আরও আকর্ষণীয় কার্সিভ ফন্ট যুক্ত করা হয়েছে -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -33,22 +33,23 @@
 
         .top-bar h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 55px;
+            font-size: 60px;
             font-weight: bold;
             color: #ffcc00;
             letter-spacing: 2px;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
         }
 
-        /* নেভিগেশন বার (Home, Gallery, Contact আগে, About পরে) */
+        /* নেভিগেশন বার (Home, Gallery, Contact আগে, About পরে) এবং নতুন দুটি মেনু আইটেম */
         .nav-bar {
             background-color: #f1f3f5;
             border-bottom: 1px solid #cbd5e1;
             padding: 10px 30px;
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
             font-size: 15px;
+            flex-wrap: wrap;
         }
 
         .nav-bar a {
@@ -81,7 +82,7 @@
             border: none;
             outline: none;
             font-size: 13px;
-            width: 180px;
+            width: 150px;
         }
 
         .search-box-area button {
@@ -177,17 +178,19 @@
 </head>
 <body>
 
-    <!-- ওপরের টপ বার (আরেকটু বড় ও স্টাইলিশ নাম) -->
+    <!-- ওপরের টপ বার (সবচেয়ে বড় ও স্টাইলিশ নাম) -->
     <div class="top-bar">
         <h1>Pintu Joydhar</h1>
     </div>
 
-    <!-- মেনুবার (Home, Gallery, Contact আগে, About পরে) -->
+    <!-- মেনুবার (Home, Gallery, Contact আগে, About পরে এবং আরও নতুন দুটি মেনু যুক্ত করা হয়েছে) -->
     <div class="nav-bar">
         <a href="#"><i class="fa-solid fa-house"></i> Home</a>
         <a href="#"><i class="fa-solid fa-images"></i> Gallery</a>
         <a href="#"><i class="fa-solid fa-envelope"></i> Contact</a>
         <a href="#"><i class="fa-solid fa-user"></i> About</a>
+        <a href="#"><i class="fa-solid fa-blog"></i> Blog</a>
+        <a href="#"><i class="fa-solid fa-briefcase"></i> Services</a>
         
         <div class="search-box-area">
             <input type="text" placeholder="Search...">
