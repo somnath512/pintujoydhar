@@ -20,77 +20,118 @@
             line-height: 1.6;
         }
 
-        /* ওপরের টপ বার */
+        /* ওপরের টপ হেডার বার */
         .top-bar {
-            background-color: #2b4c6f;
+            background-color: #3d5a73;
             color: #ffffff;
-            padding: 10px 20px;
+            padding: 12px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo-area h1 {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-area h1 span {
+            color: #ffaa00;
         }
 
         .logo-area p {
-            font-size: 12px;
-            color: #b0c4de;
+            font-size: 13px;
+            color: #d0e1f9;
+            margin-top: -2px;
         }
 
-        .user-welcome {
+        /* ডানপাশের ইউজার ইনফো ও নাম */
+        .user-panel {
             font-size: 14px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 15px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .user-welcome span {
+        .user-panel span {
             color: #ffcc00;
             font-weight: bold;
         }
 
         /* নেভিগেশন বার */
         .nav-bar {
-            background-color: #ffffff;
-            border-bottom: 1px solid #ccc;
-            padding: 10px 20px;
+            background-color: #f1f3f5;
+            border-bottom: 1px solid #cbd5e1;
+            padding: 10px 30px;
             display: flex;
-            gap: 20px;
+            align-items: center;
+            gap: 25px;
             font-size: 14px;
         }
 
         .nav-bar a {
             text-decoration: none;
-            color: #333;
-            font-weight: bold;
+            color: #2c3e50;
+            font-weight: 600;
         }
 
         .nav-bar a:hover {
-            color: #2b4c6f;
+            color: #1d4ed8;
         }
 
-        /* ব্যানার সেকশন */
+        /* সার্চ বক্স সেকশন */
+        .search-box-area {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .search-box-area input {
+            padding: 5px 10px;
+            border: none;
+            outline: none;
+            font-size: 13px;
+            width: 180px;
+        }
+
+        .search-box-area button {
+            background: #a3e635;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* ব্যানার */
         .banner {
-            background: linear-gradient(rgba(43, 76, 111, 0.85), rgba(43, 76, 111, 0.85)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80');
+            background: linear-gradient(rgba(30, 58, 95, 0.9), rgba(30, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
             color: white;
             text-align: center;
-            padding: 40px 20px;
-            border-bottom: 3px solid #ff6600;
+            padding: 35px 20px;
+            border-bottom: 3px solid #ff5722;
         }
 
         .banner h2 {
-            font-size: 28px;
-            margin-bottom: 10px;
+            font-size: 26px;
+            margin-bottom: 8px;
             color: #ffcc00;
         }
 
         .banner p {
-            font-size: 16px;
+            font-size: 15px;
+            color: #f8fafc;
         }
 
-        /* মূল কন্টেন্ট লেআউট */
+        /* মূল কনটেইনার */
         .main-container {
             max-width: 1000px;
             margin: 20px auto;
@@ -101,7 +142,7 @@
 
         .section-title {
             background-color: #c4d79b;
-            color: #222;
+            color: #1e293b;
             padding: 8px 15px;
             font-weight: bold;
             font-size: 16px;
@@ -112,13 +153,13 @@
 
         /* পোস্ট কার্ড */
         .post-card {
-            border-bottom: 1px dashed #ccc;
+            border-bottom: 1px dashed #cbd5e1;
             padding-bottom: 15px;
             margin-bottom: 20px;
         }
 
         .post-title a {
-            font-size: 20px;
+            font-size: 19px;
             color: #0000cc;
             text-decoration: none;
             font-weight: bold;
@@ -130,14 +171,14 @@
 
         .post-meta {
             font-size: 12px;
-            color: #666;
-            margin-top: 5px;
-            margin-bottom: 10px;
+            color: #64748b;
+            margin-top: 4px;
+            margin-bottom: 8px;
         }
 
         .post-snippet {
             font-size: 14px;
-            color: #444;
+            color: #334155;
         }
 
         /* হলুদ ডিসক্লেইমার বক্স */
@@ -157,8 +198,8 @@
             text-align: center;
             padding: 15px;
             font-size: 12px;
-            color: #444;
-            border-top: 1px solid #ccc;
+            color: #475569;
+            border-top: 1px solid #cbd5e1;
             margin-top: 30px;
         }
 
@@ -175,23 +216,29 @@
 </head>
 <body>
 
-    <!-- ওপরের টপ বার -->
+    <!-- ওপরের টপ বার (লোগো এবং নাম) -->
     <div class="top-bar">
         <div class="logo-area">
-            <h1>somewhereinblog.net</h1>
+            <h1>somewherein<span>blog.net</span></h1>
             <p>বাঁধ ভাঙার আওয়াজ</p>
         </div>
-        <div class="user-welcome">
+        <div class="user-panel">
             স্বাগতম, <span>PINTU JOYDHAR</span>
         </div>
     </div>
 
-    <!-- নেভিগেশন বার -->
+    <!-- নেভিগেশন বার এবং সার্চ বক্স -->
     <div class="nav-bar">
         <a href="#">প্রথম পাতা</a>
         <a href="#">নির্বাচিত পোস্ট</a>
         <a href="#">বিষয় ভিত্তিক ব্লগ</a>
-        <a href="#">বিজ্ঞাপন</a>
+        <a href="#">সহযোগিতা</a>
+        <a href="#">বাংলা লেখা ভুল দেখাচ্ছে?</a>
+        
+        <div class="search-box-area">
+            <input type="text" placeholder="ব্লগ অনুসন্ধান">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
     </div>
 
     <!-- ব্যানার -->
@@ -206,16 +253,16 @@
 
         <!-- প্রথম পোস্ট -->
         <div class="post-card">
-            <h3 class="post-title"><a href="#">প্রযুক্তির এই যুগে আমাদের ব্যক্তিগত গোপনীয়তা রক্ষা কতটা জরুরি?</a></h3>
-            <div class="post-meta">লিখেছেন রাজসোয়ান, ০৩ রা আগস্ট, ২০২৬ রাত ১১:২৮</div>
-            <p class="post-snippet">বর্তমান ডিজিটাল সময়ে ডেটা সিকিউরিটি এবং প্রাইভেসি নিয়ে আমাদের সচেতন হওয়া অত্যন্ত জরুরি। কিভাবে আমরা নিরাপদ থাকতে পারি...</p>
+            <h3 class="post-title"><a href="#">যে বিলের কোনো রসিদ নেই</a></h3>
+            <div class="post-meta">লিখেছেন রাজসোয়ান, ০৩ রা আগস্ট, ২০২৬ রাত ১১:২৪</div>
+            <p class="post-snippet">জীবনের হিসাবের খাতায় এমন কিছু প্রাপ্তি ও অপ্রাপ্তি থাকে যার কোনো নির্দিষ্ট রসিদ বা প্রমাণপত্র থাকে না...</p>
         </div>
 
         <!-- দ্বিতীয় পোস্ট -->
         <div class="post-card">
             <h3 class="post-title"><a href="#">ফ্রিল্যান্সিং ক্যারিয়ারে সফল হওয়ার কার্যকর কিছু টিপস</a></h3>
             <div class="post-meta">লিখেছেন করিম আহমেদ, ০২ রা আগস্ট, ২০২৬ সকাল ১০:১৫</div>
-            <p class="post-snippet">ফ্রিল্যান্স মার্কেটে টিকে থাকতে হলে ক্লায়েন্ট কমিউনিকেশন এবং স্কিল ডেভেলপমেন্টের বিকল্প নেই। নতুনদের জন্য কিছু দিকনির্দেশনা...</p>
+            <p class="post-snippet">ফ্রিল্যান্স মার্কেটে টিকে থাকতে হলে ক্লায়েন্ট কমিউনিকেশন এবং স্কিল ডেভেলপমেন্টের বিকল্প নেই...</p>
         </div>
     </div>
 
