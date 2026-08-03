@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PINTU JOYDHAR - ব্লগ</title>
+    <title>PINTU JOYDHAR - পোর্টফোলিও ও ব্লগ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -30,12 +31,15 @@
             align-items: center;
         }
 
-        /* লোগোর জায়গায় আপনার নাম বড় করে সেট করা হয়েছে */
         .logo-area h1 {
             font-size: 28px;
             font-weight: bold;
-            color: #ffcc00;
-            letter-spacing: 0.5px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-area h1 span {
+            color: #ffaa00;
         }
 
         .logo-area p {
@@ -56,7 +60,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* নেভিগেশন বার */
+        /* নেভিগেশন বার (Home, Gallery, About, Contact সহ) */
         .nav-bar {
             background-color: #f1f3f5;
             border-bottom: 1px solid #cbd5e1;
@@ -64,16 +68,20 @@
             display: flex;
             align-items: center;
             gap: 25px;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .nav-bar a {
             text-decoration: none;
             color: #2c3e50;
             font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: 0.2s;
         }
 
         .nav-bar a:hover {
+            background-color: #e2e8f0;
             color: #1d4ed8;
         }
 
@@ -189,23 +197,23 @@
 </head>
 <body>
 
-    <!-- ওপরের টপ বার (বাম ও ডান উভয় পাশে PINTU JOYDHAR দেওয়া হয়েছে) -->
+    <!-- ওপরের টপ বার -->
     <div class="top-bar">
         <div class="logo-area">
-            <h1>PINTU JOYDHAR</h1>
-            <p>বাঁধ ভাঙার আওয়াজ</p>
+            <h1>PINTU <span>JOYDHAR</span></h1>
+            <p>অফিশিয়াল পোর্টফোলিও</p>
         </div>
         <div class="user-panel">
             PINTU JOYDHAR
         </div>
     </div>
 
-    <!-- নেভিগেশন বার এবং সার্চ বক্স -->
+    <!-- মেনুবার: Home, Gallery, About, Contact -->
     <div class="nav-bar">
-        <a href="#">Home</a>
-        <a href="#">বিষয় ভিত্তিক ব্লগ</a>
-        <a href="#">সহযোগিতা</a>
-        <a href="#">about</a>
+        <a href="#"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#"><i class="fa-solid fa-images"></i> Gallery</a>
+        <a href="#"><i class="fa-solid fa-user"></i> About</a>
+        <a href="#"><i class="fa-solid fa-envelope"></i> Contact</a>
         
         <div class="search-box-area">
             <input type="text" placeholder="অনুসন্ধান">
@@ -215,32 +223,32 @@
 
     <!-- ব্যানার -->
     <div class="banner">
-        <h2>All</h2>
-        <p>contain</p>
+        <h2>স্বাগতম</h2>
+        <p>PINTU JOYDHAR এর ব্যক্তিগত ওয়েবসাইট</p>
     </div>
 
-    <!-- মূল পোস্ট কনটেইনার -->
+    <!-- মূল কনটেইনার -->
     <div class="main-container">
-        <div class="section-title">সকল পোস্ট (ক্রমানুসারে)</div>
+        <div class="section-title">সাম্প্রতিক পোস্ট ও আপডেট</div>
 
         <!-- প্রথম পোস্ট -->
         <div class="post-card">
-            <h3 class="post-title"><a href="#">যে বিলের কোনো রসিদ নেই</a></h3>
-            <div class="post-meta">লিখেছেন PINTU JOYDHAR, ০৩ রা আগস্ট, ২০২৬ রাত ১১:২৪</div>
-            <p class="post-snippet">জীবনের হিসাবের খাতায় এমন কিছু প্রাপ্তি ও অপ্রাপ্তি থাকে যার কোনো নির্দিষ্ট রসিদ বা প্রমাণপত্র থাকে না...</p>
+            <h3 class="post-title"><a href="#">ওয়েব ডেভেলপমেন্ট ও প্রযুক্তির নানা দিক</a></h3>
+            <div class="post-meta">লিখেছেন PINTU JOYDHAR, ০৪ আগস্ট, ২০২৬</div>
+            <p class="post-snippet">নতুন প্রযুক্তির সাথে তাল মিলিয়ে কীভাবে নিজের একটি সুন্দর ওয়েবসাইট তৈরি করা যায়...</p>
         </div>
 
         <!-- দ্বিতীয় পোস্ট -->
         <div class="post-card">
-            <h3 class="post-title"><a href="#">ফ্রিল্যান্সিং ক্যারিয়ারে সফল হওয়ার কার্যকর কিছু টিপস</a></h3>
-            <div class="post-meta">লিখেছেন PINTU JOYDHAR, ০২ রা আগস্ট, ২০২৬ সকাল ১০:১৫</div>
-            <p class="post-snippet">ফ্রিল্যান্স মার্কেটে টিকে থাকতে হলে ক্লায়েন্ট কমিউনিকেশন এবং স্কিল ডেভেলপমেন্টের বিকল্প নেই...</p>
+            <h3 class="post-title"><a href="#">গ্যালারি ও প্রজেক্ট শোকেস</a></h3>
+            <div class="post-meta">লিখেছেন PINTU JOYDHAR, ০৩ আগস্ট, ২০২৬</div>
+            <p class="post-snippet">এখানে বিভিন্ন ছবি ও ডিজাইন প্রজেক্টের কালেকশন দেখতে পাবেন...</p>
         </div>
     </div>
 
     <!-- ফুটার -->
     <footer>
-        © PINTU JOYDHAR লিমিটেড
+        © ২০২৬ PINTU JOYDHAR সর্বস্বত্ব সংরক্ষিত।
     </footer>
 
 </body>
