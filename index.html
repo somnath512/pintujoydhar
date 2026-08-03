@@ -65,9 +65,6 @@
         }
 
         .user-panel {
-            display: flex;
-            align-items: center;
-            gap: 15px;
             font-size: 14px;
             color: var(--text-sub);
         }
@@ -75,22 +72,6 @@
         .user-panel span {
             font-weight: 600;
             color: var(--text-main);
-        }
-
-        .logout-btn {
-            background: rgba(239, 68, 68, 0.1);
-            color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            padding: 6px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .logout-btn:hover {
-            background: #ef4444;
-            color: #ffffff;
         }
 
         /* ক্যাটাগরি বার */
@@ -207,8 +188,7 @@
                 <h1><a href="#">Community<span>Blog</span></a></h1>
             </div>
             <div class="user-panel">
-                <div>লেখক: <span id="displayUser">User</span></div>
-                <button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> লগআউট</button>
+                ওয়েবসাইট ভিজিটর
             </div>
         </header>
 
@@ -251,21 +231,5 @@
         </div>
     </div>
 
-    <script>
-        const savedUser = localStorage.getItem('savedUser');
-        if (savedUser) {
-            document.getElementById('displayUser').innerText = savedUser;
-        }
-
-        if (localStorage.getItem('isLoggedIn') !== 'true') {
-            window.location.replace('login.html');
-        }
-
-        function logout() {
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('savedUser');
-            window.location.replace('login.html');
-        }
-    </script>
 </body>
 </html>
