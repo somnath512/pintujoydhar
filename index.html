@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PINTU JOYDHAR - পোর্টফোলিও ও ব্লগ</title>
+    <title>PINTU JOYDHAR - Portfolio & Blog</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'SolaimanLipi', Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
@@ -20,61 +20,23 @@
             line-height: 1.6;
         }
 
-        /* ওপরের টপ হেডার বার */
+        /* ওপরের টপ হেডার বার - শুধুমাত্র স্টাইলিশ নাম (ইংরেজি) */
         .top-bar {
             background-color: #3d5a73;
             color: #ffffff;
-            padding: 12px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-
-        /* বামপাশের লোগো সেকশন */
-        .logo-area h1 {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        .logo-area h1 span {
-            color: #ffaa00;
-        }
-
-        .logo-area p {
-            font-size: 13px;
-            color: #d0e1f9;
-            margin-top: -2px;
-        }
-
-        /* একবারে মাঝখানে নাম রাখার জন্য স্টাইল */
-        .center-brand {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            padding: 15px 30px;
             text-align: center;
         }
 
-        .center-brand h2 {
-            font-size: 26px;
+        .top-bar h1 {
+            font-size: 32px;
+            font-weight: bold;
             color: #ffcc00;
-            font-weight: bold;
-            letter-spacing: 0.5px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        /* ডানপাশের প্যানেল */
-        .user-panel {
-            font-size: 16px;
-            background: rgba(0, 0, 0, 0.25);
-            padding: 6px 14px;
-            border-radius: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
-            font-weight: bold;
-        }
-
-        /* নেভিগেশন বার (Home, Gallery, About, Contact সহ) */
+        /* নেভিগেশন বার (Contact আগে, About পরে - ইংরেজি) */
         .nav-bar {
             background-color: #f1f3f5;
             border-bottom: 1px solid #cbd5e1;
@@ -211,64 +173,52 @@
 </head>
 <body>
 
-    <!-- ওপরের টপ বার (মাঝখানে আপনার নাম বসানো হয়েছে) -->
+    <!-- ওপরের টপ বার (শুধুমাত্র স্টাইলিশ নাম - ইংরেজি) -->
     <div class="top-bar">
-        <div class="logo-area">
-            <h1>Web<span>Blog</span></h1>
-            <p>অফিশিয়াল পোর্টফোলিও</p>
-        </div>
-        
-        <!-- মাঝখানের নাম -->
-        <div class="center-brand">
-            <h2>PINTU JOYDHAR</h2>
-        </div>
-
-        <div class="user-panel">
-            ਪਿੰਟੂ
-        </div>
+        <h1>PINTU JOYDHAR</h1>
     </div>
 
-    <!-- মেনুবার: Home, Gallery, About, Contact -->
+    <!-- মেনুবার (Home, Gallery, Contact আগে, About পরে - ইংরেজি) -->
     <div class="nav-bar">
         <a href="#"><i class="fa-solid fa-house"></i> Home</a>
         <a href="#"><i class="fa-solid fa-images"></i> Gallery</a>
-        <a href="#"><i class="fa-solid fa-user"></i> About</a>
         <a href="#"><i class="fa-solid fa-envelope"></i> Contact</a>
+        <a href="#"><i class="fa-solid fa-user"></i> About</a>
         
         <div class="search-box-area">
-            <input type="text" placeholder="অনুসন্ধান">
+            <input type="text" placeholder="Search...">
             <button><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </div>
 
     <!-- ব্যানার -->
     <div class="banner">
-        <h2>স্বাগতম</h2>
-        <p>PINTU JOYDHAR এর ব্যক্তিগত ওয়েবসাইট</p>
+        <h2>Welcome</h2>
+        <p>Personal Website of PINTU JOYDHAR</p>
     </div>
 
     <!-- মূল কনটেইনার -->
     <div class="main-container">
-        <div class="section-title">সাম্প্রতিক পোস্ট ও আপডেট</div>
+        <div class="section-title">Recent Posts & Updates</div>
 
         <!-- প্রথম পোস্ট -->
         <div class="post-card">
-            <h3 class="post-title"><a href="#">ওয়েব ডেভেলপমেন্ট ও প্রযুক্তির নানা দিক</a></h3>
-            <div class="post-meta">লিখেছেন PINTU JOYDHAR, ০৪ আগস্ট, ২০২৬</div>
-            <p class="post-snippet">নতুন প্রযুক্তির সাথে তাল মিলিয়ে কীভাবে নিজের একটি সুন্দর ওয়েবসাইট তৈরি করা যায়...</p>
+            <h3 class="post-title"><a href="#">Web Development and Technology Trends</a></h3>
+            <div class="post-meta">Posted by PINTU JOYDHAR, August 4, 2026</div>
+            <p class="post-snippet">How to build a beautiful website keeping up with new technologies...</p>
         </div>
 
         <!-- দ্বিতীয় পোস্ট -->
         <div class="post-card">
-            <h3 class="post-title"><a href="#">গ্যালারি ও প্রজেক্ট শোকেস</a></h3>
-            <div class="post-meta">লিখেছেন PINTU JOYDHAR, ০৩ আগস্ট, ২০২৬</div>
-            <p class="post-snippet">এখানে বিভিন্ন ছবি ও ডিজাইন প্রজেক্টের কালেকশন দেখতে পাবেন...</p>
+            <h3 class="post-title"><a href="#">Gallery and Project Showcase</a></h3>
+            <div class="post-meta">Posted by PINTU JOYDHAR, August 3, 2026</div>
+            <p class="post-snippet">Here you can find a collection of various images and design projects...</p>
         </div>
     </div>
 
     <!-- ফুটার -->
     <footer>
-        © ২০২৬ PINTU JOYDHAR সর্বস্বত্ব সংরক্ষিত।
+        © 2026 PINTU JOYDHAR. All rights reserved.
     </footer>
 
 </body>
