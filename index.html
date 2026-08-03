@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Minimalist Blog</title>
-    <!-- Google Fonts & Icons -->
+    <title>Community Blog - Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -16,7 +15,6 @@
             --text-sub: #94a3b8;
             --accent-color: #38bdf8;
             --border-color: rgba(56, 189, 248, 0.15);
-            --hover-bg: #334155;
         }
 
         * {
@@ -30,17 +28,17 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.7;
-            padding: 50px 20px;
+            padding: 40px 20px;
             display: flex;
             justify-content: center;
         }
 
         .container {
             width: 100%;
-            max-width: 720px;
+            max-width: 800px;
         }
 
-        /* হেডার স্টাইল */
+        /* হেডার */
         header {
             display: flex;
             justify-content: space-between;
@@ -49,14 +47,12 @@
             padding: 20px 25px;
             border-radius: 14px;
             border: 1px solid var(--border-color);
-            margin-bottom: 40px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
         }
 
         .logo h1 {
             font-size: 20px;
             font-weight: 700;
-            letter-spacing: -0.5px;
         }
 
         .logo h1 a {
@@ -90,7 +86,6 @@
             cursor: pointer;
             font-size: 13px;
             font-weight: 600;
-            transition: all 0.2s ease;
         }
 
         .logout-btn:hover {
@@ -98,156 +93,174 @@
             color: #ffffff;
         }
 
-        /* ব্লগ কার্ড লেআউট */
-        .blog-list {
+        /* ক্যাটাগরি বার */
+        .categories {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .cat-tag {
+            background: var(--card-bg);
+            color: var(--text-sub);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .cat-tag.active, .cat-tag:hover {
+            background: var(--accent-color);
+            color: #0f172a;
+            border-color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* ব্লগ পোস্ট লিস্ট */
+        .post-list {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        .blog-item {
+        .post-card {
             background: var(--card-bg);
-            padding: 30px;
+            padding: 25px;
             border-radius: 14px;
             border: 1px solid var(--border-color);
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            transition: transform 0.2s;
         }
 
-        .blog-item:hover {
-            transform: translateY(-3px);
+        .post-card:hover {
+            transform: translateY(-2px);
             border-color: var(--accent-color);
         }
 
-        .blog-meta {
+        .post-author {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 10px;
             font-size: 13px;
             color: var(--text-sub);
-            margin-bottom: 10px;
-        }
-
-        .blog-date {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .blog-title {
-            font-size: 20px;
-            font-weight: 700;
             margin-bottom: 12px;
         }
 
-        .blog-title a {
-            color: var(--text-main);
-            text-decoration: none;
-            transition: color 0.2s;
+        .author-avatar {
+            width: 30px;
+            height: 30px;
+            background: var(--accent-color);
+            color: #0f172a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
         }
 
-        .blog-title a:hover {
+        .post-title {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .post-title a {
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .post-title a:hover {
             color: var(--accent-color);
         }
 
-        .blog-snippet {
-            font-size: 15px;
+        .post-snippet {
+            font-size: 14px;
             color: var(--text-sub);
+            margin-bottom: 15px;
         }
 
-        /* পেজিনেশন স্টাইল */
-        .pagination {
+        .post-footer {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-top: 40px;
+            font-size: 12px;
+            color: var(--text-sub);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 12px;
         }
 
-        .pagination a {
-            color: var(--text-main);
-            text-decoration: none;
-            background: var(--card-bg);
-            padding: 10px 20px;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .pagination a:hover {
-            background: var(--accent-color);
-            color: #0f172a;
-            border-color: var(--accent-color);
+        .post-footer span i {
+            margin-right: 4px;
+            color: var(--accent-color);
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- স্মার্ট হেডার -->
+        <!-- হেডার -->
         <header>
             <div class="logo">
-                <h1><a href="#">Smart<span>Blog</span></a></h1>
+                <h1><a href="#">Community<span>Blog</span></a></h1>
             </div>
             <div class="user-panel">
-                <div>Hello, <span id="displayUser">User</span></div>
-                <button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                <div>লেখক: <span id="displayUser">User</span></div>
+                <button class="logout-btn" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> লগআউট</button>
             </div>
         </header>
 
-        <!-- স্মার্ট ব্লগ কার্ড লিস্ট -->
-        <div class="blog-list">
-            <article class="blog-item">
-                <div class="blog-meta">
-                    <span class="blog-date"><i class="fa-regular fa-calendar"></i> August 3, 2026</span>
-                    <span>3 min read</span>
-                </div>
-                <h2 class="blog-title"><a href="#">The Future of Minimalist Web Design</a></h2>
-                <p class="blog-snippet">Exploring how simplicity and clean layouts improve user experience, reading focus, and overall performance on modern websites.</p>
-            </article>
-
-            <article class="blog-item">
-                <div class="blog-meta">
-                    <span class="blog-date"><i class="fa-regular fa-calendar"></i> August 1, 2026</span>
-                    <span>4 min read</span>
-                </div>
-                <h2 class="blog-title"><a href="#">Mastering Daily Focus and Workflow</a></h2>
-                <p class="blog-snippet">Why cutting out distractions and focusing on core execution compounds massive results over time for independent creators.</p>
-            </article>
-
-            <article class="blog-item">
-                <div class="blog-meta">
-                    <span class="blog-date"><i class="fa-regular fa-calendar"></i> July 28, 2026</span>
-                    <span>5 min read</span>
-                </div>
-                <h2 class="blog-title"><a href="#">Building Clean User Interfaces with CSS</a></h2>
-                <p class="blog-snippet">A deep dive into dark mode aesthetics, modern typography choices, and smooth interactive elements using pure CSS variables.</p>
-            </article>
+        <!-- ক্যাটাগরি ফিল্টার -->
+        <div class="categories">
+            <a href="#" class="cat-tag active">সকল পোস্ট</a>
+            <a href="#" class="cat-tag">প্রযুক্তি</a>
+            <a href="#" class="cat-tag">মতামত</a>
+            <a href="#" class="cat-tag">সাহিত্য ও কবিতা</a>
+            <a href="#" class="cat-tag">ভ্রমণ</a>
         </div>
 
-        <!-- পেজিনেশন -->
-        <div class="pagination">
-            <span style="visibility: hidden;"></span>
-            <a href="#">Older Posts <i class="fa-solid fa-arrow-right"></i></a>
+        <!-- পোস্টের তালিকা -->
+        <div class="post-list">
+            <div class="post-card">
+                <div class="post-author">
+                    <div class="author-avatar">র</div>
+                    <div><b>রহিম উদ্দিন</b> • ৩ আগস্ট, ২০২৬</div>
+                </div>
+                <h2 class="post-title"><a href="#">প্রযুক্তির এই যুগে আমাদের ব্যক্তিগত গোপনীয়তা রক্ষা কতটা জরুরি?</a></h2>
+                <p class="post-snippet">বর্তমান ডিজিটাল সময়ে ডেটা সিকিউরিটি এবং প্রাইভেসি নিয়ে আমাদের সচেতন হওয়া অত্যন্ত জরুরি। কিভাবে আমরা নিরাপদ থাকতে পারি...</p>
+                <div class="post-footer">
+                    <span><i class="fa-regular fa-comment"></i> ১২টি মন্তব্য</span>
+                    <span><i class="fa-regular fa-clock"></i> ৫ মিনিট আগে</span>
+                </div>
+            </div>
+
+            <div class="post-card">
+                <div class="post-author">
+                    <div class="author-avatar">ক</div>
+                    <div><b>করিম আহমেদ</b> • ২ আগস্ট, ২০২৬</div>
+                </div>
+                <h2 class="post-title"><a href="#">ফ্রিল্যান্সিং ক্যারিয়ারে সফল হওয়ার কার্যকর কিছু টিপস</a></h2>
+                <p class="post-snippet">ফ্রিল্যান্স মার্কেটে টিকে থাকতে হলে ক্লায়েন্ট কমিউনিকেশন এবং স্কিল ডেভেলপমেন্টের বিকল্প নেই। নতুনদের জন্য কিছু দিকনির্দেশনা...</p>
+                <div class="post-footer">
+                    <span><i class="fa-regular fa-comment"></i> ৮টি মন্তব্য</span>
+                    <span><i class="fa-regular fa-clock"></i> ১ দিন আগে</span>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // ইউজার নাম লোড করা
         const savedUser = localStorage.getItem('savedUser');
         if (savedUser) {
             document.getElementById('displayUser').innerText = savedUser;
         }
 
-        // লগইন স্ট্যাটাস চেক
         if (localStorage.getItem('isLoggedIn') !== 'true') {
             window.location.replace('login.html');
         }
 
-        // লগআউট ফাংশন
         function logout() {
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('savedUser');
