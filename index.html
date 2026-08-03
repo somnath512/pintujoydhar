@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PINTU JOYDHAR - Portfolio & Poetry</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- আকর্ষণীয় কার্সিভ ফন্ট যুক্ত করা হয়েছে -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
@@ -22,25 +21,32 @@
             line-height: 1.6;
         }
 
-        /* ওপরের টপ হেডার বার - বড় ও স্টাইলিশ নাম */
+        /* হেডার এবং মেনুবার সবসময় উপরে আটকে রাখার জন্য স্টাইল */
+        .sticky-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* ওপরের টপ হেডার বার */
         .top-bar {
             background: linear-gradient(135deg, #2c3e50, #3d5a73);
             color: #ffffff;
-            padding: 25px 30px;
+            padding: 20px 30px;
             text-align: center;
             border-bottom: 3px solid #ffaa00;
         }
 
         .top-bar h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 60px;
+            font-size: 55px;
             font-weight: bold;
             color: #ffcc00;
             letter-spacing: 2px;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
         }
 
-        /* নেভিগেশন বার: Home, Gallery, Services, Poetry এবং আগে Contact, সবার শেষে About */
+        /* নেভিগেশন বার */
         .nav-bar {
             background-color: #f1f3f5;
             border-bottom: 1px solid #cbd5e1;
@@ -50,6 +56,7 @@
             gap: 20px;
             font-size: 15px;
             flex-wrap: wrap;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
         .nav-bar a {
@@ -178,23 +185,26 @@
 </head>
 <body>
 
-    <!-- ওপরের টপ বার (স্টাইলিশ নাম) -->
-    <div class="top-bar">
-        <h1>Pintu Joydhar</h1>
-    </div>
+    <!-- হেডার এবং মেনুবার একসাথে স্টিকি রাখার র‍্যাপার -->
+    <div class="sticky-wrapper">
+        <!-- ওপরের টপ বার (স্টাইলিশ নাম) -->
+        <div class="top-bar">
+            <h1>Pintu Joydhar</h1>
+        </div>
 
-    <!-- মেনুবার: Home, Gallery, Services, Poetry এবং আগে Contact, সবার শেষে About -->
-    <div class="nav-bar">
-        <a href="#"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="#"><i class="fa-solid fa-images"></i> Gallery</a>
-        <a href="#"><i class="fa-solid fa-briefcase"></i> Services</a>
-        <a href="#"><i class="fa-solid fa-feather"></i> Poetry</a>
-        <a href="#"><i class="fa-solid fa-envelope"></i> Contact</a>
-        <a href="#"><i class="fa-solid fa-user"></i> About</a>
-        
-        <div class="search-box-area">
-            <input type="text" placeholder="Search...">
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        <!-- মেনুবার -->
+        <div class="nav-bar">
+            <a href="#"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="#"><i class="fa-solid fa-images"></i> Gallery</a>
+            <a href="#"><i class="fa-solid fa-briefcase"></i> Services</a>
+            <a href="#"><i class="fa-solid fa-feather"></i> Poetry</a>
+            <a href="#"><i class="fa-solid fa-envelope"></i> Contact</a>
+            <a href="#"><i class="fa-solid fa-user"></i> About</a>
+            
+            <div class="search-box-area">
+                <input type="text" placeholder="Search...">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
         </div>
     </div>
 
