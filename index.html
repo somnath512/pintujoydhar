@@ -1,235 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Blog - Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>সামহোয়্যারইন ব্লগ - বাঁধ ভাঙার আওয়াজ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --accent-color: #38bdf8;
-            --border-color: rgba(56, 189, 248, 0.15);
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'SolaimanLipi', Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.7;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
+            background-color: #dbe4ef;
+            color: #333;
+            line-height: 1.6;
         }
 
-        .container {
-            width: 100%;
-            max-width: 800px;
-        }
-
-        /* হেডার */
-        header {
+        /* ওপরের টপ বার */
+        .top-bar {
+            background-color: #2b4c6f;
+            color: #ffffff;
+            padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: var(--card-bg);
-            padding: 20px 25px;
-            border-radius: 14px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 30px;
         }
 
-        .logo h1 {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .logo h1 a {
-            color: var(--text-main);
-            text-decoration: none;
-        }
-
-        .logo h1 a span {
-            color: var(--accent-color);
-        }
-
-        .user-panel {
-            font-size: 14px;
-            color: var(--text-sub);
-        }
-
-        .user-panel span {
-            font-weight: 600;
-            color: var(--accent-color);
-        }
-
-        /* ক্যাটাগরি বার */
-        .categories {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-        }
-
-        .cat-tag {
-            background: var(--card-bg);
-            color: var(--text-sub);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            text-decoration: none;
-            border: 1px solid var(--border-color);
-            white-space: nowrap;
-            transition: all 0.2s;
-        }
-
-        .cat-tag.active, .cat-tag:hover {
-            background: var(--accent-color);
-            color: #0f172a;
-            border-color: var(--accent-color);
-            font-weight: 600;
-        }
-
-        /* ব্লগ পোস্ট লিস্ট */
-        .post-list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .post-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 14px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.2s;
-        }
-
-        .post-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-color);
-        }
-
-        .post-author {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13px;
-            color: var(--text-sub);
-            margin-bottom: 12px;
-        }
-
-        .author-avatar {
-            width: 30px;
-            height: 30px;
-            background: var(--accent-color);
-            color: #0f172a;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .logo-area h1 {
+            font-size: 24px;
             font-weight: bold;
         }
 
-        .post-title {
-            font-size: 19px;
-            font-weight: 700;
+        .logo-area p {
+            font-size: 12px;
+            color: #b0c4de;
+        }
+
+        .user-welcome {
+            font-size: 14px;
+        }
+
+        .user-welcome span {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+        /* নেভিগেশন বার */
+        .nav-bar {
+            background-color: #ffffff;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 20px;
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+        }
+
+        .nav-bar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .nav-bar a:hover {
+            color: #2b4c6f;
+        }
+
+        /* ব্যানার সেকশন */
+        .banner {
+            background: linear-gradient(rgba(43, 76, 111, 0.85), rgba(43, 76, 111, 0.85)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 3px solid #ff6600;
+        }
+
+        .banner h2 {
+            font-size: 28px;
             margin-bottom: 10px;
+            color: #ffcc00;
+        }
+
+        .banner p {
+            font-size: 16px;
+        }
+
+        /* মূল কন্টেন্ট লেআউট */
+        .main-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background: #ffffff;
+            border: 1px solid #b0c4de;
+            padding: 20px;
+        }
+
+        .section-title {
+            background-color: #c4d79b;
+            color: #222;
+            padding: 8px 15px;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 1px solid #9fb970;
+        }
+
+        /* পোস্ট কার্ড */
+        .post-card {
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .post-title a {
-            color: var(--text-main);
+            font-size: 20px;
+            color: #0000cc;
             text-decoration: none;
+            font-weight: bold;
         }
 
         .post-title a:hover {
-            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .post-meta {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            margin-bottom: 10px;
         }
 
         .post-snippet {
             font-size: 14px;
-            color: var(--text-sub);
-            margin-bottom: 15px;
+            color: #444;
         }
 
-        .post-footer {
-            display: flex;
-            justify-content: space-between;
+        /* হলুদ ডিসক্লেইমার বক্স */
+        .disclaimer-box {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: #ffffcc;
+            border: 1px solid #e6db55;
+            padding: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #333;
+        }
+
+        /* ফুটার */
+        footer {
+            text-align: center;
+            padding: 15px;
             font-size: 12px;
-            color: var(--text-sub);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 12px;
+            color: #444;
+            border-top: 1px solid #ccc;
+            margin-top: 30px;
         }
 
-        .post-footer span i {
-            margin-right: 4px;
-            color: var(--accent-color);
+        footer a {
+            color: #0000cc;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- হেডার -->
-        <header>
-            <div class="logo">
-                <h1><a href="#">Community<span>Blog</span></a></h1>
-            </div>
-            <div class="user-panel">
-                <span>PINTU JOYDHAR</span>
-            </div>
-        </header>
-
-        <!-- ক্যাটাগরি ফিল্টার -->
-        <div class="categories">
-            <a href="#" class="cat-tag active">All Posts</a>
-            <a href="#" class="cat-tag">Technology</a>
-            <a href="#" class="cat-tag">Opinion</a>
-            <a href="#" class="cat-tag">Literature</a>
-            <a href="#" class="cat-tag">Travel</a>
+    <!-- ওপরের টপ বার -->
+    <div class="top-bar">
+        <div class="logo-area">
+            <h1>somewhereinblog.net</h1>
+            <p>বাঁধ ভাঙার আওয়াজ</p>
         </div>
-
-        <!-- পোস্টের তালিকা -->
-        <div class="post-list">
-            <div class="post-card">
-                <div class="post-author">
-                    <div class="author-avatar">R</div>
-                    <div><b>Rahim Uddin</b> • August 3, 2026</div>
-                </div>
-                <h2 class="post-title"><a href="#">Why is protecting personal privacy so crucial in this digital age?</a></h2>
-                <p class="post-snippet">In modern digital times, data security and privacy have become extremely vital. Here is how we can stay safe...</p>
-                <div class="post-footer">
-                    <span><i class="fa-regular fa-comment"></i> 12 Comments</span>
-                    <span><i class="fa-regular fa-clock"></i> 5 mins ago</span>
-                </div>
-            </div>
-
-            <div class="post-card">
-                <div class="post-author">
-                    <div class="author-avatar">K</div>
-                    <div><b>Karim Ahmed</b> • August 2, 2026</div>
-                </div>
-                <h2 class="post-title"><a href="#">Effective tips to succeed in your freelancing career</a></h2>
-                <p class="post-snippet">To survive in the freelance market, client communication and skill development are essential. Guidelines for beginners...</p>
-                <div class="post-footer">
-                    <span><i class="fa-regular fa-comment"></i> 8 Comments</span>
-                    <span><i class="fa-regular fa-clock"></i> 1 day ago</span>
-                </div>
-            </div>
+        <div class="user-welcome">
+            স্বাগতম, <span>PINTU JOYDHAR</span>
         </div>
     </div>
+
+    <!-- নেভিগেশন বার -->
+    <div class="nav-bar">
+        <a href="#">প্রথম পাতা</a>
+        <a href="#">নির্বাচিত পোস্ট</a>
+        <a href="#">বিষয় ভিত্তিক ব্লগ</a>
+        <a href="#">বিজ্ঞাপন</a>
+    </div>
+
+    <!-- ব্যানার -->
+    <div class="banner">
+        <h2>সামহোয়্যারইন ব্লগ</h2>
+        <p>পেশা, বয়স, মত- ভিন্নমত ও ধর্ম-বর্ণ নির্বিশেষে বিশ্বজুড়ে বাংলাভাষাবিদের বাংলায় পদালেখার একটি শক্তিশালী মাধ্যম।</p>
+    </div>
+
+    <!-- মূল পোস্ট কনটেইনার -->
+    <div class="main-container">
+        <div class="section-title">সকল পোস্ট (ক্রমানুসারে)</div>
+
+        <!-- প্রথম পোস্ট -->
+        <div class="post-card">
+            <h3 class="post-title"><a href="#">প্রযুক্তির এই যুগে আমাদের ব্যক্তিগত গোপনীয়তা রক্ষা কতটা জরুরি?</a></h3>
+            <div class="post-meta">লিখেছেন রাজসোয়ান, ০৩ রা আগস্ট, ২০২৬ রাত ১১:২৮</div>
+            <p class="post-snippet">বর্তমান ডিজিটাল সময়ে ডেটা সিকিউরিটি এবং প্রাইভেসি নিয়ে আমাদের সচেতন হওয়া অত্যন্ত জরুরি। কিভাবে আমরা নিরাপদ থাকতে পারি...</p>
+        </div>
+
+        <!-- দ্বিতীয় পোস্ট -->
+        <div class="post-card">
+            <h3 class="post-title"><a href="#">ফ্রিল্যান্সিং ক্যারিয়ারে সফল হওয়ার কার্যকর কিছু টিপস</a></h3>
+            <div class="post-meta">লিখেছেন করিম আহমেদ, ০২ রা আগস্ট, ২০২৬ সকাল ১০:১৫</div>
+            <p class="post-snippet">ফ্রিল্যান্স মার্কেটে টিকে থাকতে হলে ক্লায়েন্ট কমিউনিকেশন এবং স্কিল ডেভেলপমেন্টের বিকল্প নেই। নতুনদের জন্য কিছু দিকনির্দেশনা...</p>
+        </div>
+    </div>
+
+    <!-- হলুদ ডিসক্লেইমার বক্স -->
+    <div class="disclaimer-box">
+        সামহোয়্যারইন...ব্লগ বাঁধ ভাঙার আওয়াজ, মাতৃভাষা বাংলায় একটি উন্মুক্ত ও স্বাধীন মত প্রকাশের সুবিধা প্রদানকারী প্ল্যাটফর্ম। এখানে প্রকাশিত লেখা, মন্তব্য, ছবি, অডিও, ভিডিও এবং যাবতীয় কার্যকলাপের সম্পূর্ণ দায় শুধুমাত্র সংশ্লিষ্ট প্রকাশকের।
+    </div>
+
+    <!-- ফুটার -->
+    <footer>
+        © সামহোয়্যার ইন...নেট লিমিটেড | <a href="#">ব্যবহারের শর্তাবলী</a> | <a href="#">গোপনীয়তার নীতি</a> | <a href="#">বিজ্ঞাপন</a>
+    </footer>
 
 </body>
 </html>
