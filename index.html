@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -29,13 +28,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
+        /* বামপাশের লোগো সেকশন */
         .logo-area h1 {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             color: #ffffff;
-            letter-spacing: -0.5px;
         }
 
         .logo-area h1 span {
@@ -48,16 +48,30 @@
             margin-top: -2px;
         }
 
-        /* ডানপাশের প্যানেল */
-        .user-panel {
-            font-size: 20px;
-            background: rgba(0, 0, 0, 0.25);
-            padding: 8px 18px;
-            border-radius: 4px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        /* একবারে মাঝখানে নাম রাখার জন্য স্টাইল */
+        .center-brand {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .center-brand h2 {
+            font-size: 26px;
             color: #ffcc00;
             font-weight: bold;
             letter-spacing: 0.5px;
+        }
+
+        /* ডানপাশের প্যানেল */
+        .user-panel {
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 6px 14px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-weight: bold;
         }
 
         /* নেভিগেশন বার (Home, Gallery, About, Contact সহ) */
@@ -197,14 +211,20 @@
 </head>
 <body>
 
-    <!-- ওপরের টপ বার -->
+    <!-- ওপরের টপ বার (মাঝখানে আপনার নাম বসানো হয়েছে) -->
     <div class="top-bar">
         <div class="logo-area">
-            <h1>PINTU <span>JOYDHAR</span></h1>
+            <h1>Web<span>Blog</span></h1>
             <p>অফিশিয়াল পোর্টফোলিও</p>
         </div>
+        
+        <!-- মাঝখানের নাম -->
+        <div class="center-brand">
+            <h2>PINTU JOYDHAR</h2>
+        </div>
+
         <div class="user-panel">
-            PINTU JOYDHAR
+            ਪਿੰਟੂ
         </div>
     </div>
 
