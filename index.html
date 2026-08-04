@@ -244,6 +244,9 @@
             color: var(--post-meta);
             margin-top: 4px;
             margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .post-snippet {
@@ -397,36 +400,49 @@
 
     <div class="main-container">
 
-        <!-- Home Page (সর্বশেষ বা নতুন পোস্টগুলো উপরে সাজানো) -->
+        <!-- Home Page (Contact এবং About বাদে সব পেজের পোস্ট নতুন থেকে পুরনো ক্রমানুসারে এবং ফেসবুকের মতো টাইমসহ) -->
         <div id="home" class="page-content active">
             
-            <!-- ১. সবচেয়ে নতুন পোস্ট: গ্যালারির ছবি ও কবিতা -->
+            <!-- ১. সবচেয়ে নতুন পোস্ট -->
             <div class="section-title">Latest Gallery & Poetry Update</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#" onclick="switchPage('gallery', event)">তুমি তো আগেই বলেছ—ভালোবাসোনি, তবে কেন এই বিলাপ?</a></h3>
-                <div class="post-meta">Posted by PINTU JOYDHAR, August 4, 2026</div>
+                <div class="post-meta">
+                    <span>By PINTU JOYDHAR</span> • 
+                    <span><i class="fa-solid fa-clock"></i> August 4, 2026 at 5:45 PM</span> • 
+                    <span><i class="fa-solid fa-globe"></i></span>
+                </div>
                 <p class="post-snippet" style="margin-bottom: 12px;">
                     আমি চাই তুমি ভালো থাকো, তোমার আকাশ জুড়ে থাক আলো,<br>
-                    আমায় না হয় কাঁদিয়েই গেলে, তুমি থেকো বড্ড ভালো।
+                    আমায় না হয় কাঁদিয়েই গেলে, তুমি থেকো বড্ড ভালো।<br>
+                    [আপনার ৩য় লাইনটি এখানে বসাতে পারেন]
                 </p>
                 <div class="gallery-post-box">
                     <img src="my-picture.jpg" alt="Gallery Post Image">
                 </div>
             </div>
 
-            <!-- ২. ক্রমানুসারে আগের পোস্ট: ক্রিয়েটিভ পোয়েট্রি পেজের পোস্ট -->
+            <!-- ২. ক্রমানুসারে আগের পোস্ট -->
             <div class="section-title">Creative Poetry</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#" onclick="switchPage('poetry', event)">The Language of Silence</a></h3>
-                <div class="post-meta">Written by PINTU JOYDHAR</div>
+                <div class="post-meta">
+                    <span>By PINTU JOYDHAR</span> • 
+                    <span><i class="fa-solid fa-clock"></i> August 3, 2026</span> • 
+                    <span><i class="fa-solid fa-globe"></i></span>
+                </div>
                 <p class="post-snippet">Unspoken emotions and reflections captured through rhythmic verses and soulful expressions...</p>
             </div>
 
-            <!-- ৩. ক্রমানুসারে তার আগের পোস্ট: প্রফেশনাল সার্ভিসেস পেজের পোস্ট -->
+            <!-- ৩. ক্রমানুসারে তার আগের পোস্ট -->
             <div class="section-title">Professional Services</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#" onclick="switchPage('services', event)">Web Design & Development Solutions</a></h3>
-                <div class="post-meta">Posted by PINTU JOYDHAR</div>
+                <div class="post-meta">
+                    <span>By PINTU JOYDHAR</span> • 
+                    <span><i class="fa-solid fa-clock"></i> August 1, 2026</span> • 
+                    <span><i class="fa-solid fa-globe"></i></span>
+                </div>
                 <p class="post-snippet">Custom website creation, responsive layouts, and advanced integration services tailored for your business...</p>
             </div>
 
@@ -437,10 +453,15 @@
             <div class="section-title">Gallery Showcase</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#">তুমি তো আগেই বলেছ—ভালোবাসোনি, তবে কেন এই বিলাপ?</a></h3>
-                <div class="post-meta">Posted by PINTU JOYDHAR, August 4, 2026</div>
+                <div class="post-meta">
+                    <span>By PINTU JOYDHAR</span> • 
+                    <span><i class="fa-solid fa-clock"></i> August 4, 2026 at 5:45 PM</span> • 
+                    <span><i class="fa-solid fa-globe"></i></span>
+                </div>
                 <p class="post-snippet" style="margin-bottom: 12px;">
                     আমি চাই তুমি ভালো থাকো, তোমার আকাশ জুড়ে থাক আলো,<br>
-                    আমায় না হয় কাঁদিয়েই গেলে, তুমি থেকো বড্ড ভালো।
+                    আমায় না হয় কাঁদিয়েই গেলে, তুমি থেকো বড্ড ভালো।<br>
+                    [আপনার ৩য় লাইনটি এখানে বসাতে পারেন]
                 </p>
                 <div class="gallery-post-box">
                     <img src="my-picture.jpg" alt="Gallery Showcase Image">
@@ -453,7 +474,11 @@
             <div class="section-title">Professional Services</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#">Web Design & Development Solutions</a></h3>
-                <div class="post-meta">Posted by PINTU JOYDHAR</div>
+                <div class="post-meta">
+                    <span>By PINTU JOYDHAR</span> • 
+                    <span><i class="fa-solid fa-clock"></i> August 1, 2026</span> • 
+                    <span><i class="fa-solid fa-globe"></i></span>
+                </div>
                 <p class="post-snippet">Custom website creation, responsive layouts, and advanced integration services tailored for your business...</p>
             </div>
         </div>
@@ -463,7 +488,11 @@
             <div class="section-title">Creative Poetry</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#">The Language of Silence</a></h3>
-                <div class="post-meta">Written by PINTU JOYDHAR</div>
+                <div class="post-meta">
+                    <span>By PINTU JOYDHAR</span> • 
+                    <span><i class="fa-solid fa-clock"></i> August 3, 2026</span> • 
+                    <span><i class="fa-solid fa-globe"></i></span>
+                </div>
                 <p class="post-snippet">Unspoken emotions and reflections captured through rhythmic verses and soulful expressions...</p>
             </div>
         </div>
