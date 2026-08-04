@@ -380,13 +380,11 @@
         <div id="contact" class="page-content">
             <div class="section-title">Contact Us (যোগাযোগ করুন)</div>
             
-            <!-- ব্যক্তিগত তথ্য, নম্বর ও জিমেইল -->
             <div class="contact-info-box">
                 <p><i class="fa-solid fa-phone"></i> Phone / WhatsApp: <a href="tel:016**********62" style="color: #2c3e50; text-decoration: none;"><strong>016**********62</strong></a></p>
                 <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:gaain.bpoacc@gmail.com" style="color: #2c3e50; text-decoration: none;"><strong>gaain.bpoacc@gmail.com</strong></a></p>
             </div>
 
-            <!-- সোশ্যাল মিডিয়া লিংক -->
             <div class="social-links-box">
                 <a href="https://www.facebook.com/pintu.joydhar.896565" target="_blank" class="social-btn facebook">
                     <i class="fa-brands fa-facebook-f"></i> Facebook
@@ -404,12 +402,12 @@
 
             <p style="text-align: center; color: #555; margin: 20px 0 10px 0;">অথবা নিচের ফর্মটি পূরণ করে সরাসরি বার্তা পাঠান:</p>
             
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে!');">
-                <input type="text" placeholder="আপনার নাম (Your Name)" required>
-                <input type="email" placeholder="আপনার ইমেইল (Your Email)" required>
-                <input type="text" placeholder="বিষয় (Subject)">
-                <textarea placeholder="আপনার বার্তা লিখুন (Your Message)" required></textarea>
-                <button type="submit"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+            <!-- শুধু Name, Email (Gmail) এবং Message রেখে ফর্ম তৈরি করা হলো -->
+            <form class="contact-form" id="contactForm" method="POST" action="আপনার_পাওয়া_Web_App_URL_এখানে_দিন">
+                <input type="text" name="Name" placeholder="আপনার নাম (Your Name)" required>
+                <input type="email" name="Email" placeholder="আপনার জিমেইল (Your Gmail)" required>
+                <textarea name="Message" placeholder="আপনার বার্তা লিখুন (Your Message)" required></textarea>
+                <button type="submit" id="submitBtn"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
             </form>
         </div>
 
@@ -426,21 +424,38 @@
         © 2026 PINTU JOYDHAR. All rights reserved.
     </footer>
 
-    <!-- পেজ পরিবর্তনের জন্য জাভাস্ক্রিপ্ট -->
+    <!-- পেজ পরিবর্তনের এবং গুগল শিটে ডেটা পাঠানোর স্ক্রিপ্ট -->
     <script>
         function switchPage(pageId, event) {
             event.preventDefault();
             
-            // সব পেজ লুকিয়ে ফেলা
             let pages = document.querySelectorAll('.page-content');
             pages.forEach(p => p.classList.remove('active'));
             
-            // কাঙ্ক্ষিত পেজটি দেখানো
             document.getElementById(pageId).classList.add('active');
-            
-            // উইন্ডোর একদম উপরে স্ক্রল করা
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        const scriptURL = 'আপনার_পাওয়া_Web_App_URL_এখানে_দিন';
+        const form = document.forms['contactForm'];
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = 'Sending...';
+            
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+              .then(response => {
+                alert('আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে এবং গুগল শিটে জমা হয়েছে!');
+                form.reset();
+                btn.innerText = 'Send Message';
+              })
+              .catch(error => {
+                console.error('Error!', error.message);
+                alert('দুঃখিত, কোনো সমস্যা হয়েছে। আবার চেষ্টা করুন।');
+                btn.innerText = 'Send Message';
+              });
+        });
     </script>
 
 </body>
