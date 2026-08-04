@@ -529,12 +529,17 @@
 
     <script>
         function switchPage(pageId, event) {
-            event.preventDefault();
+            if (event) event.preventDefault();
+            
             let pages = document.querySelectorAll('.page-content');
             pages.forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
             
-            // স্ক্রিন পজিশন ফিক্সড রাখার জন্য উইন্ডো একদম উপরে নিয়ে যাওয়া হলো
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                localStorage.setItem('activePage', pageId);
+            }
+            
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
@@ -557,11 +562,18 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
+            // থিম রিকভার করার কোড
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
                 document.getElementById('themeIcon').className = 'fa-solid fa-sun';
                 document.getElementById('themeText').innerText = 'Light';
+            }
+
+            // রিলোড দেওয়ার পরেও আগের পেজে থাকার কোড
+            const savedPage = localStorage.getItem('activePage');
+            if (savedPage) {
+                switchPage(savedPage, null);
             }
         });
 
