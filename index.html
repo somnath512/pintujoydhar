@@ -113,6 +113,17 @@
             color: #3b82f6;
         }
 
+        /* বর্তমানে যে পেজে আছেন তার জন্য নেভিগেশন লিংকের স্টাইল */
+        .nav-bar a.active-nav {
+            background-color: #2c3e50;
+            color: #ffcc00 !important;
+        }
+
+        [data-theme="dark"] .nav-bar a.active-nav {
+            background-color: #334155;
+            color: #facc15 !important;
+        }
+
         .theme-toggle-btn {
             background: none;
             border: 1px solid var(--container-border);
@@ -348,12 +359,12 @@
         </div>
 
         <div class="nav-bar">
-            <a href="#" onclick="switchPage('home', event)"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="#" onclick="switchPage('gallery', event)"><i class="fa-solid fa-images"></i> Gallery</a>
-            <a href="#" onclick="switchPage('services', event)"><i class="fa-solid fa-briefcase"></i> Services</a>
-            <a href="#" onclick="switchPage('poetry', event)"><i class="fa-solid fa-feather"></i> Poetry</a>
-            <a href="#" onclick="switchPage('contact', event)"><i class="fa-solid fa-envelope"></i> Contact</a>
-            <a href="#" onclick="switchPage('about', event)"><i class="fa-solid fa-user"></i> About</a>
+            <a href="#" id="nav-home" onclick="switchPage('home', event)"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="#" id="nav-gallery" onclick="switchPage('gallery', event)"><i class="fa-solid fa-images"></i> Gallery</a>
+            <a href="#" id="nav-services" onclick="switchPage('services', event)"><i class="fa-solid fa-briefcase"></i> Services</a>
+            <a href="#" id="nav-poetry" onclick="switchPage('poetry', event)"><i class="fa-solid fa-feather"></i> Poetry</a>
+            <a href="#" id="nav-contact" onclick="switchPage('contact', event)"><i class="fa-solid fa-envelope"></i> Contact</a>
+            <a href="#" id="nav-about" onclick="switchPage('about', event)"><i class="fa-solid fa-user"></i> About</a>
             
             <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
                 <i class="fa-solid fa-moon" id="themeIcon"></i> <span id="themeText">Dark</span>
@@ -366,7 +377,7 @@
         </div>
     </div>
 
-    <!-- ব্যানার শুধু হোম পেজে দেখানোর জন্য id="bannerBox" যুক্ত করা হয়েছে -->
+    <!-- ব্যানার শুধু হোম পেজে দেখানোর জন্য -->
     <div class="banner" id="bannerBox">
         <h2>Welcome to My Digital Space</h2>
         <p>Official Portfolio & Creative Showcase of Pintu Joydhar</p>
@@ -541,7 +552,14 @@
                 localStorage.setItem('activePage', pageId);
             }
             
-            // ব্যানার শুধু হোম পেজে দেখানোর লজিক
+            let navLinks = document.querySelectorAll('.nav-bar a[id^="nav-"]');
+            navLinks.forEach(link => link.classList.remove('active-nav'));
+            
+            const activeNavLink = document.getElementById('nav-' + pageId);
+            if (activeNavLink) {
+                activeNavLink.classList.add('active-nav');
+            }
+            
             const banner = document.getElementById('bannerBox');
             if (pageId === 'home') {
                 banner.style.display = 'block';
@@ -571,7 +589,6 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            // থিম রিকভার করার কোড
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
@@ -579,7 +596,6 @@
                 document.getElementById('themeText').innerText = 'Light';
             }
 
-            // রিলোড দেওয়ার পরেও আগের পেজে থাকার কোড
             const savedPage = localStorage.getItem('activePage');
             if (savedPage) {
                 switchPage(savedPage, null);
