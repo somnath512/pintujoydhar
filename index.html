@@ -366,7 +366,8 @@
         </div>
     </div>
 
-    <div class="banner">
+    <!-- ব্যানার শুধু হোম পেজে দেখানোর জন্য id="bannerBox" যুক্ত করা হয়েছে -->
+    <div class="banner" id="bannerBox">
         <h2>Welcome to My Digital Space</h2>
         <p>Official Portfolio & Creative Showcase of Pintu Joydhar</p>
     </div>
@@ -540,6 +541,14 @@
                 localStorage.setItem('activePage', pageId);
             }
             
+            // ব্যানার শুধু হোম পেজে দেখানোর লজিক
+            const banner = document.getElementById('bannerBox');
+            if (pageId === 'home') {
+                banner.style.display = 'block';
+            } else {
+                banner.style.display = 'none';
+            }
+            
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
@@ -574,6 +583,8 @@
             const savedPage = localStorage.getItem('activePage');
             if (savedPage) {
                 switchPage(savedPage, null);
+            } else {
+                switchPage('home', null);
             }
         });
 
