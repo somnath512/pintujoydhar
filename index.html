@@ -64,14 +64,12 @@
             line-height: 1.6;
         }
 
-        /* হেডার এবং মেনুবার সবসময় উপরে আটকে রাখার জন্য স্টাইল */
         .sticky-wrapper {
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
-        /* ওপরের টপ হেডার বার */
         .top-bar {
             background: linear-gradient(135deg, #2c3e50, #3d5a73);
             color: #ffffff;
@@ -89,7 +87,6 @@
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
         }
 
-        /* নেভিগেশন বার */
         .nav-bar {
             background-color: var(--nav-bg);
             border-bottom: 1px solid var(--container-border);
@@ -116,7 +113,6 @@
             color: #3b82f6;
         }
 
-        /* থিম টগল বাটন */
         .theme-toggle-btn {
             background: none;
             border: 1px solid var(--container-border);
@@ -135,7 +131,6 @@
             background-color: var(--nav-hover);
         }
 
-        /* সার্চ বক্স সেকশন */
         .search-box-area {
             margin-left: auto;
             display: flex;
@@ -164,7 +159,6 @@
             color: #333;
         }
 
-        /* ব্যানার */
         .banner {
             background: linear-gradient(rgba(30, 58, 95, 0.9), rgba(30, 58, 95, 0.9)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
@@ -186,7 +180,6 @@
             color: #f8fafc;
         }
 
-        /* মূল কনটেইনার */
         .main-container {
             max-width: 1000px;
             margin: 20px auto;
@@ -211,7 +204,6 @@
             margin-top: 0;
         }
 
-        /* পেজ সেকশনগুলোর জন্য */
         .page-content {
             display: none;
         }
@@ -220,7 +212,6 @@
             display: block;
         }
 
-        /* পোস্ট কার্ড */
         .post-card {
             border-bottom: 1px dashed var(--container-border);
             padding-bottom: 15px;
@@ -250,7 +241,6 @@
             color: var(--post-snippet);
         }
 
-        /* সোশ্যাল মিডিয়া ও কন্টাক্ট ইনফো স্টাইল */
         .contact-info-box {
             text-align: center;
             margin-bottom: 25px;
@@ -298,7 +288,6 @@
             opacity: 0.85;
         }
 
-        /* কন্টাক্ট ফর্ম স্টাইল */
         .contact-form {
             display: flex;
             flex-direction: column;
@@ -341,7 +330,6 @@
             background-color: #1a252f;
         }
 
-        /* ফুটার */
         footer {
             text-align: center;
             padding: 15px;
@@ -354,14 +342,11 @@
 </head>
 <body>
 
-    <!-- হেডার এবং মেনুবার একসাথে স্টিকি রাখার র‍্যাপার -->
     <div class="sticky-wrapper">
-        <!-- ওপরের টপ বার (স্টাইলিশ নাম) -->
         <div class="top-bar">
             <h1>Pintu Joydhar</h1>
         </div>
 
-        <!-- মেনুবার -->
         <div class="nav-bar">
             <a href="#" onclick="switchPage('home', event)"><i class="fa-solid fa-house"></i> Home</a>
             <a href="#" onclick="switchPage('gallery', event)"><i class="fa-solid fa-images"></i> Gallery</a>
@@ -370,7 +355,6 @@
             <a href="#" onclick="switchPage('contact', event)"><i class="fa-solid fa-envelope"></i> Contact</a>
             <a href="#" onclick="switchPage('about', event)"><i class="fa-solid fa-user"></i> About</a>
             
-            <!-- ডার্ক ও লাইট মোড টগল বাটন -->
             <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
                 <i class="fa-solid fa-moon" id="themeIcon"></i> <span id="themeText">Dark</span>
             </button>
@@ -382,16 +366,13 @@
         </div>
     </div>
 
-    <!-- ব্যানার -->
     <div class="banner">
         <h2>Welcome</h2>
         <p>Personal Website of PINTU JOYDHAR</p>
     </div>
 
-    <!-- মূল কনটেইনার -->
     <div class="main-container">
 
-        <!-- HOME PAGE -->
         <div id="home" class="page-content active">
             <div class="section-title">Recent Posts (সাম্প্রতিক পোস্টসমূহ)</div>
             <div class="post-card">
@@ -422,7 +403,6 @@
             </div>
         </div>
 
-        <!-- GALLERY PAGE -->
         <div id="gallery" class="page-content">
             <div class="section-title">Gallery (গ্যালারি)</div>
             <div class="post-card">
@@ -432,7 +412,6 @@
             </div>
         </div>
 
-        <!-- SERVICES PAGE -->
         <div id="services" class="page-content">
             <div class="section-title">Services (সেবাসমূহ)</div>
             <div class="post-card">
@@ -442,7 +421,6 @@
             </div>
         </div>
 
-        <!-- POETRY PAGE -->
         <div id="poetry" class="page-content">
             <div class="section-title">Poetry (কবিতা ও সৃষ্টিশীল লেখা)</div>
             <div class="post-card">
@@ -452,7 +430,6 @@
             </div>
         </div>
 
-        <!-- CONTACT PAGE -->
         <div id="contact" class="page-content">
             <div class="section-title">Contact Us (যোগাযোগ করুন)</div>
             
@@ -478,7 +455,6 @@
 
             <p style="text-align: center; color: var(--text-color); margin: 20px 0 10px 0; opacity: 0.8;">অথবা নিচের ফর্মটি পূরণ করে সরাসরি বার্তা পাঠান:</p>
             
-            <!-- গুগল শিটযুক্ত কন্টাক্ট ফর্ম -->
             <form class="contact-form" id="contactForm" method="POST">
                 <input type="text" name="Name" placeholder="আপনার নাম (Your Name)" required>
                 <input type="email" name="Email" placeholder="আপনার জিমেইল (Your Gmail)" required>
@@ -487,7 +463,6 @@
             </form>
         </div>
 
-        <!-- ABOUT PAGE -->
         <div id="about" class="page-content">
             <div class="section-title">About Me (আমার সম্পর্কে)</div>
             <p style="text-align: center; padding: 20px;">PINTU JOYDHAR সম্পর্কে বিস্তারিত তথ্য এখানে থাকবে।</p>
@@ -495,14 +470,14 @@
 
     </div>
 
-    <!-- ফুটার -->
     <footer>
         © 2026 PINTU JOYDHAR. All rights reserved.
     </footer>
 
-    <!-- জাভাস্ক্রিপ্ট -->
+    <!-- Crisp Live Chat Script -->
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="5b8466eb-694c-43d4-94a8-906063773d34";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
     <script>
-        // পেজ পরিবর্তন ফাংশন
         function switchPage(pageId, event) {
             event.preventDefault();
             let pages = document.querySelectorAll('.page-content');
@@ -511,7 +486,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ডার্ক এবং লাইট মোড টগল ফাংশন
         function toggleTheme() {
             const html = document.documentElement;
             const themeIcon = document.getElementById('themeIcon');
@@ -530,7 +504,6 @@
             }
         }
 
-        // ব্রাউজার রিফ্রেশ বা নতুন পেজে গেলে ইউজারের আগের মোড ধরে রাখার ব্যবস্থা
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
@@ -540,7 +513,6 @@
             }
         });
 
-        // নতুন গুগল শিট ফর্ম সাবমিট স্ক্রিপ্ট
         const scriptURL = 'https://script.google.com/macros/s/AKfycby6w5jrohvzBWpob8Hkt7wmLjTJl90GGa3Q1xiVC7eqpXYh-p3d6Xx1cIfo1Yj0zVs9NQ/exec';
         const form = document.forms['contactForm'];
 
