@@ -8,16 +8,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
+        /* লাইট মোড ডিফল্ট কালার ভ্যারিয়েবল */
+        :root {
+            --bg-color: #dbe4ef;
+            --text-color: #333;
+            --container-bg: #ffffff;
+            --container-border: #b0c4de;
+            --nav-bg: #f1f3f5;
+            --nav-text: #2c3e50;
+            --nav-hover: #e2e8f0;
+            --section-title-bg: #c4d79b;
+            --section-title-text: #1e293b;
+            --section-title-border: #9fb970;
+            --post-title: #0000cc;
+            --post-meta: #64748b;
+            --post-snippet: #334155;
+            --footer-color: #475569;
+            --input-bg: #fff;
+            --input-border: #cbd5e1;
+            --input-text: #333;
+        }
+
+        /* ডার্ক মোড কালার ভ্যারিয়েবল */
+        [data-theme="dark"] {
+            --bg-color: #121824;
+            --text-color: #e2e8f0;
+            --container-bg: #1e293b;
+            --container-border: #334155;
+            --nav-bg: #1a2332;
+            --nav-text: #f8fafc;
+            --nav-hover: #2d3748;
+            --section-title-bg: #2d3748;
+            --section-title-text: #facc15;
+            --section-title-border: #4a5568;
+            --post-title: #60a5fa;
+            --post-meta: #94a3b8;
+            --post-snippet: #cbd5e1;
+            --footer-color: #94a3b8;
+            --input-bg: #0f172a;
+            --input-border: #475569;
+            --input-text: #f8fafc;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         body {
-            background-color: #dbe4ef;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.6;
         }
 
@@ -48,12 +91,12 @@
 
         /* নেভিগেশন বার */
         .nav-bar {
-            background-color: #f1f3f5;
-            border-bottom: 1px solid #cbd5e1;
+            background-color: var(--nav-bg);
+            border-bottom: 1px solid var(--container-border);
             padding: 10px 30px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             font-size: 15px;
             flex-wrap: wrap;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -61,7 +104,7 @@
 
         .nav-bar a {
             text-decoration: none;
-            color: #2c3e50;
+            color: var(--nav-text);
             font-weight: 600;
             padding: 5px 10px;
             border-radius: 3px;
@@ -69,8 +112,27 @@
         }
 
         .nav-bar a:hover {
-            background-color: #e2e8f0;
-            color: #1d4ed8;
+            background-color: var(--nav-hover);
+            color: #3b82f6;
+        }
+
+        /* থিম টগল বাটন */
+        .theme-toggle-btn {
+            background: none;
+            border: 1px solid var(--container-border);
+            color: var(--nav-text);
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: var(--nav-hover);
         }
 
         /* সার্চ বক্স সেকশন */
@@ -78,8 +140,8 @@
             margin-left: auto;
             display: flex;
             align-items: center;
-            background: #fff;
-            border: 1px solid #cbd5e1;
+            background: var(--input-bg);
+            border: 1px solid var(--input-border);
             border-radius: 3px;
             overflow: hidden;
         }
@@ -89,7 +151,9 @@
             border: none;
             outline: none;
             font-size: 13px;
-            width: 150px;
+            width: 140px;
+            background: transparent;
+            color: var(--input-text);
         }
 
         .search-box-area button {
@@ -126,20 +190,21 @@
         .main-container {
             max-width: 1000px;
             margin: 20px auto;
-            background: #ffffff;
-            border: 1px solid #b0c4de;
+            background: var(--container-bg);
+            border: 1px solid var(--container-border);
             padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
         .section-title {
-            background-color: #c4d79b;
-            color: #1e293b;
+            background-color: var(--section-title-bg);
+            color: var(--section-title-text);
             padding: 8px 15px;
             font-weight: bold;
             font-size: 16px;
             margin: 25px 0 15px 0;
             text-align: center;
-            border: 1px solid #9fb970;
+            border: 1px solid var(--section-title-border);
         }
 
         .section-title:first-child {
@@ -157,14 +222,14 @@
 
         /* পোস্ট কার্ড */
         .post-card {
-            border-bottom: 1px dashed #cbd5e1;
+            border-bottom: 1px dashed var(--container-border);
             padding-bottom: 15px;
             margin-bottom: 20px;
         }
 
         .post-title a {
             font-size: 19px;
-            color: #0000cc;
+            color: var(--post-title);
             text-decoration: none;
             font-weight: bold;
         }
@@ -175,14 +240,14 @@
 
         .post-meta {
             font-size: 12px;
-            color: #64748b;
+            color: var(--post-meta);
             margin-top: 4px;
             margin-bottom: 8px;
         }
 
         .post-snippet {
             font-size: 14px;
-            color: #334155;
+            color: var(--post-snippet);
         }
 
         /* সোশ্যাল মিডিয়া ও কন্টাক্ট ইনফো স্টাইল */
@@ -190,13 +255,17 @@
             text-align: center;
             margin-bottom: 25px;
             font-size: 15px;
-            color: #333;
+            color: var(--text-color);
             line-height: 2;
         }
 
         .contact-info-box p i {
             width: 25px;
-            color: #2c3e50;
+            color: var(--text-color);
+        }
+
+        .contact-info-box a {
+            color: var(--post-title) !important;
         }
 
         .social-links-box {
@@ -243,7 +312,9 @@
         .contact-form textarea {
             width: 100%;
             padding: 10px;
-            border: 1px solid #cbd5e1;
+            border: 1px solid var(--input-border);
+            background-color: var(--input-bg);
+            color: var(--input-text);
             border-radius: 4px;
             font-size: 14px;
             outline: none;
@@ -275,8 +346,8 @@
             text-align: center;
             padding: 15px;
             font-size: 12px;
-            color: #475569;
-            border-top: 1px solid #cbd5e1;
+            color: var(--footer-color);
+            border-top: 1px solid var(--container-border);
             margin-top: 30px;
         }
     </style>
@@ -298,6 +369,11 @@
             <a href="#" onclick="switchPage('poetry', event)"><i class="fa-solid fa-feather"></i> Poetry</a>
             <a href="#" onclick="switchPage('contact', event)"><i class="fa-solid fa-envelope"></i> Contact</a>
             <a href="#" onclick="switchPage('about', event)"><i class="fa-solid fa-user"></i> About</a>
+            
+            <!-- ডার্ক ও লাইট মোড টগল বাটন -->
+            <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
+                <i class="fa-solid fa-moon" id="themeIcon"></i> <span id="themeText">Dark</span>
+            </button>
             
             <div class="search-box-area">
                 <input type="text" placeholder="Search...">
@@ -381,8 +457,8 @@
             <div class="section-title">Contact Us (যোগাযোগ করুন)</div>
             
             <div class="contact-info-box">
-                <p><i class="fa-solid fa-phone"></i> Phone / WhatsApp: <a href="tel:016**********62" style="color: #2c3e50; text-decoration: none;"><strong>016**********62</strong></a></p>
-                <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:gaain.bpoacc@gmail.com" style="color: #2c3e50; text-decoration: none;"><strong>gaain.bpoacc@gmail.com</strong></a></p>
+                <p><i class="fa-solid fa-phone"></i> Phone / WhatsApp: <a href="tel:016**********62"><strong>016**********62</strong></a></p>
+                <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:gaain.bpoacc@gmail.com"><strong>gaain.bpoacc@gmail.com</strong></a></p>
             </div>
 
             <div class="social-links-box">
@@ -400,9 +476,9 @@
                 </a>
             </div>
 
-            <p style="text-align: center; color: #555; margin: 20px 0 10px 0;">অথবা নিচের ফর্মটি পূরণ করে সরাসরি বার্তা পাঠান:</p>
+            <p style="text-align: center; color: var(--text-color); margin: 20px 0 10px 0; opacity: 0.8;">অথবা নিচের ফর্মটি পূরণ করে সরাসরি বার্তা পাঠান:</p>
             
-            <!-- শুধু Name, Email (Gmail) এবং Message রেখে ফর্ম তৈরি করা হলো -->
+            <!-- গুগল শিটযুক্ত কন্টাক্ট ফর্ম -->
             <form class="contact-form" id="contactForm" method="POST" action="আপনার_পাওয়া_Web_App_URL_এখানে_দিন">
                 <input type="text" name="Name" placeholder="আপনার নাম (Your Name)" required>
                 <input type="email" name="Email" placeholder="আপনার জিমেইল (Your Gmail)" required>
@@ -414,7 +490,7 @@
         <!-- ABOUT PAGE -->
         <div id="about" class="page-content">
             <div class="section-title">About Me (আমার সম্পর্কে)</div>
-            <p style="text-align: center; color: #555; padding: 20px;">PINTU JOYDHAR সম্পর্কে বিস্তারিত তথ্য এখানে থাকবে।</p>
+            <p style="text-align: center; padding: 20px;">PINTU JOYDHAR সম্পর্কে বিস্তারিত তথ্য এখানে থাকবে।</p>
         </div>
 
     </div>
@@ -424,18 +500,47 @@
         © 2026 PINTU JOYDHAR. All rights reserved.
     </footer>
 
-    <!-- পেজ পরিবর্তনের এবং গুগল শিটে ডেটা পাঠানোর স্ক্রিপ্ট -->
+    <!-- জাভাস্ক্রিপ্ট -->
     <script>
+        // পেজ পরিবর্তন ফাংশন
         function switchPage(pageId, event) {
             event.preventDefault();
-            
             let pages = document.querySelectorAll('.page-content');
             pages.forEach(p => p.classList.remove('active'));
-            
             document.getElementById(pageId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // ডার্ক এবং লাইট মোড টগল ফাংশন
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeIcon.className = 'fa-solid fa-moon';
+                themeText.innerText = 'Dark';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun';
+                themeText.innerText = 'Light';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // ব্রাউজার রিফ্রেশ বা নতুন পেজে গেলে ইউজারের আগের মোড ধরে রাখার ব্যবস্থা
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.getElementById('themeIcon').className = 'fa-solid fa-sun';
+                document.getElementById('themeText').innerText = 'Light';
+            }
+        });
+
+        // গুগল শিট ফর্ম সাবমিট স্ক্রিপ্ট
         const scriptURL = 'আপনার_পাওয়া_Web_App_URL_এখানে_দিন';
         const form = document.forms['contactForm'];
 
