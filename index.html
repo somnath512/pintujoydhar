@@ -479,7 +479,7 @@
             <p style="text-align: center; color: var(--text-color); margin: 20px 0 10px 0; opacity: 0.8;">অথবা নিচের ফর্মটি পূরণ করে সরাসরি বার্তা পাঠান:</p>
             
             <!-- গুগল শিটযুক্ত কন্টাক্ট ফর্ম -->
-            <form class="contact-form" id="contactForm" method="POST" action="আপনার_পাওয়া_Web_App_URL_এখানে_দিন">
+            <form class="contact-form" id="contactForm" method="POST">
                 <input type="text" name="Name" placeholder="আপনার নাম (Your Name)" required>
                 <input type="email" name="Email" placeholder="আপনার জিমেইল (Your Gmail)" required>
                 <textarea name="Message" placeholder="আপনার বার্তা লিখুন (Your Message)" required></textarea>
@@ -540,8 +540,8 @@
             }
         });
 
-        // গুগল শিট ফর্ম সাবমিট স্ক্রিপ্ট
-        const scriptURL = 'আপনার_পাওয়া_Web_App_URL_এখানে_দিন';
+        // গুগল শিট ফর্ম সাবমিট স্ক্রিপ্ট (আপনার লিংক সহ)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyyTCbpmJthM30Gp8Wd_P4ESjcMg2IkN72teaqsbhvQRE1HBxucWmFzc33f96ZebooBrQ/exec';
         const form = document.forms['contactForm'];
 
         form.addEventListener('submit', e => {
