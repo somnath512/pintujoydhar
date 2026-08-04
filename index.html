@@ -185,6 +185,50 @@
             color: #334155;
         }
 
+        /* সোশ্যাল মিডিয়া ও কন্টাক্ট ইনফো স্টাইল */
+        .contact-info-box {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 15px;
+            color: #333;
+            line-height: 2;
+        }
+
+        .contact-info-box p i {
+            width: 25px;
+            color: #2c3e50;
+        }
+
+        .social-links-box {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .facebook { background-color: #1877f2; }
+        .instagram { background-color: #e4405f; }
+        .linkedin { background-color: #0a66c2; }
+        .gmail { background-color: #ea4335; }
+
+        .social-btn:hover {
+            opacity: 0.85;
+        }
+
         /* কন্টাক্ট ফর্ম স্টাইল */
         .contact-form {
             display: flex;
@@ -224,13 +268,6 @@
 
         .contact-form button:hover {
             background-color: #1a252f;
-        }
-
-        .contact-info {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #555;
-            font-size: 14px;
         }
 
         /* ফুটার */
@@ -278,10 +315,8 @@
     <!-- মূল কনটেইনার -->
     <div class="main-container">
 
-        <!-- HOME PAGE (হোম পেজে কন্টাক্ট ও অ্যাবাউট বাদে বাকি সব একসাথে দেখাবে) -->
+        <!-- HOME PAGE -->
         <div id="home" class="page-content active">
-            
-            <!-- Recent Posts -->
             <div class="section-title">Recent Posts (সাম্প্রতিক পোস্টসমূহ)</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#">ওয়েব ডেভেলপমেন্ট ও প্রযুক্তির নতুন ধারা</a></h3>
@@ -289,7 +324,6 @@
                 <p class="post-snippet">বর্তমান প্রযুক্তির যুগে কীভাবে নিজের ওয়েবসাইট তৈরি এবং আধুনিক ফিচার যুক্ত করা যায়...</p>
             </div>
 
-            <!-- Gallery -->
             <div class="section-title">Gallery (গ্যালারি)</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#">ডিজিটাল প্রজেক্ট ও ডিজাইন কালেকশন</a></h3>
@@ -297,7 +331,6 @@
                 <p class="post-snippet">এখানে বিভিন্ন ছবি ও ডিজাইন প্রজেক্টের কালেকশন দেখতে পাবেন...</p>
             </div>
 
-            <!-- Services -->
             <div class="section-title">Services (সেবাসমূহ)</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#">ওয়েব ডিজাইন ও ডেভেলপমেন্ট সার্ভিস</a></h3>
@@ -305,14 +338,12 @@
                 <p class="post-snippet">আপনার পছন্দমতো ওয়েবসাইট তৈরি এবং আধুনিক ফিচার সেটআপের সেবা...</p>
             </div>
 
-            <!-- Poetry -->
             <div class="section-title">Poetry (কবিতা ও সৃষ্টিশীল লেখা)</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#">নীরবতার ভাষা</a></h3>
                 <div class="post-meta">লিখেছেন PINTU JOYDHAR</div>
                 <p class="post-snippet">হৃদয়ের গহীনে জমে থাকা কিছু অব্যক্ত কথা, যা কেবল কবিতার ছন্দে প্রকাশ পায়...</p>
             </div>
-
         </div>
 
         <!-- GALLERY PAGE -->
@@ -348,11 +379,30 @@
         <!-- CONTACT PAGE -->
         <div id="contact" class="page-content">
             <div class="section-title">Contact Us (যোগাযোগ করুন)</div>
-            <div class="contact-info">
-                <p><i class="fa-solid fa-envelope"></i> Email: contact@pintujoydhar.com</p>
-                <p><i class="fa-solid fa-phone"></i> Phone: +880 1234 567890</p>
-                <p style="margin-top: 5px;">অথবা নিচের ফর্মটি পূরণ করে সরাসরি বার্তা পাঠান:</p>
+            
+            <!-- ব্যক্তিগত তথ্য, নম্বর ও জিমেইল -->
+            <div class="contact-info-box">
+                <p><i class="fa-solid fa-phone"></i> Phone / WhatsApp: <a href="tel:016**********62" style="color: #2c3e50; text-decoration: none;"><strong>016**********62</strong></a></p>
+                <p><i class="fa-solid fa-envelope"></i> Email: <a href="mailto:gaain.bpoacc@gmail.com" style="color: #2c3e50; text-decoration: none;"><strong>gaain.bpoacc@gmail.com</strong></a></p>
             </div>
+
+            <!-- সোশ্যাল মিডিয়া লিংক -->
+            <div class="social-links-box">
+                <a href="https://www.facebook.com/pintu.joydhar.896565" target="_blank" class="social-btn facebook">
+                    <i class="fa-brands fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://www.instagram.com/pintu_joydhar/?hl=en" target="_blank" class="social-btn instagram">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+                <a href="https://www.linkedin.com/feed/" target="_blank" class="social-btn linkedin">
+                    <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                </a>
+                <a href="mailto:gaain.bpoacc@gmail.com" class="social-btn gmail">
+                    <i class="fa-solid fa-envelope"></i> Gmail
+                </a>
+            </div>
+
+            <p style="text-align: center; color: #555; margin: 20px 0 10px 0;">অথবা নিচের ফর্মটি পূরণ করে সরাসরি বার্তা পাঠান:</p>
             
             <form class="contact-form" onsubmit="event.preventDefault(); alert('আপনার বার্তাটি সফলভাবে পাঠানো হয়েছে!');">
                 <input type="text" placeholder="আপনার নাম (Your Name)" required>
@@ -366,7 +416,7 @@
         <!-- ABOUT PAGE -->
         <div id="about" class="page-content">
             <div class="section-title">About Me (আমার সম্পর্কে)</div>
-            <p style="text-align: center; color: #555; padding: 20px;">PINTU JOYDHAR সম্পর্কে বিস্তারিত তথ্য এবং আপনার প্রফেশনাল বায়ো এখানে থাকবে।</p>
+            <p style="text-align: center; color: #555; padding: 20px;">PINTU JOYDHAR সম্পর্কে বিস্তারিত তথ্য এখানে থাকবে।</p>
         </div>
 
     </div>
