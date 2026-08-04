@@ -533,7 +533,9 @@
             let pages = document.querySelectorAll('.page-content');
             pages.forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // স্ক্রিন পজিশন ফিক্সড রাখার জন্য উইন্ডো একদম উপরে নিয়ে যাওয়া হলো
+            window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
         function toggleTheme() {
