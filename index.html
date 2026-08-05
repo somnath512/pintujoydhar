@@ -381,6 +381,7 @@
         <div class="nav-bar">
             <a href="#" id="nav-home" onclick="switchPage('home', event)"><i class="fa-solid fa-house"></i> Home</a>
             <a href="#" id="nav-gallery" onclick="switchPage('gallery', event)"><i class="fa-solid fa-images"></i> Gallery</a>
+            <a href="#" id="nav-news" onclick="switchPage('news', event)"><i class="fa-solid fa-newspaper"></i> News</a>
             <a href="#" id="nav-services" onclick="switchPage('services', event)"><i class="fa-solid fa-briefcase"></i> Services</a>
             <a href="#" id="nav-poetry" onclick="switchPage('poetry', event)"><i class="fa-solid fa-feather"></i> Poetry</a>
             <a href="#" id="nav-contact" onclick="switchPage('contact', event)"><i class="fa-solid fa-envelope"></i> Contact</a>
@@ -416,6 +417,12 @@
         <div id="gallery" class="page-content">
             <div class="section-title">Gallery Showcase</div>
             <div id="galleryDynamicPosts">Loading gallery...</div>
+        </div>
+
+        <!-- News Page -->
+        <div id="news" class="page-content">
+            <div class="section-title">Latest News & Updates</div>
+            <div id="newsDynamicPosts">Loading news...</div>
         </div>
 
         <!-- Services Page -->
@@ -474,12 +481,13 @@
                 <label style="font-weight: bold; font-size: 14px;">Select Category:</label>
                 <select id="postCategoryInput" required>
                     <option value="gallery">Gallery</option>
+                    <option value="news">News</option>
                     <option value="poetry">Poetry</option>
                     <option value="services">Services</option>
                 </select>
 
                 <label style="font-weight: bold; font-size: 14px;">Post Content / Description:</label>
-                <textarea id="postContentInput" placeholder="Write your content or poem here..." required></textarea>
+                <textarea id="postContentInput" placeholder="Write your content or news here..." required></textarea>
 
                 <label style="font-weight: bold; font-size: 14px;">Image URL / Direct Link:</label>
                 <input type="text" id="postImageInput" placeholder="Paste image direct link (e.g. imgbb link)">
@@ -554,16 +562,14 @@
         function switchPage(pageId, event) {
             if (event) event.preventDefault();
             
-            // পাসওয়ার্ড প্রটেকশন চেক (যদি আগে থেকে সেশনে লগইন করা না থাকে)
             if (pageId === 'admin') {
                 let isAuthorized = sessionStorage.getItem('adminAuth');
                 if (isAuthorized !== 'true') {
                     let password = prompt("Enter Admin Password:");
                     if (password !== "pintu@512") {
                         alert("Incorrect Password! Access Denied.");
-                        return; // ভুল পাসওয়ার্ড দিলে অ্যাডমিন পেজে যাবে না
+                        return;
                     } else {
-                        // সঠিক পাসওয়ার্ড দিলে সেশনে সেভ থাকবে, রিফ্রেশ করলে আর চাবে না
                         sessionStorage.setItem('adminAuth', 'true');
                     }
                 }
@@ -631,6 +637,7 @@
                 let emptyMsg = '<p style="text-align:center; opacity:0.6;">No posts available yet.</p>';
                 document.getElementById('homeDynamicPosts').innerHTML = emptyMsg;
                 document.getElementById('galleryDynamicPosts').innerHTML = emptyMsg;
+                document.getElementById('newsDynamicPosts').innerHTML = emptyMsg;
                 document.getElementById('servicesDynamicPosts').innerHTML = emptyMsg;
                 document.getElementById('poetryDynamicPosts').innerHTML = emptyMsg;
                 document.getElementById('adminPostList').innerHTML = emptyMsg;
@@ -641,13 +648,14 @@
 
             let homeHtml = '';
             let galleryHtml = '';
+            let newsHtml = '';
             let servicesHtml = '';
             let poetryHtml = '';
             let adminHtml = '';
 
             sortedPosts.forEach((post, index) => {
                 let imgBlock = post.image ? `<div class="gallery-post-box"><img src="${post.image}" alt="Post Image"></div>` : '';
-                let targetPageTab = post.category === 'poetry' ? 'poetry' : (post.category === 'services' ? 'services' : 'gallery');
+                let targetPageTab = post.category === 'poetry' ? 'poetry' : (post.category === 'services' ? 'services' : (post.category === 'news' ? 'news' : 'gallery'));
 
                 let cardHTML = `
                     <div class="post-card">
@@ -665,6 +673,8 @@
 
                 if (post.category === 'gallery') {
                     galleryHtml += cardHTML;
+                } else if (post.category === 'news') {
+                    newsHtml += cardHTML;
                 } else if (post.category === 'services') {
                     servicesHtml += cardHTML;
                 } else if (post.category === 'poetry') {
@@ -682,6 +692,7 @@
 
             document.getElementById('homeDynamicPosts').innerHTML = homeHtml;
             document.getElementById('galleryDynamicPosts').innerHTML = galleryHtml || '<p style="text-align:center; opacity:0.6;">No gallery posts found.</p>';
+            document.getElementById('newsDynamicPosts').innerHTML = newsHtml || '<p style="text-align:center; opacity:0.6;">No news posts found.</p>';
             document.getElementById('servicesDynamicPosts').innerHTML = servicesHtml || '<p style="text-align:center; opacity:0.6;">No service posts found.</p>';
             document.getElementById('poetryDynamicPosts').innerHTML = poetryHtml || '<p style="text-align:center; opacity:0.6;">No poetry posts found.</p>';
             document.getElementById('adminPostList').innerHTML = adminHtml;
@@ -724,7 +735,6 @@
             }
 
             const savedPage = localStorage.getItem('activePage');
-            // যদি পেজ রিফ্রেশ করার কারণে সেভ থাকা পেজটি 'admin' হয়, তবে পাসওয়ার্ড প্রম্পট এড়াতে সরাসরি হোম পেজে রিডায়রেক্ট করতে পারেন অথবা ইউজার সেশন চেক করে রাখতে পারেন।
             if (savedPage && savedPage !== 'admin') {
                 switchPage(savedPage, null);
             } else {
