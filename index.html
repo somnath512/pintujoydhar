@@ -250,10 +250,37 @@
             flex-wrap: wrap;
         }
 
+        /* 3 Lines Clamp & Read More Styling */
         .post-snippet {
             font-size: 14px;
             color: var(--post-snippet);
             white-space: pre-line;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .post-snippet.expanded {
+            display: block;
+            overflow: visible;
+        }
+
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: var(--post-title);
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            padding: 4px 0;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
+        .read-more-btn:hover {
+            text-decoration: underline;
         }
 
         .gallery-post-box {
@@ -506,7 +533,7 @@
             <div style="max-width: 850px; margin: 0 auto; padding: 20px; line-height: 1.8; color: var(--text-color);">
                 
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <img src="your-photo.jpg" alt="Pintu Joydhar" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--container-border); box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                    <img src="my-picture.jpg" alt="Pintu Joydhar" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--container-border); box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 </div>
 
                 <h3 style="color: var(--post-title); margin-bottom: 10px; text-align: center;">Hello, I'm Pintu Joydhar</h3>
@@ -632,6 +659,17 @@
                 });
         }
 
+        function toggleReadMore(buttonElement) {
+            const snippetDiv = buttonElement.previousElementSibling;
+            if (snippetDiv.classList.contains('expanded')) {
+                snippetDiv.classList.remove('expanded');
+                buttonElement.innerText = 'Read More...';
+            } else {
+                snippetDiv.classList.add('expanded');
+                buttonElement.innerText = 'Read Less';
+            }
+        }
+
         function displayPosts(posts) {
             if (!posts || posts.length === 0) {
                 let emptyMsg = '<p style="text-align:center; opacity:0.6;">No posts available yet.</p>';
@@ -665,7 +703,8 @@
                             <span><i class="fa-solid fa-clock"></i> ${post.date || 'Recent'}</span> • 
                             <span><span style="text-transform: uppercase; background: var(--section-title-bg); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: bold;">${post.category}</span></span>
                         </div>
-                        <p class="post-snippet" style="margin-bottom: 12px;">${post.content}</p>
+                        <div class="post-snippet">${post.content}</div>
+                        <button class="read-more-btn" onclick="toggleReadMore(this)">Read More...</button>
                         ${imgBlock}
                     </div>`;
 
