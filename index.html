@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
+        /* Light Mode Color Variables */
         :root {
             --bg-color: #dbe4ef;
             --text-color: #333;
@@ -28,6 +29,7 @@
             --input-text: #333;
         }
 
+        /* Dark Mode Color Variables */
         [data-theme="dark"] {
             --bg-color: #121824;
             --text-color: #e2e8f0;
@@ -323,8 +325,11 @@
             padding: 10px;
         }
 
-        .contact-form input, .contact-form textarea,
-        .admin-form input, .admin-form textarea, .admin-form select {
+        .contact-form input, 
+        .contact-form textarea,
+        .admin-form input,
+        .admin-form textarea,
+        .admin-form select {
             width: 100%;
             padding: 10px;
             border: 1px solid var(--input-border);
@@ -380,7 +385,7 @@
             <a href="#" id="nav-poetry" onclick="switchPage('poetry', event)"><i class="fa-solid fa-feather"></i> Poetry</a>
             <a href="#" id="nav-contact" onclick="switchPage('contact', event)"><i class="fa-solid fa-envelope"></i> Contact</a>
             <a href="#" id="nav-about" onclick="switchPage('about', event)"><i class="fa-solid fa-user"></i> About</a>
-            <a href="#" id="nav-admin" onclick="switchPage('admin', event)" style="color: #facc15;"><i class="fa-solid fa-lock"></i> Admin</a>
+            <a href="#" id="nav-admin" onclick="switchPage('admin', event)"><i class="fa-solid fa-lock"></i> Admin</a>
             
             <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
                 <i class="fa-solid fa-moon" id="themeIcon"></i> <span id="themeText">Dark</span>
@@ -393,7 +398,7 @@
         </div>
     </div>
 
-    <!-- Banner -->
+    <!-- ব্যানার হোম পেজে দেখানোর জন্য -->
     <div class="banner" id="bannerBox">
         <h2>Welcome to My Digital Space</h2>
         <p>Official Portfolio & Creative Showcase of Pintu Joydhar</p>
@@ -403,82 +408,26 @@
 
         <!-- Home Page -->
         <div id="home" class="page-content active">
-            <div class="section-title">Latest Updates & Showcase</div>
+            <div class="section-title">Latest Updates (New to Old)</div>
             <div id="homeDynamicPosts"></div>
-
-            <div class="post-card">
-                <h3 class="post-title"><a href="#" onclick="switchPage('gallery', event)">এখন কি খুব ঘুম হয় তোমার?</a></h3>
-                <div class="post-meta">
-                    <span>By PINTU JOYDHAR</span> • 
-                    <span><i class="fa-solid fa-clock"></i> August 5, 2026 at 2:50</span> • 
-                    <span><i class="fa-solid fa-globe"></i></span>
-                </div>
-                <p class="post-snippet" style="margin-bottom: 12px;">
-                    এখন কি খুব ঘুম হয় তোমার?<br>
-                    চোখের পাতায় শান্তি নামে?<br>
-                    নাকি আমায় ফেলে স্বস্তির শ্বাস<br>
-                    জমা হচ্ছে সুখের খামে?
-                </p>
-                <div class="gallery-post-box">
-                    <img src="nodi.jpg" alt="New Gallery Image">
-                </div>
-            </div>
         </div>
 
         <!-- Gallery Page -->
         <div id="gallery" class="page-content">
             <div class="section-title">Gallery Showcase</div>
             <div id="galleryDynamicPosts"></div>
-
-            <div class="post-card">
-                <h3 class="post-title"><a href="#">এখন কি খুব ঘুম হয় তোমার?</a></h3>
-                <div class="post-meta">
-                    <span>By PINTU JOYDHAR</span> • 
-                    <span><i class="fa-solid fa-clock"></i> August 5, 2026 at 2:50</span> • 
-                    <span><i class="fa-solid fa-globe"></i></span>
-                </div>
-                <p class="post-snippet" style="margin-bottom: 12px;">
-                    এখন কি খুব ঘুম হয় তোমার?<br>
-                    চোখের পাতায় শান্তি নামে?<br>
-                    নাকি আমায় ফেলে স্বস্তির শ্বাস<br>
-                    জমা হচ্ছে সুখের খামে?
-                </p>
-                <div class="gallery-post-box">
-                    <img src="nodi.jpg" alt="Gallery Image">
-                </div>
-            </div>
         </div>
 
         <!-- Services Page -->
         <div id="services" class="page-content">
             <div class="section-title">Professional Services</div>
             <div id="servicesDynamicPosts"></div>
-
-            <div class="post-card">
-                <h3 class="post-title"><a href="#">Web Design & Development Solutions</a></h3>
-                <div class="post-meta">
-                    <span>By PINTU JOYDHAR</span> • 
-                    <span><i class="fa-solid fa-clock"></i> August 1, 2026</span> • 
-                    <span><i class="fa-solid fa-globe"></i></span>
-                </div>
-                <p class="post-snippet">Custom website creation, responsive layouts, and advanced integration services tailored for your business...</p>
-            </div>
         </div>
 
         <!-- Poetry Page -->
         <div id="poetry" class="page-content">
             <div class="section-title">Creative Poetry</div>
             <div id="poetryDynamicPosts"></div>
-
-            <div class="post-card">
-                <h3 class="post-title"><a href="#">The Language of Silence</a></h3>
-                <div class="post-meta">
-                    <span>By PINTU JOYDHAR</span> • 
-                    <span><i class="fa-solid fa-clock"></i> August 3, 2026</span> • 
-                    <span><i class="fa-solid fa-globe"></i></span>
-                </div>
-                <p class="post-snippet">Unspoken emotions and reflections captured through rhythmic verses and soulful expressions...</p>
-            </div>
         </div>
 
         <!-- Contact Page -->
@@ -505,6 +454,8 @@
                 </a>
             </div>
 
+            <p style="text-align: center; color: var(--text-color); margin: 20px 0 10px 0; opacity: 0.8;">Or send a direct message using the form below:</p>
+            
             <form class="contact-form" id="contactForm" method="POST">
                 <input type="text" name="Name" placeholder="Your Name" required>
                 <input type="email" name="Email" placeholder="Your Email Address" required>
@@ -513,58 +464,76 @@
             </form>
         </div>
 
+        <!-- Admin Page -->
+        <div id="admin" class="page-content">
+            <div class="section-title">Admin Panel - Publish New Post</div>
+            <form class="admin-form" id="newPostForm" onsubmit="publishNewPost(event)">
+                <label style="font-weight: bold; font-size: 14px;">Post Title:</label>
+                <input type="text" id="postTitleInput" placeholder="Enter post title..." required>
+
+                <label style="font-weight: bold; font-size: 14px;">Select Category:</label>
+                <select id="postCategoryInput" required>
+                    <option value="gallery">Gallery</option>
+                    <option value="poetry">Poetry</option>
+                    <option value="services">Services</option>
+                </select>
+
+                <label style="font-weight: bold; font-size: 14px;">Post Content / Description:</label>
+                <textarea id="postContentInput" placeholder="Write your content or poem here..." required></textarea>
+
+                <label style="font-weight: bold; font-size: 14px;">Upload Image (Optional):</label>
+                <input type="file" id="postImageInput" accept="image/*">
+
+                <button type="submit"><i class="fa-solid fa-upload"></i> Publish Post</button>
+            </form>
+
+            <hr style="margin: 30px 0; border-color: var(--container-border);">
+            <div class="section-title">Manage Published Posts</div>
+            <div id="adminPostList"></div>
+        </div>
+
         <!-- About Page -->
         <div id="about" class="page-content">
             <div class="section-title">About Me</div>
             <div style="max-width: 850px; margin: 0 auto; padding: 20px; line-height: 1.8; color: var(--text-color);">
+                
                 <h3 style="color: var(--post-title); margin-bottom: 10px; text-align: center;">Hello, I'm Pintu Joydhar</h3>
                 <p style="margin-bottom: 20px; text-align: justify;">
-                    Welcome to my digital space! While I am an accounting student by discipline, my true passion lies at the intersection of technology, web development, and creative arts.
+                    Welcome to my digital space! While I am an accounting student by discipline, my true passion lies at the intersection of technology, web development, and creative arts. I love building sleek, functional web experiences as a freelancer, and I channel my inner thoughts and emotions into writing poetry as a hobby. This portfolio is a canvas where my analytical mindset meets my creative expression.
                 </p>
-            </div>
-        </div>
 
-        <!-- Admin Page -->
-        <div id="admin" class="page-content">
-            <div class="section-title">Admin Post Creator Dashboard</div>
-            
-            <div id="adminLoginBox" style="max-width: 400px; margin: 30px auto; text-align: center;">
-                <p style="margin-bottom: 15px; font-weight: bold;">Enter Admin Password to Create Posts</p>
-                <input type="password" id="adminPasswordInput" placeholder="Password (default: pintu123)" style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid var(--input-border); background: var(--input-bg); color: var(--input-text); border-radius: 4px;">
-                <button onclick="checkAdminPassword()" style="background: #2c3e50; color: #fff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 4px; cursor: pointer;">Login</button>
-            </div>
-
-            <div id="adminPostBox" style="display: none;">
-                <p style="text-align: center; margin-bottom: 20px; color: #16a34a; font-weight: bold;"><i class="fa-solid fa-circle-check"></i> Logged In Successfully!</p>
-                
-                <form class="admin-form" id="newPostForm" onsubmit="publishNewPost(event)">
-                    <label style="font-weight: bold; font-size: 14px;">Select Category (কোথায় পোস্ট করতে চান):</label>
-                    <select id="postCategoryInput" required>
-                        <option value="gallery">Gallery</option>
-                        <option value="services">Services</option>
-                        <option value="poetry">Poetry</option>
-                    </select>
-
-                    <label style="font-weight: bold; font-size: 14px;">Post Title:</label>
-                    <input type="text" id="postTitleInput" placeholder="Enter title..." required>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-top: 25px;">
                     
-                    <label style="font-weight: bold; font-size: 14px;">Post Content:</label>
-                    <textarea id="postContentInput" placeholder="Write description or poem here..." required></textarea>
-                    
-                    <label style="font-weight: bold; font-size: 14px;">Upload Image from Device:</label>
-                    <input type="file" id="postImageInput" accept="image/*" style="padding: 6px;">
-                    
-                    <button type="submit"><i class="fa-solid fa-cloud-arrow-up"></i> Publish Post Now</button>
-                </form>
+                    <!-- Education Box -->
+                    <div style="background: var(--nav-bg); border: 1px solid var(--container-border); padding: 20px; border-radius: 6px;">
+                        <h4 style="color: var(--section-title-text); margin-bottom: 15px; border-bottom: 2px solid var(--section-title-border); padding-bottom: 5px;">
+                            <i class="fa-solid fa-graduation-cap"></i> Educational Qualification
+                        </h4>
+                        <p style="margin-bottom: 8px;"><strong>Degree:</strong> Bachelor of Business Administration (BBA)</p>
+                        <p style="margin-bottom: 8px;"><strong>Major:</strong> Accounting</p>
+                        <p style="margin-bottom: 8px;"><strong>Institution:</strong> Govt. BM College, Barishal</p>
+                        <p style="margin-bottom: 8px;"><strong>University:</strong> National University</p>
+                        <p style="margin-bottom: 8px;"><strong>Session & Year:</strong> 2021-2022 (4th Year)</p>
+                    </div>
 
-                <div style="margin-top: 30px; border-top: 1px solid var(--container-border); padding-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    <h4 style="margin-bottom: 15px; font-size: 15px; text-align: center;">Manage / Delete Published Posts:</h4>
-                    <div id="adminPostList"></div>
+                    <!-- Personal Overview Box -->
+                    <div style="background: var(--nav-bg); border: 1px solid var(--container-border); padding: 20px; border-radius: 6px;">
+                        <h4 style="color: var(--section-title-text); margin-bottom: 15px; border-bottom: 2px solid var(--section-title-border); padding-bottom: 5px;">
+                            <i class="fa-solid fa-user-pen"></i> Personal Overview
+                        </h4>
+                        <p style="margin-bottom: 8px;"><strong>Location:</strong> Barishal Sadar, Barishal</p>
+                        <p style="margin-bottom: 8px;"><strong>Nationality:</strong> Bangladeshi</p>
+                        <p style="margin-bottom: 8px;"><strong>Date of Birth:</strong> 29 December 2003</p>
+                        <p style="margin-bottom: 8px;"><strong>Blood Group:</strong> O+ (Positive)</p>
+                        <p style="margin-bottom: 8px;"><strong>Interests:</strong> Web Dev, Tech, Poetry & Art</p>
+                    </div>
+
                 </div>
-                
-                <div style="text-align: center; margin-top: 25px;">
-                    <button onclick="clearAllDynamicPosts()" style="background: #dc2626; color: #fff; border: none; padding: 8px 15px; font-size: 12px; border-radius: 4px; cursor: pointer;">Clear All Published Posts</button>
-                </div>
+
+                <p style="text-align: center; font-weight: bold; margin-top: 30px; color: var(--section-title-text);">
+                    Let's collaborate and build something amazing together!
+                </p>
+
             </div>
         </div>
 
@@ -574,6 +543,7 @@
         © 2026 PINTU JOYDHAR. All rights reserved.
     </footer>
 
+    <!-- Crisp Live Chat Integration -->
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="5b8466eb-694c-43d4-94a8-906063773d34";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
     <script>
@@ -625,23 +595,44 @@
             }
         }
 
-        function checkAdminPassword() {
-            const pass = document.getElementById('adminPasswordInput').value;
-            if (pass === 'pintu123') {
-                sessionStorage.setItem('isAdminLoggedIn', 'true');
-                document.getElementById('adminLoginBox').style.display = 'none';
-                document.getElementById('adminPostBox').style.display = 'block';
-                loadDynamicPosts();
-            } else {
-                alert('Incorrect Password! Please try again.');
-            }
+        // Default initial sample posts if localstorage is empty
+        function getInitialPosts() {
+            return [
+                {
+                    title: "Web Design & Development Solutions",
+                    category: "services",
+                    content: "Custom website creation, responsive layouts, and advanced integration services tailored for your business...",
+                    image: "",
+                    date: "August 1, 2026"
+                },
+                {
+                    title: "The Language of Silence",
+                    category: "poetry",
+                    content: "Unspoken emotions and reflections captured through rhythmic verses and soulful expressions...",
+                    image: "",
+                    date: "August 3, 2026"
+                },
+                {
+                    title: "তুমি তো আগেই বলেছ—ভালোবাসোনি, তবে কেন এই বিলাপ?",
+                    category: "gallery",
+                    content: "তুমি তো আগেই বলেছ—ভালোবাসোনি, তবে কেন এই বিলাপ?\nআমি চাই তুমি ভালো থাকো, তোমার আকাশ জুড়ে থাক আলো,\nআমায় না হয় কাঁদিয়েই গেলে, তুমি থেকো বড্ড ভালো।",
+                    image: "my-picture.jpg",
+                    date: "August 4, 2026 at 5:45 PM"
+                },
+                {
+                    title: "এখন কি খুব ঘুম হয় তোমার?",
+                    category: "gallery",
+                    content: "এখন কি খুব ঘুম হয় তোমার?\nচোখের পাতায় শান্তি নামে?\nনাকি আমায় ফেলে স্বস্তির শ্বাস\nজমা হচ্ছে সুখের খামে?",
+                    image: "nodi.jpg",
+                    date: "August 5, 2026 at 2:50 PM"
+                }
+            ];
         }
 
         function publishNewPost(e) {
             e.preventDefault();
-            
-            const category = document.getElementById('postCategoryInput').value;
             const title = document.getElementById('postTitleInput').value;
+            const category = document.getElementById('postCategoryInput').value;
             const content = document.getElementById('postContentInput').value;
             const imageInput = document.getElementById('postImageInput');
             const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + ' at ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -649,93 +640,98 @@
             if (imageInput.files && imageInput.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(uploadEvent) {
-                    const imageDataUrl = uploadEvent.target.result;
-                    saveAndPublishPost(category, title, content, imageDataUrl, dateStr);
+                    savePostData(title, category, content, uploadEvent.target.result, dateStr);
                 };
                 reader.readAsDataURL(imageInput.files[0]);
             } else {
-                saveAndPublishPost(category, title, content, '', dateStr);
+                savePostData(title, category, content, '', dateStr);
             }
         }
 
-        function saveAndPublishPost(category, title, content, image, dateStr) {
-            const newPost = { category, title, content, image, date: dateStr };
+        function savePostData(title, category, content, image, dateStr) {
+            const newPost = { title, category, content, image, date: dateStr };
+            let posts = JSON.parse(localStorage.getItem('portfolioPosts')) || getInitialPosts();
+            posts.push(newPost); // Add to end (Newest can be sorted or unshifted)
+            localStorage.setItem('portfolioPosts', JSON.stringify(posts));
             
-            let posts = JSON.parse(localStorage.getItem('dynamicPosts')) || [];
-            posts.unshift(newPost);
-            localStorage.setItem('dynamicPosts', JSON.stringify(posts));
-
-            alert('Post published successfully to ' + category.toUpperCase() + '!');
+            alert('Post published successfully!');
             document.getElementById('newPostForm').reset();
-            loadDynamicPosts();
-            switchPage(category, null);
+            loadPosts();
+            switchPage('home', null);
         }
 
-        function loadDynamicPosts() {
-            const posts = JSON.parse(localStorage.getItem('dynamicPosts')) || [];
+        function deletePost(index) {
+            if (confirm('Are you sure you want to delete this post?')) {
+                let posts = JSON.parse(localStorage.getItem('portfolioPosts')) || getInitialPosts();
+                posts.splice(index, 1);
+                localStorage.setItem('portfolioPosts', JSON.stringify(posts));
+                loadPosts();
+            }
+        }
+
+        function loadPosts() {
+            let posts = JSON.parse(localStorage.getItem('portfolioPosts'));
+            if (!posts) {
+                posts = getInitialPosts();
+                localStorage.setItem('portfolioPosts', JSON.stringify(posts));
+            }
+
+            // New to Old sorting (Reverse copy)
+            let sortedPosts = [...posts].reverse();
+
             let homeHtml = '';
             let galleryHtml = '';
             let servicesHtml = '';
             let poetryHtml = '';
-            let adminListHtml = '';
+            let adminHtml = '';
 
-            posts.forEach((post, index) => {
+            sortedPosts.forEach((post, originalIndex) => {
+                // To delete correctly from original array index
+                let actualIndex = posts.length - 1 - originalIndex;
+
                 let imgBlock = post.image ? `<div class="gallery-post-box"><img src="${post.image}" alt="Post Image"></div>` : '';
                 
-                let postCardHTML = `
+                let targetPageTab = post.category === 'poetry' ? 'poetry' : (post.category === 'services' ? 'services' : 'gallery');
+
+                let cardHTML = `
                     <div class="post-card">
-                        <h3 class="post-title"><a href="#" onclick="switchPage('${post.category}', event)">${post.title}</a></h3>
+                        <h3 class="post-title"><a href="#" onclick="switchPage('${targetPageTab}', event)">${post.title}</a></h3>
                         <div class="post-meta">
                             <span>By PINTU JOYDHAR</span> • 
                             <span><i class="fa-solid fa-clock"></i> ${post.date}</span> • 
-                            <span><i class="fa-solid fa-globe"></i></span>
+                            <span><span style="text-transform: uppercase; background: var(--section-title-bg); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: bold;">${post.category}</span></span>
                         </div>
                         <p class="post-snippet" style="margin-bottom: 12px;">${post.content}</p>
                         ${imgBlock}
-                    </div>
-                `;
+                    </div>`;
 
-                // ক্যাটাগরি অনুযায়ী আলাদা পেজে যুক্ত করা
+                // Home shows all posts in New to Old sequence
+                homeHtml += cardHTML;
+
+                // Category-wise separation
                 if (post.category === 'gallery') {
-                    galleryHtml += postCardHTML;
-                    homeHtml += postCardHTML; // হোম পেজেও গ্যালারির আপডেট দেখাবে
+                    galleryHtml += cardHTML;
                 } else if (post.category === 'services') {
-                    servicesHtml += postCardHTML;
+                    servicesHtml += cardHTML;
                 } else if (post.category === 'poetry') {
-                    poetryHtml += postCardHTML;
-                    homeHtml += postCardHTML; // হোম পেজেও কবিতার আপডেট দেখাবে
+                    poetryHtml += cardHTML;
                 }
 
-                adminListHtml += `
-                    <div style="background: var(--nav-bg); border: 1px solid var(--container-border); padding: 10px; margin-bottom: 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 14px; font-weight: bold; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%;">[${post.category.toUpperCase()}] ${post.title}</span>
-                        <button onclick="deleteSinglePost(${index})" style="background: #dc2626; color: #fff; border: none; padding: 5px 10px; font-size: 12px; border-radius: 4px; cursor: pointer;"><i class="fa-solid fa-trash"></i> Delete</button>
-                    </div>
-                `;
+                // Admin post list manager
+                adminHtml += `
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--container-border);">
+                        <div>
+                            <strong>${post.title}</strong> <span style="font-size: 11px; opacity: 0.7;">[${post.category.toUpperCase()}]</span>
+                        </div>
+                        <button onclick="deletePost(${actualIndex})" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 3px; cursor: pointer; font-size: 12px;">Delete</button>
+                    </div>`;
             });
 
             if (document.getElementById('homeDynamicPosts')) document.getElementById('homeDynamicPosts').innerHTML = homeHtml;
             if (document.getElementById('galleryDynamicPosts')) document.getElementById('galleryDynamicPosts').innerHTML = galleryHtml;
             if (document.getElementById('servicesDynamicPosts')) document.getElementById('servicesDynamicPosts').innerHTML = servicesHtml;
             if (document.getElementById('poetryDynamicPosts')) document.getElementById('poetryDynamicPosts').innerHTML = poetryHtml;
-            if (document.getElementById('adminPostList')) document.getElementById('adminPostList').innerHTML = adminListHtml;
-        }
-
-        function deleteSinglePost(index) {
-            if (confirm('Are you sure you want to delete this specific post?')) {
-                let posts = JSON.parse(localStorage.getItem('dynamicPosts')) || [];
-                posts.splice(index, 1);
-                localStorage.setItem('dynamicPosts', JSON.stringify(posts));
-                loadDynamicPosts();
-            }
-        }
-
-        function clearAllDynamicPosts() {
-            if (confirm('Are you sure you want to delete all published dynamic posts?')) {
-                localStorage.removeItem('dynamicPosts');
-                loadDynamicPosts();
-                alert('All posts cleared.');
-            }
+            if (document.getElementById('adminPostList')) document.getElementById('adminPostList').innerHTML = adminHtml || '<p style="text-align:center; opacity:0.6;">No posts found.</p>';
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -746,19 +742,14 @@
                 document.getElementById('themeText').innerText = 'Light';
             }
 
-            loadDynamicPosts();
-
-            if (sessionStorage.getItem('isAdminLoggedIn') === 'true') {
-                document.getElementById('adminLoginBox').style.display = 'none';
-                document.getElementById('adminPostBox').style.display = 'block';
-            }
-
             const savedPage = localStorage.getItem('activePage');
             if (savedPage) {
                 switchPage(savedPage, null);
             } else {
                 switchPage('home', null);
             }
+
+            loadPosts();
         });
 
         const scriptURL = 'https://script.google.com/macros/s/AKfycby6w5jrohvzBWpob8Hkt7wmLjTJl90GGa3Q1xiVC7eqpXYh-p3d6Xx1cIfo1Yj0zVs9NQ/exec';
