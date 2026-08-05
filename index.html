@@ -629,8 +629,8 @@
                     <label style="font-weight: bold; font-size: 14px;">Post Content / Poetry Lines:</label>
                     <textarea id="postContentInput" placeholder="Write your poem or description here..." required></textarea>
                     
-                    <label style="font-weight: bold; font-size: 14px;">Image File Name or Link:</label>
-                    <input type="text" id="postImageInput" placeholder="e.g. nodi.jpg or https://... (optional)">
+                    <label style="font-weight: bold; font-size: 14px;">Upload Image from Device:</label>
+                    <input type="file" id="postImageInput" accept="image/*" style="padding: 6px;">
                     
                     <button type="submit"><i class="fa-solid fa-cloud-arrow-up"></i> Publish Post Now</button>
                 </form>
@@ -717,22 +717,35 @@
             }
         }
 
-        // Publish Post Handler
+        // Publish Post Handler with Direct Image Upload
         function publishNewPost(e) {
             e.preventDefault();
             
             const title = document.getElementById('postTitleInput').value;
             const content = document.getElementById('postContentInput').value;
-            const image = document.getElementById('postImageInput').value.trim();
+            const imageInput = document.getElementById('postImageInput');
             const dateStr = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + ' at ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+            if (imageInput.files && imageInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(uploadEvent) {
+                    const imageDataUrl = uploadEvent.target.result;
+                    saveAndPublishPost(title, content, imageDataUrl, dateStr);
+                };
+                reader.readAsDataURL(imageInput.files[0]);
+            } else {
+                saveAndPublishPost(title, content, '', dateStr);
+            }
+        }
+
+        function saveAndPublishPost(title, content, image, dateStr) {
             const newPost = { title, content, image, date: dateStr };
             
             let posts = JSON.parse(localStorage.getItem('dynamicPosts')) || [];
             posts.unshift(newPost);
             localStorage.setItem('dynamicPosts', JSON.stringify(posts));
 
-            alert('Post published successfully! Check your Home and Gallery pages.');
+            alert('Post published successfully with your image!');
             document.getElementById('newPostForm').reset();
             loadDynamicPosts();
             switchPage('home', null);
