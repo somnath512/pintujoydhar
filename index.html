@@ -554,12 +554,18 @@
         function switchPage(pageId, event) {
             if (event) event.preventDefault();
             
-            // পাসওয়ার্ড প্রটেকশন চেক
+            // পাসওয়ার্ড প্রটেকশন চেক (যদি আগে থেকে সেশনে লগইন করা না থাকে)
             if (pageId === 'admin') {
-                let password = prompt("Enter Admin Password:");
-                if (password !== "pintu@512") {
-                    alert("Incorrect Password! Access Denied.");
-                    return;
+                let isAuthorized = sessionStorage.getItem('adminAuth');
+                if (isAuthorized !== 'true') {
+                    let password = prompt("Enter Admin Password:");
+                    if (password !== "pintu@512") {
+                        alert("Incorrect Password! Access Denied.");
+                        return; // ভুল পাসওয়ার্ড দিলে অ্যাডমিন পেজে যাবে না
+                    } else {
+                        // সঠিক পাসওয়ার্ড দিলে সেশনে সেভ থাকবে, রিফ্রেশ করলে আর চাবে না
+                        sessionStorage.setItem('adminAuth', 'true');
+                    }
                 }
             }
             
@@ -718,7 +724,8 @@
             }
 
             const savedPage = localStorage.getItem('activePage');
-            if (savedPage) {
+            // যদি পেজ রিফ্রেশ করার কারণে সেভ থাকা পেজটি 'admin' হয়, তবে পাসওয়ার্ড প্রম্পট এড়াতে সরাসরি হোম পেজে রিডায়রেক্ট করতে পারেন অথবা ইউজার সেশন চেক করে রাখতে পারেন।
+            if (savedPage && savedPage !== 'admin') {
                 switchPage(savedPage, null);
             } else {
                 switchPage('home', null);
