@@ -498,7 +498,7 @@
             <div style="max-width: 850px; margin: 0 auto; padding: 20px; line-height: 1.8; color: var(--text-color);">
                 
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <img src="your-photo.jpg" alt="Pintu Joydhar" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--container-border); box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                    <img src="my-picture.jpg" alt="Pintu Joydhar" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--container-border); box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 </div>
 
                 <h3 style="color: var(--post-title); margin-bottom: 10px; text-align: center;">Hello, I'm Pintu Joydhar</h3>
@@ -549,11 +549,19 @@
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="5b8466eb-694c-43d4-94a8-906063773d34";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
     <script>
-        // এখানে আপনার নতুন গুগল শিট অ্যাপস স্ক্রিপ্ট ইউআরএল যুক্ত করা আছে
         const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbyFPdxKe5TCb705PuY50jLSP3PcqQJGKPiEHzd_CE8D5fGQZ406WG5wO4K2Nrz8_A5p/exec';
 
         function switchPage(pageId, event) {
             if (event) event.preventDefault();
+            
+            // পাসওয়ার্ড প্রটেকশন চেক
+            if (pageId === 'admin') {
+                let password = prompt("Enter Admin Password:");
+                if (password !== "pintu@512") {
+                    alert("Incorrect Password! Access Denied.");
+                    return;
+                }
+            }
             
             let pages = document.querySelectorAll('.page-content');
             pages.forEach(p => p.classList.remove('active'));
