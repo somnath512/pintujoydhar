@@ -401,10 +401,30 @@
 
     <div class="main-container">
 
-        <!-- Home Page (Contact এবং About বাদে সব পেজের পোস্ট নতুন থেকে পুরনো ক্রমানুসারে) -->
+        <!-- Home Page -->
         <div id="home" class="page-content active">
             
-            <!-- ১. সবচেয়ে নতুন পোস্ট -->
+            <!-- ১. নতুন যোগ করা ছবি বা পোস্ট (সবার উপরে) -->
+            <div class="section-title">Latest Gallery Showcase</div>
+            <div class="post-card">
+                <h3 class="post-title"><a href="#" onclick="switchPage('gallery', event)">এখন কি খুব ঘুম হয় তোমার?</a></h3>
+                <div class="post-meta">
+                    <span>By PINTU JOYDHAR</span> • 
+                    <span><i class="fa-solid fa-clock"></i> August 5, 2026</span> • 
+                    <span><i class="fa-solid fa-globe"></i></span>
+                </div>
+                <p class="post-snippet" style="margin-bottom: 12px;">
+                    এখন কি খুব ঘুম হয় তোমার?</br> 
+চোখের পাতায় শান্তি নামে?<br>
+নাকি আমায় ফেলে স্বস্তির শ্বাস<br>
+জমা হচ্ছে সুখের খামে?
+                </p>
+                <div class="gallery-post-box">
+                    <img src="nodi.jpg" alt="New Gallery Image">
+                </div>
+            </div>
+
+            <!-- ২. আগের নতুন পোস্ট -->
             <div class="section-title">Latest Gallery & Poetry Update</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#" onclick="switchPage('gallery', event)">তুমি তো আগেই বলেছ—ভালোবাসোনি, তবে কেন এই বিলাপ?</a></h3>
@@ -423,7 +443,7 @@
                 </div>
             </div>
 
-            <!-- ২. ক্রমানুসারে আগের পোস্ট -->
+            <!-- ৩. ক্রমানুসারে আগের পোস্ট -->
             <div class="section-title">Creative Poetry</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#" onclick="switchPage('poetry', event)">The Language of Silence</a></h3>
@@ -435,7 +455,7 @@
                 <p class="post-snippet">Unspoken emotions and reflections captured through rhythmic verses and soulful expressions...</p>
             </div>
 
-            <!-- ৩. ক্রমানুসারে তার আগের পোস্ট -->
+            <!-- ৪. ক্রমানুসারে তার আগের পোস্ট -->
             <div class="section-title">Professional Services</div>
             <div class="post-card">
                 <h3 class="post-title"><a href="#" onclick="switchPage('services', event)">Web Design & Development Solutions</a></h3>
@@ -452,6 +472,26 @@
         <!-- Gallery Page -->
         <div id="gallery" class="page-content">
             <div class="section-title">Gallery Showcase</div>
+            
+            <!-- নতুন ছবি গ্যালারি পেজেও যুক্ত করা হলো -->
+            <div class="post-card">
+                <h3 class="post-title"><a href="#">এখন কি খুব ঘুম হয় তোমার?</a></h3>
+                <div class="post-meta">
+                    <span>By PINTU JOYDHAR</span> • 
+                    <span><i class="fa-solid fa-clock"></i> August 5, 2026</span> • 
+                    <span><i class="fa-solid fa-globe"></i></span>
+                </div>
+                <p class="post-snippet" style="margin-bottom: 12px;">
+                    এখন কি খুব ঘুম হয় তোমার?</br> 
+চোখের পাতায় শান্তি নামে?<br>
+নাকি আমায় ফেলে স্বস্তির শ্বাস<br>
+জমা হচ্ছে সুখের খামে?
+                </p>
+                <div class="gallery-post-box">
+                    <img src="nodi.jpg" alt="New Gallery Showcase Image">
+                </div>
+            </div>
+
             <div class="post-card">
                 <h3 class="post-title"><a href="#">তুমি তো আগেই বলেছ—ভালোবাসোনি, তবে কেন এই বিলাপ?</a></h3>
                 <div class="post-meta">
