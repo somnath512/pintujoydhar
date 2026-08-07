@@ -587,14 +587,16 @@
     <script>
         const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbyFPdxKe5TCb705PuY50jLSP3PcqQJGKPiEHzd_CE8D5fGQZ406WG5wO4K2Nrz8_A5p/exec';
 
-        // Direct function to pause all other videos when any video starts
-        function handleVideoPlay(currentVideo) {
-            document.querySelectorAll('video').forEach(v => {
-                if (v !== currentVideo) {
-                    v.pause();
-                }
-            });
-        }
+        // Global Event Delegation to intercept play events on all present and future videos securely
+        document.addEventListener('play', function(e) {
+            if (e.target && e.target.tagName === 'VIDEO') {
+                document.querySelectorAll('video').forEach(v => {
+                    if (v !== e.target) {
+                        v.pause();
+                    }
+                });
+            }
+        }, true);
 
         function switchPage(pageId, event) {
             if (event) event.preventDefault();
@@ -680,7 +682,7 @@
             }
         }
 
-        // Media Parser with built-in onplay attribute for direct videos
+        // Clean Media Parser without inline event interference
         function formatMediaBlock(url) {
             if (!url) return '';
             let trimmed = url.trim();
@@ -694,10 +696,10 @@
                 </div>`;
             }
 
-            // Direct Video Link (.mp4, .webm, .ogg) with onplay handler
+            // Direct Video Link (.mp4, .webm, .ogg)
             if (trimmed.match(/\.(mp4|webm|ogg)(\?.*)?$/i)) {
                 return `<div class="gallery-post-box">
-                    <video controls onplay="handleVideoPlay(this)" style="max-width:100%; max-height:400px; border-radius:6px; border:2px solid var(--container-border);">
+                    <video controls style="max-width:100%; max-height:400px; border-radius:6px; border:2px solid var(--container-border);">
                         <source src="${trimmed}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
