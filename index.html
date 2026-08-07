@@ -288,7 +288,7 @@
             margin-top: 10px;
         }
 
-        .gallery-post-box img {
+        .gallery-post-box img, .gallery-post-box iframe {
             max-width: 100%;
             max-height: 400px;
             border-radius: 6px;
@@ -516,8 +516,8 @@
                 <label style="font-weight: bold; font-size: 14px;">Post Content / Description:</label>
                 <textarea id="postContentInput" placeholder="Write your content or news here..." required></textarea>
 
-                <label style="font-weight: bold; font-size: 14px;">Image URL / Direct Link / Google Drive Link:</label>
-                <input type="text" id="postImageInput" placeholder="Paste image link here...">
+                <label style="font-weight: bold; font-size: 14px;">Image / Video URL (Drive, YouTube, or Direct Link):</label>
+                <input type="text" id="postImageInput" placeholder="Paste image or video link here...">
 
                 <button type="submit" id="publishBtn"><i class="fa-solid fa-upload"></i> Publish to Google Sheet</button>
             </form>
@@ -670,18 +670,44 @@
             }
         }
 
-        // Google Drive link converter function
-        function formatImageUrl(url) {
+        // Media Parser for Images, Google Drive Videos, and YouTube
+        function formatMediaBlock(url) {
             if (!url) return '';
             let trimmed = url.trim();
-            // Check if it's a google drive share link
-            if (trimmed.includes('drive.google.com')) {
-                let match = trimmed.match(/\/d\/([a-zA-Z0-9_-]+)/);
-                if (match && match[1]) {
-                    return 'https://lh3.googleusercontent.com/d/' + match[1];
+
+            // YouTube Link Support
+            if (trimmed.includes('youtube.com') || trimmed.includes('youtu.be')) {
+                let videoId = '';
+                if (trimmed.includes('youtu.be/')) {
+                    videoId = trimmed.split('youtu.be/')[1].split('?')[0];
+                } else if (trimmed.includes('v=')) {
+                    videoId = trimmed.split('v=')[1].split('&')[0];
+                }
+                if (videoId) {
+                    return `<div class="gallery-post-box">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+                    </div>`;
                 }
             }
-            return trimmed;
+
+            // Google Drive Video / File Preview Support
+            if (trimmed.includes('drive.google.com')) {
+                let fileIdMatch = trimmed.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                if (fileIdMatch && fileIdMatch[1]) {
+                    let fileId = fileIdMatch[1];
+                    // If it's a folder or generic view, check if it's video or image
+                    if (trimmed.includes('/view') || trimmed.includes('/edit') || trimmed.includes('usp=sharing')) {
+                        return `<div class="gallery-post-box">
+                            <iframe src="https://drive.google.com/file/d/${fileId}/preview" width="100%" height="350" allow="autoplay"></iframe>
+                        </div>`;
+                    } else {
+                        return `<div class="gallery-post-box"><img src="https://lh3.googleusercontent.com/d/${fileId}" alt="Drive Image"></div>`;
+                    }
+                }
+            }
+
+            // Standard Direct Image Link
+            return `<div class="gallery-post-box"><img src="${trimmed}" alt="Post Image"></div>`;
         }
 
         function displayPosts(posts) {
@@ -706,8 +732,7 @@
             let adminHtml = '';
 
             sortedPosts.forEach((post, index) => {
-                let processedImgUrl = formatImageUrl(post.image);
-                let imgBlock = processedImgUrl ? `<div class="gallery-post-box"><img src="${processedImgUrl}" alt="Post Image"></div>` : '';
+                let mediaBlock = formatMediaBlock(post.image);
                 let targetPageTab = post.category === 'poetry' ? 'poetry' : (post.category === 'services' ? 'services' : (post.category === 'news' ? 'news' : 'gallery'));
 
                 let cardHTML = `
@@ -720,7 +745,7 @@
                         </div>
                         <div class="post-snippet">${post.content}</div>
                         <button class="read-more-btn" onclick="toggleReadMore(this)">Read More...</button>
-                        ${imgBlock}
+                        ${mediaBlock}
                     </div>`;
 
                 homeHtml += cardHTML;
