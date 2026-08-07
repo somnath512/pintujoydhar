@@ -516,8 +516,8 @@
                 <label style="font-weight: bold; font-size: 14px;">Post Content / Description:</label>
                 <textarea id="postContentInput" placeholder="Write your content or news here..." required></textarea>
 
-                <label style="font-weight: bold; font-size: 14px;">Image URL / Direct Link:</label>
-                <input type="text" id="postImageInput" placeholder="Paste image direct link (e.g. imgbb link)">
+                <label style="font-weight: bold; font-size: 14px;">Image URL / Direct Link / Google Drive Link:</label>
+                <input type="text" id="postImageInput" placeholder="Paste image link here...">
 
                 <button type="submit" id="publishBtn"><i class="fa-solid fa-upload"></i> Publish to Google Sheet</button>
             </form>
@@ -670,6 +670,20 @@
             }
         }
 
+        // Google Drive link converter function
+        function formatImageUrl(url) {
+            if (!url) return '';
+            let trimmed = url.trim();
+            // Check if it's a google drive share link
+            if (trimmed.includes('drive.google.com')) {
+                let match = trimmed.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                if (match && match[1]) {
+                    return 'https://lh3.googleusercontent.com/d/' + match[1];
+                }
+            }
+            return trimmed;
+        }
+
         function displayPosts(posts) {
             if (!posts || posts.length === 0) {
                 let emptyMsg = '<p style="text-align:center; opacity:0.6;">No posts available yet.</p>';
@@ -692,7 +706,8 @@
             let adminHtml = '';
 
             sortedPosts.forEach((post, index) => {
-                let imgBlock = post.image ? `<div class="gallery-post-box"><img src="${post.image}" alt="Post Image"></div>` : '';
+                let processedImgUrl = formatImageUrl(post.image);
+                let imgBlock = processedImgUrl ? `<div class="gallery-post-box"><img src="${processedImgUrl}" alt="Post Image"></div>` : '';
                 let targetPageTab = post.category === 'poetry' ? 'poetry' : (post.category === 'services' ? 'services' : (post.category === 'news' ? 'news' : 'gallery'));
 
                 let cardHTML = `
