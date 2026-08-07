@@ -587,7 +587,7 @@
     <script>
         const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbyFPdxKe5TCb705PuY50jLSP3PcqQJGKPiEHzd_CE8D5fGQZ406WG5wO4K2Nrz8_A5p/exec';
 
-        // Ensure only 1 video plays at a time across the site
+        // Global safeguard: Pause other HTML5 and iframe videos when a new video/iframe plays
         document.addEventListener('play', function(e) {
             if (e.target && e.target.tagName === 'VIDEO') {
                 document.querySelectorAll('video').forEach(v => {
@@ -597,6 +597,17 @@
                 });
             }
         }, true);
+
+        // Intercept iframe/YouTube interactions if possible or use postMessage API listener for YouTube iframes
+        window.addEventListener('message', function(event) {
+            try {
+                let data = JSON.parse(event.data);
+                if (data.event === 'onStateChange' && data.info === 1) {
+                    // A YouTube video started playing; pause any local HTML5 videos
+                    document.querySelectorAll('video').forEach(v => v.pause());
+                }
+            } catch (err) {}
+        });
 
         function switchPage(pageId, event) {
             if (event) event.preventDefault();
@@ -682,7 +693,7 @@
             }
         }
 
-        // Media Parser for Images, Google Drive Videos, YouTube, and PDFs
+        // Media Parser for Images, Google Drive Videos, YouTube (with enablejsapi=1), and PDFs
         function formatMediaBlock(url) {
             if (!url) return '';
             let trimmed = url.trim();
@@ -706,7 +717,7 @@
                 </div>`;
             }
 
-            // YouTube Link Support
+            // YouTube Link Support (added enablejsapi=1 to support cross-iframe event tracking)
             if (trimmed.includes('youtube.com') || trimmed.includes('youtu.be')) {
                 let videoId = '';
                 if (trimmed.includes('youtu.be/')) {
@@ -715,8 +726,9 @@
                     videoId = trimmed.split('v=')[1].split('&')[0];
                 }
                 if (videoId) {
+                    let ytSrc = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
                     return `<div class="gallery-post-box">
-                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="100%" height="315" src="${ytSrc}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>`;
                 }
             }
