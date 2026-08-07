@@ -585,7 +585,7 @@
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="5b8466eb-694c-43d4-94a8-906063773d34";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
     <script>
-        const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbxU-RmYTQvzkkQnZWfoofmtvA9IA1ONIUgqgmgT5vYIEWLyMps3NDbpla1nmD8tLxJN/exec';
+        const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbys1TEko6HQTvHbKnDJCfLyxX7Fpvt4AU27NTS4nqo29dFqAMXTkU7AUl2pQFVU3A3Q/exec';
 
         // 1. Ensure only one video plays at a time
         document.addEventListener('play', function(e) {
@@ -608,7 +608,6 @@
             });
         }, { threshold: 0.1 });
 
-        // Function to observe all videos on the page
         function observeVideos() {
             document.querySelectorAll('video').forEach(video => {
                 videoObserver.observe(video);
@@ -703,7 +702,6 @@
             if (!url) return '';
             let trimmed = url.trim();
 
-            // PDF Preview Support
             if (trimmed.toLowerCase().endsWith('.pdf') || (trimmed.includes('drive.google.com') && (trimmed.includes('pdf') || trimmed.includes('file/d/')) && !trimmed.includes('/view'))) {
                 let fileIdMatch = trimmed.match(/\/d\/([a-zA-Z0-9_-]+)/);
                 let pdfUrl = fileIdMatch ? `https://drive.google.com/file/d/${fileIdMatch[1]}/preview` : trimmed;
@@ -712,7 +710,6 @@
                 </div>`;
             }
 
-            // Direct Video Link (.mp4, .webm, .ogg)
             if (trimmed.match(/\.(mp4|webm|ogg)(\?.*)?$/i)) {
                 return `<div class="gallery-post-box">
                     <video controls style="max-width:100%; max-height:400px; border-radius:6px; border:2px solid var(--container-border);">
@@ -722,7 +719,6 @@
                 </div>`;
             }
 
-            // YouTube Link Support
             if (trimmed.includes('youtube.com') || trimmed.includes('youtu.be')) {
                 let videoId = '';
                 if (trimmed.includes('youtu.be/')) {
@@ -737,7 +733,6 @@
                 }
             }
 
-            // Google Drive Video / File Preview Support
             if (trimmed.includes('drive.google.com')) {
                 let fileIdMatch = trimmed.match(/\/d\/([a-zA-Z0-9_-]+)/);
                 if (fileIdMatch && fileIdMatch[1]) {
@@ -752,7 +747,6 @@
                 }
             }
 
-            // Standard Direct Image Link
             return `<div class="gallery-post-box"><img src="${trimmed}" alt="Post Image"></div>`;
         }
 
@@ -823,7 +817,6 @@
             document.getElementById('poetryDynamicPosts').innerHTML = poetryHtml || '<p style="text-align:center; opacity:0.6;">No poetry posts found.</p>';
             document.getElementById('adminPostList').innerHTML = adminHtml;
 
-            // Trigger observation on newly loaded videos
             observeVideos();
 
             setTimeout(() => {
@@ -874,7 +867,6 @@
             });
         }
 
-        // Initialize App
         window.onload = () => {
             loadPostsFromSheet();
             const savedPage = localStorage.getItem('activePage') || 'home';
