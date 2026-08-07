@@ -276,7 +276,7 @@
             cursor: pointer;
             padding: 4px 0;
             margin-top: 5px;
-            display: none;
+            display: none; /* ডিফল্টভাবে লুকানো থাকবে, JavaScript চেক করে দেখাবে */
         }
 
         .read-more-btn:hover {
@@ -584,14 +584,11 @@
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="5b8466eb-694c-43d4-94a8-906063773d34";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
     <script>
-        const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbyg_dRuWJedWmEEg9YG6T5g_5tqme4JX-B6BXIQnXRryG5lartlCRo2OpI64O62sdvs/exec';
+        const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbyFPdxKe5TCb705PuY50jLSP3PcqQJGKPiEHzd_CE8D5fGQZ406WG5wO4K2Nrz8_A5p/exec';
 
         function switchPage(pageId, event) {
             if (event) event.preventDefault();
             
-            // ট্যাব বা পেজ পরিবর্তন করার সময় আগের সব ভিডিও/গান বন্ধ করার জন্য
-            stopAllVideos();
-
             if (pageId === 'admin') {
                 let isAuthorized = sessionStorage.getItem('adminAuth');
                 if (isAuthorized !== 'true') {
@@ -630,15 +627,6 @@
             }
             
             window.scrollTo({ top: 0, behavior: 'instant' });
-        }
-
-        // একসাথে একাধিক গান বা ভিডিও বাজার সমস্যা সমাধানের ফাংশন
-        function stopAllVideos() {
-            const players = document.querySelectorAll('.yt-player');
-            players.forEach(player => {
-                let currentSrc = player.src;
-                player.src = currentSrc; // আইফ্রেম রিফ্রেশ করে গান/ভিডিও বন্ধ করে দেওয়া
-            });
         }
 
         function toggleTheme() {
@@ -697,7 +685,7 @@
                 }
                 if (videoId) {
                     return `<div class="gallery-post-box">
-                        <iframe class="yt-player" width="100%" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
                     </div>`;
                 }
             }
@@ -793,6 +781,7 @@
                     const snippetEl = document.getElementById(`snippet-${index}`);
                     const btnEl = document.getElementById(`btn-${index}`);
                     if (snippetEl && btnEl) {
+                        // scrollHeight যদি clientHeight এর চেয়ে বেশি হয়, তার মানে লেখা ৩ লাইনের বেশি লম্বা
                         if (snippetEl.scrollHeight > snippetEl.clientHeight) {
                             btnEl.style.display = 'inline-block';
                         } else {
