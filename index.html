@@ -517,7 +517,7 @@
                 <label style="font-weight: bold; font-size: 14px;">Post Content / Description:</label>
                 <textarea id="postContentInput" placeholder="Write your content or news here..." required></textarea>
 
-                <label style="font-weight: bold; font-size: 14px;">Image, Video, or PDF URL (Drive, YouTube, Direct Video/PDF Link):</label>
+                <label style="font-weight: bold; font-size: 14px;">Image, Video, or PDF URL (FB Video, YT Shorts/Video, Drive, Direct Link):</label>
                 <input type="text" id="postImageInput" placeholder="Paste image, video, or PDF link here...">
 
                 <button type="submit" id="publishBtn"><i class="fa-solid fa-upload"></i> Publish to Google Sheet</button>
@@ -719,16 +719,27 @@
                 </div>`;
             }
 
+            // ফেসবুক ভিডিও বা রিলস হ্যান্ডলার
+            if (trimmed.includes('facebook.com') || trimmed.includes('fb.watch')) {
+                let encodedUrl = encodeURIComponent(trimmed);
+                return `<div class="gallery-post-box">
+                    <iframe src="https://www.facebook.com/plugins/video.php?href=${encodedUrl}&show_text=false&width=500" width="100%" height="400" style="border:none;overflow:hidden;border-radius:6px;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                </div>`;
+            }
+
+            // ইউটিউব শর্টস এবং সাধারণ ইউটিউব ভিডিওর হ্যান্ডলার
             if (trimmed.includes('youtube.com') || trimmed.includes('youtu.be')) {
                 let videoId = '';
-                if (trimmed.includes('youtu.be/')) {
+                if (trimmed.includes('/shorts/')) {
+                    videoId = trimmed.split('/shorts/')[1].split('?')[0];
+                } else if (trimmed.includes('youtu.be/')) {
                     videoId = trimmed.split('youtu.be/')[1].split('?')[0];
                 } else if (trimmed.includes('v=')) {
                     videoId = trimmed.split('v=')[1].split('&')[0];
                 }
                 if (videoId) {
                     return `<div class="gallery-post-box">
-                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="100%" height="450" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen style="max-width: 315px; border-radius: 6px;"></iframe>
                     </div>`;
                 }
             }
