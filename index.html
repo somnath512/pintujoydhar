@@ -587,7 +587,7 @@
     <script>
         const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbyFPdxKe5TCb705PuY50jLSP3PcqQJGKPiEHzd_CE8D5fGQZ406WG5wO4K2Nrz8_A5p/exec';
 
-        // Global Event Delegation to intercept play events on all present and future videos securely
+        // 1. Ensure only one video plays at a time
         document.addEventListener('play', function(e) {
             if (e.target && e.target.tagName === 'VIDEO') {
                 document.querySelectorAll('video').forEach(v => {
@@ -597,6 +597,23 @@
                 });
             }
         }, true);
+
+        // 2. Auto-pause video when scrolled out of view (Intersection Observer)
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target;
+                if (!entry.isIntersecting) {
+                    video.pause();
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Function to observe all videos on the page
+        function observeVideos() {
+            document.querySelectorAll('video').forEach(video => {
+                videoObserver.observe(video);
+            });
+        }
 
         function switchPage(pageId, event) {
             if (event) event.preventDefault();
@@ -682,7 +699,6 @@
             }
         }
 
-        // Clean Media Parser without inline event interference
         function formatMediaBlock(url) {
             if (!url) return '';
             let trimmed = url.trim();
@@ -806,6 +822,9 @@
             document.getElementById('servicesDynamicPosts').innerHTML = servicesHtml || '<p style="text-align:center; opacity:0.6;">No service posts found.</p>';
             document.getElementById('poetryDynamicPosts').innerHTML = poetryHtml || '<p style="text-align:center; opacity:0.6;">No poetry posts found.</p>';
             document.getElementById('adminPostList').innerHTML = adminHtml;
+
+            // Trigger observation on newly loaded videos
+            observeVideos();
 
             setTimeout(() => {
                 sortedPosts.forEach((post, index) => {
