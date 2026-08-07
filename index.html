@@ -501,13 +501,13 @@
             <div class="section-title">Admin Panel - Publish New Post</div>
             <form class="admin-form" id="newPostForm" onsubmit="publishNewPost(event)">
                 <label style="font-weight: bold; font-size: 14px;">Post Title:</label>
-                <input type="text" id="postTitleInput" placeholder="Enter post title..." required>
+                <input type="text" id="postTitleInput" placeholder="Enter post title...">
 
                 <label style="font-weight: bold; font-size: 14px;">Author / Poet Name (Optional):</label>
-                <input type="text" id="postAuthorInput" placeholder="Enter author or poet name (e.g., Pintu Joydhar)...">
+                <input type="text" id="postAuthorInput" placeholder="Enter author or poet name...">
 
                 <label style="font-weight: bold; font-size: 14px;">Select Category:</label>
-                <select id="postCategoryInput" required>
+                <select id="postCategoryInput">
                     <option value="gallery">Gallery</option>
                     <option value="news">News</option>
                     <option value="poetry">Poetry</option>
@@ -515,10 +515,10 @@
                 </select>
 
                 <label style="font-weight: bold; font-size: 14px;">Post Content / Description:</label>
-                <textarea id="postContentInput" placeholder="Write your content or news here..." required></textarea>
+                <textarea id="postContentInput" placeholder="Write your content or news here..."></textarea>
 
-                <label style="font-weight: bold; font-size: 14px;">Image, Video, or PDF URL (FB Video, YT Shorts/Video, Drive, Direct Link):</label>
-                <input type="text" id="postImageInput" placeholder="Paste image, video, or PDF link here...">
+                <label style="font-weight: bold; font-size: 14px;">Image, Video, or PDF URL:</label>
+                <input type="text" id="postImageInput" placeholder="Paste link here...">
 
                 <button type="submit" id="publishBtn"><i class="fa-solid fa-upload"></i> Publish to Google Sheet</button>
             </form>
@@ -719,7 +719,6 @@
                 </div>`;
             }
 
-            // ফেসবুক ভিডিও বা রিলস হ্যান্ডলার
             if (trimmed.includes('facebook.com') || trimmed.includes('fb.watch')) {
                 let encodedUrl = encodeURIComponent(trimmed);
                 return `<div class="gallery-post-box">
@@ -727,7 +726,6 @@
                 </div>`;
             }
 
-            // ইউটিউব শর্টস এবং সাধারণ ইউটিউব ভিডিওর হ্যান্ডলার
             if (trimmed.includes('youtube.com') || trimmed.includes('youtu.be')) {
                 let videoId = '';
                 if (trimmed.includes('/shorts/')) {
@@ -786,17 +784,18 @@
                 let mediaBlock = formatMediaBlock(post.image);
                 let targetPageTab = post.category === 'poetry' ? 'poetry' : (post.category === 'services' ? 'services' : (post.category === 'news' ? 'news' : 'gallery'));
                 let authorName = post.author ? post.author : 'PINTU JOYDHAR';
+                let postTitle = post.title ? `<h3 class="post-title"><a href="#" onclick="switchPage('${targetPageTab}', event)">${post.title}</a></h3>` : '';
+                let postContent = post.content ? `<div class="post-snippet" id="snippet-${index}">${post.content}</div><button class="read-more-btn" id="btn-${index}" onclick="toggleReadMore(this)">Read More...</button>` : '';
 
                 let cardHTML = `
                     <div class="post-card">
-                        <h3 class="post-title"><a href="#" onclick="switchPage('${targetPageTab}', event)">${post.title}</a></h3>
+                        ${postTitle}
                         <div class="post-meta">
                             <span>By ${authorName}</span> • 
                             <span><i class="fa-solid fa-clock"></i> ${post.date || 'Recent'}</span> • 
-                            <span><span style="text-transform: uppercase; background: var(--section-title-bg); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: bold;">${post.category}</span></span>
+                            <span><span style="text-transform: uppercase; background: var(--section-title-bg); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: bold;">${post.category || 'general'}</span></span>
                         </div>
-                        <div class="post-snippet" id="snippet-${index}">${post.content}</div>
-                        <button class="read-more-btn" id="btn-${index}" onclick="toggleReadMore(this)">Read More...</button>
+                        ${postContent}
                         ${mediaBlock}
                     </div>`;
 
@@ -812,10 +811,11 @@
                     poetryHtml += cardHTML;
                 }
 
+                let displayTitle = post.title ? post.title : '(Untitled Post)';
                 adminHtml += `
                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--container-border);">
                         <div>
-                            <strong>${post.title}</strong> <span style="font-size: 11px; opacity: 0.7;">[${post.category.toUpperCase()}]</span>
+                            <strong>${displayTitle}</strong> <span style="font-size: 11px; opacity: 0.7;">[${(post.category || 'GENERAL').toUpperCase()}]</span>
                         </div>
                         <span style="font-size: 12px; color: green; font-weight: bold;">Active</span>
                     </div>`;
