@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     
     <style>
-        /* Light Mode Color Variables */
         :root {
             --bg-color: #dbe4ef;
             --text-color: #333;
@@ -29,7 +28,6 @@
             --input-text: #333;
         }
 
-        /* Dark Mode Color Variables */
         [data-theme="dark"] {
             --bg-color: #121824;
             --text-color: #e2e8f0;
@@ -585,9 +583,8 @@
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="5b8466eb-694c-43d4-94a8-906063773d34";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
     <script>
-        const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbzGjQrPgHVm7puOE4N8s6jbH9Sc1_1wLF4GOUXwdzk1eLsJLYMBsj_5rcSayXq0Ae5g/exec';
+        const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbzdPIzN23c1wVPPhY9GYQ-OCvXDrlat2XpwlnTYy68NPXBKQ30-KG_96UGSWvxnzrVT/exec';
 
-        // 1. Ensure only one video plays at a time
         document.addEventListener('play', function(e) {
             if (e.target && e.target.tagName === 'VIDEO') {
                 document.querySelectorAll('video').forEach(v => {
@@ -598,7 +595,6 @@
             }
         }, true);
 
-        // 2. Auto-pause video when scrolled out of view (Intersection Observer)
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const video = entry.target;
@@ -854,11 +850,11 @@
 
             const formData = new FormData();
             formData.append('title', document.getElementById('postTitleInput').value);
-            formData.append('author', authorVal ? authorVal : 'PINTU JOYDHAR');
             formData.append('category', document.getElementById('postCategoryInput').value);
             formData.append('content', document.getElementById('postContentInput').value);
             formData.append('image', document.getElementById('postImageInput').value);
             formData.append('date', new Date().toLocaleDateString());
+            formData.append('author', authorVal ? authorVal : 'PINTU JOYDHAR');
 
             fetch(googleSheetApiUrl, {
                 method: 'POST',
