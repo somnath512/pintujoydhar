@@ -583,7 +583,7 @@
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="5b8466eb-694c-43d4-94a8-906063773d34";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
     <script>
-        const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbyNMvOO0HZM0IQMKU6scguTetFjxnPYbCT0e-l_cCFTuNMZGgE3Ehu_LjxPcnPCMk5I/exec';
+        const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbzppUd_xG-fG50K3uF19U--QwxON2Xc7hASlh1Min3L99ZTBo--vt-WThREhN5_D9E/exec';
 
         document.addEventListener('play', function(e) {
             if (e.target && e.target.tagName === 'VIDEO') {
@@ -779,7 +779,8 @@
             sortedPosts.forEach((post, index) => {
                 let mediaBlock = formatMediaBlock(post.image);
                 let targetPageTab = post.category === 'poetry' ? 'poetry' : (post.category === 'services' ? 'services' : (post.category === 'news' ? 'news' : 'gallery'));
-                let authorName = post.author ? post.author : 'PINTU JOYDHAR';
+                let authorName = post.author ? post.author : '';
+                let authorMeta = authorName ? `<span>By ${authorName}</span> • ` : '';
                 let postTitle = post.title ? `<h3 class="post-title"><a href="#" onclick="switchPage('${targetPageTab}', event)">${post.title}</a></h3>` : '';
                 let postContent = post.content ? `<div class="post-snippet" id="snippet-${index}">${post.content}</div><button class="read-more-btn" id="btn-${index}" onclick="toggleReadMore(this)">Read More...</button>` : '';
 
@@ -787,7 +788,7 @@
                     <div class="post-card">
                         ${postTitle}
                         <div class="post-meta">
-                            <span>By ${authorName}</span> • 
+                            ${authorMeta}
                             <span><i class="fa-solid fa-clock"></i> ${post.date || 'Recent'}</span> • 
                             <span><span style="text-transform: uppercase; background: var(--section-title-bg); padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: bold;">${post.category || 'general'}</span></span>
                         </div>
@@ -846,15 +847,12 @@
             const btn = document.getElementById('publishBtn');
             btn.innerText = 'Publishing...';
 
-            const authorVal = document.getElementById('postAuthorInput').value.trim();
-
             const formData = new FormData();
             formData.append('title', document.getElementById('postTitleInput').value);
             formData.append('category', document.getElementById('postCategoryInput').value);
             formData.append('content', document.getElementById('postContentInput').value);
             formData.append('image', document.getElementById('postImageInput').value);
-            formData.append('date', new Date().toLocaleString());
-            formData.append('author', authorVal ? authorVal : 'PINTU JOYDHAR');
+            formData.append('author', document.getElementById('postAuthorInput').value);
 
             fetch(googleSheetApiUrl, {
                 method: 'POST',
