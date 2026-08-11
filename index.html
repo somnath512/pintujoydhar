@@ -515,8 +515,8 @@
                 <label style="font-weight: bold; font-size: 14px;">Post Content / Description:</label>
                 <textarea id="postContentInput" placeholder="Write your content or news here..."></textarea>
 
-                <label style="font-weight: bold; font-size: 14px;">Image, Video, or PDF URL:</label>
-                <input type="text" id="postImageInput" placeholder="Paste link here...">
+                <label style="font-weight: bold; font-size: 14px;">Image, Video, or PDF URL / Embed Code:</label>
+                <input type="text" id="postImageInput" placeholder="Paste link or Facebook embed code here...">
 
                 <button type="submit" id="publishBtn"><i class="fa-solid fa-upload"></i> Publish to Google Sheet</button>
             </form>
@@ -697,6 +697,10 @@
         function formatMediaBlock(url) {
             if (!url) return '';
             let trimmed = url.trim();
+
+            if (trimmed.includes('<iframe') || trimmed.includes('facebook.com/plugins')) {
+                return `<div class="gallery-post-box">${trimmed}</div>`;
+            }
 
             if (trimmed.toLowerCase().endsWith('.pdf') || (trimmed.includes('drive.google.com') && (trimmed.includes('pdf') || trimmed.includes('file/d/')) && !trimmed.includes('/view'))) {
                 let fileIdMatch = trimmed.match(/\/d\/([a-zA-Z0-9_-]+)/);
