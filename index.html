@@ -57,19 +57,19 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 15px;
+            gap: 25px;
         }
 
         .nav-menu li a {
             text-decoration: none;
             color: #555;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
+            transition: color 0.2s;
         }
 
         .nav-menu li a:hover {
@@ -88,7 +88,7 @@
             text-transform: uppercase;
         }
 
-        /* Hero Banner with Personal Photo (Search Box Removed) */
+        /* Hero Banner with Personal Photo Only */
         .hero-section {
             background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000');
             background-size: cover;
@@ -133,10 +133,12 @@
 
         @media (max-width: 900px) {
             .deals-grid { grid-template-columns: repeat(2, 1fr); }
+            .nav-menu { gap: 12px; }
         }
 
         @media (max-width: 600px) {
             .deals-grid { grid-template-columns: 1fr; }
+            .nav-menu { display: none; } /* Mobile responsive support */
         }
 
         .deal-card {
@@ -269,15 +271,11 @@
     <div class="top-bar">
         <a href="#" class="brand-logo">Pintu <span>Joydhar</span></a>
         <ul class="nav-menu">
-            <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i> Search & Save</a></li>
-            <li><a href="#"><i class="fa-solid fa-hotel"></i> Hotels</a></li>
-            <li><a href="#"><i class="fa-solid fa-ship"></i> Cruises</a></li>
-            <li><a href="#"><i class="fa-solid fa-umbrella-beach"></i> Vacations</a></li>
-            <li><a href="#"><i class="fa-solid fa-plane"></i> Air</a></li>
-            <li><a href="#"><i class="fa-solid fa-car"></i> Car</a></li>
-            <li><a href="#"><i class="fa-solid fa-clock"></i> Last Minute</a></li>
-            <li><a href="#"><i class="fa-solid fa-lightbulb"></i> Trip Ideas</a></li>
-            <li><a href="#"><i class="fa-solid fa-newspaper"></i> Blog</a></li>
+            <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="#"><i class="fa-solid fa-heart"></i> My Life</a></li>
+            <li><a href="#"><i class="fa-solid fa-blog"></i> Blog</a></li>
+            <li><a href="#"><i class="fa-solid fa-address-book"></i> Contact</a></li>
+            <li><a href="#"><i class="fa-solid fa-user"></i> About</a></li>
         </ul>
         <button class="btn-signup">SIGN UP</button>
     </div>
