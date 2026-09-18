@@ -88,9 +88,9 @@
             text-transform: uppercase;
         }
 
-        /* Hero Banner with Personal Photo */
+        /* Hero Banner with Personal Photo (Text Removed) */
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000');
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000');
             background-size: cover;
             background-position: center;
             height: 420px;
@@ -101,21 +101,6 @@
             color: #ffffff;
             text-align: center;
             position: relative;
-        }
-
-        .hero-title {
-            font-size: 38px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
-        }
-
-        .hero-subtitle {
-            font-size: 18px;
-            font-weight: 400;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
         }
 
         /* Search Widget Overlay */
@@ -304,7 +289,6 @@
         }
 
         .dest-grid {
-            display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             grid-template-areas: 
@@ -380,11 +364,8 @@
         <button class="btn-signup">SIGN UP</button>
     </div>
 
-    <!-- Hero Banner with Personal Photo -->
+    <!-- Hero Banner with Personal Photo (Text Removed) -->
     <div class="hero-section">
-        <h1 class="hero-title">7-NT LUXURY COSTA RICAN CRUISE</h1>
-        <p class="hero-subtitle">We help you to decide if you should buy now or wait</p>
-
         <!-- Search Box Widget -->
         <div class="search-widget">
             <div class="search-tabs">
@@ -496,11 +477,7 @@
                 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80',
                 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=500&q=80',
                 'https://images.unsplash.com/photo-1476514525535-ce74f452899d?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1515238152791-8216bfdf89a7?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80'
+                'annotations/sample...'
             ];
 
             let html = '';
@@ -508,7 +485,7 @@
                 html += `
                     <div class="deal-card">
                         <div class="card-img-box">
-                            <img src="${sampleImages[i]}" alt="Deal Image">
+                            <img src="${sampleImages[i] || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80'}" alt="Deal Image">
                             <div class="price-badge">$544</div>
                         </div>
                         <div class="card-body">
