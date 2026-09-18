@@ -60,9 +60,10 @@
             gap: 25px;
         }
 
+        /* Menu items uniform color setup */
         .nav-menu li a {
             text-decoration: none;
-            color: #555;
+            color: #0d4a75; /* Uniform brand color for icons & text */
             font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
@@ -70,6 +71,10 @@
             align-items: center;
             gap: 6px;
             transition: color 0.2s;
+        }
+
+        .nav-menu li a i {
+            color: var(--brand-green); /* Accent color for icons */
         }
 
         .nav-menu li a:hover {
@@ -88,16 +93,19 @@
             text-transform: uppercase;
         }
 
-        /* Hero Banner with Personal Photo Only */
+        /* Hero Banner - Full Photo visible without cropping */
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000');
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: #0b0f14 url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000') no-repeat center center;
+            background-size: contain;
+            height: 450px;
+            width: 100%;
             position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 250px;
+            }
         }
 
         /* Content Body Container */
@@ -138,7 +146,7 @@
 
         @media (max-width: 600px) {
             .deals-grid { grid-template-columns: 1fr; }
-            .nav-menu { display: none; } /* Mobile responsive support */
+            .nav-menu { display: none; }
         }
 
         .deal-card {
@@ -255,14 +263,10 @@
         }
 
         /* Footer */
-        footer {
-            background: #111a22;
-            color: #778899;
-            text-align: center;
-            padding: 30px;
-            font-size: 12px;
-            margin-top: 60px;
-        }
+        <footer>
+            © 2026 Pintu Joydhar - All Rights Reserved.
+        </footer>
+
     </style>
 </head>
 <body>
@@ -280,7 +284,7 @@
         <button class="btn-signup">SIGN UP</button>
     </div>
 
-    <!-- Hero Banner with Personal Photo Only -->
+    <!-- Hero Banner with Full Photo View -->
     <div class="hero-section"></div>
 
     <!-- Main Body Layout -->
