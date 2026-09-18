@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pintu Joydhar - Travel & Services Portal</title>
+    <title>Dunhill TravelDeals Layout</title>
     
-    <!-- Google Fonts & FontAwesome -->
+    <!-- Google Fonts & FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --primary-blue: #0099e5;
-            --primary-dark: #1b252f;
-            --accent-yellow: #f1ab34;
-            --accent-green: #38b54a;
-            --bg-gray: #f4f6f8;
-            --card-bg: #ffffff;
+            --brand-green: #7cc142;
+            --brand-blue: #0099de;
+            --brand-dark-blue: #1e2d3b;
+            --bg-light: #f5f7fa;
             --text-dark: #333333;
-            --text-muted: #777777;
-            --border-color: #e0e0e0;
-            --footer-bg: #11171d;
+            --text-gray: #777777;
+            --border-color: #e2e8f0;
         }
 
         * {
@@ -31,625 +28,497 @@
         }
 
         body {
-            background-color: var(--bg-gray);
+            background-color: var(--bg-light);
             color: var(--text-dark);
-            line-height: 1.5;
         }
 
         /* Top Bar */
-        .top-header {
+        .top-bar {
             background: #ffffff;
-            padding: 10px 6%;
+            height: 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 4%;
             border-bottom: 1px solid var(--border-color);
         }
 
         .brand-logo {
-            font-family: 'Poppins', sans-serif;
             font-size: 24px;
             font-weight: 700;
-            color: var(--primary-blue);
+            color: #0d4a75;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .brand-logo span {
-            color: var(--accent-green);
+            color: var(--brand-green);
         }
 
-        .top-contact {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        /* Main Nav Bar (TravelDeals Style) */
-        .main-nav {
-            background-color: var(--primary-dark);
-            padding: 0 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .nav-links {
+        .nav-menu {
             display: flex;
             list-style: none;
+            gap: 15px;
         }
 
-        .nav-links a {
-            color: #ffffff;
+        .nav-menu li a {
             text-decoration: none;
-            padding: 16px 20px;
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
+            color: #555;
+            font-size: 11px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.2s;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            background-color: var(--primary-blue);
-        }
-
-        .nav-search {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            background: #fff;
-            border-radius: 3px;
-            overflow: hidden;
+            gap: 4px;
         }
 
-        .nav-search input {
-            padding: 7px 12px;
-            border: none;
-            outline: none;
-            font-size: 13px;
+        .nav-menu li a:hover {
+            color: var(--brand-blue);
         }
 
-        .nav-search button {
-            background: var(--primary-blue);
+        .btn-signup {
+            background: var(--brand-blue);
             color: #fff;
             border: none;
-            padding: 7px 14px;
+            padding: 8px 15px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 700;
             cursor: pointer;
+            text-transform: uppercase;
         }
 
         /* Hero Banner */
-        .hero-banner {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80');
             background-size: cover;
             background-position: center;
-            height: 380px;
-            color: #ffffff;
+            height: 420px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            color: #ffffff;
             text-align: center;
-            padding: 20px;
+            position: relative;
         }
 
-        .hero-banner h1 {
-            font-family: 'Poppins', sans-serif;
+        .hero-title {
             font-size: 38px;
             font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+
+        /* Search Widget Overlay */
+        .search-widget {
+            position: absolute;
+            bottom: -30px;
+            width: 85%;
+            max-width: 1000px;
+            background: var(--brand-dark-blue);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .search-tabs {
+            display: flex;
+            background: #141f29;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            color: #9aaec4;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border-right: 1px solid #1e2d3b;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--brand-blue);
+            color: #ffffff;
+        }
+
+        .search-fields {
+            padding: 15px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 2fr 1fr;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .field-group label {
+            display: block;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .field-group input, .field-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #324759;
+            border-radius: 3px;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .btn-search {
+            background: var(--brand-green);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 3px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            height: 35px;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+
+        /* Content Body Container */
+        .main-container {
+            width: 85%;
+            max-width: 1100px;
+            margin: 70px auto 40px auto;
+        }
+
+        .section-header-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: #555;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero-banner p {
-            font-size: 16px;
-            max-width: 650px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        }
-
-        /* Search & Filter Bar (Travel Concept) */
-        .search-filter-box {
-            background: var(--accent-yellow);
-            max-width: 88%;
-            margin: -45px auto 40px auto;
-            padding: 20px 25px;
-            border-radius: 6px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .filter-item select, .filter-item input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            outline: none;
-            font-size: 13px;
-            background: #fff;
-        }
-
-        .btn-search-filter {
-            background-color: var(--primary-blue);
-            color: #ffffff;
-            border: none;
-            padding: 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 700;
-            text-transform: uppercase;
-            transition: background 0.2s;
-        }
-
-        .btn-search-filter:hover {
-            background-color: #007bbd;
-        }
-
-        /* Category Filter Pills */
-        .category-pills {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
             margin-bottom: 30px;
-            flex-wrap: wrap;
         }
 
-        .pill-btn {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-dark);
-            cursor: pointer;
-            transition: 0.2s;
+        .section-header-title span {
+            font-size: 12px;
+            color: #888;
+            font-weight: 400;
         }
 
-        .pill-btn:hover, .pill-btn.active {
-            background: var(--primary-blue);
-            color: #ffffff;
-            border-color: var(--primary-blue);
-        }
-
-        /* Main Section & Layout */
-        .container {
-            max-width: 88%;
-            margin: 0 auto 60px auto;
-        }
-
-        .section-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary-dark);
-            text-transform: uppercase;
-            margin-bottom: 25px;
-            padding-bottom: 8px;
-            border-bottom: 3px solid var(--primary-blue);
-            display: inline-block;
-        }
-
-        /* 3-Column Image Grid (99designs Concept) */
-        .grid-container {
+        /* 3-Column Deals Grid */
+        .deals-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
+            margin-bottom: 50px;
         }
 
-        .card-item {
-            background: var(--card-bg);
-            border-radius: 6px;
+        @media (max-width: 900px) {
+            .deals-grid { grid-template-columns: repeat(2, 1fr); }
+            .search-fields { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            .deals-grid { grid-template-columns: 1fr; }
+        }
+
+        .deal-card {
+            background: #ffffff;
+            border-radius: 4px;
             overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
         }
 
-        .card-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        .deal-card:hover {
+            transform: translateY(-4px);
         }
 
-        .card-img-wrapper {
+        .card-img-box {
             position: relative;
-            height: 190px;
-            overflow: hidden;
+            height: 170px;
         }
 
-        .card-img-wrapper img {
+        .card-img-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .card-badge {
+        .price-badge {
             position: absolute;
-            top: 12px;
-            right: 12px;
-            background: var(--accent-green);
-            color: #fff;
-            font-size: 11px;
+            top: 10px;
+            right: 10px;
+            background: #ffffff;
+            color: var(--brand-blue);
             font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 3px;
-            text-transform: uppercase;
+            font-size: 13px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border: 2px solid #f0f0f0;
         }
 
-        .card-content {
-            padding: 18px;
+        .card-body {
+            padding: 15px;
         }
 
         .card-title {
-            font-size: 16px;
+            font-size: 12px;
             font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 8px;
+            color: #222222;
+            text-transform: uppercase;
+            margin-bottom: 6px;
             line-height: 1.3;
         }
 
-        .card-meta {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .card-subtext {
+            font-size: 11px;
+            color: #888888;
         }
 
-        .card-desc {
-            font-size: 13px;
-            color: #555;
-            line-height: 1.5;
-            margin-bottom: 15px;
-        }
-
-        .card-btn {
-            display: inline-block;
-            width: 100%;
+        /* Destination Grid Layout */
+        .destinations-section {
+            margin-top: 50px;
             text-align: center;
-            padding: 8px 0;
-            background: var(--bg-gray);
-            color: var(--primary-blue);
-            border: 1px solid var(--primary-blue);
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 13px;
-            transition: 0.2s;
         }
 
-        .card-btn:hover {
-            background: var(--primary-blue);
-            color: #fff;
-        }
-
-        /* Page Display Switching */
-        .page-content {
-            display: none;
-        }
-
-        .page-content.active {
-            display: block;
-        }
-
-        /* Footer Section */
-        footer {
-            background-color: var(--footer-bg);
-            color: #a0aec0;
-            padding: 50px 6% 20px 6%;
-            border-top: 4px solid var(--primary-blue);
-        }
-
-        .footer-grid {
+        .dest-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 35px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            grid-template-areas: 
+                "fl cal cal lv"
+                "hw cal cal ch";
         }
 
-        .footer-col h3 {
-            color: #ffffff;
-            font-size: 16px;
-            margin-bottom: 18px;
-            font-family: 'Poppins', sans-serif;
+        .dest-item {
+            position: relative;
+            height: 140px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .dest-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .dest-title {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
             text-transform: uppercase;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
-        .footer-col p {
-            font-size: 13px;
-            line-height: 1.6;
+        .dest-california {
+            grid-area: cal;
+            height: 295px;
         }
 
-        .footer-col ul {
-            list-style: none;
+        .dest-california .dest-content {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            color: #fff;
+            text-align: left;
         }
 
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-col ul li a {
-            color: #a0aec0;
-            text-decoration: none;
-            font-size: 13px;
-            transition: 0.2s;
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--accent-yellow);
-        }
-
-        .footer-bottom {
+        /* Footer */
+        footer {
+            background: #111a22;
+            color: #778899;
             text-align: center;
-            border-top: 1px solid #2d3748;
-            padding-top: 20px;
-            font-size: 13px;
+            padding: 30px;
+            font-size: 12px;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Bar -->
-    <div class="top-header">
-        <a href="#" class="brand-logo" onclick="switchPage('home', event)">
-            <i class="fa-solid fa-plane-departure"></i> Travel<span>Deals</span> Space
-        </a>
-        <div class="top-contact">
-            <i class="fa-solid fa-envelope"></i> gaain.bpoacc@gmail.com &nbsp;|&nbsp; <i class="fa-solid fa-phone"></i> 016**********62
-        </div>
-    </div>
-
-    <!-- Main Navigation Bar -->
-    <nav class="main-nav">
-        <ul class="nav-links">
-            <li><a href="#" id="nav-home" class="active" onclick="switchPage('home', event)">Home</a></li>
-            <li><a href="#" id="nav-gallery" onclick="switchPage('gallery', event)">Gallery</a></li>
-            <li><a href="#" id="nav-news" onclick="switchPage('news', event)">News</a></li>
-            <li><a href="#" id="nav-services" onclick="switchPage('services', event)">Services</a></li>
-            <li><a href="#" id="nav-poetry" onclick="switchPage('poetry', event)">Poetry</a></li>
-            <li><a href="#" id="nav-about" onclick="switchPage('about', event)">About</a></li>
-            <li><a href="#" id="nav-contact" onclick="switchPage('contact', event)">Contact</a></li>
+    <!-- Header / Top Navigation -->
+    <div class="top-bar">
+        <a href="#" class="brand-logo">Dunhill <span>TravelDeals</span></a>
+        <ul class="nav-menu">
+            <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i> Search & Save</a></li>
+            <li><a href="#"><i class="fa-solid fa-hotel"></i> Hotels</a></li>
+            <li><a href="#"><i class="fa-solid fa-ship"></i> Cruises</a></li>
+            <li><a href="#"><i class="fa-solid fa-umbrella-beach"></i> Vacations</a></li>
+            <li><a href="#"><i class="fa-solid fa-plane"></i> Air</a></li>
+            <li><a href="#"><i class="fa-solid fa-car"></i> Car</a></li>
+            <li><a href="#"><i class="fa-solid fa-clock"></i> Last Minute</a></li>
+            <li><a href="#"><i class="fa-solid fa-lightbulb"></i> Trip Ideas</a></li>
+            <li><a href="#"><i class="fa-solid fa-newspaper"></i> Blog</a></li>
         </ul>
-        <div class="nav-search">
-            <input type="text" placeholder="Search deals...">
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-    </nav>
+        <button class="btn-signup">SIGN UP</button>
+    </div>
 
     <!-- Hero Banner -->
-    <div class="hero-banner" id="heroBanner">
-        <h1>Find Your Best Deals & Creative Showcase</h1>
-        <p>Explore professional services, creative poetry, latest updates and portfolio grid gallery</p>
+    <div class="hero-section">
+        <h1 class="hero-title">7-NT LUXURY COSTA RICAN CRUISE</h1>
+        <p class="hero-subtitle">We help you to decide if you should buy now or wait</p>
+
+        <!-- Search Box Widget -->
+        <div class="search-widget">
+            <div class="search-tabs">
+                <button class="tab-btn"><i class="fa-solid fa-plane"></i> Flight</button>
+                <button class="tab-btn active"><i class="fa-solid fa-hotel"></i> Hotel</button>
+                <button class="tab-btn"><i class="fa-solid fa-ship"></i> Cruise</button>
+                <button class="tab-btn"><i class="fa-solid fa-umbrella-beach"></i> Vacation</button>
+                <button class="tab-btn"><i class="fa-solid fa-car"></i> Car</button>
+            </div>
+            <div class="search-fields">
+                <div class="field-group">
+                    <label>Where you like to go?</label>
+                    <input type="text" value="Canada">
+                </div>
+                <div class="field-group">
+                    <label>Check-in:</label>
+                    <input type="text" value="13 Feb 2026">
+                </div>
+                <div class="field-group">
+                    <label>Check-out:</label>
+                    <input type="text" value="15 Feb 2026">
+                </div>
+                <div class="field-group">
+                    <label>Guests:</label>
+                    <select><option>1 Room, 2 Adults, 0 Children</option></select>
+                </div>
+                <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> SEARCH</button>
+            </div>
+        </div>
     </div>
 
-    <!-- Search & Filter Box -->
-    <div class="search-filter-box">
-        <div class="filter-item">
-            <select id="categorySelect">
-                <option value="all">Select Category</option>
-                <option value="gallery">Gallery</option>
-                <option value="news">News</option>
-                <option value="services">Services</option>
-                <option value="poetry">Poetry</option>
-            </select>
-        </div>
-        <div class="filter-item">
-            <input type="text" placeholder="Search Keyword...">
-        </div>
-        <button class="btn-search-filter" onclick="loadPostsFromSheet()">SEARCH DEALS</button>
-    </div>
+    <!-- Main Body Layout -->
+    <div class="main-container">
 
-    <!-- Main Container -->
-    <div class="container">
-
-        <!-- Category Pills -->
-        <div class="category-pills">
-            <button class="pill-btn active" onclick="switchPage('home', event)">All Items</button>
-            <button class="pill-btn" onclick="switchPage('gallery', event)">Gallery Grid</button>
-            <button class="pill-btn" onclick="switchPage('news', event)">Latest News</button>
-            <button class="pill-btn" onclick="switchPage('services', event)">Services</button>
-            <button class="pill-btn" onclick="switchPage('poetry', event)">Poetry</button>
+        <!-- Grid Deals Section -->
+        <h2 class="section-header-title">EDITOR'S BEST TRAVEL DEALS* <span>(OCT 12 - OCT 18)</span></h2>
+        
+        <div class="deals-grid" id="dealsGrid">
+            <!-- Dynamic items rendered from JS -->
         </div>
 
-        <!-- Home Page Grid -->
-        <div id="home" class="page-content active">
-            <h2 class="section-title">FEATURED DEALS & UPDATES</h2>
-            <div id="homeGrid" class="grid-container">Loading grid content...</div>
-        </div>
-
-        <!-- Gallery Page Grid -->
-        <div id="gallery" class="page-content">
-            <h2 class="section-title">GALLERY SHOWCASE</h2>
-            <div id="galleryGrid" class="grid-container">Loading gallery...</div>
-        </div>
-
-        <!-- News Page Grid -->
-        <div id="news" class="page-content">
-            <h2 class="section-title">LATEST NEWS & ANNOUNCEMENTS</h2>
-            <div id="newsGrid" class="grid-container">Loading news...</div>
-        </div>
-
-        <!-- Services Page Grid -->
-        <div id="services" class="page-content">
-            <h2 class="section-title">PROFESSIONAL SERVICES</h2>
-            <div id="servicesGrid" class="grid-container">Loading services...</div>
-        </div>
-
-        <!-- Poetry Page Grid -->
-        <div id="poetry" class="page-content">
-            <h2 class="section-title">POETRY COLLECTION</h2>
-            <div id="poetryGrid" class="grid-container">Loading poetry...</div>
-        </div>
-
-        <!-- About Page Grid -->
-        <div id="about" class="page-content">
-            <h2 class="section-title">ABOUT PINTU JOYDHAR</h2>
-            <div id="aboutGrid" class="grid-container">Loading about...</div>
-        </div>
-
-        <!-- Contact Page Grid -->
-        <div id="contact" class="page-content">
-            <h2 class="section-title">CONTACT INFORMATION</h2>
-            <div id="contactGrid" class="grid-container">Loading contact...</div>
+        <!-- Destination Section -->
+        <div class="destinations-section">
+            <h2 class="section-header-title">TOP TRAVEL DESTINATIONS</h2>
+            <div class="dest-grid">
+                <div class="dest-item"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"><span class="dest-title"><i class="fa-solid fa-location-dot"></i> Florida</span></div>
+                <div class="dest-item dest-california">
+                    <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=800&q=80">
+                    <div class="dest-content">
+                        <h3><i class="fa-solid fa-location-dot"></i> CALIFORNIA</h3>
+                        <p style="font-size: 11px; margin-top:5px;">Explore luxury nature & coastlines in California deals.</p>
+                    </div>
+                </div>
+                <div class="dest-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80"><span class="dest-title"><i class="fa-solid fa-location-dot"></i> Las Vegas</span></div>
+                <div class="dest-item"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=400&q=80"><span class="dest-title"><i class="fa-solid fa-location-dot"></i> Hawaii</span></div>
+                <div class="dest-item"><img src="https://images.unsplash.com/photo-1477959858617-67f30ac4ce78?auto=format&fit=crop&w=400&q=80"><span class="dest-title"><i class="fa-solid fa-location-dot"></i> Chicago</span></div>
+            </div>
         </div>
 
     </div>
 
-    <!-- Footer Area -->
+    <!-- Footer -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>ABOUT PORTAL</h3>
-                <p>Official portfolio and travel agency UI showcasing professional services, literature, and news updates.</p>
-            </div>
-            <div class="footer-col">
-                <h3>TOP DESTINATIONS</h3>
-                <ul>
-                    <li><a href="#" onclick="switchPage('home', event)">Home Grid</a></li>
-                    <li><a href="#" onclick="switchPage('gallery', event)">Gallery</a></li>
-                    <li><a href="#" onclick="switchPage('services', event)">Services</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>QUICK LINKS</h3>
-                <ul>
-                    <li><a href="#" onclick="switchPage('news', event)">News Updates</a></li>
-                    <li><a href="#" onclick="switchPage('poetry', event)">Poetry Corner</a></li>
-                    <li><a href="#" onclick="switchPage('contact', event)">Get In Touch</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>CONTACT US</h3>
-                <p>Email: gaain.bpoacc@gmail.com</p>
-                <p>Phone: 016**********62</p>
-                <p>Location: Barishal, Bangladesh</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            © 2026 Pintu Joydhar. All rights reserved. Designed based on 99designs Travel UI.
-        </div>
+        © 2026 Dunhill TravelDeals - All Rights Reserved. Designed for Pintu Joydhar.
     </footer>
 
     <script>
         const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbzppUd_xG-fG50K3uF19U--QwxON2Xc7hASlhMin3L99ZTBo--vt-WThREhN5_D9E/exec';
 
         document.addEventListener('DOMContentLoaded', () => {
-            loadPostsFromSheet();
+            fetchDeals();
         });
 
-        function switchPage(pageId, event) {
-            if (event) event.preventDefault();
-
-            let pages = document.querySelectorAll('.page-content');
-            pages.forEach(p => p.classList.remove('active'));
-
-            let target = document.getElementById(pageId);
-            if (target) target.classList.add('active');
-
-            let links = document.querySelectorAll('.nav-links a');
-            links.forEach(l => l.classList.remove('active'));
-
-            let activeLink = document.getElementById('nav-' + pageId);
-            if (activeLink) activeLink.classList.add('active');
-
-            let banner = document.getElementById('heroBanner');
-            banner.style.display = (pageId === 'home') ? 'flex' : 'none';
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function loadPostsFromSheet() {
+        function fetchDeals() {
             fetch(googleSheetApiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    renderGridData(data);
-                })
-                .catch(err => {
-                    console.error('Error fetching data:', err);
-                });
+                .then(res => res.json())
+                .then(data => renderDeals(data))
+                .catch(() => loadFallbackDeals());
         }
 
-        function renderGridData(posts) {
-            if (!posts || posts.length === 0) return;
+        function renderDeals(posts) {
+            if (!posts || posts.length === 0) {
+                loadFallbackDeals();
+                return;
+            }
 
-            let reversedPosts = [...posts].reverse();
-
-            // Home All Grid
-            let homeHtml = '';
-            reversedPosts.forEach(post => { homeHtml += build99Card(post); });
-            document.getElementById('homeGrid').innerHTML = homeHtml;
-
-            // Gallery Grid
-            let galleryHtml = '';
-            reversedPosts.filter(p => p.category === 'gallery').forEach(post => { galleryHtml += build99Card(post); });
-            document.getElementById('galleryGrid').innerHTML = galleryHtml || '<p style="color:#777;">No gallery posts found.</p>';
-
-            // News Grid
-            let newsHtml = '';
-            reversedPosts.filter(p => p.category === 'news').forEach(post => { newsHtml += build99Card(post); });
-            document.getElementById('newsGrid').innerHTML = newsHtml || '<p style="color:#777;">No news posts found.</p>';
-
-            // Services Grid
-            let servicesHtml = '';
-            reversedPosts.filter(p => p.category === 'services').forEach(post => { servicesHtml += build99Card(post); });
-            document.getElementById('servicesGrid').innerHTML = servicesHtml || '<p style="color:#777;">No services posts found.</p>';
-
-            // Poetry Grid
-            let poetryHtml = '';
-            reversedPosts.filter(p => p.category === 'poetry').forEach(post => { poetryHtml += build99Card(post); });
-            document.getElementById('poetryGrid').innerHTML = poetryHtml || '<p style="color:#777;">No poetry posts found.</p>';
-
-            // About Grid
-            let aboutHtml = build99Card({
-                title: 'Pintu Joydhar',
-                category: 'About Me',
-                content: 'BBA Accounting Student at Govt. BM College & Web Developer.',
-                image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=500&q=80'
-            });
-            document.getElementById('aboutGrid').innerHTML = aboutHtml;
-
-            // Contact Grid
-            let contactHtml = build99Card({
-                title: 'Get In Touch',
-                category: 'Contact Info',
-                content: 'Email: gaain.bpoacc@gmail.com | Phone: 016**********62',
-                image: 'https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=500&q=80'
-            });
-            document.getElementById('contactGrid').innerHTML = contactHtml;
-        }
-
-        function build99Card(post) {
-            let defaultImg = 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=500&q=80';
-            let imgUrl = (post.image && post.image.startsWith('http')) ? post.image : defaultImg;
-            
-            return `
-                <div class="card-item">
-                    <div class="card-img-wrapper">
-                        <img src="${imgUrl}" alt="Card Media">
-                        <span class="card-badge">${post.category || 'FEATURED'}</span>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">${post.title || 'Untitled Post'}</h3>
-                        <div class="card-meta">
-                            <span><i class="fa-regular fa-clock"></i> Recent</span>
-                            <span><i class="fa-regular fa-folder"></i> ${post.category || 'General'}</span>
+            let html = '';
+            posts.forEach(post => {
+                let img = (post.image && post.image.startsWith('http')) ? post.image : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80';
+                html += `
+                    <div class="deal-card">
+                        <div class="card-img-box">
+                            <img src="${img}" alt="Deal Image">
+                            <div class="price-badge">$544</div>
                         </div>
-                        <p class="card-desc">${post.content ? post.content.substring(0, 85) + '...' : 'Click below to view details.'}</p>
-                        <a href="#" class="card-btn">VIEW DETAILS</a>
+                        <div class="card-body">
+                            <h3 class="card-title">${post.title || '7-NT CELEBRITY CARIBBEAN CRUISE W/ PERKS'}</h3>
+                            <p class="card-subtext">Reg $41398. UP TO $2000 Credit</p>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
+            });
+            document.getElementById('dealsGrid').innerHTML = html;
+        }
+
+        function loadFallbackDeals() {
+            let sampleImages = [
+                'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1476514525535-ce74f452899d?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1515238152791-8216bfdf89a7?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80'
+            ];
+
+            let html = '';
+            for (let i = 0; i < 9; i++) {
+                html += `
+                    <div class="deal-card">
+                        <div class="card-img-box">
+                            <img src="${sampleImages[i]}" alt="Deal Image">
+                            <div class="price-badge">$544</div>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">7-NT CELEBRITY CARIBBEAN CRUISE W/ PERKS</h3>
+                            <p class="card-subtext">Reg $41398. UP TO $2000 Credit</p>
+                        </div>
+                    </div>
+                `;
+            }
+            document.getElementById('dealsGrid').innerHTML = html;
         }
     </script>
 </body>
