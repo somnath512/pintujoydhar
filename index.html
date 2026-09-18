@@ -292,7 +292,7 @@
 
     <!-- Top Bar -->
     <div class="header-top">
-        <a href="#" class="logo"><i class="fa-solid fa-globe"></i> PIntu Joydhar Space</a>
+        <a href="#" class="logo"><i class="fa-solid fa-globe"></i> Pintu Joydhar Space</a>
         <div>
             <span style="font-size: 13px; color: #666;"><i class="fa-solid fa-envelope"></i> gaain.bpoacc@gmail.com</span>
         </div>
@@ -343,7 +343,7 @@
 
         <!-- Home Page -->
         <div id="home" class="page-section active">
-            <h2 class="section-header">Featured Updates Grid</h2>
+            <h2 class="section-header">Home Dashboard</h2>
             <div id="homePosts" class="grid-layout">Loading Grid Items...</div>
         </div>
 
@@ -374,18 +374,13 @@
         <!-- About Page -->
         <div id="about" class="page-section">
             <h2 class="section-header">About Me</h2>
-            <div style="background:#fff; padding:30px; border-radius:8px; border:1px solid var(--border-color);">
-                <h3>Pintu Joydhar</h3>
-                <p style="margin-top:10px;">Accounting Student & Web Development Enthusiast.</p>
-            </div>
+            <div id="aboutPosts" class="grid-layout">Loading About Info...</div>
         </div>
 
         <!-- Contact Page -->
         <div id="contact" class="page-section">
             <h2 class="section-header">Get In Touch</h2>
-            <div style="background:#fff; padding:30px; border-radius:8px; border:1px solid var(--border-color); max-width:600px; margin:0 auto;">
-                <p>Email: gaain.bpoacc@gmail.com</p>
-            </div>
+            <div id="contactPosts" class="grid-layout">Loading Contact Info...</div>
         </div>
 
     </div>
@@ -451,37 +446,86 @@
             fetch(googleSheetApiUrl)
                 .then(response => response.json())
                 .then(data => {
-                    renderGridPosts(data);
+                    renderAllPages(data);
                 })
                 .catch(err => {
                     console.error('Error:', err);
                 });
         }
 
-        function renderGridPosts(posts) {
+        function renderAllPages(posts) {
             if (!posts || posts.length === 0) return;
 
-            let gridHtml = '';
-            posts.reverse().forEach(post => {
-                let imgUrl = post.image && post.image.startsWith('http') ? post.image : 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=500&q=80';
-                
-                gridHtml += `
-                    <div class="grid-card">
-                        <img src="${imgUrl}" class="card-img" alt="Post Image">
-                        <div class="card-body">
-                            <h3 class="card-title">${post.title || 'Untitled Post'}</h3>
-                            <div class="card-meta"><i class="fa-regular fa-folder"></i> ${post.category || 'General'}</div>
-                            <p class="card-text">${post.content ? post.content.substring(0, 90) + '...' : ''}</p>
-                        </div>
-                    </div>
-                `;
-            });
+            let reversedPosts = [...posts].reverse();
 
-            document.getElementById('homePosts').innerHTML = gridHtml;
-            document.getElementById('galleryPosts').innerHTML = gridHtml;
-            document.getElementById('newsPosts').innerHTML = gridHtml;
-            document.getElementById('servicesPosts').innerHTML = gridHtml;
-            document.getElementById('poetryPosts').innerHTML = gridHtml;
+            // Home Grid (All Posts)
+            let homeHtml = '';
+            reversedPosts.forEach(post => {
+                homeHtml += createCardHTML(post);
+            });
+            document.getElementById('homePosts').innerHTML = homeHtml;
+
+            // Gallery Grid
+            let galleryHtml = '';
+            reversedPosts.filter(p => p.category === 'gallery').forEach(post => {
+                galleryHtml += createCardHTML(post);
+            });
+            document.getElementById('galleryPosts').innerHTML = galleryHtml || '<p style="color:#7f8c8d;">No gallery posts found.</p>';
+
+            // News Grid
+            let newsHtml = '';
+            reversedPosts.filter(p => p.category === 'news').forEach(post => {
+                newsHtml += createCardHTML(post);
+            });
+            document.getElementById('newsPosts').innerHTML = newsHtml || '<p style="color:#7f8c8d;">No news posts found.</p>';
+
+            // Services Grid
+            let servicesHtml = '';
+            reversedPosts.filter(p => p.category === 'services').forEach(post => {
+                servicesHtml += createCardHTML(post);
+            });
+            document.getElementById('servicesPosts').innerHTML = servicesHtml || '<p style="color:#7f8c8d;">No services posts found.</p>';
+
+            // Poetry Grid
+            let poetryHtml = '';
+            reversedPosts.filter(p => p.category === 'poetry').forEach(post => {
+                poetryHtml += createCardHTML(post);
+            });
+            document.getElementById('poetryPosts').innerHTML = poetryHtml || '<p style="color:#7f8c8d;">No poetry posts found.</p>';
+
+            // About Grid Style
+            let aboutHtml = '';
+            reversedPosts.filter(p => p.category === 'about').forEach(post => {
+                aboutHtml += createCardHTML(post);
+            });
+            if(!aboutHtml) {
+                aboutHtml = `<div class="grid-card"><div class="card-body"><h3 class="card-title">Pintu Joydhar</h3><p class="card-text">Accounting student & web development enthusiast from Barishal.</p></div></div>`;
+            }
+            document.getElementById('aboutPosts').innerHTML = aboutHtml;
+
+            // Contact Grid Style
+            let contactHtml = '';
+            reversedPosts.filter(p => p.category === 'contact').forEach(post => {
+                contactHtml += createCardHTML(post);
+            });
+            if(!contactHtml) {
+                contactHtml = `<div class="grid-card"><div class="card-body"><h3 class="card-title">Direct Contact</h3><p class="card-text">Email: gaain.bpoacc@gmail.com<br>Phone: 016**********62</p></div></div>`;
+            }
+            document.getElementById('contactPosts').innerHTML = contactHtml;
+        }
+
+        function createCardHTML(post) {
+            let imgUrl = post.image && post.image.startsWith('http') ? post.image : 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=500&q=80';
+            return `
+                <div class="grid-card">
+                    <img src="${imgUrl}" class="card-img" alt="Post Image">
+                    <div class="card-body">
+                        <h3 class="card-title">${post.title || 'Untitled'}</h3>
+                        <div class="card-meta"><i class="fa-regular fa-folder"></i> ${post.category || 'General'}</div>
+                        <p class="card-text">${post.content ? post.content.substring(0, 90) + '...' : ''}</p>
+                    </div>
+                </div>
+            `;
         }
     </script>
 </body>
