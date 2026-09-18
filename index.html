@@ -63,7 +63,7 @@
         /* Menu items uniform color setup */
         .nav-menu li a {
             text-decoration: none;
-            color: #0d4a75; /* Uniform brand color for icons & text */
+            color: #0d4a75;
             font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
@@ -74,7 +74,7 @@
         }
 
         .nav-menu li a i {
-            color: var(--brand-green); /* Accent color for icons */
+            color: var(--brand-green);
         }
 
         .nav-menu li a:hover {
@@ -93,18 +93,24 @@
             text-transform: uppercase;
         }
 
-        /* Hero Banner - Full Photo visible without cropping */
+        /* Hero Banner - Full Space Coverage (No empty gaps) */
         .hero-section {
-            background: #0b0f14 url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000') no-repeat center center;
-            background-size: contain;
-            height: 450px;
+            background: url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000') no-repeat center center;
+            background-size: cover;
             width: 100%;
+            height: 480px;
             position: relative;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .hero-section {
-                height: 250px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-section {
+                height: 200px;
             }
         }
 
@@ -284,7 +290,7 @@
         <button class="btn-signup">SIGN UP</button>
     </div>
 
-    <!-- Hero Banner with Full Photo View -->
+    <!-- Hero Banner with Full Space Cover View -->
     <div class="hero-section"></div>
 
     <!-- Main Body Layout -->
