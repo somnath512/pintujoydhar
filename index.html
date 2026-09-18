@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pintu Joydhar - TravelDeals Layout</title>
+    <title>Pintu Joydhar - Website</title>
     
     <!-- Google Fonts & FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -88,105 +88,23 @@
             text-transform: uppercase;
         }
 
-        /* Hero Banner with Personal Photo (Text Removed) */
+        /* Hero Banner with Personal Photo (Search Box Removed) */
         .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000');
+            background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000');
             background-size: cover;
             background-position: center;
-            height: 420px;
+            height: 400px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: #ffffff;
-            text-align: center;
             position: relative;
-        }
-
-        /* Search Widget Overlay */
-        .search-widget {
-            position: absolute;
-            bottom: -30px;
-            width: 85%;
-            max-width: 1000px;
-            background: var(--brand-dark-blue);
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .search-tabs {
-            display: flex;
-            background: #141f29;
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 10px;
-            background: transparent;
-            border: none;
-            color: #9aaec4;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            border-right: 1px solid #1e2d3b;
-        }
-
-        .tab-btn.active, .tab-btn:hover {
-            background: var(--brand-blue);
-            color: #ffffff;
-        }
-
-        .search-fields {
-            padding: 15px;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 2fr 1fr;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .field-group label {
-            display: block;
-            color: #ffffff;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-
-        .field-group input, .field-group select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #324759;
-            border-radius: 3px;
-            font-size: 12px;
-            outline: none;
-        }
-
-        .btn-search {
-            background: var(--brand-green);
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 3px;
-            font-weight: 700;
-            font-size: 13px;
-            cursor: pointer;
-            height: 35px;
-            margin-top: 15px;
-            text-transform: uppercase;
         }
 
         /* Content Body Container */
         .main-container {
             width: 85%;
             max-width: 1100px;
-            margin: 70px auto 40px auto;
+            margin: 40px auto;
         }
 
         .section-header-title {
@@ -215,7 +133,6 @@
 
         @media (max-width: 900px) {
             .deals-grid { grid-template-columns: repeat(2, 1fr); }
-            .search-fields { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 600px) {
@@ -289,6 +206,7 @@
         }
 
         .dest-grid {
+            display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             grid-template-areas: 
@@ -364,38 +282,8 @@
         <button class="btn-signup">SIGN UP</button>
     </div>
 
-    <!-- Hero Banner with Personal Photo (Text Removed) -->
-    <div class="hero-section">
-        <!-- Search Box Widget -->
-        <div class="search-widget">
-            <div class="search-tabs">
-                <button class="tab-btn"><i class="fa-solid fa-plane"></i> Flight</button>
-                <button class="tab-btn active"><i class="fa-solid fa-hotel"></i> Hotel</button>
-                <button class="tab-btn"><i class="fa-solid fa-ship"></i> Cruise</button>
-                <button class="tab-btn"><i class="fa-solid fa-umbrella-beach"></i> Vacation</button>
-                <button class="tab-btn"><i class="fa-solid fa-car"></i> Car</button>
-            </div>
-            <div class="search-fields">
-                <div class="field-group">
-                    <label>Where you like to go?</label>
-                    <input type="text" value="Canada">
-                </div>
-                <div class="field-group">
-                    <label>Check-in:</label>
-                    <input type="text" value="13 Feb 2026">
-                </div>
-                <div class="field-group">
-                    <label>Check-out:</label>
-                    <input type="text" value="15 Feb 2026">
-                </div>
-                <div class="field-group">
-                    <label>Guests:</label>
-                    <select><option>1 Room, 2 Adults, 0 Children</option></select>
-                </div>
-                <button class="btn-search"><i class="fa-solid fa-magnifying-glass"></i> SEARCH</button>
-            </div>
-        </div>
-    </div>
+    <!-- Hero Banner with Personal Photo Only -->
+    <div class="hero-section"></div>
 
     <!-- Main Body Layout -->
     <div class="main-container">
@@ -477,7 +365,11 @@
                 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80',
                 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=500&q=80',
                 'https://images.unsplash.com/photo-1476514525535-ce74f452899d?auto=format&fit=crop&w=500&q=80',
-                'annotations/sample...'
+                'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1515238152791-8216bfdf89a7?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80'
             ];
 
             let html = '';
@@ -485,7 +377,7 @@
                 html += `
                     <div class="deal-card">
                         <div class="card-img-box">
-                            <img src="${sampleImages[i] || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80'}" alt="Deal Image">
+                            <img src="${sampleImages[i]}" alt="Deal Image">
                             <div class="price-badge">$544</div>
                         </div>
                         <div class="card-body">
