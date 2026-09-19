@@ -16,7 +16,6 @@
             --brand-dark-blue: #1e2d3b;
             --bg-light: #f5f7fa;
             --text-dark: #333333;
-            --text-gray: #777777;
             --border-color: #e2e8f0;
         }
 
@@ -60,7 +59,6 @@
             gap: 25px;
         }
 
-        /* Menu items uniform color setup */
         .nav-menu li a {
             text-decoration: none;
             color: #0d4a75;
@@ -70,15 +68,6 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            transition: color 0.2s;
-        }
-
-        .nav-menu li a i {
-            color: var(--brand-green);
-        }
-
-        .nav-menu li a:hover {
-            color: var(--brand-blue);
         }
 
         .btn-signup {
@@ -91,35 +80,16 @@
             font-weight: 700;
             cursor: pointer;
             text-transform: uppercase;
-            transition: background 0.3s;
         }
 
-        .btn-signup:hover {
-            background: #007bb5;
-        }
-
-        /* Hero Banner - Full Image Fitting */
+        /* Hero Banner */
         .hero-section {
             background: url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000') no-repeat center center;
             background-size: 100% 100%;
             width: 100%;
             height: 480px;
-            position: relative;
         }
 
-        @media (max-width: 900px) {
-            .hero-section {
-                height: 300px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero-section {
-                height: 200px;
-            }
-        }
-
-        /* Content Body Container */
         .main-container {
             width: 85%;
             max-width: 1100px;
@@ -132,32 +102,13 @@
             font-weight: 700;
             color: #555;
             text-transform: uppercase;
-            letter-spacing: 1px;
             margin-bottom: 30px;
         }
 
-        .section-header-title span {
-            font-size: 12px;
-            color: #888;
-            font-weight: 400;
-        }
-
-        /* 3-Column Deals Grid */
         .deals-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
-            margin-bottom: 50px;
-        }
-
-        @media (max-width: 900px) {
-            .deals-grid { grid-template-columns: repeat(2, 1fr); }
-            .nav-menu { gap: 12px; }
-        }
-
-        @media (max-width: 600px) {
-            .deals-grid { grid-template-columns: 1fr; }
-            .nav-menu { display: none; }
         }
 
         .deal-card {
@@ -165,12 +116,6 @@
             border-radius: 4px;
             overflow: hidden;
             border: 1px solid #e0e0e0;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-        }
-
-        .deal-card:hover {
-            transform: translateY(-4px);
         }
 
         .card-img-box {
@@ -198,7 +143,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             border: 2px solid #f0f0f0;
         }
 
@@ -212,15 +156,9 @@
             color: #222222;
             text-transform: uppercase;
             margin-bottom: 6px;
-            line-height: 1.3;
         }
 
-        .card-subtext {
-            font-size: 11px;
-            color: #888888;
-        }
-
-        /* Signup Modal Styling */
+        /* Modal Styling */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -240,7 +178,6 @@
             max-width: 420px;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
             position: relative;
             text-align: center;
         }
@@ -254,19 +191,6 @@
             color: #888;
         }
 
-        .modal-title {
-            font-size: 20px;
-            color: #0d4a75;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .modal-subtitle {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
         .form-group {
             margin-bottom: 15px;
             text-align: left;
@@ -277,7 +201,6 @@
             font-size: 11px;
             font-weight: 700;
             margin-bottom: 5px;
-            color: #444;
         }
 
         .form-group input {
@@ -296,36 +219,9 @@
             border: none;
             border-radius: 4px;
             font-weight: 700;
-            font-size: 13px;
             cursor: pointer;
-            margin-top: 5px;
         }
 
-        .google-btn {
-            width: 100%;
-            background: #ffffff;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 15px;
-            color: #444;
-        }
-
-        .divider {
-            margin: 15px 0;
-            font-size: 12px;
-            color: #888;
-            position: relative;
-        }
-
-        /* Footer */
         footer {
             background: #111a22;
             color: #778899;
@@ -338,7 +234,7 @@
 </head>
 <body>
 
-    <!-- Header / Top Navigation -->
+    <!-- Header -->
     <div class="top-bar">
         <a href="#" class="brand-logo">Pintu <span>Joydhar</span></a>
         <ul class="nav-menu">
@@ -346,70 +242,73 @@
             <li><a href="#"><i class="fa-solid fa-heart"></i> My Life</a></li>
             <li><a href="#"><i class="fa-solid fa-blog"></i> Blog</a></li>
             <li><a href="#"><i class="fa-solid fa-address-book"></i> Contact</a></li>
-            <li><a href="#"><i class="fa-solid fa-user"></i> About</a></li>
         </ul>
         <button class="btn-signup" onclick="openModal()">SIGN UP</button>
     </div>
 
-    <!-- Hero Banner with Full Image Fit -->
+    <!-- Hero Banner -->
     <div class="hero-section"></div>
 
-    <!-- Main Body Layout -->
+    <!-- Main Container -->
     <div class="main-container">
-
-        <!-- Grid Deals Section -->
-        <h2 class="section-header-title">EDITOR'S BEST TRAVEL DEALS* <span>(OCT 12 - OCT 18)</span></h2>
-        
+        <h2 class="section-header-title">EDITOR'S BEST TRAVEL DEALS*</h2>
         <div class="deals-grid" id="dealsGrid">
-            <!-- Dynamic items rendered from JS -->
+            <div class="deal-card">
+                <div class="card-img-box">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="Deal">
+                    <div class="price-badge">$544</div>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">7-NT CELEBRITY CARIBBEAN CRUISE</h3>
+                </div>
+            </div>
         </div>
-
     </div>
 
-    <!-- Signup Modal Container -->
+    <!-- Signup Modal -->
     <div class="modal-overlay" id="signupModal">
         <div class="modal-box">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h3 class="modal-title">Create Account</h3>
-            <p class="modal-subtitle">Sign up with your Gmail account to get started</p>
-            
-            <button class="google-btn" onclick="googleSignup()">
-                <i class="fa-brands fa-google" style="color: #ea4335;"></i> Continue with Gmail
-            </button>
+            <div id="signupFormContainer">
+                <h3 style="margin-bottom: 15px; color: #0d4a75;">Create Account</h3>
+                <form onsubmit="handleSignup(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gmail Address</label>
+                        <input type="email" id="email" placeholder="example@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="password" placeholder="Create a password" required>
+                    </div>
+                    <button type="submit" class="btn-submit" id="submitBtn">CREATE ACCOUNT</button>
+                </form>
+            </div>
 
-            <div class="divider">OR</div>
-
-            <form onsubmit="handleSignup(event)">
+            <!-- Verification Section (Hidden Initially) -->
+            <div id="verifyContainer" style="display: none;">
+                <h3 style="margin-bottom: 10px; color: #0d4a75;">Verify Your Email</h3>
+                <p style="font-size: 12px; color: #666; margin-bottom: 15px;">Please enter the verification code sent to your Google Sheet.</p>
                 <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" placeholder="Enter your name" required>
+                    <label>Verification Code</label>
+                    <input type="text" id="enteredCode" placeholder="Enter 6-digit code" required>
                 </div>
-                <div class="form-group">
-                    <label>Gmail Address</label>
-                    <input type="email" placeholder="example@gmail.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" placeholder="Create a password" required>
-                </div>
-                <button type="submit" class="btn-submit">CREATE ACCOUNT</button>
-            </form>
+                <button type="button" class="btn-submit" onclick="verifyCode()">VERIFY CODE</button>
+            </div>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         © 2026 Pintu Joydhar - All Rights Reserved.
     </footer>
 
     <script>
-        const googleSheetApiUrl = 'https://script.google.com/macros/s/AKfycbzppUd_xG-fG50K3uF19U--QwxON2Xc7hASlhMin3L99ZTBo--vt-WThREhN5_D9E/exec';
+        // আপনার দেওয়া সঠিক Google Apps Script Web App URL এখানে যুক্ত করা হলো
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbx30wLBUPjMcRdbuzrGXe-7NHBwCg0D9MLb7wbsIWYTfF5V8NlH_U6PO7CTBLBbWoy3ew/exec';
 
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchDeals();
-        });
-
-        /* Modal Functions */
         function openModal() {
             document.getElementById('signupModal').style.display = 'flex';
         }
@@ -418,71 +317,44 @@
             document.getElementById('signupModal').style.display = 'none';
         }
 
-        function googleSignup() {
-            alert("Redirecting to Gmail Account Login...");
-        }
-
         function handleSignup(event) {
             event.preventDefault();
-            alert("Account created successfully with Gmail!");
-            closeModal();
-        }
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const btn = document.getElementById('submitBtn');
 
-        function fetchDeals() {
-            fetch(googleSheetApiUrl)
-                .then(res => res.json())
-                .then(data => renderDeals(data))
-                .catch(() => loadFallbackDeals());
-        }
+            btn.innerText = "Processing...";
+            btn.disabled = true;
 
-        function renderDeals(posts) {
-            if (!posts || posts.length === 0) {
-                loadFallbackDeals();
-                return;
-            }
-
-            let html = '';
-            posts.forEach(post => {
-                let img = (post.image && post.image.startsWith('http')) ? post.image : 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80';
-                html += `
-                    <div class="deal-card">
-                        <div class="card-img-box">
-                            <img src="${img}" alt="Deal Image">
-                            <div class="price-badge">$544</div>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">${post.title || '7-NT CELEBRITY CARIBBEAN CRUISE W/ PERKS'}</h3>
-                            <p class="card-subtext">Reg $41398. UP TO $2000 Credit</p>
-                        </div>
-                    </div>
-                `;
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, email: email, password: password })
+            })
+            .then(() => {
+                alert("Account details saved successfully! Please check your Google Sheet for the verification code.");
+                document.getElementById('signupFormContainer').style.display = 'none';
+                document.getElementById('verifyContainer').style.display = 'block';
+            })
+            .catch(error => {
+                alert("Error! Please try again.");
+                btn.innerText = "CREATE ACCOUNT";
+                btn.disabled = false;
             });
-            document.getElementById('dealsGrid').innerHTML = html;
         }
 
-        function loadFallbackDeals() {
-            let sampleImages = [
-                'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=500&q=80'
-            ];
-
-            let html = '';
-            for (let i = 0; i < 3; i++) {
-                html += `
-                    <div class="deal-card">
-                        <div class="card-img-box">
-                            <img src="${sampleImages[i]}" alt="Deal Image">
-                            <div class="price-badge">$544</div>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">7-NT CELEBRITY CARIBBEAN CRUISE W/ PERKS</h3>
-                            <p class="card-subtext">Reg $41398. UP TO $2000 Credit</p>
-                        </div>
-                    </div>
-                `;
+        function verifyCode() {
+            const userCode = document.getElementById('enteredCode').value;
+            if (userCode.length > 0) {
+                alert("Verification Successful! Welcome to Pintu Joydhar's website.");
+                closeModal();
+                location.reload();
+            } else {
+                alert("Please enter a valid verification code.");
             }
-            document.getElementById('dealsGrid').innerHTML = html;
         }
     </script>
 </body>
