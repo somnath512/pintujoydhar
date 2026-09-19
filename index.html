@@ -85,12 +85,17 @@
             background: var(--brand-blue);
             color: #fff;
             border: none;
-            padding: 8px 15px;
-            border-radius: 3px;
+            padding: 8px 18px;
+            border-radius: 4px;
             font-size: 11px;
             font-weight: 700;
             cursor: pointer;
             text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .btn-signup:hover {
+            background: #007bb5;
         }
 
         /* Hero Banner - Full Image Fitting */
@@ -215,64 +220,120 @@
             color: #888888;
         }
 
-        /* Destination Grid Layout */
-        .destinations-section {
-            margin-top: 50px;
+        /* Signup Modal Styling */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-box {
+            background: #ffffff;
+            width: 90%;
+            max-width: 420px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            position: relative;
             text-align: center;
         }
 
-        .dest-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            grid-template-areas: 
-                "fl cal cal lv"
-                "hw cal cal ch";
-        }
-
-        .dest-item {
-            position: relative;
-            height: 140px;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .dest-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .dest-title {
+        .close-modal {
             position: absolute;
-            bottom: 10px;
-            left: 10px;
-            color: #fff;
-            font-size: 12px;
+            top: 12px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            color: #0d4a75;
+            margin-bottom: 8px;
             font-weight: 700;
-            text-transform: uppercase;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
-        .dest-california {
-            grid-area: cal;
-            height: 295px;
+        .modal-subtitle {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 20px;
         }
 
-        .dest-california .dest-content {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            color: #fff;
+        .form-group {
+            margin-bottom: 15px;
             text-align: left;
         }
 
-        /* Footer */
-        <footer>
-            © 2026 Pintu Joydhar - All Rights Reserved.
-        </footer>
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #444;
+        }
 
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--brand-blue);
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .google-btn {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            color: #444;
+        }
+
+        .divider {
+            margin: 15px 0;
+            font-size: 12px;
+            color: #888;
+            position: relative;
+        }
+
+        /* Footer */
+        footer {
+            background: #111a22;
+            color: #778899;
+            text-align: center;
+            padding: 30px;
+            font-size: 12px;
+            margin-top: 60px;
+        }
     </style>
 </head>
 <body>
@@ -287,7 +348,7 @@
             <li><a href="#"><i class="fa-solid fa-address-book"></i> Contact</a></li>
             <li><a href="#"><i class="fa-solid fa-user"></i> About</a></li>
         </ul>
-        <button class="btn-signup">SIGN UP</button>
+        <button class="btn-signup" onclick="openModal()">SIGN UP</button>
     </div>
 
     <!-- Hero Banner with Full Image Fit -->
@@ -303,24 +364,37 @@
             <!-- Dynamic items rendered from JS -->
         </div>
 
-        <!-- Destination Section -->
-        <div class="destinations-section">
-            <h2 class="section-header-title">TOP TRAVEL DESTINATIONS</h2>
-            <div class="dest-grid">
-                <div class="dest-item"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"><span class="dest-title"><i class="fa-solid fa-location-dot"></i> Florida</span></div>
-                <div class="dest-item dest-california">
-                    <img src="https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&w=800&q=80">
-                    <div class="dest-content">
-                        <h3><i class="fa-solid fa-location-dot"></i> CALIFORNIA</h3>
-                        <p style="font-size: 11px; margin-top:5px;">Explore luxury nature & coastlines in California deals.</p>
-                    </div>
-                </div>
-                <div class="dest-item"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80"><span class="dest-title"><i class="fa-solid fa-location-dot"></i> Las Vegas</span></div>
-                <div class="dest-item"><img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=400&q=80"><span class="dest-title"><i class="fa-solid fa-location-dot"></i> Hawaii</span></div>
-                <div class="dest-item"><img src="https://images.unsplash.com/photo-1477959858617-67f30ac4ce78?auto=format&fit=crop&w=400&q=80"><span class="dest-title"><i class="fa-solid fa-location-dot"></i> Chicago</span></div>
-            </div>
-        </div>
+    </div>
 
+    <!-- Signup Modal Container -->
+    <div class="modal-overlay" id="signupModal">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 class="modal-title">Create Account</h3>
+            <p class="modal-subtitle">Sign up with your Gmail account to get started</p>
+            
+            <button class="google-btn" onclick="googleSignup()">
+                <i class="fa-brands fa-google" style="color: #ea4335;"></i> Continue with Gmail
+            </button>
+
+            <div class="divider">OR</div>
+
+            <form onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Gmail Address</label>
+                    <input type="email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Create a password" required>
+                </div>
+                <button type="submit" class="btn-submit">CREATE ACCOUNT</button>
+            </form>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -334,6 +408,25 @@
         document.addEventListener('DOMContentLoaded', () => {
             fetchDeals();
         });
+
+        /* Modal Functions */
+        function openModal() {
+            document.getElementById('signupModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('signupModal').style.display = 'none';
+        }
+
+        function googleSignup() {
+            alert("Redirecting to Gmail Account Login...");
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            alert("Account created successfully with Gmail!");
+            closeModal();
+        }
 
         function fetchDeals() {
             fetch(googleSheetApiUrl)
@@ -371,17 +464,11 @@
             let sampleImages = [
                 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=500&q=80',
                 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1476514525535-ce74f452899d?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1515238152791-8216bfdf89a7?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=500&q=80',
-                'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80'
+                'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=500&q=80'
             ];
 
             let html = '';
-            for (let i = 0; i < 9; i++) {
+            for (let i = 0; i < 3; i++) {
                 html += `
                     <div class="deal-card">
                         <div class="card-img-box">
