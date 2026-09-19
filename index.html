@@ -305,7 +305,7 @@
     </footer>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwe5_Xu8bEB7B0V_wxWSVjo8VgfBxwSDZHYOp2Qepbutb4UsQnREN0gdme4QY5wrvHVSw/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxgmmGmYEUGUKLVFc4yp3bv4uO22YiSagsJ2lmGtytAndhEDYmVf5TXyDWbN8NFSVDCgA/exec';
 
         document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('isVerified') === 'true') {
@@ -315,7 +315,7 @@
         });
 
         function fetchUserCount() {
-            fetch(scriptURL + '?t=' + new Date().getTime())
+            fetch(scriptURL + '?_=' + new Date().getTime())
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.count !== undefined) {
