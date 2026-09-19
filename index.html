@@ -93,81 +93,6 @@
             text-transform: uppercase;
         }
 
-        .hero-section {
-            background: url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000') no-repeat center center;
-            background-size: 100% 100%;
-            width: 100%;
-            height: 480px;
-        }
-
-        .main-container {
-            width: 85%;
-            max-width: 1100px;
-            margin: 40px auto;
-        }
-
-        .section-header-title {
-            text-align: center;
-            font-size: 16px;
-            font-weight: 700;
-            color: #555;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-        }
-
-        .deals-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .deal-card {
-            background: #ffffff;
-            border-radius: 4px;
-            overflow: hidden;
-            border: 1px solid #e0e0e0;
-        }
-
-        .card-img-box {
-            position: relative;
-            height: 170px;
-        }
-
-        .card-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .price-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ffffff;
-            color: var(--brand-blue);
-            font-weight: 700;
-            font-size: 13px;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #f0f0f0;
-        }
-
-        .card-body {
-            padding: 15px;
-        }
-
-        .card-title {
-            font-size: 12px;
-            font-weight: 700;
-            color: #222222;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-
         .modal-overlay {
             display: none;
             position: fixed;
@@ -235,9 +160,11 @@
             background: #111a22;
             color: #778899;
             text-align: center;
-            padding: 30px;
+            padding: 20px;
             font-size: 12px;
-            margin-top: 60px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
@@ -257,25 +184,6 @@
             </li>
         </ul>
         <button class="btn-signup" id="authBtn" onclick="openModal()">SIGN UP</button>
-    </div>
-
-    <!-- Hero Banner -->
-    <div class="hero-section"></div>
-
-    <!-- Main Container -->
-    <div class="main-container">
-        <h2 class="section-header-title">EDITOR'S BEST TRAVEL DEALS*</h2>
-        <div class="deals-grid" id="dealsGrid">
-            <div class="deal-card">
-                <div class="card-img-box">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="Deal">
-                    <div class="price-badge">$544</div>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">7-NT CELEBRITY CARIBBEAN CRUISE</h3>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Signup Modal -->
@@ -315,7 +223,6 @@
         });
 
         function fetchUserCount() {
-            // ক্যাশ এড়ানোর জন্য একেবারে নতুন প্যারামিটার ও নো-ক্যাশ মোড ব্যবহার করা হলো
             fetch(scriptURL + '?rnd=' + Math.random(), { cache: 'no-store' })
                 .then(response => response.json())
                 .then(data => {
@@ -358,7 +265,6 @@
                 closeModal();
                 setVerifiedUI();
                 
-                // গুগল শিটে ডেটা এন্ট্রি হতে কয়েক সেকেন্ড সময় নেয়, তাই একটু পরে রিলোড দিয়ে রিয়েল কাউন্ট ফেচ করবে
                 setTimeout(() => {
                     fetchUserCount();
                 }, 3000);
@@ -372,8 +278,6 @@
         }
 
         function setVerifiedUI() {
-            const authBtn =동document.getElementById('authBtn');
-            // উপরের ভুল বানান ঠিক করে দেওয়া হলো:
             const authButton = document.getElementById('authBtn');
             authButton.innerText = "VERIFIED";
             authButton.style.background = "#7cc142";
