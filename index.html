@@ -73,73 +73,84 @@
             font-weight: bold;
         }
 
-        /* Hero Section (এখানে ছবি এবং তার ওপর সার্চ বক্স ও সোশ্যাল আইকন রাখা হয়েছে) */
+        /* Full Screen Hero Section */
         .hero {
-            height: 75vh;
+            width: 100%;
+            min-height: 85vh;
             background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1600') no-repeat center center/cover;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
             color: white;
-            padding: 30px 20px;
+            padding: 50px 20px;
         }
 
         .hero-content {
-            max-width: 750px;
             width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .hero-content h1 {
-            font-size: 2.2rem;
-            margin-bottom: 12px;
+            font-size: 2.8rem;
+            margin-bottom: 15px;
             color: #a7d155;
             letter-spacing: 2px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
         }
 
         .hero-content p {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
+            font-size: 1.25rem;
+            margin-bottom: 30px;
             color: #f2f2f2;
             line-height: 1.6;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
         }
 
-        /* Search Box inside Hero Section (ছবির ভেতরের সার্চ বক্স) */
+        /* Full Width Search Box inside Hero Section */
         .hero-search-box {
-            background: white;
-            padding: 6px;
-            border-radius: 6px;
-            display: inline-flex;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            display: flex;
             width: 100%;
-            max-width: 520px;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            max-width: 650px;
+            margin: 0 auto 30px auto;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
 
         .hero-search-box input {
             border: none;
             outline: none;
             flex: 1;
-            padding: 12px 15px;
-            font-size: 1rem;
+            padding: 14px 18px;
+            font-size: 1.05rem;
+            background: transparent;
+            color: #333;
         }
 
         .hero-search-box button {
             background: #8cb83e;
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 14px 30px;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: bold;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            transition: background 0.3s ease;
+        }
+
+        .hero-search-box button:hover {
+            background: #7aa333;
         }
 
         /* Social Icons Inside Hero Section */
         .hero-socials {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         .hero-socials a {
@@ -147,17 +158,17 @@
             align-items: center;
             justify-content: center;
             color: white;
-            width: 44px;
-            height: 44px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         .hero-socials a svg {
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             fill: currentColor;
         }
 
@@ -166,21 +177,20 @@
         .social-in { background: #0A66C2; }
 
         .hero-socials a:hover {
-            transform: translateY(-4px) scale(1.06);
-            opacity: 0.9;
+            transform: translateY(-5px) scale(1.1);
         }
 
         /* Image Grid Section - মোবাইল এবং ল্যাপটপ উভয়েই সবসময় ৩টি করে পাশাপাশি */
         .grid-container {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 60px auto;
             padding: 0 20px;
             text-align: center;
         }
 
         .grid-title {
-            font-size: 2.2rem;
-            margin-bottom: 35px;
+            font-size: 2.3rem;
+            margin-bottom: 40px;
             color: #111;
             font-weight: bold;
         }
@@ -188,13 +198,13 @@
         .image-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr); /* সবসময় ৩টি কলাম */
-            gap: 15px;
+            gap: 20px;
         }
 
         .grid-card {
             position: relative;
-            height: 220px;
-            border-radius: 6px;
+            height: 240px;
+            border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             transition: transform 0.3s ease;
@@ -222,7 +232,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10px;
+            padding: 15px;
             transition: background 0.3s ease;
         }
 
@@ -232,7 +242,7 @@
 
         .grid-card h3 {
             color: #ffffff;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             text-align: center;
             text-shadow: 1px 2px 4px rgba(0,0,0,0.8);
@@ -265,13 +275,13 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Background Pic, Search Box & Social Icons -->
+    <!-- Full Screen Hero Section -->
     <header class="hero">
         <div class="hero-content">
             <h1>WELCOME TO MY SITE</h1>
             <p>Life is a collection of precious moments, continuous learning, and creativity.</p>
             
-            <!-- Search Box Inside Hero Picture -->
+            <!-- Full Width Search Box Inside Hero Picture -->
             <div class="hero-search-box">
                 <input type="text" placeholder="Search my thoughts, poems or notes...">
                 <button>Search</button>
