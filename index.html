@@ -316,7 +316,7 @@
     </footer>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzBjPMTsDKVZ2KLw4Lej_rZf_ta1Jz9fcVHLMgo8gWKZfqrGVlrBJJrfERfqq2v87V38Q/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzwJ8c9w-LM-6646Mu2jxruvZHhpCFyPA4VbTayCsWFSYeiAXwyuG_FMr2UbvKlRBnU8A/exec';
 
         let userEmail = '';
 
@@ -328,7 +328,8 @@
         });
 
         function fetchUserCount() {
-            fetch(scriptURL)
+            const cacheBusterUrl = scriptURL + '?t=' + new Date().getTime();
+            fetch(cacheBusterUrl)
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.count !== undefined) {
@@ -395,17 +396,10 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (data.status === "success") {
-                    localStorage.setItem('isVerified', 'true');
-                    alert("Verification Successful!");
-                    closeModal();
-                    setVerifiedUI();
-                } else {
-                    localStorage.setItem('isVerified', 'true');
-                    alert("Verification Successful!");
-                    closeModal();
-                    setVerifiedUI();
-                }
+                localStorage.setItem('isVerified', 'true');
+                alert("Verification Successful!");
+                closeModal();
+                setVerifiedUI();
             })
             .catch(error => {
                 localStorage.setItem('isVerified', 'true');
@@ -413,6 +407,9 @@
                 closeModal();
                 setVerifiedUI();
             });
+        }
+
+        private function setVerifiedUI() { // Not used in standard JS, using regular function below
         }
 
         function setVerifiedUI() {
