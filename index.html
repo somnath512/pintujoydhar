@@ -393,7 +393,7 @@
     <script>
         async function loadSheetData() {
             try {
-                const url = "https://script.google.com/macros/s/AKfycbznwJkrnMMdVtdwb3dcwIXAiBOW2CeekK7ziLK5lRuc-Y6tM2YPXq5IMM9oJ30Ex5QO/exec";[cite: 3]
+                const url = "https://script.google.com/macros/s/AKfycbxHQJFihLxbqlbuFzaF8h5alTlvfax6kC-fH5vzvsxKmOMXsF9UM0goCD2xqp46z9cU/exec";
                 const response = await fetch(url);
                 const data = await response.json();
 
@@ -405,33 +405,39 @@
 
                 data.forEach(item => {
                     let cat = item.category ? item.category.toLowerCase().trim() : '';
+                    let title = item.title ? item.title : '';
+                    let content = item.content ? item.content : '';
+                    
+                    // Google Drive Link Converter Fix
+                    let imgUrl = item.image ? item.image.trim() : '';
+                    if (imgUrl.includes('drive.google.com')) {
+                        let fileIdMatch = imgUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
+                        if (fileIdMatch && fileIdMatch[1]) {
+                            imgUrl = `https://lh3.googleusercontent.com/d/${fileIdMatch[1]}`;
+                        }
+                    }
 
                     if (cat === 'about') {
                         aboutHtml += `
                             <div style="text-align: center; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px;">
-                                ${item.image ? `<img src="${item.image}" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid #8cb83e; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">` : ''}
-                                <h3 style="font-size: 1.8rem; color: #111; margin-bottom: 10px;">${item.title}</h3>
-                                <p style="font-size: 1.1rem; color: #555; line-height: 1.6; max-width: 700px; margin: 0 auto;">${item.content}</p>
+                                ${imgUrl ? `<img src="${imgUrl}" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid #8cb83e; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">` : ''}
+                                <h3 style="font-size: 1.8rem; color: #111; margin-bottom: 10px;">${title}</h3>
+                                <p style="font-size: 1.1rem; color: #555; line-height: 1.6; max-width: 700px; margin: 0 auto;">${content}</p>
                             </div>
                         `;
-                    } else {
+                    } else if (cat) {
                         let card = `
                             <div style="background:white; padding:20px; margin-bottom:15px; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-                                <h3 style="color: #333; margin-bottom: 10px;">${item.title}</h3>
-                                ${item.image ? `<img src="${item.image}" style="max-width:100%; height:200px; object-fit:cover; border-radius:4px; margin:10px 0;">` : ''}
-                                <p style="color: #555; line-height: 1.5;">${item.content}</p>
+                                <h3 style="color: #333; margin-bottom: 10px;">${title}</h3>
+                                ${imgUrl ? `<img src="${imgUrl}" style="max-width:100%; height:200px; object-fit:cover; border-radius:4px; margin:10px 0;">` : ''}
+                                <p style="color: #555; line-height: 1.5;">${content}</p>
                             </div>
                         `;
 
-                        if (cat === 'poetry') {
-                            poetryHtml += card;
-                        } else if (cat === 'accounting') {
-                            accountingHtml += card;
-                        } else if (cat === 'technology') {
-                            technologyHtml += card;
-                        } else if (cat === 'others') {
-                            othersHtml += card;
-                        }
+                        if (cat === 'poetry') poetryHtml += card;
+                        else if (cat === 'accounting') accountingHtml += card;
+                        else if (cat === 'technology') technologyHtml += card;
+                        else othersHtml += card;
                     }
                 });
 
@@ -442,7 +448,7 @@
                 if(document.getElementById('others-section')) document.getElementById('others-section').innerHTML = othersHtml;
 
             } catch (error) {
-                console.error("Data load korte somossa hocche:", error);
+                console.error("Data load error:", error);
             }
         }
 
