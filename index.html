@@ -22,12 +22,16 @@
             padding: 18px 40px;
             flex-wrap: wrap;
             gap: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
             font-size: 1.6rem;
             font-weight: bold;
             letter-spacing: 2px;
+            cursor: pointer;
         }
 
         .logo span {
@@ -48,6 +52,12 @@
             font-weight: bold;
             font-size: 0.9rem;
             text-transform: uppercase;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8cb83e;
         }
 
         .nav-search {
@@ -180,7 +190,7 @@
             transform: translateY(-5px) scale(1.1);
         }
 
-        /* Image Grid Section - মোবাইল এবং ল্যাপটপ উভয় জায়গায় সবসময় ৩টি করে পাশাপাশি */
+        /* Image Grid Section (Default Home View) */
         .grid-container {
             max-width: 1200px;
             margin: 60px auto;
@@ -197,7 +207,7 @@
 
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* সবসময় ৩টি কলাম */
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
 
@@ -209,6 +219,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             transition: transform 0.3s ease;
             text-decoration: none;
+            cursor: pointer;
         }
 
         .grid-card:hover {
@@ -248,6 +259,31 @@
             text-shadow: 1px 2px 4px rgba(0,0,0,0.8);
         }
 
+        /* Dynamic Category Content Sections (শুরুতে লুকিয়ে থাকবে, মেনুতে ক্লিক করলে শো করবে) */
+        .content-section {
+            display: none; /* প্রথমে হাইড থাকবে */
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .content-section h2 {
+            color: #8cb83e;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            border-bottom: 2px solid #8cb83e;
+            padding-bottom: 10px;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.6;
+        }
+
         /* Footer */
         footer {
             background-color: #222;
@@ -262,13 +298,13 @@
 
     <!-- Header Navigation -->
     <nav>
-        <div class="logo">PINTU <span>JOYDHAR</span></div>
+        <div class="logo" onclick="showHome()">PINTU <span>JOYDHAR</span></div>
         <ul class="nav-links">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Poetry</a></li>
-            <li><a href="#">Accounting</a></li>
-            <li><a href="#">Technology</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a onclick="showHome()">About</a></li>
+            <li><a onclick="showSection('poetry-section')">Poetry</a></li>
+            <li><a onclick="showSection('accounting-section')">Accounting</a></li>
+            <li><a onclick="showSection('technology-section')">Technology</a></li>
+            <li><a onclick="showSection('contact-section')">Contact</a></li>
         </ul>
         <div class="nav-search">
             <input type="text" placeholder="Search...">
@@ -277,7 +313,7 @@
     </nav>
 
     <!-- Full Screen Hero Section -->
-    <header class="hero">
+    <header class="hero" id="hero-section">
         <div class="hero-content">
             <h1>WELCOME TO MY SITE</h1>
             <p>Life is a collection of precious moments, continuous learning, and creativity.</p>
@@ -303,67 +339,106 @@
         </div>
     </header>
 
-    <!-- Content & Photo Grid Section (3 columns on both Mobile and Laptop) -->
-    <section class="grid-container">
+    <!-- Default Gallery Section (Home View) -->
+    <section class="grid-container" id="home-grid">
         <h2 class="grid-title">My Gallery & Files</h2>
-        
         <div class="image-grid">
-            
-            <!-- Box 1 -->
-            <a href="#" class="grid-card">
+            <a onclick="showSection('poetry-section')" class="grid-card">
                 <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a" alt="Poetry">
-                <div class="overlay">
-                    <h3>Poetry</h3>
-                </div>
+                <div class="overlay"><h3>Poetry</h3></div>
             </a>
-
-            <!-- Box 2 -->
-            <a href="#" class="grid-card">
+            <a onclick="showSection('accounting-section')" class="grid-card">
                 <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c" alt="Accounting">
-                <div class="overlay">
-                    <h3>Accounting</h3>
-                </div>
+                <div class="overlay"><h3>Accounting</h3></div>
             </a>
-
-            <!-- Box 3 -->
-            <a href="#" class="grid-card">
-                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643" alt="Web Projects">
-                <div class="overlay">
-                    <h3>Web Dev</h3>
-                </div>
+            <a onclick="showSection('technology-section')" class="grid-card">
+                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643" alt="Technology">
+                <div class="overlay"><h3>Technology</h3></div>
             </a>
-
-            <!-- Box 4 -->
-            <a href="#" class="grid-card">
+            <a onclick="showSection('notes-section')" class="grid-card">
                 <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173" alt="Notes">
-                <div class="overlay">
-                    <h3>Notes</h3>
-                </div>
+                <div class="overlay"><h3>Notes</h3></div>
             </a>
-
-            <!-- Box 5 -->
-            <a href="#" class="grid-card">
+            <a onclick="showSection('gallery-section')" class="grid-card">
                 <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9" alt="Personal Gallery">
-                <div class="overlay">
-                    <h3>Gallery</h3>
-                </div>
+                <div class="overlay"><h3>Gallery</h3></div>
             </a>
-
-            <!-- Box 6 -->
-            <a href="#" class="grid-card">
+            <a onclick="showSection('contact-section')" class="grid-card">
                 <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" alt="Contact">
-                <div class="overlay">
-                    <h3>Contact</h3>
-                </div>
+                <div class="overlay"><h3>Contact</h3></div>
             </a>
-
         </div>
     </section>
+
+    <!-- Hidden Sections (মেনুতে ক্লিক করলে এগুলো শো করবে) -->
+    
+    <!-- Poetry Section -->
+    <div id="poetry-section" class="content-section">
+        <h2>Poetry Collection</h2>
+        <p>এখানে আপনার সমস্ত কবিতার তালিকা বা লেখাগুলো প্রদর্শিত হবে। আপনি চাইলে গুগল শিট বা ডাটাবেজ থেকে এখানে লেখাগুলো লোড করাতে পারবেন।</p>
+    </div>
+
+    <!-- Accounting Section -->
+    <div id="accounting-section" class="content-section">
+        <h2>Accounting & Finance Notes</h2>
+        <p>এখানে আপনার একাউন্টিং প্র্যাকটিস, কুইক বুকস (QuickBooks) এবং ফাইন্যান্সিয়াল রিপোর্টের নোটসগুলো থাকবে।</p>
+    </div>
+
+    <!-- Technology Section -->
+    <div id="technology-section" class="content-section">
+        <h2>Technology & Web Development</h2>
+        <p>এখানে আপনার টেকনোলজি বিষয়ক ব্লগ, এইচটিএমএল/সিএসএস কোডিং প্রজেক্ট এবং ওয়েব ডেভেলপমেন্টের টিপস থাকবে।</p>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact-section" class="content-section">
+        <h2>Contact Me</h2>
+        <p>আমার সাথে যোগাযোগ করতে চাইলে ফেসবুক, ইন্সটাগ্রাম বা লিংকডইন প্রোফাইলে মেসেজ করতে পারেন।</p>
+    </div>
+
+    <!-- Notes Section -->
+    <div id="notes-section" class="content-section">
+        <h2>Personal Notes</h2>
+        <p>আপনার ব্যক্তিগত নোটস ও ফাইলসমূহ এখানে সংরক্ষিত থাকবে।</p>
+    </div>
+
+    <!-- Gallery Section -->
+    <div id="gallery-section" class="content-section">
+        <h2>Personal Gallery</h2>
+        <p>আপনার ছবি ও গ্যালারির অন্যান্য মুহূর্তগুলো এখানে দেখতে পাবেন।</p>
+    </div>
 
     <!-- Footer -->
     <footer>
         Copyright © 2026 Pintu Joydhar. All rights reserved.
     </footer>
+
+    <!-- JavaScript for Dynamic Toggle -->
+    <script>
+        function showSection(sectionId) {
+            // হিরো সেকশন এবং হোম গ্যালারি হাইড করে দেওয়া
+            document.getElementById('hero-section').style.display = 'none';
+            document.getElementById('home-grid').style.display = 'none';
+
+            // সব কন্টেন্ট সেকশনগুলো হাইড করা
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.style.display = 'none');
+
+            // কাঙ্ক্ষিত সেকশনটি শো করা
+            document.getElementById(sectionId).style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showHome() {
+            // হোম পেজে ফিরে আসলে হিরো ও গ্যালারি শো করবে এবং বাকিগুলো হাইড হবে
+            document.getElementById('hero-section').style.display = 'flex';
+            document.getElementById('home-grid').style.display = 'block';
+
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.style.display = 'none');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
