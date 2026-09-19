@@ -150,7 +150,7 @@
             color: #ddd;
         }
 
-        /* Grid Cards Section (Personal Life & Poetry) */
+        /* Grid Cards Section */
         .grid-section {
             padding: 60px 20px;
             text-align: center;
@@ -230,6 +230,29 @@
             color: #fff;
         }
 
+        /* Social Media Icons Style */
+        .social-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .social-icons a:hover {
+            background: white;
+            color: #318a9b;
+        }
+
         .footer-bottom {
             background-color: #297786;
             color: #fff;
@@ -241,7 +264,7 @@
 </head>
 <body>
 
-    <!-- Navigation Bar with Search Option on Top -->
+    <!-- Navigation Bar with Search Option -->
     <nav>
         <div class="logo">PINTU <span>JOYDHAR</span></div>
         <ul class="nav-links">
@@ -303,7 +326,7 @@
         </div>
     </section>
 
-    <!-- Footer Section -->
+    <!-- Footer Section with Your Social Links & Phone -->
     <footer>
         <div>
             <h3>About Me</h3>
@@ -331,17 +354,19 @@
             </ul>
         </div>
         <div>
-            <h3>Connect</h3>
-            <ul>
-                <li><a href="#">GitHub</a></li>
-                <li><a href="#">Facebook</a></li>
-                <li><a href="#">Email Me</a></li>
-            </ul>
+            <h3>Connect with Me</h3>
+            <p style="font-size: 0.9rem; margin-bottom: 10px; color: #e0e0e0;">Phone / WhatsApp: 01610796162</p>
+            <div class="social-icons">
+                <a href="https://web.facebook.com/pintu.joydhar.896565" target="_blank">Facebook</a>
+                <a href="https://www.instagram.com/joydhar_512/?hl=en" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/in/pintu-gaain-848587384/" target="_blank">LinkedIn</a>
+                <a href="https://wa.me/8801610796162" target="_blank">WhatsApp</a>
+            </div>
         </div>
     </footer>
 
     <div class="footer-bottom">
-        Copyright &copy; 2026 Pintu Joydhar. All rights reserved.
+        Copyright © 2026 Pintu Joydhar. All rights reserved.
     </div>
 
 </body>
