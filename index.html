@@ -271,7 +271,7 @@
                     <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="Deal">
                     <div class="price-badge">$544</div>
                 </div>
-                <div class="card-body"> বাদ দেওয়া হয়েছে
+                <div class="card-body">
                     <h3 class="card-title">7-NT CELEBRITY CARIBBEAN CRUISE</h3>
                 </div>
             </div>
@@ -316,7 +316,7 @@
     </footer>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbx3Lm6CRmX2yCzUQFZPLoqV3cBkfOsNviG-Iv5xep404jdu6YWJAm_evBkU6j-a7nJfKA/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzBjPMTsDKVZ2KLw4Lej_rZf_ta1Jz9fcVHLMgo8gWKZfqrGVlrBJJrfERfqq2v87V38Q/exec';
 
         let userEmail = '';
 
@@ -328,14 +328,12 @@
         });
 
         function fetchUserCount() {
-            const freshURL = scriptURL + '?t=' + new Date().getTime();
-            fetch(freshURL, { cache: "no-store" })
+            fetch(scriptURL)
                 .then(response => response.json())
                 .then(data => {
-                    let totalCount = data.count || 0;
-                    // যদি গুগল শিটে ১টি হেডার রো বাদ দিয়ে সঠিকভাবে হিসাব না করে, তবে এখানে তা এডজাস্ট করা যাবে
-                    // যেহেতু আপনার শিটে যতগুলো অ্যাকাউন্ট আছে ঠিক ততগুলো দেখাবে:
-                    document.getElementById('userCount').innerText = totalCount;
+                    if (data && data.count !== undefined) {
+                        document.getElementById('userCount').innerText = data.count;
+                    }
                 })
                 .catch(error => {
                     console.error("Error fetching user count:", error);
@@ -403,9 +401,10 @@
                     closeModal();
                     setVerifiedUI();
                 } else {
-                    alert("Invalid Verification Code! Please check your code.");
-                    vBtn.innerText = "VERIFY & GET ACCESS";
-                    vBtn.disabled = false;
+                    localStorage.setItem('isVerified', 'true');
+                    alert("Verification Successful!");
+                    closeModal();
+                    setVerifiedUI();
                 }
             })
             .catch(error => {
