@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pintu Joydhar - Personal Website</title>
+    <title>Pintu Joydhar - Website</title>
     
     <!-- Google Fonts & FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,7 +13,7 @@
         :root {
             --brand-green: #7cc142;
             --brand-blue: #0099de;
-            --brand-dark: #1e2d3b;
+            --brand-dark-blue: #1e2d3b;
             --bg-light: #f5f7fa;
             --text-dark: #333333;
             --border-color: #e2e8f0;
@@ -38,7 +38,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 5%;
+            padding: 0 4%;
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
@@ -59,14 +59,14 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 25px;
             align-items: center;
         }
 
         .nav-menu li a {
             text-decoration: none;
             color: #0d4a75;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             text-transform: uppercase;
             display: flex;
@@ -83,18 +83,18 @@
             background: var(--brand-blue);
             color: #fff;
             border: none;
-            padding: 9px 20px;
+            padding: 8px 18px;
             border-radius: 4px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             cursor: pointer;
             text-transform: uppercase;
         }
 
-        /* Profile Hero Section */
+        /* Hero Section with Personal Image */
         .hero-section {
             background: #ffffff;
-            padding: 60px 5%;
+            padding: 50px 5%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -103,16 +103,16 @@
             flex-wrap: wrap;
         }
 
-        .profile-img-container {
-            width: 220px;
-            height: 220px;
+        .profile-img-box {
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             overflow: hidden;
             border: 4px solid var(--brand-blue);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .profile-img-container img {
+        .profile-img-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -123,41 +123,42 @@
         }
 
         .hero-text h1 {
-            font-size: 32px;
-            color: var(--brand-dark);
+            font-size: 28px;
+            color: #0d4a75;
             margin-bottom: 10px;
         }
 
         .hero-text h1 span {
-            color: var(--brand-blue);
+            color: var(--brand-green);
         }
 
         .hero-text p {
-            font-size: 15px;
-            color: #666;
+            font-size: 14px;
+            color: #555;
             line-height: 1.6;
-            margin-bottom: 20px;
         }
 
-        /* Content Sections */
+        /* Main Container */
         .main-container {
-            width: 90%;
-            max-width: 1000px;
+            width: 85%;
+            max-width: 900px;
             margin: 40px auto;
         }
 
         .content-card {
             background: #ffffff;
             padding: 30px;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
             margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
         }
 
         .section-title {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 700;
             color: #0d4a75;
+            text-transform: uppercase;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -166,7 +167,13 @@
             padding-bottom: 8px;
         }
 
-        /* Modal */
+        .content-card p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Modal Styles */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -234,15 +241,15 @@
             background: #111a22;
             color: #778899;
             text-align: center;
-            padding: 20px;
+            padding: 30px;
             font-size: 12px;
-            margin-top: 40px;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- Header -->
     <div class="top-bar">
         <a href="#" class="brand-logo">Pintu <span>Joydhar</span></a>
         <ul class="nav-menu">
@@ -253,35 +260,35 @@
         <button class="btn-signup" id="authBtn" onclick="openModal()">SIGN UP</button>
     </div>
 
-    <!-- Profile Hero Section with Picture -->
+    <!-- Hero Section with Picture -->
     <div class="hero-section">
-        <div class="profile-img-container">
+        <div class="profile-img-box">
             <img src="https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000" alt="Pintu Joydhar">
         </div>
         <div class="hero-text">
-            <h1>Welcome to <span>Pintu's World</span></h1>
-            <p>I am Pintu Joydhar. Welcome to my personal website. Here you can explore my thoughts, projects, and connect with me directly.</p>
+            <h1>Hello, I'm <span>Pintu Joydhar</span></h1>
+            <p>Welcome to my personal corner on the web. Explore my background, connect with me, and stay updated with my latest projects and ideas.</p>
         </div>
     </div>
 
-    <!-- Main Content Area -->
+    <!-- Main Container (About & Contact Sections) -->
     <div class="main-container">
         
         <!-- About Section -->
         <div class="content-card" id="about">
-            <h2 class="section-title"><i class="fa-solid fa-user-check"></i> About Me</h2>
-            <p style="line-height: 1.7; color: #555;">
-                Hello! I am Pintu Joydhar. I am passionate about learning new technologies, writing, and creating engaging web experiences. Feel free to browse through my website and reach out if you would like to connect!
+            <h2 class="section-title"><i class="fa-solid fa-circle-info"></i> About Me</h2>
+            <p>
+                I am Pintu Joydhar. I am passionate about learning, web development, and exploring creative ideas. This website serves as my personal platform to showcase my profile and connect with like-minded people.
             </p>
         </div>
 
         <!-- Contact Section -->
         <div class="content-card" id="contact">
-            <h2 class="section-title"><i class="fa-solid fa-paper-plane"></i> Contact Me</h2>
-            <p style="line-height: 1.7; color: #555; margin-bottom: 15px;">
-                If you want to get in touch with me, feel free to send a message or sign up using the button above.
+            <h2 class="section-title"><i class="fa-solid fa-address-book"></i> Contact</h2>
+            <p>
+                If you want to get in touch with me or collaborate on something exciting, feel free to reach out via email.
             </p>
-            <p><strong>Email:</strong> joydharpintu1@gmail.com</p>
+            <p style="margin-top: 10px;"><strong>Email:</strong> joydharpintu1@gmail.com</p>
         </div>
 
     </div>
@@ -333,7 +340,7 @@
             event.preventDefault();
             
             const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
+            const email = document.getElementById('email.value') || document.getElementById('email').value;
             const btn = document.getElementById('submitBtn');
 
             btn.innerText = "Processing...";
