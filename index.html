@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nomadic Matt Clone</title>
+    <title>Pintu Joydhar - Personal Blog</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Top Navigation Bar */
+        /* Top Navigation Bar with Search */
         nav {
             background-color: #000;
             color: #fff;
@@ -20,6 +20,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 40px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo {
@@ -36,6 +38,8 @@
             list-style: none;
             display: flex;
             gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -46,10 +50,34 @@
             text-transform: uppercase;
         }
 
+        /* Top Nav Search Bar */
+        .nav-search {
+            display: flex;
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .nav-search input {
+            border: none;
+            padding: 6px 10px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .nav-search button {
+            background: #8cb83e;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
         /* Hero Section with Google Drive Image */
         .hero {
             height: 80vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1600') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1600') no-repeat center center/cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -59,12 +87,12 @@
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             margin-bottom: 10px;
         }
 
         .hero-content p {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 25px;
         }
 
@@ -100,47 +128,29 @@
             font-size: 0.95rem;
         }
 
-        /* Newsletter Section */
+        /* Personal Life & Thoughts Section */
         .newsletter {
             background: #2b3a42;
             color: white;
-            padding: 40px 20px;
+            padding: 50px 20px;
             text-align: center;
         }
 
         .newsletter h2 {
-            margin-bottom: 20px;
-            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-size: 2rem;
             letter-spacing: 1px;
         }
 
-        .newsletter form {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
+        .newsletter p {
+            max-width: 700px;
+            margin: 0 auto 25px auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ddd;
         }
 
-        .newsletter input {
-            padding: 12px;
-            width: 260px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .newsletter button {
-            background: #9bc841;
-            color: #fff;
-            font-weight: bold;
-            border: none;
-            padding: 12px 30px;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        /* Grid Cards Section */
+        /* Grid Cards Section (Personal Life & Poetry) */
         .grid-section {
             padding: 60px 20px;
             text-align: center;
@@ -161,19 +171,26 @@
         }
 
         .card {
-            height: 230px;
+            height: 250px;
             background-size: cover;
             background-position: center;
-            border-radius: 4px;
+            border-radius: 6px;
             display: flex;
             align-items: flex-end;
-            padding: 20px;
+            padding: 25px;
             color: white;
-            box-shadow: inset 0 -80px 50px -20px rgba(0,0,0,0.7);
+            box-shadow: inset 0 -100px 60px -30px rgba(0,0,0,0.8);
+            text-align: left;
         }
 
         .card h3 {
             font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #e0e0e0;
         }
 
         /* Footer Section */
@@ -224,65 +241,64 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation Bar with Search Option on Top -->
     <nav>
-        <div class="logo">NOMADIC <span>MATT</span></div>
+        <div class="logo">PINTU <span>JOYDHAR</span></div>
         <ul class="nav-links">
             <li><a href="#">About</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Start Here</a></li>
-            <li><a href="#">Destinations</a></li>
-            <li><a href="#">Booking Resources</a></li>
-            <li><a href="#">Books</a></li>
+            <li><a href="#">Poetry</a></li>
+            <li><a href="#">Accounting</a></li>
+            <li><a href="#">Web Projects</a></li>
+            <li><a href="#">Contact</a></li>
         </ul>
+        <div class="nav-search">
+            <input type="text" placeholder="Search site...">
+            <button>🔍</button>
+        </div>
     </nav>
 
     <!-- Hero Section -->
     <header class="hero">
         <div class="hero-content">
-            <h1>Travel smarter, cheaper, longer</h1>
-            <p>Where do you want to go?</p>
+            <h1>Live Inspired, Write & Grow</h1>
+            <p>Welcome to my personal corner — balancing numbers, poetry, and web creation.</p>
             <div class="search-box">
-                <input type="text" placeholder="Find your destination">
-                <button>Search</button>
+                <input type="text" placeholder="Search my thoughts, poems or notes...">
+                <button>Explore</button>
             </div>
             <p class="popular-searches">
-                <strong>Popular Searches:</strong> Southeast Asia, Europe, travel hacking, insurance, Paris
+                <strong>Popular Topics:</strong> Poetry, BBA Accounting, Web Development, Personal Notes
             </p>
         </div>
     </header>
 
-    <!-- Newsletter Section -->
+    <!-- Important Life & Personal Section -->
     <section class="newsletter">
-        <h2>GET MY BEST TIPS SENT STRAIGHT TO YOU!</h2>
-        <form>
-            <input type="text" placeholder="First Name">
-            <input type="email" placeholder="Email Address">
-            <button type="submit">SEND ME TIPS!</button>
-        </form>
+        <h2>MY LIFE & GOALS</h2>
+        <p>Life is a beautiful journey of continuous learning. From studying accounting at BM College to penning down creative verses and building web applications, every step shapes who I am. Stay connected to explore my creative works and professional journey.</p>
     </section>
 
-    <!-- Grid Section -->
+    <!-- Grid Section for Personal Life & Content -->
     <section class="grid-section">
-        <h2>Start Planning Your Trip</h2>
+        <h2>Explore My Journey</h2>
         <div class="card-grid">
-            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828')">
-                <h3>Getting Inspired</h3>
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1455390582262-044cdead277a')">
+                <div>
+                    <h3>Poetry & Creative Writing</h3>
+                    <p>Read my personal thoughts and creative poems (কবিতা).</p>
+                </div>
             </div>
-            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b')">
-                <h3>How to Save for a Trip</h3>
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c')">
+                <div>
+                    <h3>Accounting & Career</h3>
+                    <p>My academic path in BBA Accounting and bookkeeping skills.</p>
+                </div>
             </div>
-            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800')">
-                <h3>How to Plan Your Trip</h3>
-            </div>
-            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e')">
-                <h3>Getting the Right Gear</h3>
-            </div>
-            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05')">
-                <h3>Finding Cheap Airfare</h3>
-            </div>
-            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945')">
-                <h3>Finding Accommodation</h3>
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1499750310107-5fef28a66643')">
+                <div>
+                    <h3>Web Development</h3>
+                    <p>Building personal pages using HTML, CSS, and GitHub.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -290,44 +306,42 @@
     <!-- Footer Section -->
     <footer>
         <div>
-            <h3>About Us</h3>
+            <h3>About Me</h3>
             <ul>
-                <li><a href="#">About Matt</a></li>
-                <li><a href="#">Contact Me</a></li>
-                <li><a href="#">Terms of Use</a></li>
-                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Pintu Joydhar</a></li>
+                <li><a href="#">My Bio</a></li>
+                <li><a href="#">Education</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </div>
         <div>
-            <h3>Travel Tips</h3>
+            <h3>Creative Works</h3>
             <ul>
-                <li><a href="#">Start Here</a></li>
-                <li><a href="#">Travel Blog</a></li>
-                <li><a href="#">Destination Guides</a></li>
-                <li><a href="#">Favorite Hostels</a></li>
+                <li><a href="#">Poetry Collection</a></li>
+                <li><a href="#">Personal Blog</a></li>
+                <li><a href="#">Thoughts</a></li>
             </ul>
         </div>
         <div>
-            <h3>Book Your Trip</h3>
+            <h3>Professional</h3>
             <ul>
-                <li><a href="#">Get Accommodation</a></li>
-                <li><a href="#">Get Flights</a></li>
-                <li><a href="#">Get Travel Insurance</a></li>
-                <li><a href="#">Get Credit Cards</a></li>
+                <li><a href="#">Accounting Notes</a></li>
+                <li><a href="#">QuickBooks Projects</a></li>
+                <li><a href="#">Resume</a></li>
             </ul>
         </div>
         <div>
-            <h3>Books and Services</h3>
+            <h3>Connect</h3>
             <ul>
-                <li><a href="#">Ten Years a Nomad</a></li>
-                <li><a href="#">How to Travel the World</a></li>
-                <li><a href="#">Destination Guidebooks</a></li>
+                <li><a href="#">GitHub</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Email Me</a></li>
             </ul>
         </div>
     </footer>
 
     <div class="footer-bottom">
-        Copyright &copy; 2026 Nomadic Matt's Travel Site
+        Copyright &copy; 2026 Pintu Joydhar. All rights reserved.
     </div>
 
 </body>
