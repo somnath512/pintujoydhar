@@ -5,10 +5,10 @@
     font-family: Arial, sans-serif;
 }
 
-/* Hero Section */
+/* Hero Section with Your Drive Image */
 .hero {
     height: 70vh;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b') no-repeat center center/cover;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://drive.google.com/uc?export=view&id=1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad') no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
