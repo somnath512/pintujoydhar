@@ -73,9 +73,9 @@
             font-weight: bold;
         }
 
-        /* Hero Section */
+        /* Hero Section (এখানে ছবি এবং তার ওপর সার্চ বক্স ও সোশ্যাল আইকন রাখা হয়েছে) */
         .hero {
-            height: 70vh;
+            height: 75vh;
             background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1600') no-repeat center center/cover;
             display: flex;
             justify-content: center;
@@ -86,30 +86,60 @@
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 750px;
             width: 100%;
         }
 
         .hero-content h1 {
             font-size: 2.2rem;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: #a7d155;
             letter-spacing: 2px;
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 25px;
             color: #f2f2f2;
             line-height: 1.6;
+        }
+
+        /* Search Box inside Hero Section (ছবির ভেতরের সার্চ বক্স) */
+        .hero-search-box {
+            background: white;
+            padding: 6px;
+            border-radius: 6px;
+            display: inline-flex;
+            width: 100%;
+            max-width: 520px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .hero-search-box input {
+            border: none;
+            outline: none;
+            flex: 1;
+            padding: 12px 15px;
+            font-size: 1rem;
+        }
+
+        .hero-search-box button {
+            background: #8cb83e;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 1rem;
         }
 
         /* Social Icons Inside Hero Section */
         .hero-socials {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 15px;
         }
 
         .hero-socials a {
@@ -117,8 +147,8 @@
             align-items: center;
             justify-content: center;
             color: white;
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -126,8 +156,8 @@
         }
 
         .hero-socials a svg {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             fill: currentColor;
         }
 
@@ -136,28 +166,28 @@
         .social-in { background: #0A66C2; }
 
         .hero-socials a:hover {
-            transform: translateY(-5px) scale(1.08);
+            transform: translateY(-4px) scale(1.06);
             opacity: 0.9;
         }
 
-        /* Image Grid Section - মোবাইল এবং ল্যাপটপ উভয়েই ৩টি করে পাশাপাশি দেখাবে */
+        /* Image Grid Section - মোবাইল এবং ল্যাপটপ উভয়েই সবসময় ৩টি করে পাশাপাশি */
         .grid-container {
             max-width: 1200px;
-            margin: 60px auto;
+            margin: 50px auto;
             padding: 0 20px;
             text-align: center;
         }
 
         .grid-title {
-            font-size: 2.3rem;
-            margin-bottom: 40px;
+            font-size: 2.2rem;
+            margin-bottom: 35px;
             color: #111;
             font-weight: bold;
         }
 
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* ল্যাপটপ এবং মোবাইল সবখানেই সবসময় ৩টি কলাম */
+            grid-template-columns: repeat(3, 1fr); /* সবসময় ৩টি কলাম */
             gap: 15px;
         }
 
@@ -202,7 +232,7 @@
 
         .grid-card h3 {
             color: #ffffff;
-            font-size: 1.1rem; /* মোবাইলে যেন লেখা সুন্দরভাবে ফিট হয় সেজন্য সাইজ একটু এডজাস্ট করা হয়েছে */
+            font-size: 1.1rem;
             font-weight: bold;
             text-align: center;
             text-shadow: 1px 2px 4px rgba(0,0,0,0.8);
@@ -229,18 +259,24 @@
             <li><a href="#">Accounting</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
-        <nav class="nav-search">
+        <div class="nav-search">
             <input type="text" placeholder="Search...">
             <button>🔍</button>
-        </nav>
+        </div>
     </nav>
 
-    <!-- Hero Section with Social Media Icons -->
+    <!-- Hero Section with Background Pic, Search Box & Social Icons -->
     <header class="hero">
         <div class="hero-content">
             <h1>WELCOME TO MY SITE</h1>
             <p>Life is a collection of precious moments, continuous learning, and creativity.</p>
             
+            <!-- Search Box Inside Hero Picture -->
+            <div class="hero-search-box">
+                <input type="text" placeholder="Search my thoughts, poems or notes...">
+                <button>Search</button>
+            </div>
+
             <!-- Social Icons -->
             <div class="hero-socials">
                 <a href="https://web.facebook.com/pintu.joydhar.896565" target="_blank" title="Facebook" class="social-fb">
@@ -256,7 +292,7 @@
         </div>
     </header>
 
-    <!-- Content & Photo Grid Section (Always 3 columns on both Mobile and Laptop) -->
+    <!-- Content & Photo Grid Section (3 columns on both Mobile and Laptop) -->
     <section class="grid-container">
         <h2 class="grid-title">My Gallery & Files</h2>
         
