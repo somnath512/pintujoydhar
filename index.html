@@ -222,6 +222,17 @@
             cursor: pointer;
         }
 
+        /* Protected Content Section (Hidden until verified) */
+        #protectedContent {
+            display: none;
+            background: #e6f9ec;
+            border: 1px solid #7cc142;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
         footer {
             background: #111a22;
             color: #778899;
@@ -243,7 +254,7 @@
             <li><a href="#"><i class="fa-solid fa-blog"></i> Blog</a></li>
             <li><a href="#"><i class="fa-solid fa-address-book"></i> Contact</a></li>
         </ul>
-        <button class="btn-signup" onclick="openModal()">SIGN UP</button>
+        <button class="btn-signup" id="authBtn" onclick="openModal()">SIGN UP</button>
     </div>
 
     <!-- Hero Banner -->
@@ -263,6 +274,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- Protected Content (View Access granted after verification) -->
+        <div id="protectedContent">
+            <h3 style="color: #2b7a0b; margin-bottom: 8px;"><i class="fa-solid fa-circle-check"></i> View Access Granted!</h3>
+            <p style="font-size: 13px; color: #444;">Congratulations! You are now verified. You can view all special files and restricted content.</p>
+            <a href="https://drive.google.com" target="_blank" style="display: inline-block; margin-top: 10px; background: #7cc142; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 12px;">Open Shared Drive/Files</a>
+        </div>
     </div>
 
     <!-- Signup Modal -->
@@ -270,7 +288,8 @@
         <div class="modal-box">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div id="signupFormContainer">
-                <h3 style="margin-bottom: 15px; color: #0d4a75;">Create Account</h3>
+                <h3 style="margin-bottom: 5px; color: #0d4a75;">Get View Access</h3>
+                <p style="font-size: 11px; color: #666; margin-bottom: 15px;">Enter your name and Gmail to receive a verification code.</p>
                 <form onsubmit="handleSignup(event)">
                     <div class="form-group">
                         <label>Full Name</label>
@@ -280,23 +299,19 @@
                         <label>Gmail Address</label>
                         <input type="email" id="email" placeholder="example@gmail.com" required>
                     </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="password" placeholder="Create a password" required>
-                    </div>
-                    <button type="submit" class="btn-submit" id="submitBtn">CREATE ACCOUNT</button>
+                    <button type="submit" class="btn-submit" id="submitBtn">GET CODE</button>
                 </form>
             </div>
 
             <!-- Verification Section (Hidden Initially) -->
             <div id="verifyContainer" style="display: none;">
-                <h3 style="margin-bottom: 10px; color: #0d4a75;">Verify Your Email</h3>
-                <p style="font-size: 12px; color: #666; margin-bottom: 15px;">Please enter the verification code sent to your Google Sheet.</p>
+                <h3 style="margin-bottom: 10px; color: #0d4a75;">Enter Verification Code</h3>
+                <p style="font-size: 12px; color: #666; margin-bottom: 15px;">Check your Google Sheet or Gmail for the code.</p>
                 <div class="form-group">
                     <label>Verification Code</label>
-                    <input type="text" id="enteredCode" placeholder="Enter 6-digit code" required>
+                    <input type="text" id="enteredCode" placeholder="Enter code" required>
                 </div>
-                <button type="button" class="btn-submit" onclick="verifyCode()">VERIFY CODE</button>
+                <button type="button" class="btn-submit" onclick="verifyCode()">VERIFY & GET ACCESS</button>
             </div>
         </div>
     </div>
@@ -306,8 +321,14 @@
     </footer>
 
     <script>
-        // আপনার দেওয়া সঠিক Google Apps Script Web App URL এখানে যুক্ত করা হলো
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbx30wLBUPjMcRdbuzrGXe-7NHBwCg0D9MLb7wbsIWYTfF5V8NlH_U6PO7CTBLBbWoy3ew/exec';
+        // আপনার নতুন দেওয়া Google Apps Script Web App URL এখানে সেট করা হলো
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzwxqDXc5lTbFAxvkqU6NQXcVXeQSijOtjNLCRFUru2OZM8Mm8ozkpo8MZvDYq-kgZ13A/exec';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('isVerified') === 'true') {
+                grantAccess();
+            }
+        });
 
         function openModal() {
             document.getElementById('signupModal').style.display = 'flex';
@@ -322,39 +343,47 @@
             
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
             const btn = document.getElementById('submitBtn');
 
-            btn.innerText = "Processing...";
+            btn.innerText = "Sending...";
             btn.disabled = true;
 
             fetch(scriptURL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: name, email: email, password: password })
+                body: JSON.stringify({ name: name, email: email })
             })
             .then(() => {
-                alert("Account details saved successfully! Please check your Google Sheet for the verification code.");
+                alert("Verification code generated! Check your Google Sheet/Gmail.");
                 document.getElementById('signupFormContainer').style.display = 'none';
                 document.getElementById('verifyContainer').style.display = 'block';
             })
             .catch(error => {
                 alert("Error! Please try again.");
-                btn.innerText = "CREATE ACCOUNT";
+                btn.innerText = "GET CODE";
                 btn.disabled = false;
             });
         }
 
         function verifyCode() {
             const userCode = document.getElementById('enteredCode').value;
-            if (userCode.length > 0) {
-                alert("Verification Successful! Welcome to Pintu Joydhar's website.");
+            if (userCode.trim() !== "") {
+                localStorage.setItem('isVerified', 'true');
+                alert("Verification Successful! View Access granted.");
                 closeModal();
-                location.reload();
+                grantAccess();
             } else {
                 alert("Please enter a valid verification code.");
             }
+        }
+
+        function grantAccess() {
+            document.getElementById('protectedContent').style.display = 'block';
+            const authBtn = document.getElementById('authBtn');
+            authBtn.innerText = "VERIFIED";
+            authBtn.style.background = "#7cc142";
+            authBtn.onclick = null;
         }
     </script>
 </body>
