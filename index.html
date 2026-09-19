@@ -3,447 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pintu Joydhar - Travel & Life</title>
-    
-    <!-- Google Fonts & FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --brand-green: #7cc142;
-            --brand-blue: #0099de;
-            --brand-dark: #1a252c;
-            --bg-light: #f8f9fa;
-            --text-dark: #2d3748;
-            --border-color: #e2e8f0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-        }
-
-        /* Top Navigation Bar */
-        .top-bar {
-            background: #ffffff;
-            height: 70px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 6%;
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .brand-logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
-            font-weight: 800;
-            color: #0d4a75;
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .brand-logo span {
-            color: var(--brand-green);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-menu li a {
-            text-decoration: none;
-            color: #2d3748;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: 0.3s;
-        }
-
-        .nav-menu li a:hover {
-            color: var(--brand-blue);
-        }
-
-        .btn-signup {
-            background: var(--brand-blue);
-            color: #fff;
-            border: none;
-            padding: 10px 22px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: 0.3s;
-        }
-
-        .btn-signup:hover {
-            background: #0082bd;
-        }
-
-        /* Nomadic Matt Style Hero Banner */
-        .hero-banner {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                        url('https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000') center/cover no-repeat;
-            height: 480px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #ffffff;
-            padding: 0 20px;
-        }
-
-        .hero-banner h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 42px;
-            font-weight: 800;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero-banner p {
-            font-size: 18px;
-            max-width: 650px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            font-weight: 400;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-
-        .btn-hero {
-            background: var(--brand-green);
-            color: #ffffff;
-            padding: 12px 30px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 14px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        .btn-hero:hover {
-            background: #6bb033;
-        }
-
-        /* Main Container */
-        .main-container {
-            width: 88%;
-            max-width: 1100px;
-            margin: 50px auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 22px;
-            font-weight: 700;
-            color: #1a252c;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 10px;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: var(--brand-green);
-        }
-
-        /* Grid Section (Nomadic Matt Card Layout) */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .content-card {
-            background: #ffffff;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .content-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        }
-
-        .card-img {
-            height: 200px;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        .card-body {
-            padding: 25px;
-        }
-
-        .card-body h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: #0d4a75;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-
-        .card-body p {
-            font-size: 14px;
-            color: #555555;
-            line-height: 1.6;
-        }
-
-        /* Modal Overlay */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-box {
-            background: #ffffff;
-            width: 90%;
-            max-width: 420px;
-            padding: 30px;
-            border-radius: 8px;
-            position: relative;
-            text-align: center;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 12px;
-            right: 15px;
-            font-size: 20px;
-            cursor: pointer;
-            color: #888;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 13px;
-        }
-
-        .btn-submit {
-            width: 100%;
-            background: var(--brand-blue);
-            color: #fff;
-            padding: 11px;
-            border: none;
-            border-radius: 4px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        footer {
-            background: var(--brand-dark);
-            color: #a0aec0;
-            text-align: center;
-            padding: 30px;
-            font-size: 13px;
-            margin-top: 60px;
-        }
-
-        @media (max-width: 768px) {
-            .hero-banner h1 { font-size: 30px; }
-            .hero-banner p { font-size: 15px; }
-        }
-    </style>
+    <title>Nomadic Matt Clone</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header Navigation Bar -->
-    <div class="top-bar">
-        <a href="#" class="brand-logo">Pintu <span>Joydhar</span></a>
-        <ul class="nav-menu">
-            <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="#about"><i class="fa-solid fa-user"></i> About</a></li>
-            <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
-        </ul>
-        <button class="btn-signup" id="authBtn" onclick="openModal()">SIGN UP</button>
-    </div>
-
-    <!-- Nomadic Matt Style Full-Width Banner -->
-    <div class="hero-banner">
-        <h1>Welcome to My Journey</h1>
-        <p>Explore stories, projects, and personal experiences. Start exploring today.</p>
-        <a href="#about" class="btn-hero">Get Started</a>
-    </div>
-
-    <!-- Main Container -->
-    <div class="main-container">
-        
-        <div class="section-header">
-            <h2>Featured Sections</h2>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Travel smarter, cheaper, longer</h1>
+            <p>Where do you want to go?</p>
+            <div class="search-box">
+                <input type="text" placeholder="Find your destination">
+                <button>Find your destination</button>
+            </div>
+            <p class="popular-searches">
+                <strong>Popular Searches:</strong> Southeast Asia, Europe, travel hacking, insurance, Paris
+            </p>
         </div>
+    </header>
 
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <h2>GET MY BEST TIPS SENT STRAIGHT TO YOU!</h2>
+        <form>
+            <input type="text" placeholder="First Name">
+            <input type="email" placeholder="Email Address">
+            <button type="submit">SEND ME TIPS</button>
+        </form>
+    </section>
+
+    <!-- Categories / Grid Section -->
+    <section class="grid-section">
+        <h2>Start Planning Your Trip</h2>
         <div class="card-grid">
-            <!-- About Card -->
-            <div class="content-card" id="about">
-                <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?auto=format&fit=crop&w=600&q=80" class="card-img" alt="About Me">
-                <div class="card-body">
-                    <h3>About Me</h3>
-                    <p>I am Pintu Joydhar. I focus on creating web experiences, writing creative ideas, and continuous learning.</p>
-                </div>
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828')">
+                <h3>Getting Inspired</h3>
             </div>
-
-            <!-- Contact Card -->
-            <div class="content-card" id="contact">
-                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Contact">
-                <div class="card-body">
-                    <h3>Get In Touch</h3>
-                    <p>Feel free to reach out to me for work, collaboration, or any inquiries via email.</p>
-                    <p style="margin-top: 10px; font-weight: 700; color: var(--brand-blue);">joydharpintu1@gmail.com</p>
-                </div>
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1503220317375-aaad61436b1b')">
+                <h3>How to Save for a Trip</h3>
             </div>
-
-            <!-- Experience Card -->
-            <div class="content-card">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Projects">
-                <div class="card-body">
-                    <h3>My Work & Life</h3>
-                    <p>Exploring technologies and building customized solutions for personal and professional growth.</p>
-                </div>
+            <div class="card" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800')">
+                <h3>How to Plan Your Trip</h3>
             </div>
         </div>
+    </section>
 
-    </div>
-
-    <!-- Signup Modal -->
-    <div class="modal-overlay" id="signupModal">
-        <div class="modal-box">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div id="signupFormContainer">
-                <h3 style="margin-bottom: 5px; color: #0d4a75;">Get View Access</h3>
-                <p style="font-size: 11px; color: #666; margin-bottom: 15px;">Enter your name and Gmail to proceed.</p>
-                <form onsubmit="handleSignup(event)">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" id="name" placeholder="Enter your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Gmail Address</label>
-                        <input type="email" id="email" placeholder="example@gmail.com" required>
-                    </div>
-                    <button type="submit" class="btn-submit" id="submitBtn">SUBMIT & GET ACCESS</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        © 2026 Pintu Joydhar - All Rights Reserved.
-    </footer>
-
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxgmmGmYEUGUKLVFc4yp3bv4uO22YiSagsJ2lmGtytAndhEDYmVf5TXyDWbN8NFSVDCgA/exec';
-
-        document.addEventListener('DOMContentLoaded', () => {
-            if (localStorage.getItem('isVerified') === 'true') {
-                setVerifiedUI();
-            }
-        });
-
-        function openModal() {
-            document.getElementById('signupModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('signupModal').style.display = 'none';
-        }
-
-        function handleSignup(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const btn = document.getElementById('submitBtn');
-
-            btn.innerText = "Processing...";
-            btn.disabled = true;
-
-            fetch(scriptURL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: name, email: email })
-            })
-            .then(() => {
-                localStorage.setItem('isVerified', 'true');
-                alert("Successfully Signed Up!");
-                closeModal();
-                setVerifiedUI();
-            })
-            .catch(error => {
-                localStorage.setItem('isVerified', 'true');
-                alert("Successfully Signed Up!");
-                closeModal();
-                setVerifiedUI();
-            });
-        }
-
-        function setVerifiedUI() {
-            const authButton = document.getElementById('authBtn');
-            authButton.innerText = "VERIFIED";
-            authButton.style.background = "#7cc142";
-            authButton.onclick = null;
-        }
-    </script>
 </body>
 </html>
