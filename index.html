@@ -231,6 +231,7 @@
             cursor: pointer;
         }
 
+        /* Protected Content Section */
         #protectedContent {
             display: none;
             background: #e6f9ec;
@@ -253,6 +254,7 @@
 </head>
 <body>
 
+    <!-- Header -->
     <div class="top-bar">
         <a href="#" class="brand-logo">Pintu <span>Joydhar</span></a>
         <ul class="nav-menu">
@@ -268,8 +270,10 @@
         <button class="btn-signup" id="authBtn" onclick="openModal()">SIGN UP</button>
     </div>
 
+    <!-- Hero Banner -->
     <div class="hero-section"></div>
 
+    <!-- Main Container -->
     <div class="main-container">
         <h2 class="section-header-title">EDITOR'S BEST TRAVEL DEALS*</h2>
         <div class="deals-grid" id="dealsGrid">
@@ -284,13 +288,26 @@
             </div>
         </div>
 
+        <!-- Protected Content (Shown After Verification) -->
         <div id="protectedContent">
-            <h3 style="color: #2b7a0b; margin-bottom: 8px;"><i class="fa-solid fa-circle-check"></i> View Access Granted!</h3>
-            <p style="font-size: 13px; color: #444;">Congratulations! You are now verified. You can view all special files and restricted content.</p>
-            <a href="https://drive.google.com" target="_blank" style="display: inline-block; margin-top: 10px; background: #7cc142; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 12px;">Open Shared Drive/Files</a>
+            <h3 style="color: #2b7a0b; margin-bottom: 12px;"><i class="fa-solid fa-circle-check"></i> View Access Granted!</h3>
+            <p style="font-size: 13px; color: #444; margin-bottom: 15px;">Congratulations! You are now verified. Here is your exclusive content:</p>
+            
+            <div style="background: #ffffff; padding: 20px; border-radius: 6px; border: 1px solid #d4edda; text-align: left; max-height: 300px; overflow-y: auto;">
+                <h4 style="color: #0d4a75; margin-bottom: 8px;"><i class="fa-solid fa-book-open"></i> My Special Notes & Poetry</h4>
+                <p style="font-size: 12px; color: #555; line-height: 1.6; margin-bottom: 10px;">
+                    এখানে আপনার গোপন লেখা, কবিতা বা প্রয়োজনীয় নোটস রাখতে পারেন যা শুধুমাত্র ভেরিফাইড ইউজাররাই দেখতে পাবে।
+                </p>
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                <p style="font-size: 12px; color: #333;">
+                    <b>১. প্রথম নোট:</b> এটি একটি গোপন ফাইল বা কন্টেন্ট।<br>
+                    <b>২. দ্বিতীয় নোট:</b> ইউজার ভেরিফিকেশন সফল হওয়ার পরেই কেবল এটি দৃশ্যমান হয়।
+                </p>
+            </div>
         </div>
     </div>
 
+    <!-- Signup Modal -->
     <div class="modal-overlay" id="signupModal">
         <div class="modal-box">
             <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -310,6 +327,7 @@
                 </form>
             </div>
 
+            <!-- Verification Section -->
             <div id="verifyContainer" style="display: none;">
                 <h3 style="margin-bottom: 10px; color: #0d4a75;">Enter Verification Code</h3>
                 <p style="font-size: 12px; color: #666; margin-bottom: 15px;">Enter the code sent to your Gmail.</p>
@@ -327,7 +345,7 @@
     </footer>
 
     <script>
-        // আপনার নতুন দেওয়া Google Apps Script Web App URL এখানে সেট করা হলো
+        // আপনার দেওয়া সাম্প্রতিক Google Apps Script Web App URL
         const scriptURL = 'https://script.google.com/macros/s/AKfycbx3Lm6CRmX2yCzUQFZPLoqV3cBkfOsNviG-Iv5xep404jdu6YWJAm_evBkU6j-a7nJfKA/exec';
 
         let userEmail = '';
