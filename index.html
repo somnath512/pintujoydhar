@@ -284,7 +284,7 @@
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div id="signupFormContainer">
                 <h3 style="margin-bottom: 5px; color: #0d4a75;">Get View Access</h3>
-                <p style="font-size: 11px; color: #666; margin-bottom: 15px;">Enter your name and Gmail to receive a verification code.</p>
+                <p style="font-size: 11px; color: #666; margin-bottom: 15px;">Enter your name and Gmail to proceed.</p>
                 <form onsubmit="handleSignup(event)">
                     <div class="form-group">
                         <label>Full Name</label>
@@ -294,19 +294,8 @@
                         <label>Gmail Address</label>
                         <input type="email" id="email" placeholder="example@gmail.com" required>
                     </div>
-                    <button type="submit" class="btn-submit" id="submitBtn">GET CODE</button>
+                    <button type="submit" class="btn-submit" id="submitBtn">SUBMIT & GET ACCESS</button>
                 </form>
-            </div>
-
-            <!-- Verification Section -->
-            <div id="verifyContainer" style="display: none;">
-                <h3 style="margin-bottom: 10px; color: #0d4a75;">Enter Verification Code</h3>
-                <p style="font-size: 12px; color: #666; margin-bottom: 15px;">Enter the code sent to your Gmail.</p>
-                <div class="form-group">
-                    <label>Verification Code</label>
-                    <input type="text" id="enteredCode" placeholder="Enter code" required>
-                </div>
-                <button type="button" class="btn-submit" id="verifyBtn" onclick="verifyCode()">VERIFY & GET ACCESS</button>
             </div>
         </div>
     </div>
@@ -316,9 +305,7 @@
     </footer>
 
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzwJ8c9w-LM-6646Mu2jxruvZHhpCFyPA4VbTayCsWFSYeiAXwyuG_FMr2UbvKlRBnU8A/exec';
-
-        let userEmail = '';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwe5_Xu8bEB7B0V_wxWSVjo8VgfBxwSDZHYOp2Qepbutb4UsQnREN0gdme4QY5wrvHVSw/exec';
 
         document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('isVerified') === 'true') {
@@ -328,8 +315,7 @@
         });
 
         function fetchUserCount() {
-            const cacheBusterUrl = scriptURL + '?t=' + new Date().getTime();
-            fetch(cacheBusterUrl)
+            fetch(scriptURL + '?t=' + new Date().getTime())
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.count !== undefined) {
@@ -353,63 +339,31 @@
             event.preventDefault();
             
             const name = document.getElementById('name').value;
-            userEmail = document.getElementById('email').value;
+            const email = document.getElementById('email').value;
             const btn = document.getElementById('submitBtn');
 
-            btn.innerText = "Sending...";
+            btn.innerText = "Processing...";
             btn.disabled = true;
 
             fetch(scriptURL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name: name, email: userEmail })
+                body: JSON.stringify({ name: name, email: email })
             })
             .then(() => {
-                alert("Verification code sent to your email!");
-                document.getElementById('signupFormContainer').style.display = 'none';
-                document.getElementById('verifyContainer').style.display = 'block';
-                setTimeout(fetchUserCount, 3000);
-            })
-            .catch(error => {
-                alert("Error! Please try again.");
-                btn.innerText = "GET CODE";
-                btn.disabled = false;
-            });
-        }
-
-        function verifyCode() {
-            const userCode = document.getElementById('enteredCode').value.trim();
-            const vBtn = document.getElementById('verifyBtn');
-
-            if (userCode === "") {
-                alert("Please enter a valid verification code.");
-                return;
-            }
-
-            vBtn.innerText = "Verifying...";
-            vBtn.disabled = true;
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify({ action: "verify", email: userEmail, code: userCode })
-            })
-            .then(response => response.json())
-            .then(data => {
                 localStorage.setItem('isVerified', 'true');
-                alert("Verification Successful!");
+                alert("Successfully Signed Up!");
                 closeModal();
                 setVerifiedUI();
+                setTimeout(fetchUserCount, 2000);
             })
             .catch(error => {
                 localStorage.setItem('isVerified', 'true');
-                alert("Verification Successful!");
+                alert("Successfully Signed Up!");
                 closeModal();
                 setVerifiedUI();
             });
-        }
-
-        private function setVerifiedUI() { // Not used in standard JS, using regular function below
         }
 
         function setVerifiedUI() {
