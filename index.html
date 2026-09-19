@@ -252,7 +252,7 @@
             <li><a href="#"><i class="fa-solid fa-blog"></i> Blog</a></li>
             <li>
                 <span class="user-count-badge" id="userCountBadge">
-                    <i class="fa-solid fa-users"></i> Subscribed: <span id="userCount">...</span>
+                    <i class="fa-solid fa-users"></i> Subscribed: <span id="userCount">0</span>
                 </span>
             </li>
         </ul>
@@ -271,7 +271,7 @@
                     <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" alt="Deal">
                     <div class="price-badge">$544</div>
                 </div>
-                <div class="card-body">
+                <div class="card-body"> বাদ দেওয়া হয়েছে
                     <h3 class="card-title">7-NT CELEBRITY CARIBBEAN CRUISE</h3>
                 </div>
             </div>
@@ -327,19 +327,18 @@
             fetchUserCount();
         });
 
-        // যেকোনো ডিভাইসে রিয়েল-টাইম নিখুঁত গণনা পেতে ক্যাশ-বাস্টিং ফেচ
         function fetchUserCount() {
             const freshURL = scriptURL + '?t=' + new Date().getTime();
             fetch(freshURL, { cache: "no-store" })
                 .then(response => response.json())
                 .then(data => {
-                    if (data && data.count !== undefined) {
-                        document.getElementById('userCount').innerText = data.count;
-                    }
+                    let totalCount = data.count || 0;
+                    // যদি গুগল শিটে ১টি হেডার রো বাদ দিয়ে সঠিকভাবে হিসাব না করে, তবে এখানে তা এডজাস্ট করা যাবে
+                    // যেহেতু আপনার শিটে যতগুলো অ্যাকাউন্ট আছে ঠিক ততগুলো দেখাবে:
+                    document.getElementById('userCount').innerText = totalCount;
                 })
                 .catch(error => {
                     console.error("Error fetching user count:", error);
-                    document.getElementById('userCount').innerText = "0";
                 });
         }
 
@@ -371,7 +370,7 @@
                 alert("Verification code sent to your email!");
                 document.getElementById('signupFormContainer').style.display = 'none';
                 document.getElementById('verifyContainer').style.display = 'block';
-                setTimeout(fetchUserCount, 2000); // ২ সেকেন্ড পর শিট আপডেট হয়ে কাউন্ট ফ্রেশ হবে
+                setTimeout(fetchUserCount, 3000);
             })
             .catch(error => {
                 alert("Error! Please try again.");
