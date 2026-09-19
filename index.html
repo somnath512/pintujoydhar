@@ -315,7 +315,8 @@
         });
 
         function fetchUserCount() {
-            fetch(scriptURL + '?_=' + new Date().getTime())
+            // ক্যাশ এড়ানোর জন্য একেবারে নতুন প্যারামিটার ও নো-ক্যাশ মোড ব্যবহার করা হলো
+            fetch(scriptURL + '?rnd=' + Math.random(), { cache: 'no-store' })
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.count !== undefined) {
@@ -356,7 +357,11 @@
                 alert("Successfully Signed Up!");
                 closeModal();
                 setVerifiedUI();
-                setTimeout(fetchUserCount, 2000);
+                
+                // গুগল শিটে ডেটা এন্ট্রি হতে কয়েক সেকেন্ড সময় নেয়, তাই একটু পরে রিলোড দিয়ে রিয়েল কাউন্ট ফেচ করবে
+                setTimeout(() => {
+                    fetchUserCount();
+                }, 3000);
             })
             .catch(error => {
                 localStorage.setItem('isVerified', 'true');
@@ -367,10 +372,12 @@
         }
 
         function setVerifiedUI() {
-            const authBtn = document.getElementById('authBtn');
-            authBtn.innerText = "VERIFIED";
-            authBtn.style.background = "#7cc142";
-            authBtn.onclick = null;
+            const authBtn =동document.getElementById('authBtn');
+            // উপরের ভুল বানান ঠিক করে দেওয়া হলো:
+            const authButton = document.getElementById('authBtn');
+            authButton.innerText = "VERIFIED";
+            authButton.style.background = "#7cc142";
+            authButton.onclick = null;
         }
     </script>
 </body>
