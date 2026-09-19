@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pintu Joydhar - Website</title>
+    <title>Pintu Joydhar - Personal Website</title>
     
     <!-- Google Fonts & FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,7 +13,7 @@
         :root {
             --brand-green: #7cc142;
             --brand-blue: #0099de;
-            --brand-dark-blue: #1e2d3b;
+            --brand-dark: #1e2d3b;
             --bg-light: #f5f7fa;
             --text-dark: #333333;
             --border-color: #e2e8f0;
@@ -34,12 +34,15 @@
         /* Top Bar */
         .top-bar {
             background: #ffffff;
-            height: 60px;
+            height: 65px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 4%;
+            padding: 0 5%;
             border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .brand-logo {
@@ -56,43 +59,114 @@
         .nav-menu {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 20px;
             align-items: center;
         }
 
         .nav-menu li a {
             text-decoration: none;
             color: #0d4a75;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 700;
             text-transform: uppercase;
             display: flex;
             align-items: center;
             gap: 6px;
+            transition: 0.3s;
         }
 
-        .user-count-badge {
-            background: #eef2f7;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            color: #0d4a75;
-            border: 1px solid #d0dbe5;
+        .nav-menu li a:hover {
+            color: var(--brand-blue);
         }
 
         .btn-signup {
             background: var(--brand-blue);
             color: #fff;
             border: none;
-            padding: 8px 18px;
+            padding: 9px 20px;
             border-radius: 4px;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 700;
             cursor: pointer;
             text-transform: uppercase;
         }
 
+        /* Profile Hero Section */
+        .hero-section {
+            background: #ffffff;
+            padding: 60px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .profile-img-container {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--brand-blue);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .hero-text h1 {
+            font-size: 32px;
+            color: var(--brand-dark);
+            margin-bottom: 10px;
+        }
+
+        .hero-text h1 span {
+            color: var(--brand-blue);
+        }
+
+        .hero-text p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Content Sections */
+        .main-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        .content-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0d4a75;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--brand-green);
+            padding-bottom: 8px;
+        }
+
+        /* Modal */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -162,28 +236,54 @@
             text-align: center;
             padding: 20px;
             font-size: 12px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header Navigation -->
     <div class="top-bar">
         <a href="#" class="brand-logo">Pintu <span>Joydhar</span></a>
         <ul class="nav-menu">
             <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="#"><i class="fa-solid fa-heart"></i> My Life</a></li>
-            <li><a href="#"><i class="fa-solid fa-blog"></i> Blog</a></li>
-            <li>
-                <span class="user-count-badge" id="userCountBadge">
-                    <i class="fa-solid fa-users"></i> Subscribed: <span id="userCount">0</span>
-                </span>
-            </li>
+            <li><a href="#about"><i class="fa-solid fa-user"></i> About</a></li>
+            <li><a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
         </ul>
         <button class="btn-signup" id="authBtn" onclick="openModal()">SIGN UP</button>
+    </div>
+
+    <!-- Profile Hero Section with Picture -->
+    <div class="hero-section">
+        <div class="profile-img-container">
+            <img src="https://lh3.googleusercontent.com/d/1TAf3Aud6gYxHWmJ6RAbC5JNJ0iYCvhad=s1000" alt="Pintu Joydhar">
+        </div>
+        <div class="hero-text">
+            <h1>Welcome to <span>Pintu's World</span></h1>
+            <p>I am Pintu Joydhar. Welcome to my personal website. Here you can explore my thoughts, projects, and connect with me directly.</p>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-container">
+        
+        <!-- About Section -->
+        <div class="content-card" id="about">
+            <h2 class="section-title"><i class="fa-solid fa-user-check"></i> About Me</h2>
+            <p style="line-height: 1.7; color: #555;">
+                Hello! I am Pintu Joydhar. I am passionate about learning new technologies, writing, and creating engaging web experiences. Feel free to browse through my website and reach out if you would like to connect!
+            </p>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="content-card" id="contact">
+            <h2 class="section-title"><i class="fa-solid fa-paper-plane"></i> Contact Me</h2>
+            <p style="line-height: 1.7; color: #555; margin-bottom: 15px;">
+                If you want to get in touch with me, feel free to send a message or sign up using the button above.
+            </p>
+            <p><strong>Email:</strong> joydharpintu1@gmail.com</p>
+        </div>
+
     </div>
 
     <!-- Signup Modal -->
@@ -219,21 +319,7 @@
             if (localStorage.getItem('isVerified') === 'true') {
                 setVerifiedUI();
             }
-            fetchUserCount();
         });
-
-        function fetchUserCount() {
-            fetch(scriptURL + '?rnd=' + Math.random(), { cache: 'no-store' })
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data.count !== undefined) {
-                        document.getElementById('userCount').innerText = data.count;
-                    }
-                })
-                .catch(error => {
-                    console.error("Error fetching user count:", error);
-                });
-        }
 
         function openModal() {
             document.getElementById('signupModal').style.display = 'flex';
@@ -264,10 +350,6 @@
                 alert("Successfully Signed Up!");
                 closeModal();
                 setVerifiedUI();
-                
-                setTimeout(() => {
-                    fetchUserCount();
-                }, 3000);
             })
             .catch(error => {
                 localStorage.setItem('isVerified', 'true');
