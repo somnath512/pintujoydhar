@@ -231,17 +231,6 @@
             cursor: pointer;
         }
 
-        /* Protected Content Section */
-        #protectedContent {
-            display: none;
-            background: #e6f9ec;
-            border: 1px solid #7cc142;
-            padding: 20px;
-            margin-top: 30px;
-            border-radius: 5px;
-            text-align: center;
-        }
-
         footer {
             background: #111a22;
             color: #778899;
@@ -263,7 +252,7 @@
             <li><a href="#"><i class="fa-solid fa-blog"></i> Blog</a></li>
             <li>
                 <span class="user-count-badge" id="userCountBadge">
-                    <i class="fa-solid fa-users"></i> Subscribed: <span id="userCount">0</span>
+                    <i class="fa-solid fa-users"></i> Subscribed: <span id="userCount">...</span>
                 </span>
             </li>
         </ul>
@@ -285,24 +274,6 @@
                 <div class="card-body">
                     <h3 class="card-title">7-NT CELEBRITY CARIBBEAN CRUISE</h3>
                 </div>
-            </div>
-        </div>
-
-        <!-- Protected Content (Shown After Verification) -->
-        <div id="protectedContent">
-            <h3 style="color: #2b7a0b; margin-bottom: 12px;"><i class="fa-solid fa-circle-check"></i> View Access Granted!</h3>
-            <p style="font-size: 13px; color: #444; margin-bottom: 15px;">Congratulations! You are now verified. Here is your exclusive content:</p>
-            
-            <div style="background: #ffffff; padding: 20px; border-radius: 6px; border: 1px solid #d4edda; text-align: left; max-height: 300px; overflow-y: auto;">
-                <h4 style="color: #0d4a75; margin-bottom: 8px;"><i class="fa-solid fa-book-open"></i> My Special Notes & Poetry</h4>
-                <p style="font-size: 12px; color: #555; line-height: 1.6; margin-bottom: 10px;">
-                    এখানে আপনার গোপন লেখা, কবিতা বা প্রয়োজনীয় নোটস রাখতে পারেন যা শুধুমাত্র ভেরিফাইড ইউজাররাই দেখতে পাবে।
-                </p>
-                <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <p style="font-size: 12px; color: #333;">
-                    <b>১. প্রথম নোট:</b> এটি একটি গোপন ফাইল বা কন্টেন্ট।<br>
-                    <b>২. দ্বিতীয় নোট:</b> ইউজার ভেরিফিকেশন সফল হওয়ার পরেই কেবল এটি দৃশ্যমান হয়।
-                </p>
             </div>
         </div>
     </div>
@@ -345,26 +316,30 @@
     </footer>
 
     <script>
-        // আপনার দেওয়া সাম্প্রতিক Google Apps Script Web App URL
         const scriptURL = 'https://script.google.com/macros/s/AKfycbx3Lm6CRmX2yCzUQFZPLoqV3cBkfOsNviG-Iv5xep404jdu6YWJAm_evBkU6j-a7nJfKA/exec';
 
         let userEmail = '';
 
         document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('isVerified') === 'true') {
-                grantAccess();
+                setVerifiedUI();
             }
             fetchUserCount();
         });
 
+        // যেকোনো ডিভাইসে রিয়েল-টাইম নিখুঁত গণনা পেতে ক্যাশ-বাস্টিং ফেচ
         function fetchUserCount() {
-            fetch(scriptURL)
+            const freshURL = scriptURL + '?t=' + new Date().getTime();
+            fetch(freshURL, { cache: "no-store" })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById('userCount').innerText = data.count || 0;
+                    if (data && data.count !== undefined) {
+                        document.getElementById('userCount').innerText = data.count;
+                    }
                 })
                 .catch(error => {
                     console.error("Error fetching user count:", error);
+                    document.getElementById('userCount').innerText = "0";
                 });
         }
 
@@ -396,7 +371,7 @@
                 alert("Verification code sent to your email!");
                 document.getElementById('signupFormContainer').style.display = 'none';
                 document.getElementById('verifyContainer').style.display = 'block';
-                fetchUserCount();
+                setTimeout(fetchUserCount, 2000); // ২ সেকেন্ড পর শিট আপডেট হয়ে কাউন্ট ফ্রেশ হবে
             })
             .catch(error => {
                 alert("Error! Please try again.");
@@ -425,9 +400,9 @@
             .then(data => {
                 if (data.status === "success") {
                     localStorage.setItem('isVerified', 'true');
-                    alert("Verification Successful! View Access granted.");
+                    alert("Verification Successful!");
                     closeModal();
-                    grantAccess();
+                    setVerifiedUI();
                 } else {
                     alert("Invalid Verification Code! Please check your code.");
                     vBtn.innerText = "VERIFY & GET ACCESS";
@@ -438,12 +413,11 @@
                 localStorage.setItem('isVerified', 'true');
                 alert("Verification Successful!");
                 closeModal();
-                grantAccess();
+                setVerifiedUI();
             });
         }
 
-        function grantAccess() {
-            document.getElementById('protectedContent').style.display = 'block';
+        function setVerifiedUI() {
             const authBtn = document.getElementById('authBtn');
             authBtn.innerText = "VERIFIED";
             authBtn.style.background = "#7cc142";
