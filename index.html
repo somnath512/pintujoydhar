@@ -341,37 +341,48 @@
     </header>
 
     <!-- Default Gallery Section (Home View) -->
-    <section class="grid-container" id="home-grid">
-        <h2 class="grid-title">My Gallery & Files</h2>
-        <div class="image-grid">
-            <a onclick="showSection('poetry-section')" class="grid-card">
-                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a" alt="Poetry">
-                <div class="overlay"><h3>Poetry</h3></div>
-            </a>
-            <a onclick="showSection('accounting-section')" class="grid-card">
-                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c" alt="Accounting">
-                <div class="overlay"><h3>Accounting</h3></div>
-            </a>
-            <a onclick="showSection('technology-section')" class="grid-card">
-                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643" alt="Technology">
-                <div class="overlay"><h3>Technology</h3></div>
-            </a>
-            <a onclick="showSection('others-section')" class="grid-card">
-                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173" alt="Others">
-                <div class="overlay"><h3>Others</h3></div>
-            </a>
-            <a onclick="showSection('about-section')" class="grid-card">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9" alt="About Me">
-                <div class="overlay"><h3>About Me</h3></div>
-            </a>
-            <a onclick="showSection('contact-section')" class="grid-card">
-                <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" alt="Contact">
-                <div class="overlay"><h3>Contact</h3></div>
-            </a>
-        </div>
-    </section>
+    <div id="home-main-content">
+        <section class="grid-container">
+            <h2 class="grid-title">My Gallery & Files</h2>
+            <div class="image-grid">
+                <a onclick="showSection('poetry-section')" class="grid-card">
+                    <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a" alt="Poetry">
+                    <div class="overlay"><h3>Poetry</h3></div>
+                </a>
+                <a onclick="showSection('accounting-section')" class="grid-card">
+                    <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c" alt="Accounting">
+                    <div class="overlay"><h3>Accounting</h3></div>
+                </a>
+                <a onclick="showSection('technology-section')" class="grid-card">
+                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643" alt="Technology">
+                    <div class="overlay"><h3>Technology</h3></div>
+                </a>
+                <a onclick="showSection('others-section')" class="grid-card">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173" alt="Others">
+                    <div class="overlay"><h3>Others</h3></div>
+                </a>
+                <a onclick="showSection('about-section')" class="grid-card">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9" alt="About Me">
+                    <div class="overlay"><h3>About Me</h3></div>
+                </a>
+                <a onclick="showSection('contact-section')" class="grid-card">
+                    <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" alt="Contact">
+                    <div class="overlay"><h3>Contact</h3></div>
+                </a>
+            </div>
+        </section>
 
-    <!-- Dynamic Sections Loaded from Google Sheet -->
+        <!-- About Me Section directly on Home Page -->
+        <section style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
+            <div id="home-about-container" style="background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                <img src="https://lh3.googleusercontent.com/d/1HVv0hIkG1M5PpRDORgxrXxR6qpZzI1Fj" style="width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 4px solid #8cb83e; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+                <h3 style="font-size: 1.8rem; color: #111; margin-bottom: 10px;">Pintu Joydhar</h3>
+                <p style="font-size: 1.1rem; color: #555; line-height: 1.6; max-width: 700px; margin: 0 auto;">Welcome to my personal portfolio site. Life is a collection of precious moments, continuous learning, and creativity.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Dynamic Category Content Sections -->
     <div id="about-section" class="content-section"><h2>About Me</h2></div>
     <div id="poetry-section" class="content-section"><h2>Poetry Collection</h2></div>
     <div id="accounting-section" class="content-section"><h2>Accounting & Finance Notes</h2></div>
@@ -391,7 +402,6 @@
 
     <!-- JavaScript for Google Sheet Data Integration -->
     <script>
-        // Google Drive Link Converter
         function getDirectImgUrl(url) {
             if (!url) return '';
             url = url.trim();
@@ -410,7 +420,6 @@
                 const response = await fetch(url);
                 const data = await response.json();
 
-                // User profile photo drive fallback
                 let defaultAboutPic = getDirectImgUrl("https://drive.google.com/file/d/1HVv0hIkG1M5PpRDORgxrXxR6qpZzI1Fj/view?usp=sharing");
 
                 let aboutHtml = "<h2>About Me</h2>";
@@ -419,6 +428,7 @@
                 let technologyHtml = "<h2>Technology & Web Development</h2>";
                 let othersHtml = "<h2>Others</h2>";
 
+                let homeAboutContentHtml = "";
                 let hasAboutInSheet = false;
 
                 data.forEach(item => {
@@ -430,13 +440,16 @@
                     if (cat === 'about') {
                         hasAboutInSheet = true;
                         let profilePic = imgUrl || defaultAboutPic;
-                        aboutHtml += `
+                        
+                        let cardDesign = `
                             <div style="text-align: center; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px;">
                                 <img src="${profilePic}" style="width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 4px solid #8cb83e; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
                                 <h3 style="font-size: 1.8rem; color: #111; margin-bottom: 10px;">${title}</h3>
                                 <p style="font-size: 1.1rem; color: #555; line-height: 1.6; max-width: 700px; margin: 0 auto;">${content}</p>
                             </div>
                         `;
+                        aboutHtml += cardDesign;
+                        homeAboutContentHtml = cardDesign; // Home page section update
                     } else if (cat) {
                         let card = `
                             <div style="background:white; padding:20px; margin-bottom:15px; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
@@ -454,7 +467,7 @@
                 });
 
                 if (!hasAboutInSheet) {
-                    aboutHtml += `
+                    homeAboutContentHtml = `
                         <div style="text-align: center; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
                             <img src="${defaultAboutPic}" style="width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 4px solid #8cb83e; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
                             <h3 style="font-size: 1.8rem; color: #111; margin-bottom: 10px;">Pintu Joydhar</h3>
@@ -463,6 +476,7 @@
                     `;
                 }
 
+                if(document.getElementById('home-about-container')) document.getElementById('home-about-container').innerHTML = homeAboutContentHtml;
                 if(document.getElementById('about-section')) document.getElementById('about-section').innerHTML = aboutHtml;
                 if(document.getElementById('poetry-section')) document.getElementById('poetry-section').innerHTML = poetryHtml;
                 if(document.getElementById('accounting-section')) document.getElementById('accounting-section').innerHTML = accountingHtml;
@@ -476,7 +490,7 @@
 
         function showSection(sectionId) {
             document.getElementById('hero-section').style.display = 'none';
-            document.getElementById('home-grid').style.display = 'none';
+            document.getElementById('home-main-content').style.display = 'none';
 
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(sec => sec.style.display = 'none');
@@ -487,7 +501,7 @@
 
         function showHome() {
             document.getElementById('hero-section').style.display = 'flex';
-            document.getElementById('home-grid').style.display = 'block';
+            document.getElementById('home-main-content').style.display = 'block';
 
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(sec => sec.style.display = 'none');
