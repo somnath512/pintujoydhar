@@ -278,6 +278,61 @@
             padding-bottom: 10px;
         }
 
+        /* Admin Upload Box CSS */
+        #admin-upload-panel {
+            display: none;
+            max-width: 800px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border-left: 5px solid #8cb83e;
+        }
+
+        #admin-upload-panel h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .admin-form-group {
+            margin-bottom: 15px;
+        }
+
+        .admin-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .admin-form-group input, .admin-form-group select, .admin-form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .admin-form-group textarea {
+            height: 100px;
+        }
+
+        .admin-btn {
+            background: #8cb83e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .admin-btn:hover {
+            background: #7aa333;
+        }
+
         /* Footer */
         footer {
             background-color: #222;
@@ -308,12 +363,45 @@
             <li><a onclick="showSection('accounting-section')">Accounting</a></li>
             <li><a onclick="showSection('technology-section')">Technology</a></li>
             <li><a onclick="showSection('others-section')">Others</a></li>
+            <!-- সিক্রেট অ্যাডমিন লগইন বাটন -->
+            <li><a onclick="adminLogin()" style="color: #a7d155; font-size: 0.8rem;">🔒 Admin</a></li>
         </ul>
         <div class="nav-search">
             <input type="text" placeholder="Search...">
             <button>🔍</button>
         </div>
     </nav>
+
+    <!-- Admin Upload Panel (শুধুমাত্র অ্যাডমিন লগইন করলে দেখা যাবে) -->
+    <div id="admin-upload-panel">
+        <h3>🔐 Admin Upload Panel</h3>
+        <form id="uploadForm" action="https://script.google.com/macros/s/AKfycbxHQJFihLxbqlbuFzaF8h5alTlvfax6kC-fH5vzvsxKmOMXsF9UM0goCD2xqp46z9cU/exec" method="POST" target="hidden_iframe">
+            <div class="admin-form-group">
+                <label>Category:</label>
+                <select name="category" required>
+                    <option value="about">About</option>
+                    <option value="poetry">Poetry</option>
+                    <option value="accounting">Accounting</option>
+                    <option value="technology">Technology</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+            <div class="admin-form-group">
+                <label>Title:</label>
+                <input type="text" name="title" placeholder="Enter title..." required>
+            </div>
+            <div class="admin-form-group">
+                <label>Image Link (Google Drive / Direct URL):</label>
+                <input type="text" name="image" placeholder="Paste image link here...">
+            </div>
+            <div class="admin-form-group">
+                <label>Content / Description:</label>
+                <textarea name="content" placeholder="Write content here..."></textarea>
+            </div>
+            <button type="submit" class="admin-btn" onclick="alert('Data submitted! Please refresh after a few seconds.');">Upload Post</button>
+        </form>
+        <iframe name="hidden_iframe" style="display:none;"></iframe>
+    </div>
 
     <!-- Full Screen Hero Section -->
     <header class="hero" id="hero-section">
@@ -388,8 +476,21 @@
         Copyright © 2026 Pintu Joydhar. All rights reserved.
     </footer>
 
-    <!-- JavaScript for Google Sheet Data Integration -->
+    <!-- JavaScript for Data & Admin Panel -->
     <script>
+        // অ্যাডমিন পাসওয়ার্ড চেক করার ফাংশন
+        function adminLogin() {
+            let pass = prompt("Enter Admin Password:");
+            // আপনার সিক্রেট পাসওয়ার্ড এখানে 'pintu123' দেওয়া আছে, এটি আপনার পছন্দমতো পরিবর্তন করে নিতে পারেন
+            if (pass === "pintu123") {
+                document.getElementById('admin-upload-panel').style.display = 'block';
+                alert("Welcome Admin! Upload panel is now visible below the navigation bar.");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (pass !== null) {
+                alert("Incorrect Password!");
+            }
+        }
+
         function getDirectImgUrl(url) {
             if (!url) return '';
             url = url.trim();
@@ -408,7 +509,6 @@
                 const response = await fetch(url);
                 const data = await response.json();
 
-                // এখানে সরাসরি আপনার ড্রাইভের লিংকটি বসিয়ে দেওয়া হয়েছে
                 let defaultAboutPic = getDirectImgUrl("https://drive.google.com/file/d/13GNh_zG29inl1hdugRyBkXUWjCazKMAx/view?usp=sharing");
 
                 let aboutHtml = "<h2>About Me</h2>";
@@ -456,14 +556,14 @@
                         <div style="text-align: center; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
                             <img src="${defaultAboutPic}" style="width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 4px solid #8cb83e; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
                             <h3 style="font-size: 1.8rem; color: #111; margin-bottom: 10px;">Pintu Joydhar</h3>
-                            <p style="font-size: 1.1rem; color: #555; line-height: 1.6; max-width: 700px; margin: 0 auto;">Welcome to my personal portfolio site.</p>
+                            <p style="font-size: 1.1rem; color: /555; line-height: 1.6; max-width: 700px; margin: 0 auto;">Welcome to my personal portfolio site.</p>
                         </div>
                     `;
                 }
 
                 if(document.getElementById('about-section')) document.getElementById('about-section').innerHTML = aboutHtml;
                 if(document.getElementById('poetry-section')) document.getElementById('poetry-section').innerHTML = poetryHtml;
-                if(document.getElementById('accounting-section')) document.getElementById('accounting-section').innerHTML = accounting_section.innerHTML = accountingHtml;
+                if(document.getElementById('accounting-section')) document.getElementById('accounting-section').innerHTML = accountingHtml;
                 if(document.getElementById('technology-section')) document.getElementById('technology-section').innerHTML = technologyHtml;
                 if(document.getElementById('others-section')) document.getElementById('others-section').innerHTML = othersHtml;
 
