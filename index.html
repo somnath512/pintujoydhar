@@ -118,7 +118,7 @@
             text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
         }
 
-        /* Full Width Search Box inside Hero Section */
+        /* Search Box inside Hero Section */
         .hero-search-box {
             background: rgba(255, 255, 255, 0.95);
             padding: 8px;
@@ -156,7 +156,7 @@
             background: #7aa333;
         }
 
-        /* Social Icons Inside Hero Section */
+        /* Social Icons */
         .hero-socials {
             display: flex;
             justify-content: center;
@@ -190,7 +190,7 @@
             transform: translateY(-5px) scale(1.1);
         }
 
-        /* Default Gallery Section (Home View) */
+        /* Default Gallery Section */
         .grid-container {
             max-width: 1200px;
             margin: 60px auto;
@@ -381,7 +381,7 @@
     <!-- Static Contact Section -->
     <div id="contact-section" class="content-section">
         <h2>Contact Me</h2>
-        <p>আমার সাথে যোগাযোগ করতে চাইলে উপরে দেওয়া ফেসবুক, ইন্সটাগ্রাম বা লিংকডইন প্রোফাইলে মেসেজ করতে পারেন।</p>
+        <p>Amar sathe jogajog korte chaile upore dewa Facebook, Instagram ba LinkedIn profile-e message korte paren.</p>
     </div>
 
     <!-- Footer -->
@@ -391,11 +391,27 @@
 
     <!-- JavaScript for Google Sheet Data Integration -->
     <script>
+        // Google Drive Link Converter
+        function getDirectImgUrl(url) {
+            if (!url) return '';
+            url = url.trim();
+            if (url.includes('drive.google.com') || url.includes('docs.google.com')) {
+                let match = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
+                if (match && match[1]) {
+                    return `https://lh3.googleusercontent.com/d/${match[1]}`;
+                }
+            }
+            return url;
+        }
+
         async function loadSheetData() {
             try {
                 const url = "https://script.google.com/macros/s/AKfycbxHQJFihLxbqlbuFzaF8h5alTlvfax6kC-fH5vzvsxKmOMXsF9UM0goCD2xqp46z9cU/exec";
                 const response = await fetch(url);
                 const data = await response.json();
+
+                // User profile photo drive fallback
+                let defaultAboutPic = getDirectImgUrl("https://drive.google.com/file/d/1HVv0hIkG1M5PpRDORgxrXxR6qpZzI1Fj/view?usp=sharing");
 
                 let aboutHtml = "<h2>About Me</h2>";
                 let poetryHtml = "<h2>Poetry Collection</h2>";
@@ -403,24 +419,20 @@
                 let technologyHtml = "<h2>Technology & Web Development</h2>";
                 let othersHtml = "<h2>Others</h2>";
 
+                let hasAboutInSheet = false;
+
                 data.forEach(item => {
-                    let cat = item.category ? item.category.toLowerCase().trim() : '';
+                    let cat = item.category ? item.category.toString().toLowerCase().trim() : '';
                     let title = item.title ? item.title : '';
                     let content = item.content ? item.content : '';
-                    
-                    // Google Drive Link Converter Fix
-                    let imgUrl = item.image ? item.image.trim() : '';
-                    if (imgUrl.includes('drive.google.com')) {
-                        let fileIdMatch = imgUrl.match(/\/d\/([a-zA-Z0-9_-]+)/);
-                        if (fileIdMatch && fileIdMatch[1]) {
-                            imgUrl = `https://lh3.googleusercontent.com/d/${fileIdMatch[1]}`;
-                        }
-                    }
+                    let imgUrl = item.image ? getDirectImgUrl(item.image) : '';
 
                     if (cat === 'about') {
+                        hasAboutInSheet = true;
+                        let profilePic = imgUrl || defaultAboutPic;
                         aboutHtml += `
                             <div style="text-align: center; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px;">
-                                ${imgUrl ? `<img src="${imgUrl}" style="width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid #8cb83e; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">` : ''}
+                                <img src="${profilePic}" style="width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 4px solid #8cb83e; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
                                 <h3 style="font-size: 1.8rem; color: #111; margin-bottom: 10px;">${title}</h3>
                                 <p style="font-size: 1.1rem; color: #555; line-height: 1.6; max-width: 700px; margin: 0 auto;">${content}</p>
                             </div>
@@ -429,7 +441,7 @@
                         let card = `
                             <div style="background:white; padding:20px; margin-bottom:15px; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
                                 <h3 style="color: #333; margin-bottom: 10px;">${title}</h3>
-                                ${imgUrl ? `<img src="${imgUrl}" style="max-width:100%; height:200px; object-fit:cover; border-radius:4px; margin:10px 0;">` : ''}
+                                ${imgUrl ? `<img src="${imgUrl}" style="max-width:100%; height:auto; max-height:380px; object-fit:cover; border-radius:4px; margin:10px 0; display:block;" onerror="this.style.display='none'">` : ''}
                                 <p style="color: #555; line-height: 1.5;">${content}</p>
                             </div>
                         `;
@@ -440,6 +452,16 @@
                         else othersHtml += card;
                     }
                 });
+
+                if (!hasAboutInSheet) {
+                    aboutHtml += `
+                        <div style="text-align: center; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                            <img src="${defaultAboutPic}" style="width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 4px solid #8cb83e; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+                            <h3 style="font-size: 1.8rem; color: #111; margin-bottom: 10px;">Pintu Joydhar</h3>
+                            <p style="font-size: 1.1rem; color: #555; line-height: 1.6; max-width: 700px; margin: 0 auto;">Welcome to my personal portfolio site.</p>
+                        </div>
+                    `;
+                }
 
                 if(document.getElementById('about-section')) document.getElementById('about-section').innerHTML = aboutHtml;
                 if(document.getElementById('poetry-section')) document.getElementById('poetry-section').innerHTML = poetryHtml;
