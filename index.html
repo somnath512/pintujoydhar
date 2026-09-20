@@ -396,7 +396,7 @@
             if (url.includes('drive.google.com') || url.includes('docs.google.com')) {
                 let match = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
                 if (match && match[1]) {
-                    return `https://lh3.googleusercontent.com/d/${match[1]}`;
+                    return `https://lh3.googleusercontent.com/d/${match[1]}=s1600`;
                 }
             }
             return url;
@@ -408,8 +408,8 @@
                 const response = await fetch(url);
                 const data = await response.json();
 
-                // এখানে ডিফল্ট ছবি সেট করা আছে
-                let defaultAboutPic = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde";
+                // এখানে সরাসরি আপনার ড্রাইভের লিংকটি বসিয়ে দেওয়া হয়েছে
+                let defaultAboutPic = getDirectImgUrl("https://drive.google.com/file/d/13GNh_zG29inl1hdugRyBkXUWjCazKMAx/view?usp=sharing");
 
                 let aboutHtml = "<h2>About Me</h2>";
                 let poetryHtml = "<h2>Poetry Collection</h2>";
@@ -463,7 +463,7 @@
 
                 if(document.getElementById('about-section')) document.getElementById('about-section').innerHTML = aboutHtml;
                 if(document.getElementById('poetry-section')) document.getElementById('poetry-section').innerHTML = poetryHtml;
-                if(document.getElementById('accounting-section')) document.getElementById('accounting-section').innerHTML = accountingHtml;
+                if(document.getElementById('accounting-section')) document.getElementById('accounting-section').innerHTML = accounting_section.innerHTML = accountingHtml;
                 if(document.getElementById('technology-section')) document.getElementById('technology-section').innerHTML = technologyHtml;
                 if(document.getElementById('others-section')) document.getElementById('others-section').innerHTML = othersHtml;
 
