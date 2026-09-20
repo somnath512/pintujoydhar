@@ -303,7 +303,7 @@
     <nav>
         <div class="logo" onclick="showHome()">PINTU <span>JOYDHAR</span></div>
         <ul class="nav-links">
-            <li><a onclick="showSection('about-section')">About</a></li>
+            <li><a onclick="scrollToAbout()">About</a></li>
             <li><a onclick="showSection('poetry-section')">Poetry</a></li>
             <li><a onclick="showSection('accounting-section')">Accounting</a></li>
             <li><a onclick="showSection('technology-section')">Technology</a></li>
@@ -361,7 +361,7 @@
                     <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173" alt="Others">
                     <div class="overlay"><h3>Others</h3></div>
                 </a>
-                <a onclick="showSection('about-section')" class="grid-card">
+                <a onclick="scrollToAbout()" class="grid-card">
                     <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9" alt="About Me">
                     <div class="overlay"><h3>About Me</h3></div>
                 </a>
@@ -373,7 +373,7 @@
         </section>
 
         <!-- About Me Section directly on Home Page -->
-        <section style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
+        <section id="about-home-target" style="max-width: 1000px; margin: 40px auto; padding: 0 20px;">
             <div id="home-about-container" style="background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
                 <img src="https://lh3.googleusercontent.com/d/1HVv0hIkG1M5PpRDORgxrXxR6qpZzI1Fj" style="width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 4px solid #8cb83e; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
                 <h3 style="font-size: 1.8rem; color: #111; margin-bottom: 10px;">Pintu Joydhar</h3>
@@ -382,7 +382,7 @@
         </section>
     </div>
 
-    <!-- Dynamic Category Content Sections -->
+    <!-- Dynamic Category Content Sections (For other tabs) -->
     <div id="about-section" class="content-section"><h2>About Me</h2></div>
     <div id="poetry-section" class="content-section"><h2>Poetry Collection</h2></div>
     <div id="accounting-section" class="content-section"><h2>Accounting & Finance Notes</h2></div>
@@ -449,7 +449,7 @@
                             </div>
                         `;
                         aboutHtml += cardDesign;
-                        homeAboutContentHtml = cardDesign; // Home page section update
+                        homeAboutContentHtml = cardDesign;
                     } else if (cat) {
                         let card = `
                             <div style="background:white; padding:20px; margin-bottom:15px; border-radius:6px; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
@@ -486,6 +486,17 @@
             } catch (error) {
                 console.error("Data load error:", error);
             }
+        }
+
+        // Scroll to About section directly on home page
+        function scrollToAbout() {
+            showHome();
+            setTimeout(() => {
+                const aboutTarget = document.getElementById('about-home-target');
+                if(aboutTarget) {
+                    aboutTarget.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 100);
         }
 
         function showSection(sectionId) {
