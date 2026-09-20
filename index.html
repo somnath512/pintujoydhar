@@ -408,7 +408,8 @@
                 const response = await fetch(url);
                 const data = await response.json();
 
-                let defaultAboutPic = getDirectImgUrl("https://drive.google.com/file/d/13GNh_zG29inl1hdugRyBkXUWjCazKMAx/view?usp=sharing");
+                // এখানে ডিফল্ট ছবি সেট করা আছে
+                let defaultAboutPic = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde";
 
                 let aboutHtml = "<h2>About Me</h2>";
                 let poetryHtml = "<h2>Poetry Collection</h2>";
